@@ -11,13 +11,11 @@ end
 
 Given /^I request the mrss (.*) api$/ do |uri|
   @uri = "#{ENV['ENVIRONMENT']}#{uri}"
-  puts @uri
 end
 
 Given /^I request the (.*) (.*) (.*) api$/ do |type, platform, uri|
   @uri = "#{ENV['ENVIRONMENT']}/api/#{type}/#{platform}/#{uri}"
   @response = @mercury.get_response_from_url @uri
-  puts 'EoS'
 end
 
 Then /^I get a successful (.*) response with the correct (.*)$/ do |type, platform|
