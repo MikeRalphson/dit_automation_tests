@@ -20,6 +20,11 @@ Given /^I request the (.*) (.*) (.*) api$/ do |type, platform, uri|
   @response = @mercury.get_response_from_url @uri
 end
 
+Given /^I request the content for (.*) and (.*) with (.*)$/ do |broadcaster, platform, screen_size|
+  @uri = "#{ENV['ENVIRONMENT']}/api/xml/#{platform}?screensize=#{screen_size}&broadcaster=#{broadcaster}"
+  @response = @mercury.get_response_from_url @uri
+end
+
 Then /^I get a successful (.*) response with the correct (.*)$/ do |type, platform|
   case type
     when 'xml'
@@ -41,7 +46,7 @@ Then /^I get a successful (.*) response with the correct (.*)$/ do |type, platfo
   end
 end
 
-Then /^the response should contain production id (.*)$/ do |production_id|
+Then /^the response should contain production id (\d+\/\d+\/\d+#\d+)$/ do |production_id|
   xml = @mercury.get_xml_from_response @response
   unless @mercury.value_exists_in_xml_node?(xml, "ProductionId", production_id)
     raise 'invalid content found in response'
@@ -60,5 +65,31 @@ Then /^the response should contain the correct (.*)$/ do |title|
   xml = @mercury.get_xml_from_response @response
   unless @mercury.value_exists_in_xml_node? xml, "title", title
     raise 'error with mrss feed'
+  end
+end
+
+Then /^the response should contain channel (.*)$/ do |content|
+  xml = @mercury.get_xml_from_response @response
+  unless @mercury.value_exists_in_xml_node?(xml, "Title", content)
+    raise 'invalid content found in response'
+    end
+end
+
+Then /^the response should not contain (.*)$/ do |content|
+  xml = @mercury.get_xml_from_response @response
+  if @mercury.value_exists_in_xml_node?(xml, "Title", content)
+    raise 'invalid content found in response'
+  end
+end
+
+Then /^the response should contain a complete A-Z listing$/ do
+  a_to_z = [ "A - B", "C - D", "E - F", "G - H", "I - J", "K - L", "M - N",
+             "O - P", "Q - R", "S - T", "U - V", "W - X", "Y - Z", "0 - 9" ]
+  xml = @mercury.get_xml_from_response @response
+  found_values = a_to_z.map { |index| index if @mercury.value_exists_in_xml_node?(xml, "Title", index) }
+  comparison = (found_values.to_set ^ a_to_z.to_set)
+
+  unless comparison.size == 0
+    raise "complete A-Z listing was not found. The exact failures were: #{comparison.inspect}}"
   end
 end
