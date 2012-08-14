@@ -153,7 +153,7 @@ Feature: API and MRSS feeds
     | type | platform | production id   | uri                                      |
     | xml  | youview  | 1/5072/9102#001 | episode/programme/255423?broadcaster=ITV |
     | xml  | youview  | 1/5072/9102#001 | episode/indexes/255423?broadcaster=ITV   |
-    | xml  | dotcom   | 1/5163/1272#001 | whatsonschedule/today                    |
+    | xml  | dotcom   | 1/9311/0054#001 | episode/programme/coronation%20street    |
 
 
   Scenario Outline: Verify LastWeek feed across platforms
@@ -179,11 +179,11 @@ Feature: API and MRSS feeds
 
   Scenario Outline: Verify MRSS feed
     Given I request the mrss <uri> api
-    Then the response should contain <number of groups> or more MRSS groups
+    Then the response should contain the correct <title>
 
   Examples:
-    | uri               |
-    | /linking/20110830 |
+    | uri               | title                 |
+    | /linking/20120723 | ITV Daily Change Feed |
 
 
 #    Scenario Scenario Outline: Carousel...to do

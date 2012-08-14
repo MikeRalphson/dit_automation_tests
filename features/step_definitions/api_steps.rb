@@ -7,10 +7,12 @@ require 'mercury'
 
 Before do
   @mercury = Mercury.new
+  @response = ''
 end
 
 Given /^I request the mrss (.*) api$/ do |uri|
   @uri = "#{ENV['ENVIRONMENT']}#{uri}"
+  @response = @mercury.get_response_from_url @uri
 end
 
 Given /^I request the (.*) (.*) (.*) api$/ do |type, platform, uri|
@@ -22,29 +24,21 @@ Then /^I get a successful (.*) response with the correct (.*)$/ do |type, platfo
   case type
     when 'xml'
       xml = @mercury.get_xml_from_response @response
-      if @mercury.value_exists_in_xml_node? xml, "Value", platform
-        @platform_node = platform
-      else
+      unless @mercury.value_exists_in_xml_node? xml, "Value", platform
         raise "could not find the correct platform value: #{platform} in the response for uri: #@uri"
       end
     when 'json'
       json = @mercury.parse_json_response @response
-      if @mercury.value_exists_in_json_hash? json, platform, "Parameters", "Platform"
-        @platform_node = platform
-      else
+      unless @mercury.value_exists_in_json_hash? json, platform, "Parameters", "Platform"
         raise "could not find the correct platform value: #{platform} in the response for uri: #@uri"
       end
     when 'mhegdata'
-      if @mercury.value_exists_in_mhegdata? @response, @uri
-        @platform_node = platform
-      else
+      unless @mercury.value_exists_in_mhegdata? @response, @uri
         raise "could not find the correct platform value: #{platform} in the response for uri: #@uri"
       end
     else
       raise ArgumentError.new('invalid API request type')
   end
-  @platform_node.should match(%r{#{platform}}) # case insensitive
-  @response = ''
 end
 
 Then /^the response should contain production id (.*)$/ do |production_id|
@@ -62,3 +56,9 @@ Then /^the response should contain entries for each of the last 7 days$/ do
   difference.size.should == 0
 end
 
+Then /^the response should contain the correct (.*)$/ do |title|
+  xml = @mercury.get_xml_from_response @response
+  unless @mercury.value_exists_in_xml_node? xml, "title", title
+    raise 'error with mrss feed'
+  end
+end
