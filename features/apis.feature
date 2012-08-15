@@ -305,190 +305,122 @@ Scenario Outline: Verify correct broadcaster service
   | unknown     | mobile   | big         | PROGRAMME INFO    |
   | unknown     | mobile   | big         | EPISODE INFO      |
   | unknown     | mobile   | big         | A - Z             |
-  | itv         | samsung  | small       | ITV1              |
-  | itv         | samsung  | small       | ITV2              |
-  | itv         | samsung  | small       | ITV3              |
-  | itv         | samsung  | small       | ITV4              |
-  | itv         | samsung  | small       | CITV              |
-  | itv         | samsung  | small       | A - Z             |
-  | itv         | samsung  | small       | Most Popular      |
-  | itv         | samsung  | small       | Don't Miss        |
-  | itv         | samsung  | small       | By Day            |
-  | utv         | samsung  | small       | ITV1              |
-  | utv         | samsung  | small       | ITV2              |
-  | utv         | samsung  | small       | ITV3              |
-  | utv         | samsung  | small       | ITV4              |
-  | utv         | samsung  | small       | CITV              |
-  | utv         | samsung  | small       | A - Z             |
-  | utv         | samsung  | small       | Most Popular      |
-  | utv         | samsung  | small       | Don't Miss        |
-  | utv         | samsung  | small       | By Day            |
-  | stv         | samsung  | small       | ITV1              |
-  | stv         | samsung  | small       | ITV2              |
-  | stv         | samsung  | small       | ITV3              |
-  | stv         | samsung  | small       | ITV4              |
-  | stv         | samsung  | small       | CITV              |
-  | stv         | samsung  | small       | A - Z             |
-  | stv         | samsung  | small       | Most Popular      |
-  | stv         | samsung  | small       | Don't Miss        |
-  | stv         | samsung  | small       | By Day            |
-  | channel     | samsung  | small       | ITV1              |
-  | channel     | samsung  | small       | ITV2              |
-  | channel     | samsung  | small       | ITV3              |
-  | channel     | samsung  | small       | ITV4              |
-  | channel     | samsung  | small       | CITV              |
-  | channel     | samsung  | small       | A - Z             |
-  | channel     | samsung  | small       | Most Popular      |
-  | channel     | samsung  | small       | Don't Miss        |
-  | channel     | samsung  | small       | By Day            |
-  | unknown     | samsung  | small       | ITV1              |
-  | unknown     | samsung  | small       | ITV2              |
-  | unknown     | samsung  | small       | ITV3              |
-  | unknown     | samsung  | small       | ITV4              |
-  | unknown     | samsung  | small       | CITV              |
-  | unknown     | samsung  | small       | A - Z             |
-  | unknown     | samsung  | small       | Most Popular      |
-  | unknown     | samsung  | small       | Don't Miss        |
-  | unknown     | samsung  | small       | By Day            |
-  | itv         | samsung  | small       | Last Watched      |
-  | itv         | samsung  | big         | Last Watched      |
-  | itv         | samsung  | big         | ITV1              |
-  | itv         | samsung  | big         | ITV2              |
-  | itv         | samsung  | big         | ITV3              |
-  | itv         | samsung  | big         | ITV4              |
-  | itv         | samsung  | big         | CITV              |
-  | itv         | samsung  | big         | A - Z             |
-  | itv         | samsung  | big         | Most Popular      |
-  | itv         | samsung  | big         | Don't Miss        |
-  | itv         | samsung  | big         | By Day            |
-  | utv         | samsung  | big         | ITV1              |
-  | utv         | samsung  | big         | ITV2              |
-  | utv         | samsung  | big         | ITV3              |
-  | utv         | samsung  | big         | ITV4              |
-  | utv         | samsung  | big         | CITV              |
-  | utv         | samsung  | big         | A - Z             |
-  | utv         | samsung  | big         | Most Popular      |
-  | utv         | samsung  | big         | Don't Miss        |
-  | utv         | samsung  | big         | By Day            |
-  | stv         | samsung  | big         | ITV1              |
-  | stv         | samsung  | big         | ITV2              |
-  | stv         | samsung  | big         | ITV3              |
-  | stv         | samsung  | big         | ITV4              |
-  | stv         | samsung  | big         | CITV              |
-  | stv         | samsung  | big         | A - Z             |
-  | stv         | samsung  | big         | Most Popular      |
-  | stv         | samsung  | big         | Don't Miss        |
-  | stv         | samsung  | big         | By Day            |
-  | channel     | samsung  | big         | ITV1              |
-  | channel     | samsung  | big         | ITV2              |
-  | channel     | samsung  | big         | ITV3              |
-  | channel     | samsung  | big         | ITV4              |
-  | channel     | samsung  | big         | CITV              |
-  | channel     | samsung  | big         | A - Z             |
-  | channel     | samsung  | big         | Most Popular      |
-  | channel     | samsung  | big         | Don't Miss        |
-  | channel     | samsung  | big         | By Day            |
-  | unknown     | samsung  | big         | ITV1              |
-  | unknown     | samsung  | big         | ITV2              |
-  | unknown     | samsung  | big         | ITV3              |
-  | unknown     | samsung  | big         | ITV4              |
-  | unknown     | samsung  | big         | CITV              |
-  | unknown     | samsung  | big         | A - Z             |
-  | unknown     | samsung  | big         | Most Popular      |
-  | unknown     | samsung  | big         | Don't Miss        |
-  | unknown     | samsung  | big         | By Day            |
-  | itv         | youview  | small       | ITV1              |
-  | itv         | youview  | small       | ITV2              |
-  | itv         | youview  | small       | ITV3              |
-  | itv         | youview  | small       | ITV4              |
-  | itv         | youview  | small       | CITV              |
-  | itv         | youview  | small       | A - Z             |
-  | itv         | youview  | small       | Most Popular      |
-  | itv         | youview  | small       | Don't Miss        |
-  | itv         | youview  | small       | By Day            |
-  | utv         | youview  | small       | ITV1              |
-  | utv         | youview  | small       | ITV2              |
-  | utv         | youview  | small       | ITV3              |
-  | utv         | youview  | small       | ITV4              |
-  | utv         | youview  | small       | CITV              |
-  | utv         | youview  | small       | A - Z             |
-  | utv         | youview  | small       | Most Popular      |
-  | utv         | youview  | small       | Don't Miss        |
-  | utv         | youview  | small       | By Day            |
-  | stv         | youview  | small       | ITV1              |
-  | stv         | youview  | small       | ITV2              |
-  | stv         | youview  | small       | ITV3              |
-  | stv         | youview  | small       | ITV4              |
-  | stv         | youview  | small       | CITV              |
-  | stv         | youview  | small       | A - Z             |
-  | stv         | youview  | small       | Most Popular      |
-  | stv         | youview  | small       | Don't Miss        |
-  | stv         | youview  | small       | By Day            |
-  | channel     | youview  | small       | ITV1              |
-  | channel     | youview  | small       | ITV2              |
-  | channel     | youview  | small       | ITV3              |
-  | channel     | youview  | small       | ITV4              |
-  | channel     | youview  | small       | CITV              |
-  | channel     | youview  | small       | A - Z             |
-  | channel     | youview  | small       | Most Popular      |
-  | channel     | youview  | small       | Don't Miss        |
-  | channel     | youview  | small       | By Day            |
-  | unknown     | youview  | small       | ITV1              |
-  | unknown     | youview  | small       | ITV2              |
-  | unknown     | youview  | small       | ITV3              |
-  | unknown     | youview  | small       | ITV4              |
-  | unknown     | youview  | small       | CITV              |
-  | unknown     | youview  | small       | A - Z             |
-  | unknown     | youview  | small       | Most Popular      |
-  | unknown     | youview  | small       | Don't Miss        |
-  | unknown     | youview  | small       | By Day            |
-  | itv         | youview  | small       | Last Watched      |
-  | itv         | youview  | big         | Last Watched      |
-  | itv         | youview  | big         | ITV1              |
-  | itv         | youview  | big         | ITV2              |
-  | itv         | youview  | big         | ITV3              |
-  | itv         | youview  | big         | ITV4              |
-  | itv         | youview  | big         | CITV              |
-  | itv         | youview  | big         | A - Z             |
-  | itv         | youview  | big         | Most Popular      |
-  | itv         | youview  | big         | Don't Miss        |
-  | itv         | youview  | big         | By Day            |
-  | utv         | youview  | big         | ITV1              |
-  | utv         | youview  | big         | ITV2              |
-  | utv         | youview  | big         | ITV3              |
-  | utv         | youview  | big         | ITV4              |
-  | utv         | youview  | big         | CITV              |
-  | utv         | youview  | big         | A - Z             |
-  | utv         | youview  | big         | Most Popular      |
-  | utv         | youview  | big         | Don't Miss        |
-  | utv         | youview  | big         | By Day            |
-  | stv         | youview  | big         | ITV1              |
-  | stv         | youview  | big         | ITV2              |
-  | stv         | youview  | big         | ITV3              |
-  | stv         | youview  | big         | ITV4              |
-  | stv         | youview  | big         | CITV              |
-  | stv         | youview  | big         | A - Z             |
-  | stv         | youview  | big         | Most Popular      |
-  | stv         | youview  | big         | Don't Miss        |
-  | stv         | youview  | big         | By Day            |
-  | channel     | youview  | big         | ITV1              |
-  | channel     | youview  | big         | ITV2              |
-  | channel     | youview  | big         | ITV3              |
-  | channel     | youview  | big         | ITV4              |
-  | channel     | youview  | big         | CITV              |
-  | channel     | youview  | big         | A - Z             |
-  | channel     | youview  | big         | Most Popular      |
-  | channel     | youview  | big         | Don't Miss        |
-  | channel     | youview  | big         | By Day            |
-  | unknown     | youview  | big         | ITV1              |
-  | unknown     | youview  | big         | ITV2              |
-  | unknown     | youview  | big         | ITV3              |
-  | unknown     | youview  | big         | ITV4              |
-  | unknown     | youview  | big         | CITV              |
-  | unknown     | youview  | big         | A - Z             |
-  | unknown     | youview  | big         | Most Popular      |
-  | unknown     | youview  | big         | Don't Miss        |
-  | unknown     | youview  | big         | By Day            |
+
+
+  Scenario Outline: Verify correct broadcaster service for YouView
+    Given I request the content for <broadcaster> and <platform>
+    Then the response should contain channel <content>
+
+  Examples:
+    | broadcaster | platform | content      |
+    | itv         | youview  | ITV1         |
+    | itv         | youview  | ITV2         |
+    | itv         | youview  | ITV3         |
+    | itv         | youview  | ITV4         |
+    | itv         | youview  | CITV         |
+    | itv         | youview  | A - Z        |
+    | itv         | youview  | Most Popular |
+    | itv         | youview  | Don't Miss   |
+    | itv         | youview  | By Day       |
+    | itv         | youview  | Last Watched |
+    | utv         | youview  | ITV1         |
+    | utv         | youview  | ITV2         |
+    | utv         | youview  | ITV3         |
+    | utv         | youview  | ITV4         |
+    | utv         | youview  | CITV         |
+    | utv         | youview  | A - Z        |
+    | utv         | youview  | Most Popular |
+    | utv         | youview  | Don't Miss   |
+    | utv         | youview  | By Day       |
+    | utv         | youview  | Last Watched |
+    | stv         | youview  | ITV1         |
+    | stv         | youview  | ITV2         |
+    | stv         | youview  | ITV3         |
+    | stv         | youview  | ITV4         |
+    | stv         | youview  | CITV         |
+    | stv         | youview  | A - Z        |
+    | stv         | youview  | Most Popular |
+    | stv         | youview  | Don't Miss   |
+    | stv         | youview  | By Day       |
+    | stv         | youview  | Last Watched |
+    | channel     | youview  | ITV1         |
+    | channel     | youview  | ITV2         |
+    | channel     | youview  | ITV3         |
+    | channel     | youview  | ITV4         |
+    | channel     | youview  | CITV         |
+    | channel     | youview  | A - Z        |
+    | channel     | youview  | Most Popular |
+    | channel     | youview  | Don't Miss   |
+    | channel     | youview  | By Day       |
+    | channel     | youview  | Last Watched |
+    | unknown     | youview  | ITV1         |
+    | unknown     | youview  | ITV2         |
+    | unknown     | youview  | ITV3         |
+    | unknown     | youview  | ITV4         |
+    | unknown     | youview  | CITV         |
+    | unknown     | youview  | A - Z        |
+    | unknown     | youview  | Most Popular |
+    | unknown     | youview  | Don't Miss   |
+    | unknown     | youview  | By Day       |
+    | unknown     | youview  | Last Watched |
+
+
+  Scenario Outline: Verify correct broadcaster service for Samsung
+    Given I request the content for <broadcaster> and <platform>
+    Then the response should contain channel <content>
+
+  Examples:
+    | broadcaster | platform | content      |
+    | itv         | samsung  | ITV1         |
+    | itv         | samsung  | ITV2         |
+    | itv         | samsung  | ITV3         |
+    | itv         | samsung  | ITV4         |
+    | itv         | samsung  | CITV         |
+    | itv         | samsung  | A - Z        |
+    | itv         | samsung  | Most Popular |
+    | itv         | samsung  | Don't Miss   |
+    | itv         | samsung  | By Day       |
+    | itv         | samsung  | Last Watched |
+    | utv         | samsung  | ITV1         |
+    | utv         | samsung  | ITV2         |
+    | utv         | samsung  | ITV3         |
+    | utv         | samsung  | ITV4         |
+    | utv         | samsung  | CITV         |
+    | utv         | samsung  | A - Z        |
+    | utv         | samsung  | Most Popular |
+    | utv         | samsung  | Don't Miss   |
+    | utv         | samsung  | By Day       |
+    | utv         | samsung  | Last Watched |
+    | stv         | samsung  | ITV1         |
+    | stv         | samsung  | ITV2         |
+    | stv         | samsung  | ITV3         |
+    | stv         | samsung  | ITV4         |
+    | stv         | samsung  | CITV         |
+    | stv         | samsung  | A - Z        |
+    | stv         | samsung  | Most Popular |
+    | stv         | samsung  | Don't Miss   |
+    | stv         | samsung  | By Day       |
+    | stv         | samsung  | Last Watched |
+    | channel     | samsung  | ITV1         |
+    | channel     | samsung  | ITV2         |
+    | channel     | samsung  | ITV3         |
+    | channel     | samsung  | ITV4         |
+    | channel     | samsung  | CITV         |
+    | channel     | samsung  | A - Z        |
+    | channel     | samsung  | Most Popular |
+    | channel     | samsung  | Don't Miss   |
+    | channel     | samsung  | By Day       |
+    | channel     | samsung  | Last Watched |
+    | unknown     | samsung  | ITV1         |
+    | unknown     | samsung  | ITV2         |
+    | unknown     | samsung  | ITV3         |
+    | unknown     | samsung  | ITV4         |
+    | unknown     | samsung  | CITV         |
+    | unknown     | samsung  | A - Z        |
+    | unknown     | samsung  | Most Popular |
+    | unknown     | samsung  | Don't Miss   |
+    | unknown     | samsung  | By Day       |
+    | unknown     | samsung  | Last Watched |
 
 
   Scenario Outline: Verify ITV1 is not available for STV or UTV

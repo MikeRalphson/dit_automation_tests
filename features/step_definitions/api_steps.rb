@@ -15,17 +15,22 @@ Given /^I request the mrss (.*) api$/ do |uri|
   @response = @mercury.get_response_from_url @uri
 end
 
-Given /^I request the (.*) (.*) (.*) api$/ do |type, platform, uri|
+Given /^I request the (\w+) (\w+) (.*) api$/ do |type, platform, uri|
   @uri = "#{ENV['ENVIRONMENT']}/api/#{type}/#{platform}/#{uri}"
   @response = @mercury.get_response_from_url @uri
 end
 
-Given /^I request the content for (.*) and (.*) with (.*)$/ do |broadcaster, platform, screen_size|
+Given /^I request the content for (\w+) and (\w+) with (\w+)$/ do |broadcaster, platform, screen_size|
   @uri = "#{ENV['ENVIRONMENT']}/api/xml/#{platform}?screensize=#{screen_size}&broadcaster=#{broadcaster}"
   @response = @mercury.get_response_from_url @uri
 end
 
-Then /^I get a successful (.*) response with the correct (.*)$/ do |type, platform|
+Given /^I request the content for (\w+) and (\w+)$/ do |broadcaster, platform|
+  @uri = "#{ENV['ENVIRONMENT']}/api/xml/#{platform}?broadcaster=#{broadcaster}"
+  @response = @mercury.get_response_from_url @uri
+end
+
+Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, platform|
   case type
     when 'xml'
       xml = @mercury.get_xml_from_response @response
