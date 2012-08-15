@@ -1,12 +1,12 @@
 # encoding: utf-8
-require 'rspec/expectations';
+require 'rspec/expectations'
 require 'set'
 require 'cucumber/formatter/unicode'
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'mercury'
+require 'mercury_api'
 
 Before do
-  @mercury = Mercury.new
+  @mercury = MercuryApi.new
   @response = ''
 end
 

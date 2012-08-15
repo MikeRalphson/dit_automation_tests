@@ -3,7 +3,7 @@ require 'json'
 require 'nokogiri'
 require 'nokogiri/css'
 
-class Mercury
+class MercuryApi
 
   def value_exists_in_xml_node? (xml, node, value)
     node_value = xml.css("#{node}").find { |name| name.text.casecmp(value) == 0 }
