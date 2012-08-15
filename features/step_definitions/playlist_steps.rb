@@ -5,12 +5,12 @@ $:.unshift(File.dirname(__FILE__) + '/../../lib')
 require 'mercury_playlist'
 
 Before do
-  @mercury = MercuryPlaylist.new
+  @mercury_playlist = MercuryPlaylist.new
   @response = ''
 end
 
 Given /^I request the Mercury playlist with (.+) (\d+) and (\w+)$/ do |guid, vodcrid, platform|
-  @response = @mercury.playlist_request guid, vodcrid, platform
+  @response = @mercury_playlist.playlist_request guid, vodcrid, platform
 end
 
 Then /^I get a successful response$/ do

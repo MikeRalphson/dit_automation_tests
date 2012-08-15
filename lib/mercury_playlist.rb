@@ -1,6 +1,8 @@
+$:.unshift(File.dirname(__FILE__) + '/../../lib')
 require 'rubygems'
 require 'savon'
 require 'net/http'
+require 'env_config'
 
 class MercuryPlaylist
 
@@ -12,7 +14,7 @@ class MercuryPlaylist
       config.pretty_print_xml = true
     end
 
-    client = Savon.client "#{ENV['ENVIRONMENT']}/PlaylistService.svc?wsdl"
+    client = Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl"
 
     client.request :get_playlist do |soap|
       namespaces = {
