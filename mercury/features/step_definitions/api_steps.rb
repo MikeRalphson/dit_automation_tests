@@ -1,7 +1,6 @@
 # encoding: utf-8
 require 'cucumber/formatter/unicode'
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'rspec/expectations'
 require 'set'
 require 'mercury_api'
 require 'env_config'
@@ -21,16 +20,6 @@ Given /^I request the (\w+) (\w+) (.*) api$/ do |type, platform, uri|
   @response = @mercury_api.get_response_from_url @uri
 end
 
-Given /^I request the content for (\w+) and (\w+) with (\w+)$/ do |broadcaster, platform, screen_size|
-  @uri = "#{EnvConfig['mercury_url']}/api/xml/#{platform}?screensize=#{screen_size}&broadcaster=#{broadcaster}"
-  @response = @mercury_api.get_response_from_url @uri
-end
-
-Given /^I request the content for (\w+) and (\w+)$/ do |broadcaster, platform|
-  @uri = "#{EnvConfig['mercury_url']}/api/xml/#{platform}?broadcaster=#{broadcaster}"
-  @response = @mercury_api.get_response_from_url @uri
-end
-
 Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, platform|
   case type
     when 'xml'
@@ -45,7 +34,7 @@ Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, plat
       end
     when 'mhegdata'
       unless @mercury_api.value_exists_in_mhegdata? @response, @uri
-        raise "could not find the correct platform value: #{platform} in the response for uri: #@uri"
+        raise "could not find the correct uri value: #@uri in the response for uri: #@uri"
       end
     else
       raise ArgumentError.new('invalid API request type')
@@ -74,23 +63,9 @@ Then /^the response should contain the correct (.*)$/ do |title|
   end
 end
 
-Then /^the response should contain channel (.*)$/ do |content|
-  xml = @mercury_api.get_xml_from_response @response
-  unless @mercury_api.value_exists_in_xml_node?(xml, "Title", content)
-    raise 'invalid content found in response'
-    end
-end
-
-Then /^the response should not contain (.*)$/ do |content|
-  xml = @mercury_api.get_xml_from_response @response
-  if @mercury_api.value_exists_in_xml_node?(xml, "Title", content)
-    raise 'invalid content found in response'
-  end
-end
-
 Then /^the response should contain a complete A-Z listing$/ do
-  a_to_z = [ "A - B", "C - D", "E - F", "G - H", "I - J", "K - L", "M - N",
-             "O - P", "Q - R", "S - T", "U - V", "W - X", "Y - Z", "0 - 9" ]
+  a_to_z = ["A - B", "C - D", "E - F", "G - H", "I - J", "K - L", "M - N",
+            "O - P", "Q - R", "S - T", "U - V", "W - X", "Y - Z", "0 - 9"]
   xml = @mercury_api.get_xml_from_response @response
   found_values = a_to_z.map { |index| index if @mercury_api.value_exists_in_xml_node?(xml, "Title", index) }
   comparison = (found_values.to_set ^ a_to_z.to_set)
