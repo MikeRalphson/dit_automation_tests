@@ -10,10 +10,10 @@ Feature: PostCode service
     Then I should get the correct <broadcaster> returned
     
     | postcode  | broadcaster | 
-    | W6 9SW 	| ITV 	  	  | #London
-    | G51 1DA 	| STV 	  	  | #Scotland
-    | BT15 1ED 	| UTV 	  	  | #N. Ireland
-    | CF24 0ED 	| ITV 	   	  | #Wales
-    | JE2 3GF 	| Channel 	  | #Channel Islands
+    | W6 9SW 	| ITV 	  	  | 
+    | G51 1DA 	| STV 	  	  | 
+    | BT15 1ED 	| UTV 	  	  | 
+    | CF24 0ED 	| ITV 	   	  | 
+    | JE2 3GF 	| Channel 	  | 
     
     
