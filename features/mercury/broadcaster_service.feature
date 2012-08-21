@@ -238,6 +238,63 @@ Feature: Broadcaster API feeds
     | unknown     | samsung  | By Day       |
     | unknown     | samsung  | Last Watched |
 
+  @wip
+  Scenario Outline: Verify correct broadcaster service for Android
+    Given I request the content for <broadcaster> and <platform>
+    Then the response should contain channel <content>
+
+  Examples:
+    | broadcaster | platform | content      |
+    | itv         | android  | ITV1         |
+    | itv         | android  | ITV2         |
+    | itv         | android  | ITV3         |
+    | itv         | android  | ITV4         |
+    | itv         | android  | CITV         |
+    | itv         | android  | A - Z        |
+    | itv         | android  | Most Popular |
+    | itv         | android  | Don't Miss   |
+    | itv         | android  | By Day       |
+    | itv         | android  | Last Watched |
+    | utv         | android  | ITV1         |
+    | utv         | android  | ITV2         |
+    | utv         | android  | ITV3         |
+    | utv         | android  | ITV4         |
+    | utv         | android  | CITV         |
+    | utv         | android  | A - Z        |
+    | utv         | android  | Most Popular |
+    | utv         | android  | Don't Miss   |
+    | utv         | android  | By Day       |
+    | utv         | android  | Last Watched |
+    | stv         | android  | ITV1         |
+    | stv         | android  | ITV2         |
+    | stv         | android  | ITV3         |
+    | stv         | android  | ITV4         |
+    | stv         | android  | CITV         |
+    | stv         | android  | A - Z        |
+    | stv         | android  | Most Popular |
+    | stv         | android  | Don't Miss   |
+    | stv         | android  | By Day       |
+    | stv         | android  | Last Watched |
+    | channel     | android  | ITV1         |
+    | channel     | android  | ITV2         |
+    | channel     | android  | ITV3         |
+    | channel     | android  | ITV4         |
+    | channel     | android  | CITV         |
+    | channel     | android  | A - Z        |
+    | channel     | android  | Most Popular |
+    | channel     | android  | Don't Miss   |
+    | channel     | android  | By Day       |
+    | channel     | android  | Last Watched |
+    | unknown     | android  | ITV1         |
+    | unknown     | android  | ITV2         |
+    | unknown     | android  | ITV3         |
+    | unknown     | android  | ITV4         |
+    | unknown     | android  | CITV         |
+    | unknown     | android  | A - Z        |
+    | unknown     | android  | Most Popular |
+    | unknown     | android  | Don't Miss   |
+    | unknown     | android  | By Day       |
+    | unknown     | android  | Last Watched |
 
   Scenario Outline: Verify ITV1 is not available for STV or UTV
     Given I request the content for <broadcaster> and <platform> with <screen size>
