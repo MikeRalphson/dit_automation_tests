@@ -1,7 +1,4 @@
-# encoding: utf-8
-require 'cucumber/formatter/unicode'
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'set'
 require 'mercury_api'
 require 'env_config'
 
