@@ -1,3 +1,4 @@
+@playlist
 Feature: Mercury Playlist Requests
   In order to generate front end features
   As a backend enabler
@@ -10,4 +11,4 @@ Feature: Mercury Playlist Requests
 
   Examples:
     | guid                                 | vodcrid | platform |
-    | 7FA847EC-905C-41EA-BCF7-CC9E44A00CE3 | 301838  | DotCom   |
+    | 7FA847EC-905C-41EA-BCF7-CC9E44A00CE3 | 323425  | DotCom   |
