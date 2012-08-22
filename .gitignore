@@ -1,0 +1,8 @@
+# Rubymine Project Files
+.DS_Store
+
+# OS Files
+.idea
+
+# Log Files etc.
+coverage/
