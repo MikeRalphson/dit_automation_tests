@@ -5,14 +5,12 @@ require 'set'
 require 'nokogiri'
 
 
-Cucumber::Rake::Task.new(:run) do |task|
-  task.cucumber_opts = %w(--format pretty)
-  task.cucumber_opts = "-I lib"
-  #t.libs << 'lib'
-  task.cucumber_opts = "-t ~@wip"
+Cucumber::Rake::Task.new do |task|
+  task.cucumber_opts = %w(--format pretty --tags ~@playlist)
 end
 
-Cucumber::Rake::Task.new(:run_wip) do |task|
-  task.cucumber_opts = %w(--format pretty)
-  task.cucumber_opts = "-t @wip"
+Cucumber::Rake::Task.new(:wip) do |task|
+  task.cucumber_opts = %w(--format pretty --tags @wip)
 end
+
+task :default => :cucumber
