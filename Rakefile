@@ -4,9 +4,8 @@ require 'cucumber/formatter/unicode'
 require 'set'
 require 'nokogiri'
 
-
 Cucumber::Rake::Task.new do |task|
-  task.cucumber_opts = %w(--format pretty --tags ~@playlist)
+  task.cucumber_opts = %w(--format pretty --tags ~@wip)
 end
 
 Cucumber::Rake::Task.new(:wip) do |task|
