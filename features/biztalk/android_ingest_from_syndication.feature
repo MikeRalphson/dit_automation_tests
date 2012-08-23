@@ -1,7 +1,7 @@
 @not_implemented
 @manual
 
-#AOIA-2
+
 Feature: Addition
 	So that BizTalk can consume metadata from RBM or Syndication for Android
 	As ITV

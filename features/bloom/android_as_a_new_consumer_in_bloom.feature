@@ -1,7 +1,6 @@
 @not_implemented
 @manual
 
-#AOIA-3
 Feature: Android Platfrom avaliable in Bloom CMS
 	So that the Android app can consume content
 	As Bloom
