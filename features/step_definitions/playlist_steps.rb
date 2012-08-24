@@ -1,5 +1,6 @@
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
 require 'mercury_playlist'
+require 'env_config'
 
 Before do
   @mercury_playlist = MercuryPlaylist.new

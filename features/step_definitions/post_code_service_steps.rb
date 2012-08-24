@@ -1,5 +1,6 @@
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
 require 'mercury_api'
+require 'env_config'
 
 Before do
   @mercury_api = MercuryApi.new
@@ -7,7 +8,7 @@ Before do
 end
 
 Given /^I request the postcode service with the following (.+)$/ do |postcode|
-  @uri = URI.parse("#{ENV['mercury_url']}/api/json/postcode/#{postcode.gsub(/\s+/,"")}")
+  @uri = URI.parse("#{EnvConfig['mercury_url']}/api/json/postcode/#{postcode.gsub(/\s+/, "")}")
   @response = @mercury_api.get_response_from_url @uri
 end
 

@@ -1,5 +1,6 @@
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
 require 'mercury_api'
+require 'env_config'
 
 Before do
   @mercury_api = MercuryApi.new
@@ -7,12 +8,12 @@ Before do
 end
 
 Given /^I request the mrss (.*) api$/ do |uri|
-  @uri = "#{ENV['mercury_url']}#{uri}"
+  @uri = "#{EnvConfig['mercury_url']}#{uri}"
   @response = @mercury_api.get_response_from_url @uri
 end
 
 Given /^I request the (\w+) (\w+) (.*) api$/ do |type, platform, uri|
-  @uri = "#{ENV['mercury_url']}/api/#{type}/#{platform}/#{uri}"
+  @uri = "#{EnvConfig['mercury_url']}/api/#{type}/#{platform}/#{uri}"
   @response = @mercury_api.get_response_from_url @uri
 end
 

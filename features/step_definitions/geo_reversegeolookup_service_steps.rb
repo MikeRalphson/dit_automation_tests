@@ -1,5 +1,6 @@
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
 require 'mercury_api'
+require 'env_config'
 
 Before do
   @mercury_api = MercuryApi.new
@@ -7,7 +8,7 @@ Before do
 end
 
 Given /^I request the reversegeolookup service with the following (-*\d+\.\d+) & (-*\d+\.\d+)$/ do |latitude, longitude|
-  @original_uri = "#{ENV['mercury_url']}/api/geo/reversegeolookup/#{latitude}/#{longitude}"
+  @original_uri = "#{EnvConfig['mercury_url']}/api/geo/reversegeolookup/#{latitude}/#{longitude}"
   @response = @mercury_api.get_response_from_url @original_uri
 end
 
