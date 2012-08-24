@@ -9,6 +9,7 @@ Feature: Geo-Location service
     Given I request the geo-location service with the following <latitude> & <longitude>
     Then I should get the correct <broadcaster> returned
     
+    Examples:
     | latitude 	| longitude | broadcaster | 
     | 51.523462 | -0.113742 | ITV 	  	  | 
     | 55.85803  | -4.29091  | STV 	  	  | 

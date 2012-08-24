@@ -1,7 +1,7 @@
 @not_implemented
 @manual
 
-Feature: Android Platfrom avaliable in Bloom CMS
+Feature: AOIA-3 Android Platfrom avaliable in Bloom CMS
 	So that the Android app can consume content
 	As Bloom
 	I want to manage the Android platform
