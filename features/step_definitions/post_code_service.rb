@@ -8,11 +8,10 @@ Before do
 end
 
 Given /^I request the postcode service with the following (.*)$/ do |postcode, broadcaster|
-  @uri = "#{EnvConfig['mercury_url']}#{uri}"
+  @uri = "#{ENV['mercury_url']}#{uri}"
   @response = @mercury_api.get_response_from_url @uri
 end
 
 Then /^I should get the correct <broadcaster> returned$/ do
-	pending #wd
+  pending #wd
 end
-
