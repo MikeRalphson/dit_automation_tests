@@ -238,7 +238,7 @@ Feature: Broadcaster API feeds
     | unknown     | samsung  | By Day       |
     | unknown     | samsung  | Last Watched |
 
-  @wip
+  @not_implemented
   Scenario Outline: Verify correct broadcaster service for Android
     Given I request the content for <broadcaster> and <platform>
     Then the response should contain channel <content>
