@@ -4,19 +4,15 @@ rc2:
 rc3:
     mercury_url: "http://mercury.rc3.itv.com"
     lithium_url: "http://lithium.rc3.itv.com"
-    
 rcx:
     mercury_url: "http://d01.mercury.itv.com"
     lithium_url: "http://d01.lithium.itv.com"
-    
 s01:
     mercury_url: "http://s01-mercury.itv.com"
     lithium_url: "http://s01-lithium-news.itv.com"
-
 i01:
     mercury_url: "http://i01-mercury.itv.com"
     lithium_url: "http://i01-lithium-news.itv.com"
-    
 live:
     mercury_url: "http://mercury.itv.com"
     lithium_url: "http://lithium-news.itv.com"
