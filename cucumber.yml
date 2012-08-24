@@ -1,13 +1,5 @@
 # config/cucumber.yml
 ##YAML Template
 ---
-default: -p html_report -p s01
+default: -p html_report
 html_report: --format progress --format html --out=features_report.html
-
-# environments
-rc2: mercury_url=http://g22msrc217.itvbbrc2.ads:8095 lithium_url=http://g22msrc227.itvbbrc2.ads:50460
-rc3: mercury_url=http://mercury.rc3.itv.com lithium_url=http://lithium.rc3.itv.com
-rcx: mercury_url=http://d01.mercury.itv.com lithium_url=http://d01.lithium.itv.com
-s01: mercury_url=http://s01-mercury.itv.com lithium_url=http://s01-lithium-news.itv.com
-i01: mercury_url=http://i01-mercury.itv.com lithium_url=http://i01-lithium-news.itv.com
-live: mercury_url=http://mercury.itv.com lithium_url=http://lithium-news.itv.com
