@@ -229,7 +229,7 @@ Feature: API and MRSS feeds
     | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=small   |
     | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=small   |
     
-   @wip
+   @not_implemented
    Scenario Outline: verify API's across Android
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
