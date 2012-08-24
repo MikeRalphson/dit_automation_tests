@@ -1,8 +1,8 @@
 
 Feature: Geo reversegeolookup service 
   In order to geo-block content from outside the uk
-  As a ITV
-  I need
+  As a Mobile Application
+  I want to be able to query a reverselookup service to restrict ITV1 content to the correct broadcasters
 
   Scenario Outline: The verify that the correct broadcaster value is returned
     Given I request the reversegeolookup service with the following <latitude> & <longitude>
