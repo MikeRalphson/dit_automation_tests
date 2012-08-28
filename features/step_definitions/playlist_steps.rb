@@ -1,14 +1,6 @@
-$:.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'mercury_playlist'
-require 'env_config'
-
-Before do
-  @mercury_playlist = MercuryPlaylist.new
-  @response = ''
-end
-
-Given /^I request the Mercury playlist with (.+) (\d+) and (\w+)$/ do |guid, vodcrid, platform|
-  @response = @mercury_playlist.playlist_request guid, vodcrid, platform
+Given /^I request the Mercury playlist with (\d+) and (\w+)$/ do |vodcrid, platform|
+  puts EnvConfig['mercury_url']
+  @response = @mercury_playlist.playlist_request vodcrid, platform
 end
 
 Then /^I get a successful response$/ do

@@ -6,9 +6,9 @@ Feature: Mercury Playlist Requests
 
   Scenario Outline: Verify basic request
 
-    Given I request the Mercury playlist with <guid> <vodcrid> and <platform>
+    Given I request the Mercury playlist with <vodcrid> and <platform>
     Then I get a successful response
 
   Examples:
-    | guid                                 | vodcrid | platform |
-    | 7FA847EC-905C-41EA-BCF7-CC9E44A00CE3 | 323425  | DotCom   |
+    | vodcrid | platform |
+    | 298685  | DotCom   |

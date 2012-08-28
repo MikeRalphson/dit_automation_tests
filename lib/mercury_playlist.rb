@@ -1,11 +1,9 @@
-$:.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'rubygems'
 require 'savon'
 require 'net/http'
 
 class MercuryPlaylist
 
-  def playlist_request (request_guid, vodcrid, platform)
+  def playlist_request (vodcrid, platform)
     Savon.configure do |config|
       config.log = false
       HTTPI.log = false
@@ -13,7 +11,7 @@ class MercuryPlaylist
       config.pretty_print_xml = true
     end
 
-    client = Savon.client "#{ENV['mercury_url']}/PlaylistService.svc?wsdl"
+    client = Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl"
 
     client.request :get_playlist do |soap|
       namespaces = {
@@ -27,7 +25,7 @@ class MercuryPlaylist
           xml.soapenv(:Body) do |xml|
             xml.tem(:GetPlaylist) do |xml|
               xml.tem(:request) do |xml|
-                xml.itv(:RequestGuid, request_guid)
+                xml.itv(:RequestGuid, "7FA847EC-905C-41EA-BCF7-CC9E44A00CE3")
                 xml.itv(:Vodcrid) do |xml|
                   xml.com(:Id, vodcrid)
                   xml.com(:Partition, "itv.com")
