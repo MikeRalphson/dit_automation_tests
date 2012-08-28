@@ -179,79 +179,40 @@ Feature: API and MRSS feeds
     | xml  | mobile   | episode/programme/255247?broadcaster=ITV&screensize=small  |
     | xml  | mobile   | episode/programme/255247?broadcaster=ITV&screensize=big    |
     | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=big         |
     | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=big         |
     | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=big         |
-    | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=big     |
-    | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=big     |
-    | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=big     |
-    | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=big     |
     | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=big     |
     | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=big     |
-    | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=big     |
-    | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=big     |
-    | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=big     |
-    | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=big     |
-    | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=small       |
     | xml  | mobile   | episode/mostwatched?broadcaster=itv&screensize=small       |
     | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=stv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=small       |
-    | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=small       |
     | xml  | mobile   | episode/mostwatched?broadcaster=utv&screensize=small       |
     | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=small   |
-    | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=small   |
-    | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=small   |
-    | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=small   |
-    | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=small   |
     | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=small   |
-    | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=small   |
-    | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=small   |
-    | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=small   |
-    | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=small   |
-    
-   @not_implemented
-   Scenario Outline: verify API's across Android
+
+
+  @not_implemented
+  Scenario Outline: verify API's across Android
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
 
   Examples:
-    | type | platform  | uri                                         |
-    | xml  | android   | Episode/Crucial?broadcaster=itv             |
-    | xml  | android   | Episode/Crucial?broadcaster=utv             |
-    | xml  | android   | Episode/Crucial?broadcaster=stv             |
-    | xml  | android   | Episode/Crucial?broadcaster=channel         |
-    | xml  | android   | Episode/Crucial?broadcaster=unknown         |
-    | xml  | android   | episode/mostwatched?broadcaster=itv         |
-    | xml  | android   | episode/mostwatched?broadcaster=stv         |
-    | xml  | android   | episode/mostwatched?broadcaster=utv         |
-    | xml  | android   | episode/mostwatched?broadcaster=channel     |
-    | xml  | android   | episode/mostwatched?broadcaster=unknown     |   
-    | xml  | android   | episode/bydate/2012/02/01?broadcaster=ITV   |
-    | xml  | android   | episode/bydate/2012/02/01?broadcaster=STV   |
-    | xml  | android   | Programme/SearchAtoZ/def?broadcaster=itv    |
-    | xml  | android   | Programme/SearchAtoZ/def?broadcaster=stv    |
-    | xml  | android   | episode/programme/255247?broadcaster=ITV    |
-    | xml  | android   | episode/programme/255247?broadcaster=STV    |
+    | type | platform | uri                                       |
+    | xml  | android  | Episode/Crucial?broadcaster=itv           |
+    | xml  | android  | Episode/Crucial?broadcaster=utv           |
+    | xml  | android  | Episode/Crucial?broadcaster=stv           |
+    | xml  | android  | Episode/Crucial?broadcaster=channel       |
+    | xml  | android  | Episode/Crucial?broadcaster=unknown       |
+    | xml  | android  | episode/mostwatched?broadcaster=itv       |
+    | xml  | android  | episode/mostwatched?broadcaster=stv       |
+    | xml  | android  | episode/mostwatched?broadcaster=utv       |
+    | xml  | android  | episode/mostwatched?broadcaster=channel   |
+    | xml  | android  | episode/mostwatched?broadcaster=unknown   |
+    | xml  | android  | episode/bydate/2012/02/01?broadcaster=ITV |
+    | xml  | android  | episode/bydate/2012/02/01?broadcaster=STV |
+    | xml  | android  | Programme/SearchAtoZ/def?broadcaster=itv  |
+    | xml  | android  | Programme/SearchAtoZ/def?broadcaster=stv  |
+    | xml  | android  | episode/programme/255247?broadcaster=ITV  |
+    | xml  | android  | episode/programme/255247?broadcaster=STV  |
 
 
   Scenario Outline: verify API's across Freesat
