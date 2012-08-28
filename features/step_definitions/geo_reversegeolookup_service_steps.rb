@@ -1,6 +1,7 @@
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
 require 'mercury_api'
 require 'env_config'
+require 'rspec-expectations'
 
 Before do
   @mercury_api = MercuryApi.new
@@ -12,6 +13,15 @@ Given /^I request the reversegeolookup service with the following (-*\d+\.\d+) &
   @response = @mercury_api.get_response_from_url @original_uri
 end
 
+Given /^I request the reversegeolookup service from outside the UK with (-*\d+\.\d+) & (-*\d+\.\d+)$/ do |latitude, longitude|
+  begin
+    @original_uri = "#{EnvConfig['mercury_url']}/api/geo/reversegeolookup/#{latitude}/#{longitude}"
+    @response = @mercury_api.get_response_from_url @original_uri
+  rescue OpenURI::HTTPError => error
+    @error = error
+  end
+end
+
 Then /^I should get the correct (\w+) returned from the postcode service$/ do |broadcaster|
   json = @mercury_api.parse_json_response @response
   unless @mercury_api.value_exists_in_json_hash? json, broadcaster, "RegionInfo", "Broadcaster"
@@ -19,6 +29,6 @@ Then /^I should get the correct (\w+) returned from the postcode service$/ do |b
   end
 end
 
-Then /^I expected the see the findregion value from the postcode service$/ do
-  pending # express the regexp above with the code you wish you had
+Then /^I expect to see a 500 Internal Server Error$/ do
+  @error.io.status[0].should == '500'
 end
