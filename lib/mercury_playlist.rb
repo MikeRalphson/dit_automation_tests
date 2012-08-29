@@ -42,9 +42,9 @@ class MercuryPlaylist
                 xml.itv(:Platform, platform)
                 xml.itv(:Site, "ItvCom")
               end
-              xml.tem(:deviceInfo) do |xml|
-                xml.itv(:ScreenSize, "Small")
-              end
+              #xml.tem(:deviceInfo) do |xml|
+              #  xml.itv(:ScreenSize, "Small")
+              #end
             end
           end
         end
