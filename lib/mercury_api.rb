@@ -35,7 +35,7 @@ class MercuryApi
       when 3
         found_value = json[keys[0]][keys[1]][keys[2]]
       else
-        raise ArgumentError 'can only accept up to 3 levels'
+        raise ArgumentError, 'can only accept up to 3 levels'
     end
     found_value.casecmp(expected_value) == 0
   end
