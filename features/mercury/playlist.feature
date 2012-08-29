@@ -5,10 +5,13 @@ Feature: Mercury Playlist Requests
   I want to be able to request Mercury playlists
 
   Scenario Outline: Verify basic request
-
     Given I request the Mercury playlist with <vodcrid> and <platform>
-    Then I get a successful response
+    Then I get the requested <vodcrid>
+  #    And I get the correct base url
+  #    And I get the correct Bitrates types
+  #    And I get the correct video type
+    And the expiry date is in the future
 
   Examples:
     | vodcrid | platform |
-    | 298685  | DotCom   |
+    | 302607  | DotCom   |
