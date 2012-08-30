@@ -9,7 +9,7 @@ Feature: Mercury Playlist Requests
     Then I get the requested <vodcrid>
     And the expiry date is in the future
     And I get the correct bitrate based on the <platform>
-  #    And I get the correct base url
+    And I get the correct base url
   #    And I get the correct video type
 
   Examples:

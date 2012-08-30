@@ -2,7 +2,7 @@ Given /^I request the Mercury playlist with (\d+) and (\w+)$/ do |vodcrid, platf
   @response = @mercury_playlist.playlist_request vodcrid, platform
 end
 
-When /^I get the correct bitrate based on the (.*)$/ do |platform|
+Then /^I get the correct bitrate based on the (.*)$/ do |platform|
   found_bitrates = @response.xpath("//VideoEntries/Video/MediaFiles/MediaFile")
   found_bitrates = found_bitrates.map { |node| node.attr("bitrate").to_i }
 
@@ -26,4 +26,10 @@ Then /^the expiry date is in the future$/ do
   todays_date = Date.today.strftime("%FT%T")
   expiry_date = DateTime.parse(@response.xpath("//ExpiryDate").text).strftime("%FT%T")
   (todays_date > expiry_date).should == false
+end
+
+Then /^I get the correct base url$/ do
+  base_urls = @response.xpath("//MediaFiles")
+  base_urls.should_not be_empty
+  base_urls.each { |url| url.attr("base").should match(/\Artmpe/) }
 end
