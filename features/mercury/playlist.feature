@@ -7,10 +7,10 @@ Feature: Mercury Playlist Requests
   Scenario Outline: Verify basic request
     Given I request the Mercury playlist with <vodcrid> and <platform>
     Then I get the requested <vodcrid>
-  #    And I get the correct base url
-  #    And I get the correct Bitrates types
-  #    And I get the correct video type
     And the expiry date is in the future
+    And I get the correct bitrate based on the <platform>
+    And I get the correct base url
+  #    And I get the correct video type
 
   Examples:
     | vodcrid | platform |
