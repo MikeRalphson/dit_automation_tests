@@ -6,7 +6,7 @@ require 'net/ftp'
 Given /^I have valid metadata and assets for (\w+)$/ do |platfrom| 
 end
 
-When /^the Metadata has been sent to the correct folder in Biztalk$/ do
+When /^the Metadata and video assets have been sent to the correct folder in Biztalk$/ do
 
 uri = URI.parse('ftp://mercuryftp@S01-ITVONLINEFTP.ITV.COM')
 Net::FTP.open(uri.host) do |ftp|
@@ -27,15 +27,12 @@ Net::FTP.open(uri.host) do |ftp|
     ftp.close
   end
   
-  sleep 6
+  sleep 7
   #This has been added until we find a better way of checking the the file is present on the FTP server. 
-end
+ end
   
 end
 
-When /^the video assets are sent to the correct folder in Biztalk$/ do
-  pending # express the regexp above with the code you wish you had
-end
 
 Then /^BizTalk will generate a success receipt$/ do
   pending # express the regexp above with the code you wish you had
