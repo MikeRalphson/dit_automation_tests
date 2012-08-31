@@ -14,4 +14,9 @@ Feature: Mercury Playlist Requests
 
   Examples:
     | vodcrid | platform |
-    | 302607  | DotCom   |
+    | 301871  | DotCom   |
+    | 301871  | Mobile   |
+    | 301871  | Samsung  |
+    | 301871  | PS3      |
+    | 301871  | Youview  |
+    | 301871  | Freesat  |
