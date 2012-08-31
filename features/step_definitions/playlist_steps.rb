@@ -1,5 +1,5 @@
 Given /^I request the Mercury playlist with (\d+) and (\w+)$/ do |vodcrid, platform|
-  @response = @mercury_playlist.playlist_request vodcrid, platform
+  @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
 end
 
 Then /^I get the correct bitrate based on the (.*)$/ do |platform|
@@ -9,6 +9,14 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
   case platform
     when "android"
       expected_bitrates = [150000, 300000, 400000, 600000, 800000, 1200000]
+    when "Samsung" 
+      expected_bitrates = [1200000]
+    when "YouView" 
+      expected_bitrates = [1200000]
+    when "PS3" 
+      expected_bitrates = [800000]
+    when "Mobile" 
+      expected_bitrates = [400000]
     else
       expected_bitrates = [400000, 600000, 800000, 1200000]
   end
