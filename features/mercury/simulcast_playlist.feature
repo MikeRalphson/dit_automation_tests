@@ -1,6 +1,6 @@
-#DN-117
+
 @wip
-Feature: Simulcast
+Feature: DN-117 - Simulcast
 	So that we can provide Simulcast correctly
 	As an ITV Player Developer
 	I want the available stream entries
