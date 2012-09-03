@@ -20,3 +20,16 @@ Feature: Mercury Playlist Requests
     | 301871  | PS3      |
     | 301871  | YouView  |
     | 301871  | Freesat  |
+
+
+  @not_implemented
+  Scenario Outline: Geo-blocking for Mercury playlists
+    Given I request the Mercury playlist from <location>
+    Then I get the requested <response>
+
+  Examples:
+    | location | response |
+    | 301871   | success  |
+    | 301871   | blocked  |
+
+#REAL_CLIENT_IP    
