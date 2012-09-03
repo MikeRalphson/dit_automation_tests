@@ -1,6 +1,3 @@
-require 'savon'
-require 'net/http'
-
 class MercuryPlaylist
 
   def playlist_request (vodcrid, platform)

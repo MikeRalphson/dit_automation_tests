@@ -5,6 +5,13 @@ require 'mercury_playlist'
 require 'pp'
 require 'mercury_api'
 require 'env_config'
+require 'open-uri'
+require 'json'
+require 'nokogiri'
+require 'nokogiri/css'
+require 'savon'
+require 'net/http'
+
 
 SimpleCov.start
 

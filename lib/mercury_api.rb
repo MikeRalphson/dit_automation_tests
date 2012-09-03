@@ -1,8 +1,3 @@
-require 'open-uri'
-require 'json'
-require 'nokogiri'
-require 'nokogiri/css'
-
 class MercuryApi
 
   def value_exists_in_xml_node? (xml, node, value)
