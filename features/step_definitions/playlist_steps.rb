@@ -9,13 +9,13 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
   case platform
     when "android"
       expected_bitrates = [150000, 300000, 400000, 600000, 800000, 1200000]
-    when "Samsung" 
+    when "Samsung"
       expected_bitrates = [1200000]
-    when "YouView" 
+    when "YouView"
       expected_bitrates = [1200000]
-    when "PS3" 
+    when "PS3"
       expected_bitrates = [800000]
-    when "Mobile" 
+    when "Mobile"
       expected_bitrates = [400000]
     else
       expected_bitrates = [400000, 600000, 800000, 1200000]
@@ -36,8 +36,14 @@ Then /^the expiry date is in the future$/ do
   (todays_date > expiry_date).should == false
 end
 
-Then /^I get the correct base url$/ do
+Then /^I get the correct base url based on the (.+)$/ do |platform|
   base_urls = @response.xpath("//MediaFiles")
   base_urls.should_not be_empty
-  base_urls.each { |url| url.attr("base").should match(/\Artmpe/) }
+
+  case platform
+    when "YouView"
+      base_urls.each { |url| url.attr("base").should match(/\Ayouview/) }
+    else
+      base_urls.each { |url| url.attr("base").should match(/\Artmpe/) }
+  end
 end

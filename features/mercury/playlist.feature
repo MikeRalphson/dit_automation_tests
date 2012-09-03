@@ -9,8 +9,8 @@ Feature: Mercury Playlist Requests
     Then I get the requested <vodcrid>
     And the expiry date is in the future
     And I get the correct bitrate based on the <platform>
-    And I get the correct base url
-  # And I get the correct video type
+    And I get the correct base url based on the <platform>
+  #    And I get the correct video type
 
   Examples:
     | vodcrid | platform |
@@ -19,18 +19,17 @@ Feature: Mercury Playlist Requests
     | 301871  | Samsung  |
     | 301871  | PS3      |
     | 301871  | YouView  |
-    #| 301871  | Freesat  |
+    | 301871  | Freesat  |
 
 
-@not_implemented
+  @not_implemented
   Scenario Outline: Geo-blocking for Mercury playlists
     Given I request the Mercury playlist from <location>
     Then I get the requested <response>
-    
+
   Examples:
     | location | response |
     | 301871   | success  |
-    | 301871   | blocked  | 
-    
-    #REAL_CLIENT_IP
-    
+    | 301871   | blocked  |
+
+#REAL_CLIENT_IP    
