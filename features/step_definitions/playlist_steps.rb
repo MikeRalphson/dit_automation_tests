@@ -28,8 +28,14 @@ Then /^the expiry date is in the future$/ do
   (todays_date > expiry_date).should == false
 end
 
-Then /^I get the correct base url$/ do
+Then /^I get the correct base url based on the (.+)$/ do |platform|
   base_urls = @response.xpath("//MediaFiles")
   base_urls.should_not be_empty
-  base_urls.each { |url| url.attr("base").should match(/\Artmpe/) }
+
+  case platform
+    when "YouView"
+      base_urls.each { |url| url.attr("base").should match(/\Ayouview/) }
+    else
+      base_urls.each { |url| url.attr("base").should match(/\Artmpe/) }
+  end
 end

@@ -9,7 +9,7 @@ Feature: Mercury Playlist Requests
     Then I get the requested <vodcrid>
     And the expiry date is in the future
     And I get the correct bitrate based on the <platform>
-    And I get the correct base url
+    And I get the correct base url based on the <platform>
   #    And I get the correct video type
 
   Examples:
@@ -18,5 +18,5 @@ Feature: Mercury Playlist Requests
     | 301871  | Mobile   |
     | 301871  | Samsung  |
     | 301871  | PS3      |
-    | 301871  | Youview  |
+    | 301871  | YouView  |
     | 301871  | Freesat  |
