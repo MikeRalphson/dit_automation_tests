@@ -19,17 +19,19 @@ Feature: Mercury Playlist Requests
     | 301871  | Samsung  |
     | 301871  | PS3      |
     | 301871  | YouView  |
-    | 301871  | Freesat  |
+    #| 301871  | Freesat  |
 
 
   @not_implemented
   Scenario Outline: Geo-blocking for Mercury playlists
     Given I request the Mercury playlist from <location>
-    Then I get the requested <response>
+    Then I get the expected <response> status
 
   Examples:
-    | location | response |
-    | 301871   | success  |
-    | 301871   | blocked  |
+    | location     | response |
+    |              | success  |
+    | 192.168.1.14 | success  |
+    | 62.4.31.255  | blocked  |
+    
 
 #REAL_CLIENT_IP    
