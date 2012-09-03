@@ -1,4 +1,5 @@
-@requiresNoMercuryCaching
+@wip
+
 Feature: Lithium Playlist
 	So that we can access videos from the Lithium pipeline
 	As ITV 
