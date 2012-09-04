@@ -72,3 +72,28 @@ Then /^I get the expected (.*) status$/ do |response|
   @playlist_error.to_s.should match /InvalidGeoRegion/ if response == "blocked"
   @playlist_error.to_s.should_not match /InvalidGeoRegion/ if response == "success"
 end
+
+Then /^the advert URI's should contain the correct size$/ do
+  @advert_uris ||= @response.xpath("//Action/URL")
+  @advert_uris.each do |uri|
+    (uri.to_s.match 'size=\w+').to_s.should == "size=itvplayer"
+  end
+end
+
+Then /^the advert URI's should contain the correct area$/ do
+  @advert_uris ||= @response.xpath("//Action/URL")
+  @advert_uris.each do |uri|
+    (uri.to_s.match 'area=\w+').to_s.should == "area=itvplayer"
+  end
+end
+
+Then /^the advert URI's should contain the correct site based on the (.*)$/ do |platform|
+  @advert_uris ||= @response.xpath("//Action/URL")
+  @advert_uris.each do |uri|
+    if platform == "DotCom"
+      (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv"
+    else
+      (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.#{platform.downcase}"
+    end
+  end
+end

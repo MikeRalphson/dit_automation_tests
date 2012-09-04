@@ -40,3 +40,18 @@ Feature: Mercury Playlist Requests
     | 301871  | PS3      | 194.4.55.200  | blocked  |
     | 301871  | YouView  | 194.4.55.200  | blocked  |
 #    | 301871  | Freesat  | 194.4.55.200  | blocked  |
+
+
+  Scenario Outline: Ad-server for Mercury playlists
+    Given I request the Mercury playlist with <vodcrid> and <platform>
+    Then the advert URI's should contain the correct size
+    And the advert URI's should contain the correct area
+    And the advert URI's should contain the correct site based on the <platform>
+
+  Examples:
+    | vodcrid | platform |
+    | 301871  | DotCom   |
+    | 301871  | Mobile   |
+    | 301871  | Samsung  |
+    | 301871  | PS3      |
+    | 301871  | YouView  |
