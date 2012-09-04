@@ -1,22 +1,21 @@
 class MercuryPlaylist
 
-  def playlist_request (vodcrid, platform)
-    Savon.configure do |config|
-      config.log = false
-      HTTPI.log = false
-      #config.log_level = :debug
-      config.pretty_print_xml = true
+  def create_client_with_location (location)
+    @client = Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl" do
+      http.headers = {'REAL_CLIENT_IP' => location}
     end
+  end
 
-    client = Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl"
+  def create_client
+    @client = Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl"
+  end
 
-    client.request :get_playlist do |soap|
-      namespaces = {
-          "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
-          "xmlns:tem" => "http://tempuri.org/",
-          "xmlns:itv" => "http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types",
-          "xmlns:com" => "http://schemas.itv.com/2009/05/Common"
-      }
+  # Savon doesn't seem to support separating the building of the request from sending it
+
+  def playlist_request (vodcrid, platform)
+    @client.request :get_playlist do |soap|
+      namespaces = playlist_namespaces
+
       soap.xml do |xml|
         xml.soapenv(:Envelope, namespaces) do |xml|
           xml.soapenv(:Body) do |xml|
@@ -47,22 +46,9 @@ class MercuryPlaylist
   end
 
   def mobile_playlist_request (vodcrid, platform)
-    Savon.configure do |config|
-      config.log = false
-      HTTPI.log = false
-      #config.log_level = :debug
-      config.pretty_print_xml = true
-    end
+    @client.request :get_playlist do |soap|
+      namespaces = playlist_namespaces
 
-    client = Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl"
-
-    client.request :get_playlist do |soap|
-      namespaces = {
-          "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
-          "xmlns:tem" => "http://tempuri.org/",
-          "xmlns:itv" => "http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types",
-          "xmlns:com" => "http://schemas.itv.com/2009/05/Common"
-      }
       soap.xml do |xml|
         xml.soapenv(:Envelope, namespaces) do |xml|
           xml.soapenv(:Body) do |xml|
@@ -93,6 +79,17 @@ class MercuryPlaylist
         end
       end
     end
+  end
+
+  private
+
+  def playlist_namespaces
+    {
+        "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
+        "xmlns:tem" => "http://tempuri.org/",
+        "xmlns:itv" => "http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types",
+        "xmlns:com" => "http://schemas.itv.com/2009/05/Common"
+    }
   end
 
 end

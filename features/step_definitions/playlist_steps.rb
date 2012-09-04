@@ -1,5 +1,25 @@
 Given /^I request the Mercury playlist with (\d+) and (\w+)$/ do |vodcrid, platform|
-  @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
+  @mercury_playlist.create_client
+  case platform
+    when "Mobile"
+      @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
+    else
+      @response = @mercury_playlist.playlist_request vodcrid, platform
+  end
+end
+
+Given /^I request the Mercury playlist from (.*) with (.*) and (.*)$/ do |location, vodcrid, platform|
+  @mercury_playlist.create_client_with_location location
+  begin
+    case platform
+      when "Mobile"
+        @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
+      else
+        @response = @mercury_playlist.playlist_request vodcrid, platform
+    end
+  rescue Savon::SOAP::Fault => error
+    @playlist_error = error
+  end
 end
 
 Then /^I get the correct bitrate based on the (.*)$/ do |platform|
@@ -46,4 +66,9 @@ Then /^I get the correct base url based on the (.+)$/ do |platform|
     else
       base_urls.each { |url| url.attr("base").should match(/\Artmpe/) }
   end
+end
+
+Then /^I get the expected (.*) status$/ do |response|
+  @playlist_error.to_s.should match /InvalidGeoRegion/ if response == "blocked"
+  @playlist_error.to_s.should_not match /InvalidGeoRegion/ if response == "success"
 end

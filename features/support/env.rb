@@ -18,4 +18,11 @@ SimpleCov.start
 Before do
   @mercury_api = MercuryApi.new
   @mercury_playlist = MercuryPlaylist.new
+
+  Savon.configure do |config|
+    config.log = false
+    HTTPI.log = false
+    #config.log_level = :debug
+    config.pretty_print_xml = true
+  end
 end
