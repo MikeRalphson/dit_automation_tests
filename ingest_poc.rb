@@ -2,6 +2,27 @@ require 'pp'
 require 'net/ftp'
 require 'timeout'
 require 'rspec-expectations'
+require 'securerandom'
+require 'nokogiri'
+require 'nokogiri/css'
+
+def prepare_metadata(dir, metadata)
+  @uuid = SecureRandom.uuid
+  files = Dir.glob("#{dir}/*.xml")
+  pp files
+
+  files.each do |f|
+    xml = Nokogiri::XML(File.open(f))
+    title = xml.at_css "tva|Title"
+    title.content = @uuid
+
+    # write to a new file because ruby corrupts the original
+    Dir.mkdir 'tmp' unless File.directory? 'tmp'
+    outfile = File.new("tmp/metadatatest.xml", "w")
+    outfile.puts xml.to_xml
+    outfile.close
+  end
+end
 
 # todo: improve
 def manage_assets
@@ -10,7 +31,7 @@ def manage_assets
   @assets = []
   Dir.foreach(Dir.pwd) { |f| @assets << f if f.match '\.mp4$' }
   (@assets.sort).should == renditions.sort
-  @metadata = File.open 'DotcomMetadata.xml'
+  @metadata = File.open '../../tmp/metadatatest.xml'
 end
 
 def create_ftp_connection(host, username, password)
@@ -31,8 +52,8 @@ module Net
       remote_filenames = nlst(remote_folder)
       remote_filenames.each do |fn|
         receipt_date = (fn.match '\d{17}').to_s
-        fifteen_minutes = (DateTime.now - 0.0104).strftime("%Y%m%d%H%M%S%L")
-        next if (receipt_date < fifteen_minutes)
+        two_minutes = (DateTime.now - 0.00173).strftime("%Y%m%d%H%M%S%L")
+        next if (receipt_date < two_minutes)
 
         # need an error if no suitable files to sync have been found
         local_filename = File.join(local_folder, fn)
@@ -79,19 +100,34 @@ def clean_local_directory(dir)
   Dir.foreach(dir) { |f| File.delete(File.join(dir, f)) unless f == '.' || f == '..' } if File.directory? dir
 end
 
+def get_receipts(dir)
+  Dir.glob("#{dir}/*.xml")
+end
 
+def parse_receipts(receipts, uuid)
+  receipts.each do |r|
+    xml = Nokogiri::XML(File.open(r))
+    (xml.at_css('EpisodeTitle').content).should == uuid
+    (xml.at_css('Success').content).should == 'true'
+    #more...
+  end
+end
+
+
+prepare_metadata 'lib/assets', 'test'
 manage_assets
 create_ftp_connection 'S01-ITVONLINEFTP.ITV.COM', 'mercuryftp', '9d$]q1H&g+\>'
 ingest_assets @ftp, @assets, @metadata
+clean_local_directory "/tmp/mdr"
 
-local_dir = "/tmp/mdr"
-clean_local_directory local_dir
-@ftp.sync_remote_folder("/Receipts/MetadataReceipts", local_dir)
+# sometimes too fast so wait for the receipts...
+sleep 10
+@ftp.sync_remote_folder("/Receipts/MetadataReceipts", "/tmp/mdr")
 
 close_ftp_connection
 
-# now parse the receipts...
 
-# will need to put a GUID/UUID into the metadata before ingestion and check afterwords
-# success should == true
-# check production id / programmeTitle / seriesTitle ?
+@receipts = get_receipts '/tmp/mdr'
+parse_receipts @receipts, @uuid
+
+puts 'successfully ingested :)'
