@@ -2,8 +2,6 @@ require 'pp'
 require 'net/ftp'
 require 'timeout'
 require 'rspec-expectations'
-require 'rspec/matchers'
-require 'rspec/expectations/extensions/array'
 
 # todo: improve
 def manage_assets
@@ -36,6 +34,7 @@ module Net
         fifteen_minutes = (DateTime.now - 0.0104).strftime("%Y%m%d%H%M%S%L")
         next if (receipt_date < fifteen_minutes)
 
+        # need an error if no suitable files to sync have been found
         local_filename = File.join(local_folder, fn)
 
         unless File.exists?(local_filename)
