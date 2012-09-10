@@ -1,5 +1,5 @@
+@not_implemented
 
-@wip
 Feature: DN-117 - Simulcast
 	So that we can provide Simulcast correctly
 	As an ITV Player Developer

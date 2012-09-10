@@ -1,9 +1,9 @@
-@wip
+@not_implemented
+
 Feature: Lithium Playlist
 	So that we can access videos from the Lithium pipeline
 	As ITV 
 	I want to be able to request Lithium videos from the Mercury Playlist Service
-
 
 Scenario: DN-114 - Pre-roll and Post-roll ads - Request a video with adverts
 	Given a Lithium video is available
