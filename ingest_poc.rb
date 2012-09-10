@@ -35,13 +35,10 @@ def manage_assets
 end
 
 def create_ftp_connection(host, username, password)
-  @ftp = Net::FTP.new
-  @ftp.connect(host)
-  @ftp.login(username, password)
-end
-
-def close_ftp_connection
-  @ftp.close
+  ftp = Net::FTP.new
+  ftp.connect(host)
+  ftp.login(username, password)
+  ftp
 end
 
 module Net
@@ -64,7 +61,8 @@ module Net
 
           begin
             Timeout.timeout(5) { get(remote_filename, local_filename) }
-          rescue
+          rescue => error
+            puts error.message
             puts 'Download failed'
             if File.exists?(local_filename)
               File.delete local_filename
@@ -104,19 +102,10 @@ def get_receipts(dir)
   Dir.glob("#{dir}/*.xml")
 end
 
-def parse_receipts(receipts, uuid)
-  receipts.each do |r|
-    xml = Nokogiri::XML(File.open(r))
-    (xml.at_css('EpisodeTitle').content).should == uuid
-    (xml.at_css('Success').content).should == 'true'
-    #more...
-  end
-end
-
 
 prepare_metadata 'lib/assets', 'test'
 manage_assets
-create_ftp_connection 'S01-ITVONLINEFTP.ITV.COM', 'mercuryftp', '9d$]q1H&g+\>'
+@ftp = create_ftp_connection 'S01-ITVONLINEFTP.ITV.COM', 'mercuryftp', '9d$]q1H&g+\>'
 ingest_assets @ftp, @assets, @metadata
 clean_local_directory "/tmp/mdr"
 
@@ -124,10 +113,16 @@ clean_local_directory "/tmp/mdr"
 sleep 10
 @ftp.sync_remote_folder("/Receipts/MetadataReceipts", "/tmp/mdr")
 
-close_ftp_connection
-
+@ftp.close
 
 @receipts = get_receipts '/tmp/mdr'
-parse_receipts @receipts, @uuid
+
+@receipts.each do |r|
+  xml = Nokogiri::XML(File.open(r))
+  (xml.at_css('EpisodeTitle').content).should == @uuid
+  (xml.at_css('Success').content).should == 'true'
+  #more...
+end
+
 
 puts 'successfully ingested :)'
