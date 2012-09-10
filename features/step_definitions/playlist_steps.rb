@@ -57,12 +57,12 @@ Then /^the expiry date is in the future$/ do
 end
 
 Then /^I get the correct base url based on the (.+)$/ do |platform|
-  base_urls = @response.xpath("//MediaFiles")
+  base_urls = @response.xpath("//VideoEntries/Video/MediaFiles")
   base_urls.should_not be_empty
 
   case platform
     when "YouView"
-      base_urls.each { |url| url.attr("base").should match(/\Ayouview/) }
+      base_urls.each { |url| url.attr("base").should == nil }
     else
       base_urls.each { |url| url.attr("base").should match(/\Artmpe/) }
   end
@@ -103,7 +103,10 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
   
   case platform
     when "YouView"
-      video_type.each { |url| url.text.should match(/\.ts$/) }
+      video_type.each do |url|
+        url.text.should match(/\.ts$/)
+        url.text.should match(/\Ahttp/)
+      end
     else
       video_type.each { |url| url.text.should match(/\.mp4$/) }
   end

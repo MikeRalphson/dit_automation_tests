@@ -4,6 +4,7 @@ Feature: Mercury Playlist Requests
   As a backend enabler
   I want to be able to request Mercury playlists
 
+@wip
   Scenario Outline: Verify basic request
     Given I request the Mercury playlist with <vodcrid> and <platform>
     Then I get the requested <vodcrid>
@@ -18,7 +19,7 @@ Feature: Mercury Playlist Requests
     | 301871  | Mobile   |
     | 301871  | Samsung  |
     | 301871  | PS3      |
-#    | 301871  | YouView  |
+    | 301871  | YouView  |
 #    | 301871  | Freesat  |
 
 
