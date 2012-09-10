@@ -10,7 +10,7 @@ Feature: Mercury Playlist Requests
     And the expiry date is in the future
     And I get the correct bitrate based on the <platform>
     And I get the correct base url based on the <platform>
-  #    And I get the correct video type
+    And I get the correct video type based on the <platform>
 
   Examples:
     | vodcrid | platform |
