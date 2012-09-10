@@ -15,7 +15,7 @@ end
 Then /^I should get the correct (\w+) returned from the postcode service$/ do |broadcaster|
   json = @mercury_api.parse_json_response @response
   unless @mercury_api.value_exists_in_json_hash? json, broadcaster, "RegionInfo", "Broadcaster"
-    raise "could not find the expected Boradcaster value: #{broadcaster} in the response for uri: #@uri"
+    raise "could not find the expected broadcaster value: #{broadcaster} in the response for uri: #@uri"
   end
 end
 
