@@ -9,6 +9,7 @@ require 'nokogiri/css'
 require 'savon'
 require 'net/http'
 require 'net/ftp'
+require 'set'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
