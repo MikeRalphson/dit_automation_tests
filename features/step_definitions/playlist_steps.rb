@@ -97,3 +97,15 @@ Then /^the advert URI's should contain the correct site based on the (.*)$/ do |
     end
   end
 end
+
+Then /^I get the correct video type based on the (.*)$/ do |platform|
+  video_type = @response.xpath("//VideoEntries/Video/MediaFiles/MediaFile/URL")
+  
+  case platform
+    when "YouView"
+      video_type.each { |url| url.text.should match(/\.ts$/) }
+    else
+      video_type.each { |url| url.text.should match(/\.mp4$/) }
+  end
+end
+

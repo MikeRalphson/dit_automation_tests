@@ -4,14 +4,13 @@ Feature: Mercury Playlist Requests
   As a backend enabler
   I want to be able to request Mercury playlists
 
-@wip
   Scenario Outline: Verify basic request
     Given I request the Mercury playlist with <vodcrid> and <platform>
     Then I get the requested <vodcrid>
     And the expiry date is in the future
     And I get the correct bitrate based on the <platform>
     And I get the correct base url based on the <platform>
-  #    And I get the correct video type
+    And I get the correct video type based on the <platform>
 
   Examples:
     | vodcrid | platform |
