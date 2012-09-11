@@ -68,26 +68,29 @@ Then /^I get the correct base url based on the (.+)$/ do |platform|
   end
 end
 
-Then /^I get the expected (.*) status$/ do |response|
+Then /^I get the expected (.*) status for that (.*)$/ do |response, vodcrid|
+  raise "Unexpected request error. Has your request changed?" if @playlist_error.to_s.match /Unexpected/
+  raise "InvalidVodcrid No match found for: itv.com/." if @playlist_error.to_s.match /InvalidVodcrid/
+  #raise "#{@playlist_error.message}" if @playlist_error.to_s.match /InvalidGeoRegion/ || @pl
   @playlist_error.to_s.should match /InvalidGeoRegion/ if response == "blocked"
-  @playlist_error.to_s.should_not match /InvalidGeoRegion/ if response == "success"
+  @response.xpath("//Vodcrid").text.should match vodcrid if response == "success"
 end
 
-Then /^the advert URI's should contain the correct size$/ do
+Then /^the advert URI should contain the correct size$/ do
   @advert_uris ||= @response.xpath("//Action/URL")
   @advert_uris.each do |uri|
     (uri.to_s.match 'size=\w+').to_s.should == "size=itvplayer"
   end
 end
 
-Then /^the advert URI's should contain the correct area$/ do
+Then /^the advert URI should contain the correct area$/ do
   @advert_uris ||= @response.xpath("//Action/URL")
   @advert_uris.each do |uri|
     (uri.to_s.match 'area=\w+').to_s.should == "area=itvplayer"
   end
 end
 
-Then /^the advert URI's should contain the correct site based on the (.*)$/ do |platform|
+Then /^the advert URI should contain the correct site based on the (.*)$/ do |platform|
   @advert_uris ||= @response.xpath("//Action/URL")
   @advert_uris.each do |uri|
     if platform == "DotCom"
