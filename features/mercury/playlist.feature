@@ -21,7 +21,6 @@ Feature: Mercury Playlist Requests
     | 301871  | YouView  |
 #    | 301871  | Freesat  |
 
-@wip
   Scenario Outline: Geo-blocking for Mercury playlists
     Given I request the Mercury playlist from <location> with <vodcrid> and <platform>
     Then I get the expected <response> status for that <vodcrid>
@@ -29,13 +28,13 @@ Feature: Mercury Playlist Requests
   Examples:
     | vodcrid | platform | location      | response |
     | 301871  | DotCom   | 10.192.42.109 | success  |
-    | 000000  | Mobile   | 127.0.0.1     | success  |
+    | 301871  | Mobile   | 127.0.0.1     | success  |
     | 301871  | Samsung  | 10.192.42.109 | success  |
     | 301871  | PS3      | 10.192.42.109 | success  |
     | 301871  | YouView  | 10.192.42.109 | success  |
-#    | 301871  | Freesat  | 10.192.42.109 | success  |
+    #    | 301871  | Freesat  | 10.192.42.109 | success  |
     | 301871  | DotCom   | 194.4.55.200  | blocked  |
-    | 000000  | Mobile   | 194.4.55.200  | blocked  |
+    | 301871  | Mobile   | 194.4.55.200  | blocked  |
     | 301871  | Samsung  | 62.4.31.255   | blocked  |
     | 301871  | PS3      | 194.4.55.200  | blocked  |
     | 301871  | YouView  | 194.4.55.200  | blocked  |
