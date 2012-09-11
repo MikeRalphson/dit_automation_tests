@@ -69,9 +69,7 @@ Then /^I get the correct base url based on the (.+)$/ do |platform|
 end
 
 Then /^I get the expected (.*) status for that (.*)$/ do |response, vodcrid|
-  raise "Unexpected request error. Has your request changed?" if @playlist_error.to_s.match /Unexpected/
-  raise "InvalidVodcrid No match found for: itv.com/." if @playlist_error.to_s.match /InvalidVodcrid/
-  #raise "#{@playlist_error.message}" if @playlist_error.to_s.match /InvalidGeoRegion/ || @pl
+  raise "#{@playlist_error.message}. \nHas the request changed or is the service down?" unless @playlist_error == nil
   @playlist_error.to_s.should match /InvalidGeoRegion/ if response == "blocked"
   @response.xpath("//Vodcrid").text.should match vodcrid if response == "success"
 end
