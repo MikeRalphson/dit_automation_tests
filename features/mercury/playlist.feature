@@ -19,7 +19,10 @@ Feature: Mercury Playlist Requests
     | 301871  | Samsung  |
     | 301871  | PS3      |
     | 301871  | YouView  |
-#    | 301871  | Freesat  |
+#    | 301871  | Freesat   |
+#    | 301871  | HDS       |
+#    | 301871  | HLS       |
+#    | 301871  | Simulcast |
 
   Scenario Outline: Geo-blocking for Mercury playlists
     Given I request the Mercury playlist from <location> with <vodcrid> and <platform>
@@ -32,13 +35,19 @@ Feature: Mercury Playlist Requests
     | 301871  | Samsung  | 10.192.42.109 | success  |
     | 301871  | PS3      | 10.192.42.109 | success  |
     | 301871  | YouView  | 10.192.42.109 | success  |
+    #    | 301871  | HDS       | 10.192.42.109 | success  |
+    #    | 301871  | HLS       | 10.192.42.109 | success  |
+    #    | 301871  | Simulcast | 10.192.42.109 | success  |
     #    | 301871  | Freesat  | 10.192.42.109 | success  |
     | 301871  | DotCom   | 194.4.55.200  | blocked  |
     | 301871  | Mobile   | 194.4.55.200  | blocked  |
     | 301871  | Samsung  | 62.4.31.255   | blocked  |
     | 301871  | PS3      | 194.4.55.200  | blocked  |
     | 301871  | YouView  | 194.4.55.200  | blocked  |
-#    | 301871  | Freesat  | 194.4.55.200  | blocked  |
+#    | 301871  | Freesat   | 194.4.55.200  | blocked  |
+#    | 301871  | HDS       | 194.4.55.200 | success  |
+#    | 301871  | HLS       | 194.4.55.200 | success  |
+#    | 301871  | Simulcast | 194.4.55.200 | success  |
 
 
   Scenario Outline: Ad-server for Mercury playlists
@@ -54,3 +63,6 @@ Feature: Mercury Playlist Requests
     | 301871  | Samsung  |
     | 301871  | PS3      |
     | 301871  | YouView  |
+#    | 301871  | HDS       |
+#    | 301871  | HLS       |
+#    | 301871  | Simulcast |
