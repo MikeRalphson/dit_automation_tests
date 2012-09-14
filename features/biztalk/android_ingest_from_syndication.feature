@@ -6,9 +6,20 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
   As ITV
   I want BizTalk to accept the Android Platfrom
 
-  Scenario Outline: BizTalk processes correct metadata
+  Scenario Outline: BizTalk processes correct metadata via FTP
     Given I have valid metadata from Syndication for <platform>
-    When BizTalk processes the metadata into Bloom
+    When I send metadata to BizTalk via FTP
+    And BizTalk processes the metadata into Bloom for <platform>
+    Then BizTalk will generate a success receipt
+
+  Examples:
+    | platform |
+    | android  |
+
+  Scenario Outline: BizTalk processes correct metadata via HTTP
+    Given I have valid metadata from Syndication for <platform>
+    When I send metadata to BizTalk via HTTP
+    And BizTalk processes the metadata into Bloom
     Then BizTalk will generate a success receipt
 
   Examples:
