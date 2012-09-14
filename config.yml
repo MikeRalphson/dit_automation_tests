@@ -1,18 +1,24 @@
 rc2:
-    mercury_url: "http://g22msrc217.itvbbrc2.ads:8095"
-    lithium_url: "http://g22msrc227.itvbbrc2.ads:50460"
+    mercury_url:  'http://g22msrc217.itvbbrc2.ads:8095'
+    lithium_url:  'http://g22msrc227.itvbbrc2.ads:50460'
 rc3:
-    mercury_url: "http://mercury.rc3.itv.com"
-    lithium_url: "http://lithium.rc3.itv.com"
+    mercury_url:  'http://mercury.rc3.itv.com'
+    lithium_url:  'http://lithium.rc3.itv.com'
+    ftp_host:     '89.151.100.137'
+    ftp_login:    'itvbbrc3/mercuryftp'
+    ftp_password: 'Password01'
 rcx:
-    mercury_url: "http://d01.mercury.itv.com"
-    lithium_url: "http://d01.lithium.itv.com"
+    mercury_url:  'http://d01.mercury.itv.com'
+    lithium_url:  'http://d01.lithium.itv.com'
 s01:
-    mercury_url: "http://s01-mercury.itv.com"
-    lithium_url: "http://s01-lithium-news.itv.com"
+    mercury_url:  'http://s01-mercury.itv.com'
+    lithium_url:  'http://s01-lithium-news.itv.com'
+    ftp_host:     's01-itvonlineftp.itv.com'
+    ftp_login:    'mercuryftp'
+    ftp_password: '9d$]q1H&g+\>'
 i01:
-    mercury_url: "http://i01-mercury.itv.com"
-    lithium_url: "http://i01-lithium-news.itv.com"
+    mercury_url:  'http://i01-mercury.itv.com'
+    lithium_url:  'http://i01-lithium-news.itv.com'
 live:
-    mercury_url: "http://mercury.itv.com"
-    lithium_url: "http://lithium-news.itv.com"
+    mercury_url:  'http://mercury.itv.com'
+    lithium_url:  'http://lithium-news.itv.com'
