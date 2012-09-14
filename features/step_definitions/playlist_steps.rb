@@ -1,10 +1,14 @@
 Given /^I request the Mercury playlist with (\d+) and (\w+)$/ do |vodcrid, platform|
   @mercury_playlist.create_client
-  case platform
-    when "Mobile"
-      @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
-    else
-      @response = @mercury_playlist.playlist_request vodcrid, platform
+  begin
+    case platform
+      when "Mobile"
+        @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
+      else
+        @response = @mercury_playlist.playlist_request vodcrid, platform
+    end
+  rescue Savon::SOAP::Fault => error
+    raise "#{error.message}. \nPerhaps the request has changed or the service is down?"
   end
 end
 
@@ -69,7 +73,9 @@ Then /^I get the correct base url based on the (.+)$/ do |platform|
 end
 
 Then /^I get the expected (.*) status for that (.*)$/ do |response, vodcrid|
-  raise "#{@playlist_error.message}. \nHas the request changed or is the service down?" unless @playlist_error == nil
+  if @playlist_error
+    raise "#{@playlist_error.message}. \nPerhaps the request has changed or the service is down?" unless @playlist_error.to_s.match /InvalidGeoRegion/
+  end
   @playlist_error.to_s.should match /InvalidGeoRegion/ if response == "blocked"
   @response.xpath("//Vodcrid").text.should match vodcrid if response == "success"
 end
