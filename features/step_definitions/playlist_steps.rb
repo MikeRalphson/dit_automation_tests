@@ -107,7 +107,7 @@ end
 
 Then /^I get the correct video type based on the (.*)$/ do |platform|
   video_type = @response.xpath("//VideoEntries/Video/MediaFiles/MediaFile/URL")
-
+  raise 'no matching values found in the response' unless video_type
   case platform
     when "YouView"
       video_type.each { |url| (url.text.should match(/\.ts$/)) && (url.text.should match(/\Ahttp/)) }
