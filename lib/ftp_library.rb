@@ -16,7 +16,6 @@ end
 module Net
   class FTP
     def sync_recent_receipts(remote_folder, local_folder)
-      chdir '/' if pwd != '/'
       Dir.mkdir local_folder unless File.directory? local_folder
       remote_filenames = nlst(remote_folder)
       remote_filenames.each do |fn|
