@@ -17,6 +17,7 @@ require 'mercury_playlist'
 require 'mercury_api'
 require 'env_config'
 require 'ftp_library'
+require 'xml_library'
 
 SimpleCov.start
 
@@ -24,6 +25,7 @@ Before do
   @mercury_api = MercuryApi.new
   @mercury_playlist = MercuryPlaylist.new
   @ftp_library = FtpLibrary.new
+  @xml_library = XmlLibrary.new
 
   Savon.configure do |config|
     config.log = false
