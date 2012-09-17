@@ -10,6 +10,7 @@ require 'savon'
 require 'net/http'
 require 'net/ftp'
 require 'set'
+require 'securerandom'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
@@ -26,6 +27,7 @@ Before do
   @mercury_playlist = MercuryPlaylist.new
   @ftp_library = FtpLibrary.new
   @xml_library = XmlLibrary.new
+  @uuid = SecureRandom.uuid
 
   Savon.configure do |config|
     config.log = false
