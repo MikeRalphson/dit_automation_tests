@@ -1,76 +1,108 @@
 @not_implemented
-@manual
-
 Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
   So that BizTalk can consume metadata from RBM or Syndication for Android
   As ITV
   I want BizTalk to accept the Android Platfrom
 
-  Scenario Outline: BizTalk processes correct metadata via FTP
-    Given I have valid metadata from Syndication for <platform>
-    When I send metadata to BizTalk via FTP
-    And BizTalk processes the metadata into Bloom for <platform>
-    Then BizTalk will generate a success receipt
-
-  Examples:
-    | platform |
-    | android  |
-
-  Scenario Outline: BizTalk processes correct metadata via HTTP
-    Given I have valid metadata from Syndication for <platform>
-    When I send metadata to BizTalk via HTTP
+  Scenario Outline: BizTalk processes correct metadata for Android
+    Given I have metadata from Syndication for <platform>
+    When I send metadata to BizTalk via <route>
     And BizTalk processes the metadata into Bloom
     Then BizTalk will generate a success receipt
 
   Examples:
-    | platform |
-    | android  |
+    | platform | route |
+    | android  | FTP   |
+#    | android  | HTTP  |
 
-  Scenario: BizTalk processes incorrect metadata
-    Given I have invalid android metadata from Syndication
-    When BizTalk validates the metadata
-    Then BizTalk will generate a failure receipt
 
   Scenario Outline: BizTalk receives metadata with a null filesize value for Android
-    Given I have valid metadata from Syndication for <platform>
+    Given I have metadata from Syndication for <platform>
     And the metadata has a null filesize value
-    When Biztalk validates the metadata
+    When I send metadata to BizTalk via <route>
+    And Biztalk validates the metadata
     Then BizTalk will generate a failure receipt
 
   Examples:
-    | platform |
-    | android  |
+    | platform | route |
+    | android  | FTP   |
+    | android  | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null checksum value for Android
-    Given I have valid metadata from Syndication for <platform>
+    Given I have metadata from Syndication for <platform>
     And the metadata has a null checksum value
-    When Biztalk validates the metadata
+    When I send metadata to BizTalk via <route>
+    And Biztalk validates the metadata
     Then BizTalk will generate a failure receipt
 
   Examples:
-    | platform |
-    | android  |
+    | platform | route |
+    | android  | FTP   |
+    | android  | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null published location for Android
-    Given I have valid metadata from Syndication for <platform>
+    Given I have metadata from Syndication for <platform>
     And the metadata has a null published location value
-    When Biztalk validates the metadata
+    When I send metadata to BizTalk via <route>
+    And Biztalk validates the metadata
     Then BizTalk will generate a failure receipt
 
   Examples:
-    | platform |
-    | android  |
+    | platform | route |
+    | android  | FTP   |
+    | android  | HTTP  |
 
-  Scenario: BizTalk receives metadata with a null filesize value for platforms other than Android
 
-  Scenario: BizTalk receives metadata with a null checksum value for platforms other than Android
+  Scenario Outline: BizTalk receives metadata with a null filesize value for platforms other than Android
+    Given I have metadata from Syndication for <platform>
+    And the metadata has a null filesize value
+    When I send metadata to BizTalk via <route>
+    And Biztalk validates the metadata
+    Then BizTalk will generate a failure receipt
 
-  Scenario: BizTalk receives metadata with a null published location for platforms other than Android
+  Examples:
+    | platform | route |
+    | dotcom   | FTP   |
+    | dotcom   | HTTP  |
+    | ps3      | FTP   |
+    | ps3      | HTTP  |
+    | mobile   | FTP   |
+    | mobile   | HTTP  |
+
+
+  Scenario Outline: BizTalk receives metadata with a null checksum value for platforms other than Android
+    Given I have metadata from Syndication for <platform>
+    And the metadata has a null checksum value
+    When I send metadata to BizTalk via <route>
+    And Biztalk validates the metadata
+    Then BizTalk will generate a failure receipt
+
+  Examples:
+    | platform | route |
+    | dotcom   | FTP   |
+    | dotcom   | HTTP  |
+    | ps3      | FTP   |
+    | ps3      | HTTP  |
+    | mobile   | FTP   |
+    | mobile   | HTTP  |
+
+
+  Scenario Outline: BizTalk receives metadata with a null published location for platforms other than Android
+    Given I have metadata from Syndication for <platform>
+    And the metadata has a null published location value
+    When I send metadata to BizTalk via <route>
+    And Biztalk validates the metadata
+    Then BizTalk will generate a failure receipt
+
+  Examples:
+    | platform | route |
+    | dotcom   | FTP   |
+    | dotcom   | HTTP  |
+    | ps3      | FTP   |
+    | ps3      | HTTP  |
+    | mobile   | FTP   |
+    | mobile   | HTTP  |
 
 # lapsed expiry date
-
-
-
-

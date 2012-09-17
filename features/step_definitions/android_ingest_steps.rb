@@ -1,25 +1,39 @@
-Given /^I have valid metadata from Syndication for (\w+)$/ do |platform|
-  contents = File.open("lib/assets/#{platform}/#{platform}.xml") { |f| f.read }
-  replace = contents.gsub(/<tva:Platform>.+<\/tva:Platform>/, "<tva:Platform>#{platform}</tva:Platform>")
-  File.open("lib/assets/#{platform}/#{platform}.xml", "w") { |f| f.puts replace }
-  @metadata = File.open("lib/assets/#{platform}/#{platform}.xml")
+Given /^I have metadata from Syndication for (\w+)$/ do |platform|
+  @platform = platform
+  @metadata_path = "lib/assets/#@platform/#@platform.xml"
+  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", @platform)
+  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|BasicDescription>tva|Title", @uuid)
 end
 
-When /^I send metadata to BizTalk via FTP$/ do
-  @ftp = @ftp_library.create_ftp_connection("#{EnvConfig['ftp_host']}", "#{EnvConfig['ftp_login']}", "#{EnvConfig['ftp_password']}")
-  @ftp.chdir "CatchUpAndArchive/MetadataFromSyndication"
-  @ftp.put @metadata
+When /^the metadata has a null filesize value$/ do
+  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|FileSize", "")
 end
 
-When /^I send metadata to BizTalk via HTTP$/ do
-  response = Net::HTTP.put('path', 'data')
-  response.should == '202'
+When /^the metadata has a null checksum value$/ do
+  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|MD5Checksum", "")
 end
 
-When /^BizTalk processes the metadata into Bloom for (\w+)$/ do |platform|
+When /^the metadata has a null published location value$/ do
+  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|PublishedLocation", "")
+end
+
+When /^I send metadata to BizTalk via (\w+)$/ do |route|
+  case route
+    when 'FTP'
+      @ftp = @ftp_library.create_ftp_connection("#{EnvConfig['ftp_host']}", "#{EnvConfig['ftp_login']}", "#{EnvConfig['ftp_password']}")
+      @ftp.chdir "CatchUpAndArchive/MetadataFromSyndication"
+      @ftp.put @metadata
+    when 'HTTP'
+      #todo
+    else
+      raise ArgumentError.new('invalid route entered')
+  end
+end
+
+When /^BizTalk processes the metadata into Bloom$/ do
   @ftp ||= @ftp_library.create_ftp_connection("#{EnvConfig['ftp_host']}", "#{EnvConfig['ftp_login']}", "#{EnvConfig['ftp_password']}")
   @ftp.chdir "CatchUpAndArchive/MetadataFromSyndication" unless @ftp.pwd.match /MetadataFromSyndication$/
-  Timeout.timeout(60) { sleep 1 until (@ftp.nlst(@ftp.pwd).select { |f| f.match /#{platform}.xml/ }).empty? }
+  Timeout.timeout(60) { sleep 1 until (@ftp.nlst(@ftp.pwd).select { |f| f.match /#@platform.xml/ }).empty? }
   @ftp.chdir '/'
   @ftp.chdir 'MercuryFTP' unless EnvConfig['ftp_login'] == 'mercuryftp'
 end
@@ -32,10 +46,23 @@ Then /^BizTalk will generate a success receipt$/ do
 
   raise 'error - no metadata receipts found' if receipts.empty?
 
+  errors = []
+  success = false
+
   receipts.each do |r|
     xml = Nokogiri::XML(File.open(r))
-    puts xml.at_css("//FaultMessage").content if xml.at_css('Success').content == 'false'
-    #found == true if (xml.at_css('Success').content) == 'true'
-    #(xml.at_css('EpisodeTitle').content) == @uuid
+    errors << xml.at_css("//FaultMessage").content if xml.at_css('Success').content == 'false'
+
+    if xml.at_css('EpisodeTitle').content == @uuid && xml.at_css('Success').content == 'true'
+      success == true
+      break
+    end
   end
+
+  unless success
+    puts errors if errors
+    raise 'failed'
+  end
+
 end
+
