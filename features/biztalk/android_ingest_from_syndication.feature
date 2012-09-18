@@ -21,12 +21,12 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
     And the metadata has a null filesize value
     When I send metadata to BizTalk via <route>
     And Biztalk validates the metadata
-    Then BizTalk will generate a failure receipt
+    Then BizTalk will generate a success receipt
 
   Examples:
     | platform | route |
     | android  | FTP   |
-    | android  | HTTP  |
+#    | android  | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null checksum value for Android
@@ -34,25 +34,12 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
     And the metadata has a null checksum value
     When I send metadata to BizTalk via <route>
     And Biztalk validates the metadata
-    Then BizTalk will generate a failure receipt
+    Then BizTalk will generate a success receipt
 
   Examples:
     | platform | route |
     | android  | FTP   |
-    | android  | HTTP  |
-
-
-  Scenario Outline: BizTalk receives metadata with a null published location for Android
-    Given I have metadata from Syndication for <platform>
-    And the metadata has a null published location value
-    When I send metadata to BizTalk via <route>
-    And Biztalk validates the metadata
-    Then BizTalk will generate a failure receipt
-
-  Examples:
-    | platform | route |
-    | android  | FTP   |
-    | android  | HTTP  |
+#    | android  | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null filesize value for platforms other than Android
@@ -60,16 +47,16 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
     And the metadata has a null filesize value
     When I send metadata to BizTalk via <route>
     And Biztalk validates the metadata
-    Then BizTalk will generate a failure receipt
+    Then BizTalk will generate a failure receipt stating that filesize is required
 
   Examples:
     | platform | route |
     | dotcom   | FTP   |
-    | dotcom   | HTTP  |
-    | ps3      | FTP   |
-    | ps3      | HTTP  |
-    | mobile   | FTP   |
-    | mobile   | HTTP  |
+#    | dotcom   | HTTP  |
+#    | ps3      | FTP   |
+#    | ps3      | HTTP  |
+#    | mobile   | FTP   |
+#    | mobile   | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null checksum value for platforms other than Android
@@ -77,32 +64,13 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
     And the metadata has a null checksum value
     When I send metadata to BizTalk via <route>
     And Biztalk validates the metadata
-    Then BizTalk will generate a failure receipt
+    Then BizTalk will generate a failure receipt stating that checksum is required
 
   Examples:
     | platform | route |
     | dotcom   | FTP   |
-    | dotcom   | HTTP  |
-    | ps3      | FTP   |
-    | ps3      | HTTP  |
-    | mobile   | FTP   |
-    | mobile   | HTTP  |
-
-
-  Scenario Outline: BizTalk receives metadata with a null published location for platforms other than Android
-    Given I have metadata from Syndication for <platform>
-    And the metadata has a null published location value
-    When I send metadata to BizTalk via <route>
-    And Biztalk validates the metadata
-    Then BizTalk will generate a failure receipt
-
-  Examples:
-    | platform | route |
-    | dotcom   | FTP   |
-    | dotcom   | HTTP  |
-    | ps3      | FTP   |
-    | ps3      | HTTP  |
-    | mobile   | FTP   |
-    | mobile   | HTTP  |
-
-# lapsed expiry date
+#    | dotcom   | HTTP  |
+#    | ps3      | FTP   |
+#    | ps3      | HTTP  |
+#    | mobile   | FTP   |
+#    | mobile   | HTTP  |
