@@ -230,7 +230,12 @@ Feature: API and MRSS feeds
     | mhegdata | freesat  | programme/searchatoz/abcdefghijklmnopqrstuvwxyz |
     | mhegdata | freesat  | episode/programme/255488                        |
 
+# pointless having this turned on for the following reasons:
+# 1. it should not check for a specific prod id
+# 2. it should check for existence of _any_ prod id
+# 3. data is a massive issue we are regularly ingesting realistic and proper data
 
+  @wip
   Scenario Outline: Verify production ID's are returned
     Given I request the <type> <platform> <uri> api
     Then the response should contain production id <production id>
