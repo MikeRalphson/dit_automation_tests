@@ -13,7 +13,7 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
   Examples:
     | platform | route |
     | android  | FTP   |
-#    | android  | HTTP  |
+    | android  | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null filesize value for Android
@@ -26,7 +26,7 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
   Examples:
     | platform | route |
     | android  | FTP   |
-#    | android  | HTTP  |
+    | android  | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null checksum value for Android
@@ -39,7 +39,7 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
   Examples:
     | platform | route |
     | android  | FTP   |
-#    | android  | HTTP  |
+    | android  | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null filesize value for platforms other than Android
@@ -52,11 +52,11 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
   Examples:
     | platform | route |
     | dotcom   | FTP   |
-#    | dotcom   | HTTP  |
-#    | ps3      | FTP   |
-#    | ps3      | HTTP  |
-#    | mobile   | FTP   |
-#    | mobile   | HTTP  |
+    | dotcom   | HTTP  |
+    | ps3      | FTP   |
+    | ps3      | HTTP  |
+    | mobile   | FTP   |
+    | mobile   | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null checksum value for platforms other than Android
@@ -69,8 +69,26 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
   Examples:
     | platform | route |
     | dotcom   | FTP   |
-#    | dotcom   | HTTP  |
-#    | ps3      | FTP   |
-#    | ps3      | HTTP  |
-#    | mobile   | FTP   |
-#    | mobile   | HTTP  |
+    | dotcom   | HTTP  |
+    | ps3      | FTP   |
+    | ps3      | HTTP  |
+    | mobile   | FTP   |
+    | mobile   | HTTP  |
+
+
+  Scenario Outline: BizTalk processes correct metadata for platforms other than Android
+    Given I have metadata from Syndication for <platform>
+    When I send metadata to BizTalk via <route>
+    And BizTalk processes the metadata into Bloom
+    Then BizTalk will generate a success receipt
+
+  Examples:
+    | platform | route |
+    | dotcom   | FTP   |
+    | dotcom   | HTTP  |
+    | ps3      | FTP   |
+    | ps3      | HTTP  |
+    | mobile   | FTP   |
+    | mobile   | HTTP  |
+    | samsung  | FTP   |
+    | samsung  | HTTP  |
