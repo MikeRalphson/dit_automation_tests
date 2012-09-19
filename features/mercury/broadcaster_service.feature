@@ -3,7 +3,7 @@ Feature: Broadcaster API feeds
   As a backend enabler
   I must ensure the appropriate broadcasts are transmitted per region
 
-  Scenario Outline: Verify correct broadcaster service
+  Scenario Outline: Verify correct broadcaster service for Mobile
     Given I request the content for <broadcaster> and <platform> with <screen size>
     Then the response should contain channel <content>
 
@@ -238,65 +238,72 @@ Feature: Broadcaster API feeds
     | unknown     | samsung  | By Day       |
     | unknown     | samsung  | Last Watched |
 
-  @not_implemented
+
   Scenario Outline: Verify correct broadcaster service for Android
     Given I request the content for <broadcaster> and <platform>
     Then the response should contain channel <content>
 
   Examples:
-    | broadcaster | platform | content      |
-    | itv         | android  | ITV1         |
-    | itv         | android  | ITV2         |
-    | itv         | android  | ITV3         |
-    | itv         | android  | ITV4         |
-    | itv         | android  | CITV         |
-    | itv         | android  | A - Z        |
-    | itv         | android  | Most Popular |
-    | itv         | android  | Don't Miss   |
-    | itv         | android  | By Day       |
-    | itv         | android  | Last Watched |
-    | utv         | android  | ITV1         |
-    | utv         | android  | ITV2         |
-    | utv         | android  | ITV3         |
-    | utv         | android  | ITV4         |
-    | utv         | android  | CITV         |
-    | utv         | android  | A - Z        |
-    | utv         | android  | Most Popular |
-    | utv         | android  | Don't Miss   |
-    | utv         | android  | By Day       |
-    | utv         | android  | Last Watched |
-    | stv         | android  | ITV1         |
-    | stv         | android  | ITV2         |
-    | stv         | android  | ITV3         |
-    | stv         | android  | ITV4         |
-    | stv         | android  | CITV         |
-    | stv         | android  | A - Z        |
-    | stv         | android  | Most Popular |
-    | stv         | android  | Don't Miss   |
-    | stv         | android  | By Day       |
-    | stv         | android  | Last Watched |
-    | channel     | android  | ITV1         |
-    | channel     | android  | ITV2         |
-    | channel     | android  | ITV3         |
-    | channel     | android  | ITV4         |
-    | channel     | android  | CITV         |
-    | channel     | android  | A - Z        |
-    | channel     | android  | Most Popular |
-    | channel     | android  | Don't Miss   |
-    | channel     | android  | By Day       |
-    | channel     | android  | Last Watched |
-    | unknown     | android  | ITV1         |
-    | unknown     | android  | ITV2         |
-    | unknown     | android  | ITV3         |
-    | unknown     | android  | ITV4         |
-    | unknown     | android  | CITV         |
-    | unknown     | android  | A - Z        |
-    | unknown     | android  | Most Popular |
-    | unknown     | android  | Don't Miss   |
-    | unknown     | android  | By Day       |
-    | unknown     | android  | Last Watched |
+    | broadcaster | platform | content           |
+    | itv         | android  | CRUCIAL CATCHUP   |
+    | itv         | android  | ITV1              |
+    | itv         | android  | ITV2              |
+    | itv         | android  | ITV3              |
+    | itv         | android  | ITV4              |
+    | itv         | android  | CITV              |
+    | itv         | android  | PROGRAMMES BY DAY |
+    | itv         | android  | MOST WATCHED      |
+    | itv         | android  | SEARCH            |
+    | itv         | android  | PROGRAMME INFO    |
+    | itv         | android  | EPISODE INFO      |
+    | itv         | android  | A - Z             |
+    | utv         | android  | CRUCIAL CATCHUP   |
+    | utv         | android  | ITV2              |
+    | utv         | android  | ITV3              |
+    | utv         | android  | ITV4              |
+    | utv         | android  | CITV              |
+    | utv         | android  | PROGRAMMES BY DAY |
+    | utv         | android  | MOST WATCHED      |
+    | utv         | android  | SEARCH            |
+    | utv         | android  | PROGRAMME INFO    |
+    | utv         | android  | EPISODE INFO      |
+    | utv         | android  | A - Z             |
+    | stv         | android  | CRUCIAL CATCHUP   |
+    | stv         | android  | ITV2              |
+    | stv         | android  | ITV3              |
+    | stv         | android  | ITV4              |
+    | stv         | android  | CITV              |
+    | stv         | android  | PROGRAMMES BY DAY |
+    | stv         | android  | MOST WATCHED      |
+    | stv         | android  | SEARCH            |
+    | stv         | android  | PROGRAMME INFO    |
+    | stv         | android  | EPISODE INFO      |
+    | stv         | android  | A - Z             |
+    | channel     | android  | CRUCIAL CATCHUP   |
+    | channel     | android  | ITV2              |
+    | channel     | android  | ITV3              |
+    | channel     | android  | ITV4              |
+    | channel     | android  | CITV              |
+    | channel     | android  | PROGRAMMES BY DAY |
+    | channel     | android  | MOST WATCHED      |
+    | channel     | android  | SEARCH            |
+    | channel     | android  | PROGRAMME INFO    |
+    | channel     | android  | EPISODE INFO      |
+    | channel     | android  | A - Z             |
+    | unknown     | android  | CRUCIAL CATCHUP   |
+    | unknown     | android  | ITV2              |
+    | unknown     | android  | ITV3              |
+    | unknown     | android  | ITV4              |
+    | unknown     | android  | CITV              |
+    | unknown     | android  | PROGRAMMES BY DAY |
+    | unknown     | android  | MOST WATCHED      |
+    | unknown     | android  | SEARCH            |
+    | unknown     | android  | PROGRAMME INFO    |
+    | unknown     | android  | EPISODE INFO      |
+    | unknown     | android  | A - Z             |
 
-  Scenario Outline: Verify ITV1 is not available for STV or UTV
+
+  Scenario Outline: Verify ITV1 is not available for STV or UTV for Mobile
     Given I request the content for <broadcaster> and <platform> with <screen size>
     Then the response should not contain <content>
 
@@ -306,3 +313,135 @@ Feature: Broadcaster API feeds
     | stv         | mobile   | small       | ITV1    |
     | channel     | mobile   | small       | ITV1    |
     | unknown     | mobile   | small       | ITV1    |
+
+
+  Scenario Outline: Verify ITV1 is not available for STV or UTV for Android
+    Given I request the content for <broadcaster> and <platform>
+    Then the response should not contain <content>
+
+  Examples:
+    | broadcaster | platform | content |
+    | utv         | android  | ITV1    |
+    | stv         | android  | ITV1    |
+    | channel     | android  | ITV1    |
+    | unknown     | android  | ITV1    |
+
+
+  Scenario Outline: Verify broadcast service for Android ignores screensize if provided
+    Given I request the content for <broadcaster> and <platform> with <screen size>
+    Then the response should contain channel <content>
+
+  Examples:
+    | broadcaster | platform | screen size | content           |
+    | itv         | android  | small       | CRUCIAL CATCHUP   |
+    | itv         | android  | small       | ITV1              |
+    | itv         | android  | small       | ITV2              |
+    | itv         | android  | small       | ITV3              |
+    | itv         | android  | small       | ITV4              |
+    | itv         | android  | small       | CITV              |
+    | itv         | android  | small       | PROGRAMMES BY DAY |
+    | itv         | android  | small       | MOST WATCHED      |
+    | itv         | android  | small       | SEARCH            |
+    | itv         | android  | small       | PROGRAMME INFO    |
+    | itv         | android  | small       | EPISODE INFO      |
+    | itv         | android  | small       | A - Z             |
+    | utv         | android  | small       | CRUCIAL CATCHUP   |
+    | utv         | android  | small       | ITV2              |
+    | utv         | android  | small       | ITV3              |
+    | utv         | android  | small       | ITV4              |
+    | utv         | android  | small       | CITV              |
+    | utv         | android  | small       | PROGRAMMES BY DAY |
+    | utv         | android  | small       | MOST WATCHED      |
+    | utv         | android  | small       | SEARCH            |
+    | utv         | android  | small       | PROGRAMME INFO    |
+    | utv         | android  | small       | EPISODE INFO      |
+    | utv         | android  | small       | A - Z             |
+    | stv         | android  | small       | CRUCIAL CATCHUP   |
+    | stv         | android  | small       | ITV2              |
+    | stv         | android  | small       | ITV3              |
+    | stv         | android  | small       | ITV4              |
+    | stv         | android  | small       | CITV              |
+    | stv         | android  | small       | PROGRAMMES BY DAY |
+    | stv         | android  | small       | MOST WATCHED      |
+    | stv         | android  | small       | SEARCH            |
+    | stv         | android  | small       | PROGRAMME INFO    |
+    | stv         | android  | small       | EPISODE INFO      |
+    | stv         | android  | small       | A - Z             |
+    | channel     | android  | small       | CRUCIAL CATCHUP   |
+    | channel     | android  | small       | ITV2              |
+    | channel     | android  | small       | ITV3              |
+    | channel     | android  | small       | ITV4              |
+    | channel     | android  | small       | CITV              |
+    | channel     | android  | small       | PROGRAMMES BY DAY |
+    | channel     | android  | small       | MOST WATCHED      |
+    | channel     | android  | small       | SEARCH            |
+    | channel     | android  | small       | PROGRAMME INFO    |
+    | channel     | android  | small       | EPISODE INFO      |
+    | channel     | android  | small       | A - Z             |
+    | unknown     | android  | small       | CRUCIAL CATCHUP   |
+    | unknown     | android  | small       | ITV2              |
+    | unknown     | android  | small       | ITV3              |
+    | unknown     | android  | small       | ITV4              |
+    | unknown     | android  | small       | CITV              |
+    | unknown     | android  | small       | PROGRAMMES BY DAY |
+    | unknown     | android  | small       | MOST WATCHED      |
+    | unknown     | android  | small       | SEARCH            |
+    | unknown     | android  | small       | PROGRAMME INFO    |
+    | unknown     | android  | small       | EPISODE INFO      |
+    | unknown     | android  | small       | A - Z             |
+    | itv         | android  | big         | CRUCIAL CATCHUP   |
+    | itv         | android  | big         | ITV1              |
+    | itv         | android  | big         | ITV2              |
+    | itv         | android  | big         | ITV3              |
+    | itv         | android  | big         | ITV4              |
+    | itv         | android  | big         | CITV              |
+    | itv         | android  | big         | PROGRAMMES BY DAY |
+    | itv         | android  | big         | MOST WATCHED      |
+    | itv         | android  | big         | SEARCH            |
+    | itv         | android  | big         | PROGRAMME INFO    |
+    | itv         | android  | big         | EPISODE INFO      |
+    | itv         | android  | big         | A - Z             |
+    | utv         | android  | big         | CRUCIAL CATCHUP   |
+    | utv         | android  | big         | ITV2              |
+    | utv         | android  | big         | ITV3              |
+    | utv         | android  | big         | ITV4              |
+    | utv         | android  | big         | CITV              |
+    | utv         | android  | big         | PROGRAMMES BY DAY |
+    | utv         | android  | big         | MOST WATCHED      |
+    | utv         | android  | big         | SEARCH            |
+    | utv         | android  | big         | PROGRAMME INFO    |
+    | utv         | android  | big         | EPISODE INFO      |
+    | utv         | android  | big         | A - Z             |
+    | stv         | android  | big         | CRUCIAL CATCHUP   |
+    | stv         | android  | big         | ITV2              |
+    | stv         | android  | big         | ITV3              |
+    | stv         | android  | big         | ITV4              |
+    | stv         | android  | big         | CITV              |
+    | stv         | android  | big         | PROGRAMMES BY DAY |
+    | stv         | android  | big         | MOST WATCHED      |
+    | stv         | android  | big         | SEARCH            |
+    | stv         | android  | big         | PROGRAMME INFO    |
+    | stv         | android  | big         | EPISODE INFO      |
+    | stv         | android  | big         | A - Z             |
+    | channel     | android  | big         | CRUCIAL CATCHUP   |
+    | channel     | android  | big         | ITV2              |
+    | channel     | android  | big         | ITV3              |
+    | channel     | android  | big         | ITV4              |
+    | channel     | android  | big         | CITV              |
+    | channel     | android  | big         | PROGRAMMES BY DAY |
+    | channel     | android  | big         | MOST WATCHED      |
+    | channel     | android  | big         | SEARCH            |
+    | channel     | android  | big         | PROGRAMME INFO    |
+    | channel     | android  | big         | EPISODE INFO      |
+    | channel     | android  | big         | A - Z             |
+    | unknown     | android  | big         | CRUCIAL CATCHUP   |
+    | unknown     | android  | big         | ITV2              |
+    | unknown     | android  | big         | ITV3              |
+    | unknown     | android  | big         | ITV4              |
+    | unknown     | android  | big         | CITV              |
+    | unknown     | android  | big         | PROGRAMMES BY DAY |
+    | unknown     | android  | big         | MOST WATCHED      |
+    | unknown     | android  | big         | SEARCH            |
+    | unknown     | android  | big         | PROGRAMME INFO    |
+    | unknown     | android  | big         | EPISODE INFO      |
+    | unknown     | android  | big         | A - Z             |
