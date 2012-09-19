@@ -20,8 +20,9 @@ module Net
       remote_filenames = nlst(remote_folder)
       remote_filenames.each do |fn|
         receipt_date = (fn.match '\d{17}').to_s
-        two_minutes = (DateTime.now - 0.00173).strftime("%Y%m%d%H%M%S%L")
-        next if (receipt_date < two_minutes)
+        # todo: make this configurable or use ActiveSupport/time
+        thirty_seconds = (DateTime.now - 0.00043).strftime("%Y%m%d%H%M%S%L")
+        next if (receipt_date < thirty_seconds)
 
         # need an error if no suitable files to sync have been found?
         local_filename = File.join(local_folder, fn)
