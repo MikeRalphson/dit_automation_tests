@@ -1,7 +1,8 @@
 Given /^I have metadata from Syndication for (\w+)$/ do |platform|
   @platform = platform
   @metadata_path = "lib/assets/#@platform/#@platform.xml"
-  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", "#@platform".upcase + "ITVC")
+  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", "#@platform#@platform".upcase) if platform == 'samsung'
+  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", "#@platform".upcase + "ITVC") if platform != 'samsung'
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|BasicDescription>tva|Title", @uuid)
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|FileSize", (Random.rand 1000000))
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|MD5Checksum", '78e2bb9c60b0a621d160db06d5ec3e07')
@@ -27,7 +28,7 @@ When /^I send metadata to BizTalk via (\w+)$/ do |route|
       @ftp.chdir "CatchUpAndArchive/MetadataFromSyndication"
       @ftp.put @metadata
     when 'HTTP'
-      #todo
+      RestClient.put EnvConfig['non_pay_metadata'], @metadata
     else
       raise ArgumentError.new('no such route exists')
   end
@@ -50,67 +51,59 @@ When /^BizTalk processes the metadata into Bloom$/ do
 end
 
 Then /^BizTalk will generate a success receipt$/ do
-  receipts = get_receipts '/tmp/mdr'
-
-  raise 'error - no metadata receipts found' if receipts.empty?
+  receipts = []
+  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts('/tmp/mdr').select do |r|
+    Nokogiri::XML(File.open(r)).at_css('EpisodeTitle').content == @uuid
+  end).empty? }
 
   errors = []
-  uuid_receipt = false
-
   receipts.each do |r|
     xml = Nokogiri::XML(File.open(r))
-    next unless xml.at_css('EpisodeTitle').content == @uuid
-    uuid_receipt = true
     break if xml.at_css('Success').content == 'true'
     errors << xml.at_css("FaultMessage").content
   end
 
-  raise "did not find any matching receipts for uuid: #@uuid" unless uuid_receipt
   raise "ingest failed with errors: #{errors}" unless errors.empty?
 end
 
 Then /^BizTalk will generate a failure receipt stating that filesize is required$/ do
-  receipts = get_receipts '/tmp/mdr'
-  raise 'error - no metadata receipts found' if receipts.empty?
+  receipts = []
+  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts('/tmp/mdr').select do |r|
+    Nokogiri::XML(File.open(r)).at_css('EpisodeTitle').content == @uuid
+  end).empty? }
 
   errors = []
-  uuid_receipt = false
   expected_response = false
 
   receipts.each do |r|
     xml = Nokogiri::XML(File.open(r))
-    next unless xml.at_css('EpisodeTitle').content == @uuid
-    uuid_receipt = true
     next if xml.at_css('Success').content == 'true'
     expected_response = true
     break if xml.at_css('FaultMessage').content.match /A value for FileSize is required/
     errors << xml.at_css("FaultMessage").content
   end
 
-  raise "did not find any matching receipts for uuid: #@uuid" unless uuid_receipt
   raise "did not find any receipts matching the expected success value" unless expected_response
   raise "ingest failed with errors: #{errors}" unless errors.empty?
 end
 
 Then /^BizTalk will generate a failure receipt stating that checksum is required$/ do
-  receipts = get_receipts '/tmp/mdr'
-  raise 'error - no metadata receipts found' if receipts.empty?
+  receipts = []
+  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts('/tmp/mdr').select do |r|
+    Nokogiri::XML(File.open(r)).at_css('EpisodeTitle').content == @uuid
+  end).empty? }
 
   errors = []
-  uuid_receipt = false
   expected_response = false
 
   receipts.each do |r|
     xml = Nokogiri::XML(File.open(r))
-    next unless xml.at_css('EpisodeTitle').content == @uuid
-    uuid_receipt = true
     next if xml.at_css('Success').content == 'true'
     expected_response = true
     break if xml.at_css('FaultMessage').content.match /Checksum' element has an invalid value/
     errors << xml.at_css("FaultMessage").content
   end
 
-  raise "did not find any matching receipts for uuid: #@uuid" unless uuid_receipt
   raise "did not find any receipts matching the expected success value" unless expected_response
   raise "ingest failed with errors: #{errors}" unless errors.empty?
 end
