@@ -11,6 +11,7 @@ require 'net/http'
 require 'net/ftp'
 require 'set'
 require 'securerandom'
+require 'rest-client'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
