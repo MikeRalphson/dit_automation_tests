@@ -263,9 +263,9 @@ Feature: API and MRSS feeds
 
 
   Scenario Outline: Verify MRSS feed
-    Given I request the mrss <uri> api
+    Given I request the mrss api
     Then the response should contain the correct <title>
 
   Examples:
-    | uri               | title                 |
-    | /linking/20120723 | ITV Daily Change Feed |
+    | title                 |
+    | ITV Daily Change Feed |

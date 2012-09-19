@@ -1,5 +1,6 @@
-Given /^I request the mrss (.*) api$/ do |uri|
-  @uri = "#{EnvConfig['mercury_url']}#{uri}"
+Given /^I request the mrss api$/ do
+  yesterday = (Date.today - 1).strftime("%Y%m%d")
+  @uri = "#{EnvConfig['mercury_url']}/linking/#{yesterday}"
   @response = @mercury_api.get_response_from_url @uri
 end
 
