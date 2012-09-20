@@ -24,10 +24,6 @@ When /^the metadata has a null checksum value$/ do
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|MD5Checksum", "")
 end
 
-When /^the metadata has a null published location value$/ do
-  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|PublishedLocation", "")
-end
-
 When /^I send metadata to BizTalk via (\w+)$/ do |route|
   case route
     when 'FTP'
@@ -44,22 +40,14 @@ end
 When /^Biztalk validates the metadata$/ do
   @ftp ||= @ftp_library.create_ftp_connection("#{EnvConfig['ftp_host']}", "#{EnvConfig['ftp_login']}", "#{EnvConfig['ftp_password']}")
   @ftp.chdir "CatchUpAndArchive/MetadataFromSyndication" unless @ftp.pwd.match /MetadataFromSyndication$/
-  Timeout.timeout(60) { sleep 1 until (@ftp.nlst(@ftp.pwd).select { |f| f.match /#@platform.xml/ }).empty? }
-  @ftp.chdir '/'
-  @ftp.chdir 'MercuryFTP' unless EnvConfig['ftp_login'] == 'mercuryftp'
-end
-
-When /^BizTalk processes the metadata into Bloom$/ do
-  @ftp ||= @ftp_library.create_ftp_connection("#{EnvConfig['ftp_host']}", "#{EnvConfig['ftp_login']}", "#{EnvConfig['ftp_password']}")
-  @ftp.chdir "CatchUpAndArchive/MetadataFromSyndication" unless @ftp.pwd.match /MetadataFromSyndication$/
-  Timeout.timeout(60) { sleep 1 until (@ftp.nlst(@ftp.pwd).select { |f| f.match /#@platform.xml/ }).empty? }
+  Timeout::timeout(@timeout) { sleep 1 until (@ftp.nlst(@ftp.pwd).select { |f| f.match /#@platform.xml/ }).empty? }
   @ftp.chdir '/'
   @ftp.chdir 'MercuryFTP' unless EnvConfig['ftp_login'] == 'mercuryftp'
 end
 
 Then /^BizTalk will generate a success receipt$/ do
   receipts = []
-  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts(EnvConfig['temp_folder']).select do |r|
+  Timeout::timeout(@timeout) { sleep 5 while (receipts = get_receipts('/tmp/mdr').select do |r|
     Nokogiri::XML(File.open(r)).at_css('EpisodeTitle').content == @uuid
   end).empty? }
 
@@ -75,7 +63,7 @@ end
 
 Then /^BizTalk will generate a failure receipt stating that filesize is required$/ do
   receipts = []
-  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts(EnvConfig['temp_folder']).select do |r|
+  Timeout::timeout(@timeout) { sleep 5 while (receipts = get_receipts(EnvConfig['temp_folder']).select do |r|
     Nokogiri::XML(File.open(r)).at_css('EpisodeTitle').content == @uuid
   end).empty? }
 
@@ -96,7 +84,7 @@ end
 
 Then /^BizTalk will generate a failure receipt stating that checksum is required$/ do
   receipts = []
-  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts(EnvConfig['temp_folder']).select do |r|
+  Timeout::timeout(@timeout) { sleep 5 while (receipts = get_receipts(EnvConfig['temp_folder']).select do |r|
     Nokogiri::XML(File.open(r)).at_css('EpisodeTitle').content == @uuid
   end).empty? }
 
@@ -119,6 +107,6 @@ private
 
 def get_receipts(temp_folder)
   @ftp_library.clean_local_directory temp_folder
-  @ftp.sync_recent_receipts 'Receipts/MetadataReceipts', temp_folder
+  @ftp.sync_recent_receipts 'Receipts/MetadataReceipts', temp_folder, 10
   Dir.glob("#{temp_folder}/*.xml")
 end
