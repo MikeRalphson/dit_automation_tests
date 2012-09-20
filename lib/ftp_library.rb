@@ -15,16 +15,15 @@ end
 
 module Net
   class FTP
-    def sync_recent_receipts(remote_folder, local_folder)
+    def sync_recent_receipts(remote_folder, local_folder, minutes_timespan)
       Dir.mkdir local_folder unless File.directory? local_folder
       remote_filenames = nlst(remote_folder)
       remote_filenames.each do |fn|
         receipt_date = (fn.match '\d{17}').to_s
-        # todo: make this configurable or use ActiveSupport/time
-        thirty_seconds = (DateTime.now - 0.00043).strftime("%Y%m%d%H%M%S%L")
-        next if (receipt_date < thirty_seconds)
+        next if (receipt_date < minutes_timespan.minutes.ago.strftime("%Y%m%d%H%M%S%L"))
+        fn.gsub!("\\", "/")
+        fn.gsub!("Receipts/MetadataReceipts", "")
 
-        # need an error if no suitable files to sync have been found?
         local_filename = File.join(local_folder, fn)
 
         unless File.exists?(local_filename)
