@@ -1,6 +1,7 @@
 rc2:
     mercury_url:          'http://g22msrc217.itvbbrc2.ads:8095'
     lithium_url:          'http://g22msrc227.itvbbrc2.ads:50460'
+    temp_folder:          '/tmp/mdr'
 rc3:
     mercury_url:          'http://mercury.rc3.itv.com'
     lithium_url:          'http://lithium.rc3.itv.com'
@@ -10,9 +11,11 @@ rc3:
     pay_metadata:         ''
     non_pay_metadata:     'http://89.151.100.137:8080/Metadata/CatchupAndArchive.meta'
     irdeto_pay_metadata:  ''
+    temp_folder:          '/tmp/mdr'
 rcx:
     mercury_url:          'http://d01.mercury.itv.com'
     lithium_url:          'http://d01.lithium.itv.com'
+    temp_folder:          '/tmp/mdr'
 s01:
     mercury_url:          'http://s01-mercury.itv.com'
     lithium_url:          'http://s01-lithium-news.itv.com'
@@ -22,9 +25,12 @@ s01:
     pay_metadata:         'http://s01-onramp.itv.com/Metadata/CatchupAndArchiveNew.meta'
     non_pay_metadata:     'http://s01-onramp.itv.com/Metadata/CatchupAndArchive.meta'
     irdeto_pay_metadata:  'http://s01-onramp.itv.com/Metadata/CatchupAndArchivePay.meta'
+    temp_folder:          '/tmp/mdr'
 i01:
     mercury_url:          'http://i01-mercury.itv.com'
     lithium_url:          'http://i01-lithium-news.itv.com'
+    temp_folder:          '/tmp/mdr'
 live:
     mercury_url:          'http://mercury.itv.com'
     lithium_url:          'http://lithium-news.itv.com'
+    temp_folder:          '/tmp/mdr'

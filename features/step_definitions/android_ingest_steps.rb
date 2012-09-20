@@ -59,7 +59,7 @@ end
 
 Then /^BizTalk will generate a success receipt$/ do
   receipts = []
-  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts('/tmp/mdr').select do |r|
+  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts(EnvConfig['temp_folder']).select do |r|
     Nokogiri::XML(File.open(r)).at_css('EpisodeTitle').content == @uuid
   end).empty? }
 
@@ -75,7 +75,7 @@ end
 
 Then /^BizTalk will generate a failure receipt stating that filesize is required$/ do
   receipts = []
-  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts('/tmp/mdr').select do |r|
+  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts(EnvConfig['temp_folder']).select do |r|
     Nokogiri::XML(File.open(r)).at_css('EpisodeTitle').content == @uuid
   end).empty? }
 
@@ -96,7 +96,7 @@ end
 
 Then /^BizTalk will generate a failure receipt stating that checksum is required$/ do
   receipts = []
-  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts('/tmp/mdr').select do |r|
+  Timeout.timeout(30) { sleep 1 while (receipts = get_receipts(EnvConfig['temp_folder']).select do |r|
     Nokogiri::XML(File.open(r)).at_css('EpisodeTitle').content == @uuid
   end).empty? }
 
