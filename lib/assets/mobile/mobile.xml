@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tva:TVAMain xmlns:tva="urn:tva:metadata:2004" contentProviderID="ITV" rightsOwner="ITV"
-             publicationTime="2012-08-29T10:36:28+01:00">
+<tva:TVAMain xmlns:tva="urn:tva:metadata:2004" contentProviderID="ITV" rightsOwner="ITV" publicationTime="2012-08-29T10:36:28+01:00">
   <tva:CopyrightNotice/>
   <tva:ProgramDescription>
     <tva:AvailsListInformationTable Category="TV" availsListExternalID="1234" contractID="124"/>
     <tva:ProgramInformationTable>
       <tva:ProgramInformation programId="1/5163/1149">
         <tva:BasicDescription ingestAction="Create">
-          <tva:Title>4cdb3069-4e6f-4272-8eee-5b8cb2e4ef7b</tva:Title>
+          <tva:Title>0986cc11-fe46-4e2b-9bcb-c5c34226d434</tva:Title>
           <tva:MediaURL/>
           <tva:shortSynopsis>Jeremy Kyle presents a confrontational talk show in which guests thrash out their
             conflicts, dilemmas and relationship issues in front of a studio audience.
@@ -70,7 +69,7 @@
           <tva:TitleExtension/>
         </tva:BasicDescription>
         <tva:AVAttributes>
-          <tva:FileSize>836359</tva:FileSize>
+          <tva:FileSize>773335</tva:FileSize>
           <tva:AssetId>1/5163/1149#004</tva:AssetId>
           <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN300_16X9.mp4</tva:Filename>
           <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
@@ -86,7 +85,7 @@
           </tva:VideoAttributes>
         </tva:AVAttributes>
         <tva:AVAttributes>
-          <tva:FileSize>836359</tva:FileSize>
+          <tva:FileSize>773335</tva:FileSize>
           <tva:AssetId>1/5163/1149#004</tva:AssetId>
           <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN150_16X9.mp4</tva:Filename>
           <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
@@ -102,7 +101,7 @@
           </tva:VideoAttributes>
         </tva:AVAttributes>
         <tva:AVAttributes>
-          <tva:FileSize>836359</tva:FileSize>
+          <tva:FileSize>773335</tva:FileSize>
           <tva:AssetId>1/5163/1149#004</tva:AssetId>
           <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN800_16X9.mp4</tva:Filename>
           <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
@@ -118,7 +117,7 @@
           </tva:VideoAttributes>
         </tva:AVAttributes>
         <tva:AVAttributes>
-          <tva:FileSize>836359</tva:FileSize>
+          <tva:FileSize>773335</tva:FileSize>
           <tva:AssetId>1/5163/1149#004</tva:AssetId>
           <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN400_16X9.mp4</tva:Filename>
           <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
@@ -134,7 +133,7 @@
           </tva:VideoAttributes>
         </tva:AVAttributes>
         <tva:AVAttributes>
-          <tva:FileSize>836359</tva:FileSize>
+          <tva:FileSize>773335</tva:FileSize>
           <tva:AssetId>1/5163/1149#004</tva:AssetId>
           <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN1200_16X9.mp4</tva:Filename>
           <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
@@ -150,7 +149,7 @@
           </tva:VideoAttributes>
         </tva:AVAttributes>
         <tva:AVAttributes>
-          <tva:FileSize>836359</tva:FileSize>
+          <tva:FileSize>773335</tva:FileSize>
           <tva:AssetId>1/5163/1149#004</tva:AssetId>
           <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN600_16X9.mp4</tva:Filename>
           <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
@@ -169,29 +168,23 @@
         <tva:AdBreaks>
           <tva:StartOfProgramme>0</tva:StartOfProgramme>
           <tva:Part>
-            <cmd:PartNumber
-                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">1
+            <cmd:PartNumber xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">1
             </cmd:PartNumber>
-            <cmd:EndTime
-                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
+            <cmd:EndTime xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
               701520
             </cmd:EndTime>
           </tva:Part>
           <tva:Part>
-            <cmd:PartNumber
-                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">2
+            <cmd:PartNumber xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">2
             </cmd:PartNumber>
-            <cmd:EndTime
-                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
+            <cmd:EndTime xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
               1528480
             </cmd:EndTime>
           </tva:Part>
           <tva:Part>
-            <cmd:PartNumber
-                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">3
+            <cmd:PartNumber xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">3
             </cmd:PartNumber>
-            <cmd:EndTime
-                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
+            <cmd:EndTime xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
               2278360
             </cmd:EndTime>
           </tva:Part>
@@ -202,7 +195,7 @@
       <tva:GroupInformation groupId="1/5163/1149#004">
         <tva:GroupType value="Production"/>
         <tva:BasicDescription ingestAction="Create">
-          <tva:Title>4cdb3069-4e6f-4272-8eee-5b8cb2e4ef7b</tva:Title>
+          <tva:Title>0986cc11-fe46-4e2b-9bcb-c5c34226d434</tva:Title>
           <tva:MediaURL/>
           <tva:shortSynopsis>Jeremy Kyle presents a confrontational talk show in which guests thrash out their
             conflicts, dilemmas and relationship issues in front of a studio audience.
@@ -261,7 +254,7 @@
       <tva:GroupInformation groupId="1/5163-08">
         <tva:GroupType value="Series"/>
         <tva:BasicDescription ingestAction="Create">
-          <tva:Title>4cdb3069-4e6f-4272-8eee-5b8cb2e4ef7b</tva:Title>
+          <tva:Title>0986cc11-fe46-4e2b-9bcb-c5c34226d434</tva:Title>
           <tva:MediaURL/>
           <tva:shortSynopsis>Jeremy Kyle presents a confrontational talk show in which guests thrash out their
             conflicts, dilemmas and relationship issues in front of a studio audience.
@@ -328,7 +321,7 @@
       <tva:GroupInformation groupId="1/5163">
         <tva:GroupType value="Programme"/>
         <tva:BasicDescription ingestAction="Create">
-          <tva:Title>4cdb3069-4e6f-4272-8eee-5b8cb2e4ef7b</tva:Title>
+          <tva:Title>0986cc11-fe46-4e2b-9bcb-c5c34226d434</tva:Title>
           <tva:MediaURL/>
           <tva:shortSynopsis>Jeremy Kyle presents a confrontational talk show in which guests thrash out their
             conflicts, dilemmas and relationship issues in front of a studio audience.
@@ -397,7 +390,7 @@
         <tva:costCode>Default</tva:costCode>
         <tva:PublishedDuration>3900000</tva:PublishedDuration>
         <tva:StartOfAvailability>2012-08-09</tva:StartOfAvailability>
-        <tva:EndOfAvailability>2012-09-08</tva:EndOfAvailability>
+        <tva:EndOfAvailability>2013-09-20</tva:EndOfAvailability>
         <tva:SlotChannel>ITV1</tva:SlotChannel>
         <tva:SlotDateTime>2012-08-09T09:25:00</tva:SlotDateTime>
         <tva:Platform>MOBILEITVC</tva:Platform>
