@@ -400,7 +400,7 @@
         <tva:EndOfAvailability>2012-09-08</tva:EndOfAvailability>
         <tva:SlotChannel>ITV1</tva:SlotChannel>
         <tva:SlotDateTime>2012-08-09T09:25:00</tva:SlotDateTime>
-        <tva:Platform>YOUVIEWITVC</tva:Platform>
+        <tva:Platform>CANVASITVC</tva:Platform>
       </tva:OnDemandProgram>
     </tva:ProgramLocationTable>
     <tva:CreditsInformationTable>
