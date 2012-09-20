@@ -12,6 +12,8 @@ require 'net/ftp'
 require 'set'
 require 'securerandom'
 require 'rest-client'
+require 'timeout'
+require 'active_support/time'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
@@ -29,6 +31,7 @@ Before do
   @ftp_library = FtpLibrary.new
   @xml_library = XmlLibrary.new
   @uuid = SecureRandom.uuid
+  @timeout = 300
 
   Savon.configure do |config|
     config.log = false
