@@ -1,8 +1,14 @@
 Given /^I have metadata from Syndication for (\w+)$/ do |platform|
   @platform = platform
   @metadata_path = "lib/assets/#@platform/#@platform.xml"
-  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", "#@platform#@platform".upcase) if platform == 'samsung'
-  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", "#@platform".upcase + "ITVC") if platform != 'samsung'
+  case platform
+    when 'samsung'
+      @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", "#@platform#@platform".upcase)
+    when 'youview'
+      @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", "CANVASITVC")
+    else
+      @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", "#@platform".upcase + "ITVC")
+  end
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|BasicDescription>tva|Title", @uuid)
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|FileSize", (Random.rand 1000000))
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|MD5Checksum", '78e2bb9c60b0a621d160db06d5ec3e07')
