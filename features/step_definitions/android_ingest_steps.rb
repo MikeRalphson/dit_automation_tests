@@ -9,6 +9,7 @@ Given /^I have metadata from Syndication for (\w+)$/ do |platform|
     else
       @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|Platform", "#@platform".upcase + "ITVC")
   end
+  @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|EndOfAvailability", (Date.today + 365).strftime("%F"))
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|BasicDescription>tva|Title", @uuid)
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|FileSize", (Random.rand 1000000))
   @metadata = @xml_library.css_replace_nodes(@metadata_path, "tva|AVAttributes>tva|MD5Checksum", '78e2bb9c60b0a621d160db06d5ec3e07')
