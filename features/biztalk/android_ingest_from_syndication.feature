@@ -21,6 +21,8 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
     | mobile   | HTTP  |
     | samsung  | FTP   |
     | samsung  | HTTP  |
+    | freesat  | FTP   |
+    | freesat  | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null filesize value for all platforms
@@ -42,6 +44,8 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
     | mobile   | HTTP  |
     | samsung  | FTP   |
     | samsung  | HTTP  |
+    | freesat  | FTP   |
+    | freesat  | HTTP  |
 
 
   Scenario Outline: BizTalk receives metadata with a null checksum value for all platforms
@@ -63,3 +67,5 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
     | mobile   | HTTP  |
     | samsung  | FTP   |
     | samsung  | HTTP  |
+    | freesat  | FTP   |
+    | freesat  | HTTP  |
