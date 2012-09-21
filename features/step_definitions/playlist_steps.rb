@@ -38,7 +38,7 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
     when "YouView"
       expected_bitrates = [1200000]
     when "PS3"
-      expected_bitrates = [800000]
+      expected_bitrates = [800000, 1200000]
     when "Mobile"
       expected_bitrates = [400000]
     else
