@@ -72,93 +72,13 @@
         <tva:AVAttributes>
           <tva:FileSize>841427</tva:FileSize>
           <tva:AssetId>1/5163/1149#004</tva:AssetId>
-          <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN300_16X9.mp4</tva:Filename>
-          <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
-          <tva:PublishedDateTime>2012-08-29T10:30:00</tva:PublishedDateTime>
-          <tva:MD5Checksum>78e2bb9c60b0a621d160db06d5ec3e07</tva:MD5Checksum>
-          <tva:VideoAttributes>
-            <tva:AspectRatio>16x9</tva:AspectRatio>
-            <tva:Profile>300</tva:Profile>
-            <tva:Coding>
-              <tva:Name>H.264</tva:Name>
-            </tva:Coding>
-            <tva:FrameRate>25</tva:FrameRate>
-          </tva:VideoAttributes>
-        </tva:AVAttributes>
-        <tva:AVAttributes>
-          <tva:FileSize>841427</tva:FileSize>
-          <tva:AssetId>1/5163/1149#004</tva:AssetId>
-          <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN150_16X9.mp4</tva:Filename>
-          <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
-          <tva:PublishedDateTime>2012-08-29T10:30:00</tva:PublishedDateTime>
-          <tva:MD5Checksum>78e2bb9c60b0a621d160db06d5ec3e07</tva:MD5Checksum>
-          <tva:VideoAttributes>
-            <tva:AspectRatio>16x9</tva:AspectRatio>
-            <tva:Profile>150</tva:Profile>
-            <tva:Coding>
-              <tva:Name>H.264</tva:Name>
-            </tva:Coding>
-            <tva:FrameRate>25</tva:FrameRate>
-          </tva:VideoAttributes>
-        </tva:AVAttributes>
-        <tva:AVAttributes>
-          <tva:FileSize>841427</tva:FileSize>
-          <tva:AssetId>1/5163/1149#004</tva:AssetId>
-          <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN800_16X9.mp4</tva:Filename>
-          <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
-          <tva:PublishedDateTime>2012-08-29T10:30:00</tva:PublishedDateTime>
-          <tva:MD5Checksum>78e2bb9c60b0a621d160db06d5ec3e07</tva:MD5Checksum>
-          <tva:VideoAttributes>
-            <tva:AspectRatio>16x9</tva:AspectRatio>
-            <tva:Profile>800</tva:Profile>
-            <tva:Coding>
-              <tva:Name>H.264</tva:Name>
-            </tva:Coding>
-            <tva:FrameRate>25</tva:FrameRate>
-          </tva:VideoAttributes>
-        </tva:AVAttributes>
-        <tva:AVAttributes>
-          <tva:FileSize>841427</tva:FileSize>
-          <tva:AssetId>1/5163/1149#004</tva:AssetId>
-          <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN400_16X9.mp4</tva:Filename>
-          <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
-          <tva:PublishedDateTime>2012-08-29T10:30:00</tva:PublishedDateTime>
-          <tva:MD5Checksum>78e2bb9c60b0a621d160db06d5ec3e07</tva:MD5Checksum>
-          <tva:VideoAttributes>
-            <tva:AspectRatio>16x9</tva:AspectRatio>
-            <tva:Profile>400</tva:Profile>
-            <tva:Coding>
-              <tva:Name>H.264</tva:Name>
-            </tva:Coding>
-            <tva:FrameRate>25</tva:FrameRate>
-          </tva:VideoAttributes>
-        </tva:AVAttributes>
-        <tva:AVAttributes>
-          <tva:FileSize>841427</tva:FileSize>
-          <tva:AssetId>1/5163/1149#004</tva:AssetId>
-          <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN1200_16X9.mp4</tva:Filename>
-          <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
+          <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN1200_16X9.bbts</tva:Filename>
+          <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.bbts</tva:PublishedLocation>
           <tva:PublishedDateTime>2012-08-29T10:30:00</tva:PublishedDateTime>
           <tva:MD5Checksum>78e2bb9c60b0a621d160db06d5ec3e07</tva:MD5Checksum>
           <tva:VideoAttributes>
             <tva:AspectRatio>16x9</tva:AspectRatio>
             <tva:Profile>1200</tva:Profile>
-            <tva:Coding>
-              <tva:Name>H.264</tva:Name>
-            </tva:Coding>
-            <tva:FrameRate>25</tva:FrameRate>
-          </tva:VideoAttributes>
-        </tva:AVAttributes>
-        <tva:AVAttributes>
-          <tva:FileSize>841427</tva:FileSize>
-          <tva:AssetId>1/5163/1149#004</tva:AssetId>
-          <tva:Filename>1-5163-1149-004_THE-JEREMY-KYLE-SHOW-(SERIES-8)_TX090812_AN600_16X9.mp4</tva:Filename>
-          <tva:PublishedLocation>priority\rtmpecatchup\1-5163-1149-004\test.mp4</tva:PublishedLocation>
-          <tva:PublishedDateTime>2012-08-29T10:30:00</tva:PublishedDateTime>
-          <tva:MD5Checksum>78e2bb9c60b0a621d160db06d5ec3e07</tva:MD5Checksum>
-          <tva:VideoAttributes>
-            <tva:AspectRatio>16x9</tva:AspectRatio>
-            <tva:Profile>600</tva:Profile>
             <tva:Coding>
               <tva:Name>H.264</tva:Name>
             </tva:Coding>
