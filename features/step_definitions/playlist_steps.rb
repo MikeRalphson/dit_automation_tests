@@ -38,7 +38,7 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
     when "YouView"
       expected_bitrates = [1200000]
     when "PS3"
-      expected_bitrates = [800000, 1200000]
+      expected_bitrates = [800000]
     when "Mobile"
       expected_bitrates = [400000]
     else
@@ -114,5 +114,19 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
     else
       video_type.each { |url| url.text.should match(/\.mp4$/) }
   end
+end
+
+#@uri = "#{EnvConfig['mercury_url']}/api/mhegdata/Freesat/playlist/#{vodcrid}?t=playlistscreentoken"
+#@response = @mercury_api.get_response_from_url @uri
+
+Given /^I request a (\w+) Mercury playlist with (\d+)$/ do |vodcrid, platform|
+  @mercury_playlist.create_client
+  p @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/#{platform}/playlist/#{vodcrid}?t=playlistscreentoken"
+  @response = @mercury_api.get_response_from_url @uri
+  p @response
+end
+
+Then /^I get the requested vodcrid in the response (\d+)$/ do |vodcrid|
+  pending # express the regexp above with the code you wish you had
 end
 

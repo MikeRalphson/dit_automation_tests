@@ -1,9 +1,10 @@
+@playlist
 Feature: Mercury Playlist Requests
   In order to generate front end features
   As a backend enabler
   I want to be able to request Mercury playlists
 
-  Scenario Outline: Verify basic request
+  Scenario Outline: Verify basic playlist request
     Given I request the Mercury playlist with <vodcrid> and <platform>
     Then I get the requested <vodcrid>
     And the expiry date is in the future
@@ -18,7 +19,6 @@ Feature: Mercury Playlist Requests
     | 301871  | Samsung  |
     | 301871  | PS3      |
     | 301871  | YouView  |
-#    | 301871  | Freesat   |
 #    | 301871  | HDS       |
 #    | 301871  | HLS       |
 #    | 301871  | Simulcast |
@@ -65,3 +65,12 @@ Feature: Mercury Playlist Requests
 #    | 301871  | HDS       |
 #    | 301871  | HLS       |
 #    | 301871  | Simulcast |
+
+@wip
+  Scenario Outline: Verify Freesat playlist request
+    Given I request a <platform> Mercury playlist with <vodcrid>
+    Then I get the requested vodcrid in the response <vodcrid>
+	
+   Examples:
+	| vodcrid | platform |
+	| 301871  | Freesat  |
