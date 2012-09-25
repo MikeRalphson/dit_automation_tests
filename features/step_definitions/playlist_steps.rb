@@ -2,7 +2,7 @@ Given /^I request the Mercury playlist with (\d+) and (\w+)$/ do |vodcrid, platf
   @mercury_playlist.create_client
   begin
     case platform
-      when "Mobile"
+      when /mobile/i
         @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
       else
         @response = @mercury_playlist.playlist_request vodcrid, platform
@@ -16,7 +16,7 @@ Given /^I request the Mercury playlist from (.*) with (.*) and (.*)$/ do |locati
   @mercury_playlist.create_client_with_location location
   begin
     case platform
-      when "Mobile"
+      when /mobile/i
         @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
       else
         @response = @mercury_playlist.playlist_request vodcrid, platform
@@ -31,15 +31,15 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
   found_bitrates = found_bitrates.map { |node| node.attr("bitrate").to_i }
 
   case platform
-    when "android"
+    when /android/i
       expected_bitrates = [150000, 300000, 400000, 600000, 800000, 1200000]
-    when "Samsung"
+    when /samsung/i
       expected_bitrates = [1200000]
-    when "YouView"
+    when /youview/i
       expected_bitrates = [1200000]
-    when "PS3"
-      expected_bitrates = [800000]
-    when "Mobile"
+    when /ps3/i
+      expected_bitrates = [800000, 1200000]
+    when /mobile/i
       expected_bitrates = [400000]
     else
       expected_bitrates = [400000, 600000, 800000, 1200000]
@@ -65,7 +65,7 @@ Then /^I get the correct base url based on the (.+)$/ do |platform|
   base_urls.should_not be_empty
 
   case platform
-    when "YouView"
+    when /youview/i
       base_urls.each { |url| url.attr("base").should == nil }
     else
       base_urls.each { |url| url.attr("base").should match(/\Artmpe/) }
@@ -97,7 +97,7 @@ end
 Then /^the advert URI should contain the correct site based on the (.*)$/ do |platform|
   @advert_uris ||= @response.xpath("//Action/URL")
   @advert_uris.each do |uri|
-    if platform == "DotCom"
+    if platform == /dotcom/i
       (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv"
     else
       (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.#{platform.downcase}"
@@ -109,7 +109,7 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
   video_type = @response.xpath("//VideoEntries/Video/MediaFiles/MediaFile/URL")
   raise 'no matching values found in the response' unless video_type
   case platform
-    when "YouView"
+    when /youview/i
       video_type.each { |url| (url.text.should match(/\.ts$/)) && (url.text.should match(/\Ahttp/)) }
     else
       video_type.each { |url| url.text.should match(/\.mp4$/) }
