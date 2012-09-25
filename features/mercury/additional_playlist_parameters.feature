@@ -9,10 +9,24 @@ Feature: Mercury Additional Parameters
     Given I request the Mercury playlist for <platform> with no additional parameters
     Then the response should contain ad-server URL's with no additional parameters / empty values
 
-# already covered in regression (same as scenario above)
+# should default to the normal way of doing things? or pass through null values?
+  Scenario: Mercury receives no additional parameters for Android
+    Given I request the Mercury playlist for <platform> with null additional parameter values
+    Then the response should contain ad-server URL's with no additional parameters / empty values
+
+  #------------------------------------------------------------------------------
+
+# already covered in regression (same as scenario 1)
   Scenario: Mercury receives no additional parameters for platforms excluding Android
     Given I request the Mercury playlist for <platform> with no additional parameters
     Then the response should contain ad-server URL's with no additional parameters / empty values
+
+# should default to the normal way of doing things? or pass through null values? (same as scenario 2)
+  Scenario: Mercury receives no additional parameters for platforms excluding Android
+    Given I request the Mercury playlist for <platform> with null additional parameter values
+    Then the response should contain ad-server URL's with no additional parameters / empty values
+
+  #------------------------------------------------------------------------------
 
 # should append additional parameters to advert URL's correctly
   Scenario: Mercury receives additional parameters for Android
@@ -32,8 +46,7 @@ Feature: Mercury Additional Parameters
 # should truncate to 100 characters in the returned advert URL
   Scenario: Mercury receives additional parameters with values over 100 characters
     Given I request the Mercury playlist for <platform> with additional parameters over 100 characters long
-    Then Mercury truncates the parameter values that are too long
-    And the response should contain ad-server URL's with correctly appended additional parameters
+    Then the response should contain ad-server URL's with truncated additional parameters
 
 # should map special characters to dots
   Scenario: Mercury receives additional parameters with special characters excluding letters, numbers and dots
