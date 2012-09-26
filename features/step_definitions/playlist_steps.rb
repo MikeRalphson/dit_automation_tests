@@ -38,7 +38,7 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
     when /youview/i
       expected_bitrates = [1200000]
     when /ps3/i
-      expected_bitrates = [800000]
+      expected_bitrates = [800000, 1200000]
     when /mobile/i
       expected_bitrates = [400000]
     else
@@ -97,9 +97,12 @@ end
 Then /^the advert URI should contain the correct site based on the (.*)$/ do |platform|
   @advert_uris ||= @response.xpath("//Action/URL")
   @advert_uris.each do |uri|
-    if platform == /dotcom/i
+  case platform
+    when /dotcom/i
       (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv"
-    else
+    when /android/i
+      (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.mobile"
+    else 
       (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.#{platform.downcase}"
     end
   end
@@ -116,17 +119,20 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
   end
 end
 
-#@uri = "#{EnvConfig['mercury_url']}/api/mhegdata/Freesat/playlist/#{vodcrid}?t=playlistscreentoken"
-#@response = @mercury_api.get_response_from_url @uri
-
-Given /^I request a (\w+) Mercury playlist with (\d+)$/ do |vodcrid, platform|
+Given /^I request a (\w+) Mercury playlist with (\d+)$/ do |platform, vodcrid|
   @mercury_playlist.create_client
-  p @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/#{platform}/playlist/#{vodcrid}?t=playlistscreentoken"
+  @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/#{platform}/playlist/#{vodcrid}?t=playlistscreentoken"
   @response = @mercury_api.get_response_from_url @uri
-  p @response
 end
 
 Then /^I get the requested vodcrid in the response (\d+)$/ do |vodcrid|
-  pending # express the regexp above with the code you wish you had
+  unless @mercury_api.value_exists_in_mhegdata? @response, /\/api\/mhegdata\/Freesat\/AuthorizeContent\/#{vodcrid}\/801\?t=playlistscreentoken/
+    raise 'AuthorizeContent url not found from your request' 
+  end
 end
 
+Then /^the advert URI should contain the correct (.*) and (.*)$/ do |size, site|
+  unless @mercury_api.value_exists_in_mhegdata? @response, ("size=#{size}\/.*\/site=#{site}\/")
+    raise 'AuthorizeContent url not found from your request' 
+  end
+end
