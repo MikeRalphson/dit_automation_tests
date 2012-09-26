@@ -40,7 +40,7 @@ class MercuryApi
   end
 
   def value_exists_in_mhegdata? (mhegdata, value)
-    value == mhegdata[value]
+    Regexp.new(value).match mhegdata
   end
 
   def calculate_week

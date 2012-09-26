@@ -14,11 +14,12 @@ Feature: Mercury Playlist Requests
 
   Examples:
     | vodcrid | platform |
-    | 301871  | DotCom   |
-    | 301871  | Mobile   |
-    | 301871  | Samsung  |
-    | 301871  | PS3      |
-    | 301871  | YouView  |
+    | 255721  | DotCom   |
+	| 255730  | Android  |
+    | 255730  | Mobile   |
+    | 255730  | Samsung  |
+    | 255730  | PS3      |
+    | 255734  | YouView  |
 #    | 301871  | HDS       |
 #    | 301871  | HLS       |
 #    | 301871  | Simulcast |
@@ -29,25 +30,24 @@ Feature: Mercury Playlist Requests
 
   Examples:
     | vodcrid | platform | location      | response |
-    | 301871  | DotCom   | 10.192.42.109 | success  |
-    | 301871  | Mobile   | 127.0.0.1     | success  |
-    | 301871  | Samsung  | 10.192.42.109 | success  |
-    | 301871  | PS3      | 10.192.42.109 | success  |
-    | 301871  | YouView  | 10.192.42.109 | success  |
+    | 255721  | DotCom   | 10.192.42.109 | success  |
+	| 255730  | Android  | 10.192.42.109 | success  |
+    | 255730  | Mobile   | 127.0.0.1     | success  |
+    | 255730  | Samsung  | 10.192.42.109 | success  |
+    | 255730  | PS3      | 10.192.42.109 | success  |
+    | 255734  | YouView  | 10.192.42.109 | success  |
     #    | 301871  | HDS       | 10.192.42.109 | success  |
     #    | 301871  | HLS       | 10.192.42.109 | success  |
     #    | 301871  | Simulcast | 10.192.42.109 | success  |
-    #    | 301871  | Freesat  | 10.192.42.109 | success  |
-    | 301871  | DotCom   | 194.4.55.200  | blocked  |
-    | 301871  | Mobile   | 194.4.55.200  | blocked  |
-    | 301871  | Samsung  | 62.4.31.255   | blocked  |
-    | 301871  | PS3      | 194.4.55.200  | blocked  |
-    | 301871  | YouView  | 194.4.55.200  | blocked  |
-#    | 301871  | Freesat   | 194.4.55.200  | blocked  |
+    | 255721  | DotCom   | 194.4.55.200  | blocked  |
+	| 255730  | Android  | 194.4.55.200  | blocked  |
+    | 255730  | Mobile   | 194.4.55.200  | blocked  |
+    | 255730  | Samsung  | 62.4.31.255   | blocked  |
+    | 255730  | PS3      | 194.4.55.200  | blocked  |
+    | 255734  | YouView  | 194.4.55.200  | blocked  |
 #    | 301871  | HDS       | 194.4.55.200 | success  |
 #    | 301871  | HLS       | 194.4.55.200 | success  |
 #    | 301871  | Simulcast | 194.4.55.200 | success  |
-
 
   Scenario Outline: Ad-server for Mercury playlists
     Given I request the Mercury playlist with <vodcrid> and <platform>
@@ -57,20 +57,28 @@ Feature: Mercury Playlist Requests
 
   Examples:
     | vodcrid | platform |
-    | 301871  | DotCom   |
-    | 301871  | Mobile   |
-    | 301871  | Samsung  |
-    | 301871  | PS3      |
-    | 301871  | YouView  |
+    | 255721  | DotCom   |
+	| 255730  | Android  |
+    | 255730  | Mobile   |
+    | 255730  | Samsung  |
+    | 255730  | PS3      |
+    | 255734  | YouView  |
 #    | 301871  | HDS       |
 #    | 301871  | HLS       |
 #    | 301871  | Simulcast |
 
-@wip
   Scenario Outline: Verify Freesat playlist request
     Given I request a <platform> Mercury playlist with <vodcrid>
     Then I get the requested vodcrid in the response <vodcrid>
 	
    Examples:
 	| vodcrid | platform |
-	| 301871  | Freesat  |
+	| 255733  | Freesat  |
+	
+  Scenario Outline: Verify correct Adverts for a Freesat playlist request
+    Given I request a <platform> Mercury playlist with <vodcrid>
+    Then the advert URI should contain the correct <size> and <site>
+	
+   Examples:
+	| vodcrid | platform | size         | site        |
+	| 255733  | Freesat  | videofreesat | itv.freesat |
