@@ -13,4 +13,8 @@ Cucumber::Rake::Task.new(:playlist) do |task|
   task.cucumber_opts = %w(-f pretty -t @playlist)
 end
 
+Cucumber::Rake::Task.new(:todo) do |task|
+  task.cucumber_opts = %w(-f pretty -t @not_implemented)
+end
+
 task :default => :cucumber
