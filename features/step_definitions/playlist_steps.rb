@@ -49,6 +49,11 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
   raise "found bitrates: #{found_bitrates} did not match: #{expected_bitrates}" unless comparison.size == 0
 end
 
+Then /^I get the correct ManifestFile url based on the (.*)$/ do |platfrom|
+  manifest_url = @response.xpath("//VideoEntries/Video/ManifestFile/URL").to_s
+  manifest_url.should =~ /manifest.f4m/
+end
+
 Then /^I get the requested (\d+)$/ do |vodcrid|
   response_vodcrid = @response.xpath("//Vodcrid").text.match(/\d+$/).to_s
   response_vodcrid.should match vodcrid
