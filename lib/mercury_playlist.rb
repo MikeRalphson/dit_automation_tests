@@ -1,19 +1,19 @@
 class MercuryPlaylist
 
   def create_client_with_location (location)
-    @client = Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl" do
+    Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl" do
       http.headers = {'REAL_CLIENT_IP' => location}
     end
   end
 
   def create_client
-    @client = Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl"
+    Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl"
   end
 
   # Savon doesn't seem to support separating the building of the request from sending it
 
-  def playlist_request (vodcrid, platform)
-    @client.request :get_playlist do |soap|
+  def playlist_request (client, vodcrid, platform)
+    client.request :get_playlist do |soap|
       namespaces = playlist_namespaces
 
       soap.xml do |xml|
@@ -45,8 +45,8 @@ class MercuryPlaylist
     end
   end
 
-  def mobile_playlist_request (vodcrid, platform)
-    @client.request :get_playlist do |soap|
+  def mobile_playlist_request (client, vodcrid, platform)
+    client.request :get_playlist do |soap|
       namespaces = playlist_namespaces
 
       soap.xml do |xml|

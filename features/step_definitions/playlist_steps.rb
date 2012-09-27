@@ -1,11 +1,11 @@
 Given /^I request the Mercury playlist with (\d+) and (\w+)$/ do |vodcrid, platform|
-  @mercury_playlist.create_client
+  @playlist_client = @mercury_playlist.create_client
   begin
     case platform
       when /mobile/i
-        @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
+        @response = @mercury_playlist.mobile_playlist_request(@playlist_client, vodcrid, platform)
       else
-        @response = @mercury_playlist.playlist_request vodcrid, platform
+        @response = @mercury_playlist.playlist_request(@playlist_client, vodcrid, platform)
     end
   rescue Savon::SOAP::Fault => error
     raise "#{error.message}. \nPerhaps the request has changed or the service is down?"
@@ -13,17 +13,23 @@ Given /^I request the Mercury playlist with (\d+) and (\w+)$/ do |vodcrid, platf
 end
 
 Given /^I request the Mercury playlist from (.*) with (.*) and (.*)$/ do |location, vodcrid, platform|
-  @mercury_playlist.create_client_with_location location
+  @playlist_client = @mercury_playlist.create_client_with_location location
   begin
     case platform
       when /mobile/i
-        @response = @mercury_playlist.mobile_playlist_request vodcrid, platform
+        @response = @mercury_playlist.mobile_playlist_request(@playlist_client, vodcrid, platform)
       else
-        @response = @mercury_playlist.playlist_request vodcrid, platform
+        @response = @mercury_playlist.playlist_request(@playlist_client, vodcrid, platform)
     end
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
+end
+
+Given /^I request a (\w+) Mercury playlist with (\d+)$/ do |platform, vodcrid|
+  @mercury_playlist.create_client
+  @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/#{platform}/playlist/#{vodcrid}?t=playlistscreentoken"
+  @response = @mercury_api.get_response_from_url @uri
 end
 
 Then /^I get the correct bitrate based on the (.*)$/ do |platform|
@@ -122,12 +128,6 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
     else
       video_type.each { |url| url.text.should match(/\.mp4$/) }
   end
-end
-
-Given /^I request a (\w+) Mercury playlist with (\d+)$/ do |platform, vodcrid|
-  @mercury_playlist.create_client
-  @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/#{platform}/playlist/#{vodcrid}?t=playlistscreentoken"
-  @response = @mercury_api.get_response_from_url @uri
 end
 
 Then /^I get the requested vodcrid in the response (\d+)$/ do |vodcrid|
