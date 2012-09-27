@@ -29,9 +29,6 @@ Feature: Mercury Playlist Requests
     Then I get the requested <vodcrid>
     And the expiry date is in the future
 	And I get the correct ManifestFile url based on the <platform>
-    #And I get the correct bitrate based on the <platform>
-    #And I get the correct base url based on the <platform>
-    #And I get the correct video type based on the <platform>
 	
   Examples:
     | vodcrid | platform |
