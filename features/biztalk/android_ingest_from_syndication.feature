@@ -1,3 +1,5 @@
+@android
+
 Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
   So that BizTalk can consume metadata from RBM or Syndication for Android
   As ITV
