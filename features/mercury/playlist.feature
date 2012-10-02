@@ -1,4 +1,3 @@
-@playlist
 Feature: Mercury Playlist Requests
   In order to generate front end features
   As a backend enabler
@@ -20,8 +19,6 @@ Feature: Mercury Playlist Requests
     | 255730  | Samsung  |
     | 255730  | PS3      |
     | 255734  | YouView  |
-#    | 301871  | HLS       |
-#    | 301871  | Simulcast |
 
 
   Scenario Outline: Verify a HDS playlist request
@@ -49,8 +46,6 @@ Feature: Mercury Playlist Requests
     | 255730  | PS3      | 10.192.42.109 | success  |
     | 255734  | YouView  | 10.192.42.109 | success  |
     | 303312  | DotCom   | 10.192.42.109 | success  |
-    #    | 301871  | HLS       | 10.192.42.109 | success  |
-    #    | 301871  | Simulcast | 10.192.42.109 | success  |
     | 255721  | DotCom   | 194.4.55.200  | blocked  |
 	| 255730  | Android  | 194.4.55.200  | blocked  |
     | 255730  | Mobile   | 194.4.55.200  | blocked  |
@@ -58,8 +53,6 @@ Feature: Mercury Playlist Requests
     | 255730  | PS3      | 194.4.55.200  | blocked  |
     | 255734  | YouView  | 194.4.55.200  | blocked  |
     | 303312  | DotCom   | 194.4.55.200 | success  |
-#    | 301871  | HLS       | 194.4.55.200 | success  |
-#    | 301871  | Simulcast | 194.4.55.200 | success  |
 
   Scenario Outline: Ad-server for Mercury playlists
     Given I request the Mercury playlist with <vodcrid> and <platform>
@@ -77,8 +70,6 @@ Feature: Mercury Playlist Requests
     | 255730  | PS3      |
     | 255734  | YouView  |
     | 303312  | DotCom   |
-#    | 301871  | HLS       |
-#    | 301871  | Simulcast |
 
   Scenario Outline: Verify Freesat playlist request
     Given I request a <platform> Mercury playlist with <vodcrid>
