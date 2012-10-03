@@ -44,7 +44,7 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
     when /youview/i
       expected_bitrates = [1200000]
     when /ps3/i
-      expected_bitrates = [800000, 1200000]
+      expected_bitrates = [800000]
     when /mobile/i
       expected_bitrates = [400000]
     else
@@ -131,13 +131,13 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
 end
 
 Then /^I get the requested vodcrid in the response (\d+)$/ do |vodcrid|
-  unless @mercury_api.value_exists_in_mhegdata? @response, /\/api\/mhegdata\/Freesat\/AuthorizeContent\/#{vodcrid}\/801\?t=playlistscreentoken/
+  unless @mercury_api.value_exists_in_mhegdata? @response, /\/api\/mhegdata\/Freesat\/AuthorizeContent\/#{vodcrid}\/\d{3}\?t=playlistscreentoken/
     raise 'AuthorizeContent url not found from your request' 
   end
 end
 
 Then /^the advert URI should contain the correct (.*) and (.*)$/ do |size, site|
   unless @mercury_api.value_exists_in_mhegdata? @response, ("size=#{size}\/.*\/site=#{site}\/")
-    raise 'AuthorizeContent url not found from your request' 
+    raise 'Size and Site values are not found in the Advert url from your request' 
   end
 end

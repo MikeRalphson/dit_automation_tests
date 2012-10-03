@@ -1,3 +1,4 @@
+@playlist
 Feature: Mercury Playlist Requests
   In order to generate front end features
   As a backend enabler
@@ -13,12 +14,12 @@ Feature: Mercury Playlist Requests
 
   Examples:
     | vodcrid | platform |
-    | 255721  | DotCom   |
-	| 255730  | Android  |
-    | 255730  | Mobile   |
-    | 255730  | Samsung  |
-    | 255730  | PS3      |
-    | 255734  | YouView  |
+    | 301871  | DotCom   |
+#	| 301871  | Android  |
+    | 301871  | Mobile   |
+    | 301871  | Samsung  |
+    | 301871  | PS3      |
+    | 301871  | YouView  |
 
 
   Scenario Outline: Verify a HDS playlist request
@@ -39,20 +40,20 @@ Feature: Mercury Playlist Requests
 	#Second DotCom request is for HDS content. 
   Examples:
     | vodcrid | platform | location      | response |
-    | 255721  | DotCom   | 10.192.42.109 | success  |
-	| 255730  | Android  | 10.192.42.109 | success  |
-    | 255730  | Mobile   | 127.0.0.1     | success  |
-    | 255730  | Samsung  | 10.192.42.109 | success  |
-    | 255730  | PS3      | 10.192.42.109 | success  |
-    | 255734  | YouView  | 10.192.42.109 | success  |
+    | 301871  | DotCom   | 10.192.42.109 | success  |
+#	| 301871  | Android  | 10.192.42.109 | success  |
+    | 301871  | Mobile   | 127.0.0.1     | success  |
+    | 301871  | Samsung  | 10.192.42.109 | success  |
+    | 301871  | PS3      | 10.192.42.109 | success  |
+    | 301871  | YouView  | 10.192.42.109 | success  |
     | 303312  | DotCom   | 10.192.42.109 | success  |
-    | 255721  | DotCom   | 194.4.55.200  | blocked  |
-	| 255730  | Android  | 194.4.55.200  | blocked  |
-    | 255730  | Mobile   | 194.4.55.200  | blocked  |
-    | 255730  | Samsung  | 62.4.31.255   | blocked  |
-    | 255730  | PS3      | 194.4.55.200  | blocked  |
-    | 255734  | YouView  | 194.4.55.200  | blocked  |
-    | 303312  | DotCom   | 194.4.55.200 | success  |
+    | 301871  | DotCom   | 194.4.55.200  | blocked  |
+#	| 301871  | Android  | 194.4.55.200  | blocked  |
+    | 301871  | Mobile   | 194.4.55.200  | blocked  |
+    | 301871  | Samsung  | 62.4.31.255   | blocked  |
+    | 301871  | PS3      | 194.4.55.200  | blocked  |
+    | 301871  | YouView  | 194.4.55.200  | blocked  |
+    | 303312  | DotCom   | 194.4.55.200  | blocked  |
 
   Scenario Outline: Ad-server for Mercury playlists
     Given I request the Mercury playlist with <vodcrid> and <platform>
@@ -63,13 +64,13 @@ Feature: Mercury Playlist Requests
 	#Second DotCom request is for HDS content. 
   Examples:
     | vodcrid | platform |
-    | 255721  | DotCom   |
-	| 255730  | Android  |
-    | 255730  | Mobile   |
-    | 255730  | Samsung  |
-    | 255730  | PS3      |
-    | 255734  | YouView  |
-    | 303312  | DotCom   |
+    | 301871  | DotCom   |
+#	| 301871  | Android  |
+    | 301871  | Mobile   |
+    | 301871  | Samsung  |
+    | 301871  | PS3      |
+    | 301871  | YouView  |
+    | 301871  | DotCom   |
 
   Scenario Outline: Verify Freesat playlist request
     Given I request a <platform> Mercury playlist with <vodcrid>
@@ -77,7 +78,7 @@ Feature: Mercury Playlist Requests
 	
    Examples:
 	| vodcrid | platform |
-	| 255733  | Freesat  |
+	| 301871  | Freesat  |
 	
   Scenario Outline: Verify correct Adverts for a Freesat playlist request
     Given I request a <platform> Mercury playlist with <vodcrid>
@@ -85,4 +86,4 @@ Feature: Mercury Playlist Requests
 	
    Examples:
 	| vodcrid | platform | size         | site        |
-	| 255733  | Freesat  | videofreesat | itv.freesat |
+	| 301871  | Freesat  | videofreesat | itv.freesat |
