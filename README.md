@@ -2,7 +2,7 @@
 
 Automated tests written by the test team. These tests can be configured to run against any environment. 
 
-#Installation and Set-up: 
+##Installation and Set-up: 
 To install the project open up a terminal window and clone the Repo to your desired directory. 
     git clone https://github.com/ITV/dit_automation_tests.git
 
