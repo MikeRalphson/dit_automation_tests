@@ -15,6 +15,7 @@ Once this has been completed navigate to dit_automation_tests directory and run 
 
     bundle install
 
+Now you should be ready to run the tests...
 
 ## Usage
 To run all the cucumber tests using rake:
@@ -35,5 +36,5 @@ To run all the Android tests using rake:
 
 
 ###ToDo: 
-- To complete the Windows installation steps for Code compilers and Ruby
-- 
+* To complete the Windows installation steps for Code compilers and Ruby
+* 
