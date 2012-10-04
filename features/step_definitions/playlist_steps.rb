@@ -1,12 +1,10 @@
 Given /^I request the Mercury playlist with (\d+) and (\w+)$/ do |vodcrid, platform|
   @playlist_client = @mercury_playlist.create_client
   begin
-    case platform
-      when /mobile/i
-        @response = @mercury_playlist.mobile_playlist_request(@playlist_client, vodcrid, platform)
-      else
-        @response = @mercury_playlist.playlist_request(@playlist_client, vodcrid, platform)
-    end
+    @response = case platform
+                when /mobile/i then @mercury_playlist.mobile_playlist_request(@playlist_client, vodcrid, platform)
+                else @mercury_playlist.playlist_request(@playlist_client, vodcrid, platform)
+                end
   rescue Savon::SOAP::Fault => error
     raise "#{error.message}. \nPerhaps the request has changed or the service is down?"
   end
@@ -15,12 +13,10 @@ end
 Given /^I request the Mercury playlist from (.*) with (.*) and (.*)$/ do |location, vodcrid, platform|
   @playlist_client = @mercury_playlist.create_client_with_location location
   begin
-    case platform
-      when /mobile/i
-        @response = @mercury_playlist.mobile_playlist_request(@playlist_client, vodcrid, platform)
-      else
-        @response = @mercury_playlist.playlist_request(@playlist_client, vodcrid, platform)
-    end
+    @response = case platform
+                when /mobile/i then @mercury_playlist.mobile_playlist_request(@playlist_client, vodcrid, platform)
+                else @mercury_playlist.playlist_request(@playlist_client, vodcrid, platform)
+                end
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
@@ -36,20 +32,14 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
   found_bitrates = @response.xpath("//VideoEntries/Video/MediaFiles/MediaFile")
   found_bitrates = found_bitrates.map { |node| node.attr("bitrate").to_i }
 
-  case platform
-    when /android/i
-      expected_bitrates = [150000, 300000, 400000, 600000, 800000, 1200000]
-    when /samsung/i
-      expected_bitrates = [1200000]
-    when /youview/i
-      expected_bitrates = [1200000]
-    when /ps3/i
-      expected_bitrates = [800000]
-    when /mobile/i
-      expected_bitrates = [400000]
-    else
-      expected_bitrates = [400000, 600000, 800000, 1200000]
-  end
+  expected_bitrates = case platform
+                      when /android/i then [150000, 300000, 400000, 600000, 800000, 1200000]
+                      when /samsung/i then [1200000]
+                      when /youview/i then [1200000]
+                      when /ps3/i then [800000]
+                      when /mobile/i then [400000]
+                      else [400000, 600000, 800000, 1200000]
+                      end
 
   comparison = (found_bitrates.to_set ^ expected_bitrates.to_set)
   raise "found bitrates: #{found_bitrates} did not match: #{expected_bitrates}" unless comparison.size == 0
