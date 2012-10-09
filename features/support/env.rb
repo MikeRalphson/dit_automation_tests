@@ -22,6 +22,9 @@ require 'mercury_api'
 require 'env_config'
 require 'ftp_library'
 require 'xml_library'
+require 'request_helpers'
+
+include RequestUri
 
 SimpleCov.start
 
