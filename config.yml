@@ -44,7 +44,7 @@ s01:
 i01:
     mercury_url:          'http://i01-mercury.itv.com'
     lithium_url:          'http://i01-lithium-news.itv.com'
-    bloom_status_url:     'http://s01-bloomcms.itv.com/internal/status/api'
+    bloom_status_url:     'http://i01-bloomcms.itv.com/internal/status/api'
     temp_folder:          '/tmp/mdr'
 live:
     mercury_url:          'http://mercury.itv.com'
