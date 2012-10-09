@@ -1,3 +1,5 @@
+@sanity
+
 Feature: PostCode service
   In order to geo-block content from outside the UK
   As ITV

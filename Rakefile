@@ -6,7 +6,7 @@ Cucumber::Rake::Task.new(:cucumber) do |task|
 end
 
 Cucumber::Rake::Task.new(:sanity) do |task|
-  task.cucumber_opts = "-f pretty -t ~@wip -t ~@not_implemented -t ~@manual -t ~@android -t ~@playlist"
+  task.cucumber_opts = "-f pretty -t @sanity -t ~@android"
 end
 
 Cucumber::Rake::Task.new(:report) do |task|

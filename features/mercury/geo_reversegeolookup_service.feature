@@ -1,3 +1,5 @@
+@sanity
+
 Feature: Geo reversegeolookup service
   In order to geo-block content from outside the uk
   As a Mobile Application
