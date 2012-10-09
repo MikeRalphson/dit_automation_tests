@@ -3,6 +3,7 @@
 
 # OS Files
 .idea
+.rvmrc
 
 # Log Files etc.
 coverage/
