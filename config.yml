@@ -46,8 +46,10 @@ i01:
     lithium_url:          'http://i01-lithium-news.itv.com'
     bloom_status_url:     'http://i01-bloomcms.itv.com/internal/status/api'
     temp_folder:          '/tmp/mdr'
+    playlist_vodcrid:     '255730'
 live:
     mercury_url:          'http://mercury.itv.com'
     lithium_url:          'http://lithium-news.itv.com'
     bloom_status_url:     'http://bloomcms.itvonline.ads/internal/status/api'
     temp_folder:          '/tmp/mdr'
+    playlist_vodcrid:     '255730'
