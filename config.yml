@@ -1,10 +1,22 @@
+dev: 
+    mercury_url:          'http://localhost:11323'
+    lithium_url:          ''
+    bloom_url:            'http://localhost:49940' 
+    bloom_status_url:     'http://localhost:49940/internal/status/api'
+    publish_site:         'http://localhost:48940'
+    origin:               'http://localhost:31423'
+    sherpa:               'http://localhost:8096'
+    alcatraz:             'http://localhost:5681'
+
 rc2:
     mercury_url:          'http://g22msrc217.itvbbrc2.ads:8095'
     lithium_url:          'http://g22msrc227.itvbbrc2.ads:50460'
     temp_folder:          '/tmp/mdr'
+    bloom_status_url:     'http://g22msrc227.itvbbrc2.ads:8083/internal/status/api'
 rc3:
     mercury_url:          'http://mercury.rc3.itv.com'
     lithium_url:          'http://lithium.rc3.itv.com'
+    bloom_status_url:     'http://bloomcms.rc3.itv.com/internal/status/api'
     ftp_host:             '89.151.100.137'
     ftp_login:            'itvbbrc3/mercuryftp'
     ftp_password:         'Password01'
@@ -19,6 +31,7 @@ rcx:
 s01:
     mercury_url:          'http://s01-mercury.itv.com'
     lithium_url:          'http://s01-lithium-news.itv.com'
+    bloom_status_url:     'http://s01-bloomcms.itv.com/internal/status/api'
     ftp_host:             's01-itvonlineftp.itv.com'
     ftp_login:            'mercuryftp'
     ftp_password:         '9d$]q1H&g+\>'
@@ -29,8 +42,10 @@ s01:
 i01:
     mercury_url:          'http://i01-mercury.itv.com'
     lithium_url:          'http://i01-lithium-news.itv.com'
+    bloom_status_url:     'http://s01-bloomcms.itv.com/internal/status/api'
     temp_folder:          '/tmp/mdr'
 live:
     mercury_url:          'http://mercury.itv.com'
     lithium_url:          'http://lithium-news.itv.com'
+    bloom_status_url:     'http://bloomcms.itvonline.ads/internal/status/api'
     temp_folder:          '/tmp/mdr'
