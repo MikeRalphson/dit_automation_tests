@@ -1,5 +1,4 @@
 @sanity
-@wip
 
 Feature: Bloom Servoces are started
   In order to validate a back-end release
