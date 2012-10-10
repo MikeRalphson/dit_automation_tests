@@ -25,6 +25,7 @@ rc3:
     irdeto_pay_metadata:  ''
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '255730'
+    playlist_hds_vodcrid: '303312'
 rcx:
     mercury_url:          'http://d01.mercury.itv.com'
     lithium_url:          'http://d01.lithium.itv.com'
@@ -41,12 +42,14 @@ s01:
     irdeto_pay_metadata:  'http://s01-onramp.itv.com/Metadata/CatchupAndArchivePay.meta'
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '301871'
+    playlist_hds_vodcrid: '303312'
 i01:
     mercury_url:          'http://i01-mercury.itv.com'
     lithium_url:          'http://i01-lithium-news.itv.com'
     bloom_status_url:     'http://i01-bloomcms.itv.com/internal/status/api'
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '255730'
+    playlist_hds_vodcrid: '303312'
 live:
     mercury_url:          'http://mercury.itv.com'
     lithium_url:          'http://lithium-news.itv.com'
