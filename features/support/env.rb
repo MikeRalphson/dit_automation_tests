@@ -35,6 +35,8 @@ Before do
   @xml_library = XmlLibrary.new
   @uuid = SecureRandom.uuid
   @timeout = 300
+  @playlist_vodcrid = "#{EnvConfig['playlist_vodcrid']}"
+  @playlist_hds_vodcrid = "#{EnvConfig['playlist_hds_vodcrid']}"
 
   Savon.configure do |config|
     config.log = false
