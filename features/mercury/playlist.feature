@@ -14,13 +14,13 @@ Feature: Mercury Playlist Requests
     And I get the correct video type based on the <platform>
 
   Examples:
-    | vodcrid | platform |
-    | 301871  | DotCom   |
-#	| 301871  | Android  |
-    | 301871  | Mobile   |
-    | 301871  | Samsung  |
-    | 301871  | PS3      |
-    | 301871  | YouView  |
+    | platform |
+    | DotCom   |
+#	| Android  |
+    | Mobile   |
+    | Samsung  |
+    | PS3      |
+    | YouView  |
 
 
   Scenario Outline: Verify a HDS playlist request
