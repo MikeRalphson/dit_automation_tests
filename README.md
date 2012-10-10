@@ -30,6 +30,10 @@ To run all the cucumber tests using rake with html reporting:
 
     rake report CONFIG=environment
 
+To run a set of Environment Sanity tests for deployment to all Test environments and Live for Ops validation
+
+    rake sanity CONFIG=live
+
 To run all the Android tests using rake:
 
     rake android CONFIG=environment
@@ -37,4 +41,7 @@ To run all the Android tests using rake:
 
 ###ToDo: 
 * To complete the Windows installation steps for Code compilers and Ruby
-* 
+* Demo to Ops about Environment Sanity checks
+* Add a task to TeamCity for deployment Sanity checks
+* Include the ability to configure the Host settings before Sanity tests are run -- This is so that we can target certain box's
+* Look at a way to have a monitoring systems for the Environment status
