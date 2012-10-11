@@ -56,3 +56,4 @@ live:
     bloom_status_url:     'http://bloomcms.itvonline.ads/internal/status/api'
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '255730'
+    playlist_hds_vodcrid: '303312'
