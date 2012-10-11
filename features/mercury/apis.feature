@@ -12,9 +12,9 @@ Feature: API and MRSS feeds
 
   Examples:
     | type | platform | uri                                   |
-    | xml  | DotCom   | Episode/Crucial                       |
-    | xml  | DotCom   | Episode/mostwatched                   |
-    | xml  | DotCom   | Programme/PerChannel/itv1             |
+    | xml  | 1   | Episode/Crucial                       |
+    | xml  | 1   | Episode/mostwatched                   |
+    | xml  | 1   | Programme/PerChannel/itv1             |
     | xml  | DotCom   | Programme/PerChannel/itv2             |
     | xml  | DotCom   | Programme/PerChannel/itv3             |
     | xml  | DotCom   | Programme/PerChannel/itv4             |
