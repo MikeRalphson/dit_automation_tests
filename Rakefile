@@ -21,4 +21,4 @@ Cucumber::Rake::Task.new(:android) do |task|
   task.cucumber_opts = %w(-f pretty -t @android)
 end
 
-task :default => :cucumber
+#task :default => :cucumber
