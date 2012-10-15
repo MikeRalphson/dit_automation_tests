@@ -12,4 +12,21 @@ module RequestUri
     response = get_response_from_url input_url
     json_blob = JSON.parse response.body
   end
+
+  def generate_encrypted_usertoken (prodid, userid, time)
+    usertoken = {"productionId" => prodid, "userId" => userid, "time" => time.iso8601}
+    des = OpenSSL::Cipher::Cipher.new('des-ede3')
+    des.key = 'VQMOYB5AlJLoB+gIkLuFdqKI'
+    des.encrypt
+    result = des.update(usertoken.to_json) + des.final
+    Base64.encode64(result)
+  end
+
+  def decrypt_usertoken (base64_data)
+    des = OpenSSL::Cipher::Cipher.new('des-ede3')
+    des.key = 'VQMOYB5AlJLoB+gIkLuFdqKI'
+    des.decrypt
+    b64free = Base64.decode64(base64_data)
+    des.update(b64free) + des.final
+   end
 end
