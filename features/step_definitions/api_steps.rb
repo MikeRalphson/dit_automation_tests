@@ -52,6 +52,11 @@ Then /^the response should contain the correct (.*)$/ do |title|
   end
 end
 
+Then /^all the links href should point to the drupal site$/ do 
+  xml = @mercury_api.get_xml_from_response @response
+  href = xml.xpath("//entry/link").each { |e| e["href"].should =~ /(http|https):\/\/\w{3,5}\.itv.com\/itvplayer\// }
+end
+
 Then /^the response should contain a complete A-Z listing$/ do
   a_to_z = ["A - B", "C - D", "E - F", "G - H", "I - J", "K - L", "M - N",
             "O - P", "Q - R", "S - T", "U - V", "W - X", "Y - Z", "0 - 9"]
