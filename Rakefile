@@ -14,7 +14,7 @@ Cucumber::Rake::Task.new(:report) do |task|
 end
 
 Cucumber::Rake::Task.new(:wip) do |task|
-  task.cucumber_opts = %w(-f pretty -t @wip)
+  task.cucumber_opts = %w(-f pretty -t @wip -t ~@manual)
 end
 
 Cucumber::Rake::Task.new(:android) do |task|
