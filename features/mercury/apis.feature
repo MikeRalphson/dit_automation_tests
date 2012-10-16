@@ -252,7 +252,7 @@ Feature: API and MRSS feeds
     | xml  | samsung  | AToZ/ |
     | xml  | youview  | AToZ/ |
 
-@wip
+
   Scenario Outline: Verify MRSS feed
     Given I request the mrss api
     Then the response should contain the correct <title>
