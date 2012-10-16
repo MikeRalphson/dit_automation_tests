@@ -16,7 +16,6 @@ Given /^a request for archive content containing a UserToken in the future$/ do
 end
 
 Given /^a user who is signed in$/ do
-  #TODO:When will we have a UserToken?, Do we just have a SessionId?
   @encrypted = generate_encrypted_usertoken("2\/1400\/0011#001","1300001", DateTime.now)
 end
 

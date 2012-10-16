@@ -46,8 +46,7 @@ class MercuryPlaylist
   end
   
   def encrypted_playlist_request (client, vodcrid, platform, encrypted)
-    #NEED TO INCLUDED ADDITIONAL REQUEST PARAMETERS!!!!!
-    #I have also removed the platfrom value and hardcoded it to be DotCom
+    #NEED TO INCLUDED ADDITIONAL REQUEST PARAMETERS!!!
     client.request :get_playlist do |soap|
       namespaces = playlist_namespaces
 
