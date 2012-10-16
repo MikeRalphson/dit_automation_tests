@@ -44,6 +44,41 @@ class MercuryPlaylist
       end
     end
   end
+  
+  def encrypted_playlist_request (client, vodcrid, platform, encrypted)
+    #NEED TO INCLUDED ADDITIONAL REQUEST PARAMETERS!!!!!
+    #I have also removed the platfrom value and hardcoded it to be DotCom
+    client.request :get_playlist do |soap|
+      namespaces = playlist_namespaces
+
+      soap.xml do |xml|
+        xml.soapenv(:Envelope, namespaces) do |xml|
+          xml.soapenv(:Body) do |xml|
+            xml.tem(:GetPlaylist) do |xml|
+              xml.tem(:request) do |xml|
+                xml.itv(:RequestGuid, "7FA847EC-905C-41EA-BCF7-CC9E44A00CE3")
+                xml.itv(:Vodcrid) do |xml|
+                  xml.com(:Id, vodcrid)
+                  xml.com(:Partition, "itv.com")
+                end
+              end
+              xml.tem(:userInfo) do |xml|
+                xml.itv(:Broadcaster, "Itv")
+              end
+              xml.tem(:siteInfo) do |xml|
+                xml.itv(:AdvertSize, "Itvplayer")
+                xml.itv(:AdvertisingRestriction, "None")
+                xml.itv(:AdvertisingSite, "?")
+                xml.itv(:Area, "ITVPLAYER")
+                xml.itv(:Platform, platform)
+                xml.itv(:Site, "ItvCom")
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 
   def mobile_playlist_request (client, vodcrid, platform)
     client.request :get_playlist do |soap|
