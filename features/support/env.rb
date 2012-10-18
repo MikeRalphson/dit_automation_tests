@@ -37,6 +37,8 @@ Before do
   @timeout = 300
   @playlist_vodcrid = "#{EnvConfig['playlist_vodcrid']}"
   @playlist_hds_vodcrid = "#{EnvConfig['playlist_hds_vodcrid']}"
+  @playlist_prodid = "#{EnvConfig['playlist_prodid']}"
+  @playlist_hds_prodid = "#{EnvConfig['playlist_hds_prodid']}"
 
   Savon.configure do |config|
     config.log = false
