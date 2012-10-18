@@ -3,6 +3,9 @@
 Given /^a user who is not signed in$/ do
 end
 
+Given /^a user who is signed in$/ do
+end
+
 Given /^a request for archive content containing a malformed UserToken$/ do
   @encrypted = generate_encrypted_usertoken("2\/1400\/00?001","1300001", DateTime.now)
 end
@@ -15,14 +18,14 @@ Given /^a request for archive content containing a UserToken in the future$/ do
   @encrypted = generate_encrypted_usertoken("2\/1400\/0011#001","1300001", DateTime.iso8601('2013-10-09T12:16:21+00:00'))
 end
 
-Given /^a user who is signed in$/ do
+Given /^a user who is signed in and has a valid UserToken$/ do
   @encrypted = generate_encrypted_usertoken("2\/1400\/0011#001","1300001", DateTime.now)
 end
 
 Given /^has previously requested (.*) archive content$/ do |platform|
   @encrypted = generate_encrypted_usertoken("2\/1400\/0011#001","1300001", DateTime.now)
   @playlist_client = @mercury_playlist.create_client
-  @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_hds_vodcrid, platform, @encrypted)
+  @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_hds_prodid, @encrypted, platform)
   @original_response_sessionid = @response.xpath("//SessionId").text.match(/\d+$/).to_s
 end
 
@@ -33,7 +36,7 @@ end
 When /^the user makes a initial (.*) playlist request for the archive content$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
   begin 
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_hds_vodcrid, platform, @encrypted)
+    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_hds_prodid, @encrypted, platform)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
@@ -42,7 +45,7 @@ end
 When /^the user makes a subsequent (.*) playlist request for the archive content$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
   begin 
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_hds_vodcrid, platform, @encrypted)
+    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_hds_prodid, @encrypted, platform)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
@@ -51,7 +54,7 @@ end
 When /^the user makes a initial (.*) playlist request for the catchup content$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
   begin
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_vodcrid, platform, @encrypted)
+    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_prodid, @encrypted, platform)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
@@ -60,7 +63,7 @@ end
 When /^the user makes a subsequent (.*) playlist request for the catchup content$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
   begin
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_vodcrid, platform, @encrypted)
+    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_prodid, @encrypted, platform)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
@@ -68,31 +71,31 @@ end
 
 Then /^there is a valid playlist response for catchup content$/ do
   raise "unexpected error: #{@playlist_error}" if @playlist_error
-  response_vodcrid = @response.xpath("//Vodcrid").text.match(/\d+$/).to_s
-  response_vodcrid.should match @playlist_vodcrid
+  response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+(\/|#)\w+/).to_s
+  response_vodcrid.should match @playlist_prodid
 end
 
 Then /^there is a valid playlist response for archive content$/ do
   raise "unexpected error: #{@playlist_error}" if @playlist_error
-  response_vodcrid = @response.xpath("//Vodcrid").text.match(/\d+$/).to_s
-  response_vodcrid.should match @playlist_hds_vodcrid
+  response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+(\/|#)\w+/).to_s
+  response_vodcrid.should match @playlist_hds_prodid
 end
 
 Then /^the response should contain an Irdeto SessionId of (\d+)$/ do |value|
   raise "unexpected error: #{@playlist_error}" if @playlist_error
-  response_sessionid = @response.xpath("//SessionId").text.match(/\d+$/).to_s
+  response_sessionid = @response.xpath("//SessionId").text.match(/\d+/).to_s
   response_sessionid.should =~ /0/
 end
 
 Then /^the response should contain a valid Irdeto SessionId$/ do
   raise "unexpected error: #{@playlist_error}" if @playlist_error
-  response_sessionid = @response.xpath("//SessionId").text.match(/\d+$/).to_s
+  response_sessionid = @response.xpath("//SessionId").text.match(/\d+/).to_s
   response_sessionid.should_not == 0
 end
 
 Then /^the response should retain the Irdeto SessionId$/ do
   raise "unexpected error: #{@playlist_error}" if @playlist_error
-  response_sessionid = @response.xpath("//SessionId").text.match(/\d+$/).to_s
+  response_sessionid = @response.xpath("//SessionId").text.match(/\d+/).to_s
   response_sessionid.should match @original_response_sessionid
 end
 

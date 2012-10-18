@@ -27,7 +27,7 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
 	  | DotCom   |
 
     Scenario Outline: Initial playlist request for archive (signed in + pay)
-        Given a user who is signed in
+        Given a user who is signed in and has a valid UserToken
         When the user makes a initial <platform> playlist request for the archive content
         Then there is a valid playlist response for archive content
         And the response should contain a valid Irdeto SessionId
@@ -37,7 +37,7 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
 	  | DotCom   |
 
     Scenario Outline: Subsequent playlist request for archive (signed in + pay)
-        Given a user who is signed in
+        Given a user who is signed in and has a valid UserToken
         And has previously requested <platform> archive content
         When the user makes a subsequent <platform> playlist request for the archive content
         Then there is a valid playlist response for archive content
@@ -48,7 +48,7 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
 	  | DotCom   |	
 
     Scenario Outline: Subsequent playlist request for catchup after purchasing content (signed in)
-        Given a user who is signed in
+        Given a user who is signed in and has a valid UserToken
         And has previously requested <platform> archive content
         When the user makes a subsequent <platform> playlist request for the catchup content
         Then there is a valid playlist response for catchup content
