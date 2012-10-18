@@ -19,7 +19,7 @@ module RequestUri
     des.key = 'VQMOYB5AlJLoB+gIkLuFdqKI'
     des.encrypt
     result = des.update(usertoken.to_json) + des.final
-    Base64.encode64(result)
+    Base64.encode64(result).gsub("\n",'')
   end
 
   def decrypt_usertoken (base64_data)
