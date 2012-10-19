@@ -14,29 +14,17 @@ module RequestUri
   end
 
   def generate_encrypted_usertoken (prodid, userid, time)
-    crypto = Mcrypt.new(:tripledes, :ecb, 'VQMOYB5AlJLoB+gIkLuFdqKI', nil, :zeros)
+    generate_token({"productionId" => prodid, "userId" => userid, "time" => time.iso8601}.to_json)
+  end
 
-    #encryption and decryption in one step
-    p ciphertext = crypto.encrypt({"productionId" => prodid, "userId" => userid, "time" => time.iso8601}.to_json)
-    p b64data = Base64.encode64(ciphertext).gsub("\n",'')
+  def generate_invalid_encrypted_usertoken (prodid, userid, time)
+    generate_token({"productionId" => prodid, "userId" => userid, "time" => time.iso8601}.to_json + "\a\a\a")
+  end
+
+  def generate_token (json)
+    crypto = Mcrypt.new(:tripledes, :ecb, 'VQMOYB5AlJLoB+gIkLuFdqKI', nil, :zeros)
+    ciphertext = crypto.encrypt(json)
+    b64data = Base64.encode64(ciphertext).gsub("\n",'')
     #plaintext  = crypto.decrypt(ciphertext)
   end
-
-
-  def generate_encrypted_usertoken1 (prodid, userid, time)
-    usertoken = {"productionId" => prodid, "userId" => userid, "time" => time.iso8601}
-    des = OpenSSL::Cipher::Cipher.new('des-ede3')
-    des.key = 'VQMOYB5AlJLoB+gIkLuFdqKI'
-    des.encrypt
-    result = des.update(usertoken.to_json) + des.final
-    Base64.encode64(result).gsub("\n",'')
-  end
-
-  def decrypt_usertoken (base64_data)
-    des = OpenSSL::Cipher::Cipher.new('des-ede3')
-    des.key = 'VQMOYB5AlJLoB+gIkLuFdqKI'
-    des.decrypt
-    b64free = Base64.decode64(base64_data)
-    des.update(b64free) + des.final
-   end
 end
