@@ -46,9 +46,6 @@ class MercuryPlaylist
   end
   
   def encrypted_playlist_request (client, prodid, encrypted, platform)
-    #puts prodid
-    puts encrypted
-    #puts platform
     client.request :get_playlist do |soap|
       namespaces = playlist_namespaces
 
@@ -74,6 +71,9 @@ class MercuryPlaylist
                 xml.itv(:Area, "ITVPLAYER")
                 xml.itv(:Platform, platform)
                 xml.itv(:Site, "ItvCom")
+              end
+              xml.tem(:deviceInfo) do |xml|
+                xml.itv(:ScreenSize, "Small")
               end
             end
           end
