@@ -35,7 +35,7 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
 	  Examples:
 	  | platform | 
 	  | DotCom   |
-
+  
     Scenario Outline: Subsequent playlist request for archive (signed in + pay)
         Given a user who is signed in and has a valid UserToken
         And has previously requested <platform> archive content
@@ -52,7 +52,7 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
         And has previously requested <platform> archive content
         When the user makes a subsequent <platform> playlist request for the catchup content
         Then there is a valid playlist response for catchup content
-        And the response should retain the Irdeto SessionId
+        And the response should contain an Irdeto SessionId of 0
 		
 	  Examples:
 	  | platform | 
@@ -76,6 +76,15 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
 	  | platform | 
 	  | DotCom   |
 
+  Scenario Outline: Deserialization failure
+    Given a request for archive content containing a malformed JOSN UserToken
+    When the user makes a initial <platform> playlist request for the archive content
+    Then the Deserialization failure error message is returned
+		
+	  Examples:
+	  | platform | 
+	  | DotCom   |
+
   Scenario Outline: User token timestamp has expired
     Given a request for archive content containing an expired UserToken
     When the user makes a initial <platform> playlist request for the archive content
@@ -94,12 +103,10 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
 	  | platform | 
 	  | DotCom   |
 
-@wip	
   Scenario Outline: Playlist request for non DotCom contenting a UserToken
     Given a user who is signed in
-    When the user makes a initial <platform> playlist request for the archive content
-    Then there is a valid playlist response for archive content
-    And the response should contain an Irdeto SessionId of 0
+    When the user makes a <platform> playlist request for the archive content with a UserToken
+    Then the playlist response is correctly returned with no UserToken present 
 		
   Examples:
     | platform |
