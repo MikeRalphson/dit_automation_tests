@@ -7,30 +7,30 @@ Given /^a user who is signed in$/ do
 end
 
 Given /^a request for archive content containing a malformed UserToken$/ do
-  @encrypted = generate_encrypted_usertoken("2\/1400\/00?001","1300001", DateTime.now)
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1300001", DateTime.now)
 end
 
 Given /^a request for archive content containing an expired UserToken$/ do
-  @encrypted = generate_encrypted_usertoken("2\/1400\/0011#001","1300001", DateTime.iso8601('2011-10-09T12:16:21+00:00'))
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1300001", DateTime.iso8601('2011-10-19T12:16:21+00:00'))
 end
 
 Given /^a request for archive content containing a UserToken in the future$/ do
-  @encrypted = generate_encrypted_usertoken("2\/1400\/0011#001","1300001", DateTime.iso8601('2013-10-09T12:16:21+00:00'))
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1300001", DateTime.iso8601('2013-10-19T12:16:21+00:00'))
 end
 
 Given /^a user who is signed in and has a valid UserToken$/ do
-  @encrypted = generate_encrypted_usertoken("2\/1400\/0011#001","1300001", DateTime.now)
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1300001", DateTime.now)
 end
 
 Given /^has previously requested (.*) archive content$/ do |platform|
-  @encrypted = generate_encrypted_usertoken("2\/1400\/0011#001","1300001", DateTime.now)
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1300001", DateTime.now)
   @playlist_client = @mercury_playlist.create_client
   @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_hds_prodid, @encrypted, platform)
   @original_response_sessionid = @response.xpath("//SessionId").text.match(/\d+$/).to_s
 end
 
 Given /^a request for archive content containing a mismatched production id in the UserToken$/ do
-  @encrypted = generate_encrypted_usertoken("2\/1400\/0011#001","abcde", DateTime.now)
+  @encrypted = generate_encrypted_usertoken("2\/1400\/00?001","abcde", DateTime.now)
 end
 
 When /^the user makes a initial (.*) playlist request for the archive content$/ do |platform|
