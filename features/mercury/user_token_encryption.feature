@@ -1,4 +1,3 @@
-@wip
 
 Feature: PDFT-2791 - Decrypted UserToken on playlist request 
     So that a createSession call can be made
