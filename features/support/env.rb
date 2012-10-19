@@ -14,6 +14,9 @@ require 'securerandom'
 require 'rest-client'
 require 'timeout'
 require 'active_support/time'
+require 'bundler/setup'
+require 'mcrypt'
+require 'base64'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
