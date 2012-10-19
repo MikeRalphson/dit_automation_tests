@@ -43,7 +43,8 @@ s01:
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '301871'
     playlist_hds_vodcrid: '303312'
-    playlist_prodid:      '1/7842/0257#001'
+    #playlist_prodid:      '1/7842/0257#001'
+    playlist_prodid:      '1/800735/2345#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
 i01:
     mercury_url:          'http://i01-mercury.itv.com'
