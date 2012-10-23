@@ -7,7 +7,10 @@ dev:
     origin:               'http://localhost:31423'
     sherpa:               'http://localhost:8096'
     alcatraz:             'http://localhost:5681'
-
+    playlist_vodcrid:     '301871'
+    playlist_hds_vodcrid: '303312'
+    playlist_prodid:      '1/800735/2345#001'
+    playlist_hds_prodid:  'Y/1774/0004/Z'
 rc2:
     mercury_url:          'http://g22msrc217.itvbbrc2.ads:8095'
     lithium_url:          'http://g22msrc227.itvbbrc2.ads:50460'
@@ -26,10 +29,16 @@ rc3:
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '255730'
     playlist_hds_vodcrid: '303312'
+    playlist_prodid:      '1/800735/2345#001'
+    playlist_hds_prodid:  'Y/1774/0004/Z'
 rcx:
     mercury_url:          'http://d01.mercury.itv.com'
     lithium_url:          'http://d01.lithium.itv.com'
     temp_folder:          '/tmp/mdr'
+    playlist_vodcrid:     '301871'
+    playlist_hds_vodcrid: '303312'
+    playlist_prodid:      '1/800735/2345#001'
+    playlist_hds_prodid:  'Y/1774/0004/Z'
 s01:
     mercury_url:          'http://s01-mercury.itv.com'
     lithium_url:          'http://s01-lithium-news.itv.com'
@@ -53,6 +62,8 @@ i01:
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '255730'
     playlist_hds_vodcrid: '303312'
+    playlist_prodid:      '1/800735/2345#001'
+    playlist_hds_prodid:  'Y/1774/0004/Z'
 live:
     mercury_url:          'http://mercury.itv.com'
     lithium_url:          'http://lithium-news.itv.com'
@@ -60,3 +71,5 @@ live:
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '255730'
     playlist_hds_vodcrid: '303312'
+    playlist_prodid:      '1/800735/2345#001'
+    playlist_hds_prodid:  'Y/1774/0004/Z'
