@@ -6,11 +6,11 @@ Cucumber::Rake::Task.new(:cucumber) do |task|
 end
 
 Cucumber::Rake::Task.new(:sanity) do |task|
-  task.cucumber_opts = "-f junit -o log/ -t @sanity -t ~@android -t ~@flakey"
+  task.cucumber_opts = "-f junit -o log/ -t @sanity -t ~@android -t ~@flakey -t ~@manual"
 end
 
 Cucumber::Rake::Task.new(:sso) do |task|
-  task.cucumber_opts = "-f junit -o log/ -t @sanity -t @sso -t ~@android -t ~@flakey"
+  task.cucumber_opts = "-f junit -o log/ -t @sso -t ~@android -t ~@flakey -t ~@manual"
 end
 
 Cucumber::Rake::Task.new(:report) do |task|
