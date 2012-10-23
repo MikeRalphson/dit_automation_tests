@@ -9,6 +9,10 @@ Cucumber::Rake::Task.new(:sanity) do |task|
   task.cucumber_opts = "-f junit -o log/ -t @sanity -t ~@android"
 end
 
+Cucumber::Rake::Task.new(:sso) do |task|
+  task.cucumber_opts = "-f junit -o log/ -t @sanity -t @sso -t ~@android"
+end
+
 Cucumber::Rake::Task.new(:report) do |task|
   task.cucumber_opts = "-f html -o results.htm -t ~@wip -t ~@not_implemented -t ~@manual -t ~@android"
 end
