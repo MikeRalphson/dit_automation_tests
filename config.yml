@@ -11,11 +11,13 @@ dev:
     playlist_hds_vodcrid: '303312'
     playlist_prodid:      '1/800735/2345#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
+    user_id:              '1237847'
 rc2:
     mercury_url:          'http://g22msrc217.itvbbrc2.ads:8095'
     lithium_url:          'http://g22msrc227.itvbbrc2.ads:50460'
     temp_folder:          '/tmp/mdr'
     bloom_status_url:     'http://g22msrc227.itvbbrc2.ads:8083/internal/status/api'
+    user_id:              '1237847'
 rc3:
     mercury_url:          'http://mercury.rc3.itv.com'
     lithium_url:          'http://lithium.rc3.itv.com'
@@ -31,6 +33,7 @@ rc3:
     playlist_hds_vodcrid: '303312'
     playlist_prodid:      '1/800735/2345#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
+    user_id:              '1237847'
 rcx:
     mercury_url:          'http://d01.mercury.itv.com'
     lithium_url:          'http://d01.lithium.itv.com'
@@ -39,6 +42,7 @@ rcx:
     playlist_hds_vodcrid: '303312'
     playlist_prodid:      '1/800735/2345#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
+    user_id:              '1237847'
 s01:
     mercury_url:          'http://s01-mercury.itv.com'
     lithium_url:          'http://s01-lithium-news.itv.com'
@@ -55,6 +59,7 @@ s01:
     #playlist_prodid:      '1/7842/0257#001'
     playlist_prodid:      '1/800735/2345#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
+    user_id:              '1237847'
 i01:
     mercury_url:          'http://i01-mercury.itv.com'
     lithium_url:          'http://i01-lithium-news.itv.com'
@@ -64,6 +69,7 @@ i01:
     playlist_hds_vodcrid: '303312'
     playlist_prodid:      '1/800735/2345#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
+    user_id:              '1237847'
 live:
     mercury_url:          'http://mercury.itv.com'
     lithium_url:          'http://lithium-news.itv.com'
@@ -71,5 +77,6 @@ live:
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '255730'
     playlist_hds_vodcrid: '303312'
-    playlist_prodid:      '1/800735/2345#001'
-    playlist_hds_prodid:  'Y/1774/0004/Z'
+    playlist_prodid:      '1/8697/0022#001'
+    playlist_hds_prodid:  '1/7941/0002#001'
+    user_id:              '1200432'

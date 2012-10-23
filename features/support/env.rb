@@ -42,6 +42,7 @@ Before do
   @playlist_hds_vodcrid = "#{EnvConfig['playlist_hds_vodcrid']}"
   @playlist_prodid = "#{EnvConfig['playlist_prodid']}"
   @playlist_hds_prodid = "#{EnvConfig['playlist_hds_prodid']}"
+  @user_id = "#{EnvConfig['user_id']}"
 
   Savon.configure do |config|
     config.log = false

@@ -7,27 +7,27 @@ Given /^a user who is signed in$/ do
 end
 
 Given /^a request for archive content containing a malformed UserToken$/ do
-  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1237847", DateTime.now)
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid, @user_id, DateTime.now)
 end
 
 Given /^a request for archive content containing a malformed JOSN UserToken$/ do
-  @encrypted = generate_invalid_encrypted_usertoken(@playlist_hds_prodid,"1237847", DateTime.now)
+  @encrypted = generate_invalid_encrypted_usertoken(@playlist_hds_prodid, @user_id, DateTime.now)
 end
 
 Given /^a request for archive content containing an expired UserToken$/ do
-  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1237847", DateTime.iso8601('2011-10-19T12:16:21+00:00'))
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid, @user_id, DateTime.iso8601('2011-10-19T12:16:21+00:00'))
 end
 
 Given /^a request for archive content containing a UserToken in the future$/ do
-  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1237847", DateTime.iso8601('2013-10-19T12:16:21+00:00'))
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid, @user_id, DateTime.iso8601('2013-10-19T12:16:21+00:00'))
 end
 
 Given /^a user who is signed in and has a valid UserToken$/ do
-  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1237847", DateTime.now)
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid, @user_id, DateTime.now)
 end
 
 Given /^has previously requested (.*) archive content$/ do |platform|
-  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid,"1237847", DateTime.now)
+  @encrypted = generate_encrypted_usertoken(@playlist_hds_prodid, @user_id, DateTime.now)
   @playlist_client = @mercury_playlist.create_client
   @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @playlist_hds_prodid, @encrypted, platform)
   @original_response_sessionid = @response.xpath("//SessionId").text.match(/\w+/).to_s
