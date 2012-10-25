@@ -1,4 +1,5 @@
 @sanity
+@not_local
 
 Feature: Bloom Servoces are started
   In order to validate a back-end release

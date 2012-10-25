@@ -8,5 +8,5 @@ end
 
 Then /^all the (.*) should be (\d+)$/ do |service, status|
   list_services = @json_blob["services"].find { |e| e["ServiceDescription"] == service }
-  list_services["Status"]
+  list_services["Status"].to_s.should == status
 end
