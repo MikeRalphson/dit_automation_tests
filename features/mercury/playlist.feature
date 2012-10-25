@@ -35,7 +35,7 @@ Feature: Mercury Playlist Requests
     | DotCom   |
 
 
-  Scenario Outline: Geo-blocking for Mercury playlists
+  Scenario Outline: Geo-blocking for Mercury playlists status sucess
     Given I request the Mercury playlist from <location> with vodcrid and <platform>
     Then I get the expected <response> status for that vodcrid
 	
@@ -49,6 +49,14 @@ Feature: Mercury Playlist Requests
     | PS3      | 10.192.42.109 | success  |
     | YouView  | 10.192.42.109 | success  |
     | DotCom   | 10.192.42.109 | success  |
+
+@not_local
+  Scenario Outline: Geo-blocking for Mercury playlists status blocked
+    Given I request the Mercury playlist from <location> with vodcrid and <platform>
+    Then I get the expected <response> status for that vodcrid
+	
+	#Second DotCom request is for HDS content. 
+    | platform | location      | response |
     | DotCom   | 194.4.55.200  | blocked  |
 #	| Android  | 194.4.55.200  | blocked  |
     | Mobile   | 194.4.55.200  | blocked  |
