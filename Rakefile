@@ -2,11 +2,15 @@ require 'cucumber/rake/task'
 require 'cucumber/formatter/unicode'
 
 Cucumber::Rake::Task.new(:cucumber) do |task|
-  task.cucumber_opts = "-f junit -o log/ -t ~@wip -t ~@not_implemented -t ~@manual -t ~@android"
+  task.cucumber_opts = "-f junit -o log/ -t ~@wip -t ~@not_implemented -t ~@manual -t ~@android -t ~@flakey"
 end
 
 Cucumber::Rake::Task.new(:sanity) do |task|
-  task.cucumber_opts = "-f junit -o log/ -t @sanity -t ~@android"
+  task.cucumber_opts = "-f junit -o log/ -t @sanity -t ~@android -t ~@flakey -t ~@manual"
+end
+
+Cucumber::Rake::Task.new(:sso) do |task|
+  task.cucumber_opts = "-f junit -o log/ -t @sso -t ~@android -t ~@flakey -t ~@manual"
 end
 
 Cucumber::Rake::Task.new(:report) do |task|
@@ -14,7 +18,7 @@ Cucumber::Rake::Task.new(:report) do |task|
 end
 
 Cucumber::Rake::Task.new(:wip) do |task|
-  task.cucumber_opts = %w(-f pretty -t @wip)
+  task.cucumber_opts = %w(-f pretty -t @wip -t ~@manual)
 end
 
 Cucumber::Rake::Task.new(:android) do |task|

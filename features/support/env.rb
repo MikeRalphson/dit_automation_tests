@@ -14,6 +14,9 @@ require 'securerandom'
 require 'rest-client'
 require 'timeout'
 require 'active_support/time'
+require 'bundler/setup'
+require 'mcrypt'
+require 'base64'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
@@ -37,6 +40,9 @@ Before do
   @timeout = 300
   @playlist_vodcrid = "#{EnvConfig['playlist_vodcrid']}"
   @playlist_hds_vodcrid = "#{EnvConfig['playlist_hds_vodcrid']}"
+  @playlist_prodid = "#{EnvConfig['playlist_prodid']}"
+  @playlist_hds_prodid = "#{EnvConfig['playlist_hds_prodid']}"
+  @user_id = "#{EnvConfig['user_id']}"
 
   Savon.configure do |config|
     config.log = false

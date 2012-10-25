@@ -32,6 +32,7 @@ GEM
       mime-types (>= 1.16)
     rspec-expectations (2.11.3)
       diff-lcs (~> 1.1.3)
+    ruby-mcrypt (0.1.1)
     savon (1.1.0)
       akami (~> 1.2.0)
       builder (>= 2.1.2)
@@ -59,5 +60,6 @@ DEPENDENCIES
   rake
   rest-client
   rspec-expectations
+  ruby-mcrypt
   savon
   simplecov

@@ -12,4 +12,19 @@ module RequestUri
     response = get_response_from_url input_url
     json_blob = JSON.parse response.body
   end
+
+  def generate_encrypted_usertoken (prodid, userid, time)
+    generate_token({"productionId" => prodid, "userId" => userid, "time" => time.iso8601}.to_json)
+  end
+
+  def generate_invalid_encrypted_usertoken (prodid, userid, time)
+    generate_token({"productionId" => prodid, "userId" => userid, "time" => time.iso8601}.to_json + "\a\a\a")
+  end
+
+  def generate_token (json)
+    crypto = Mcrypt.new(:tripledes, :ecb, 'VQMOYB5AlJLoB+gIkLuFdqKI', nil, :zeros)
+    ciphertext = crypto.encrypt(json)
+    b64data = Base64.encode64(ciphertext).gsub("\n",'')
+    #plaintext  = crypto.decrypt(ciphertext)
+  end
 end
