@@ -93,6 +93,7 @@ end
 
 Then /^the advert URI should contain the correct size$/ do
   @advert_uris ||= @response.xpath("//Action/URL")
+  raise 'AdvertUrl is empty' if @advert_uris.empty?
   @advert_uris.each do |uri|
     (uri.to_s.match 'size=\w+').to_s.should == "size=itvplayer"
   end
@@ -100,6 +101,7 @@ end
 
 Then /^the advert URI should contain the correct area$/ do
   @advert_uris ||= @response.xpath("//Action/URL")
+  raise 'AdvertUrl is empty' if @advert_uris.empty?
   @advert_uris.each do |uri|
     (uri.to_s.match 'area=\w+').to_s.should == "area=itvplayer"
   end
@@ -107,6 +109,7 @@ end
 
 Then /^the advert URI should contain the correct site based on the (.*)$/ do |platform|
   @advert_uris ||= @response.xpath("//Action/URL")
+  raise 'AdvertUrl is empty' if @advert_uris.empty?
   @advert_uris.each do |uri|
   case platform
     when /dotcom/i
