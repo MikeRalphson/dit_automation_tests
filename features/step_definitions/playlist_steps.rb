@@ -127,7 +127,7 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
   raise 'no matching values found in the response' unless video_type
   case platform
     when /youview/i
-      video_type.each { |url| (url.text.should match(/\.ts$/)) && (url.text.should match(/\Ahttp/)) }
+      video_type.each { |url| (url.text.should match(/\.(bbts|ts)$/)) && (url.text.should match(/\Ahttp/)) }
     else
       video_type.each { |url| url.text.should match(/\.mp4$/) }
   end
