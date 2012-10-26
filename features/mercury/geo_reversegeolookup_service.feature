@@ -1,4 +1,5 @@
 @sanity
+@not_local
 
 Feature: Geo reversegeolookup service
   In order to geo-block content from outside the uk

@@ -1,4 +1,5 @@
 @sso
+@not_local
 
 Feature: PDFT-2791 - Decrypted UserToken on playlist request 
     So that our HDS content is Secure and not open to hackers

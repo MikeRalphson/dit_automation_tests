@@ -22,7 +22,7 @@ Feature: Mercury Playlist Requests
     | PS3      |
     | YouView  |
 
-
+@not_local
   Scenario Outline: Verify a HDS playlist request
     Given I request the Mercury playlist for HDS content with <platform>
     #Do we need this step?
@@ -65,6 +65,7 @@ Feature: Mercury Playlist Requests
     | YouView  | 194.4.55.200  | blocked  |
     | DotCom   | 194.4.55.200  | blocked  |
 
+@not_local
   Scenario Outline: Ad-server for Mercury playlists
     Given I request the Mercury playlist with vodcrid and <platform>
     Then the advert URI should contain the correct size
@@ -90,6 +91,7 @@ Feature: Mercury Playlist Requests
 	| platform |
 	| Freesat  |
 	
+@not_local
   Scenario Outline: Verify correct Adverts for a Freesat playlist request
     Given I request a <platform> Mercury playlist with vodcrid
     Then the advert URI should contain the correct <size> and <site>
