@@ -10,3 +10,6 @@ coverage/
 features_report.html
 tmp/
 log/
+
+# Vim stuff (get a proper IDE!)
+.*.sw*
