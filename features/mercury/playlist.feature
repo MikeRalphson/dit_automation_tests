@@ -34,12 +34,11 @@ Feature: Mercury Playlist Requests
     | platform |
     | DotCom   |
 
-
   Scenario Outline: Geo-blocking for Mercury playlists status sucess
     Given I request the Mercury playlist from <location> with vodcrid and <platform>
     Then I get the expected <response> status for that vodcrid
-	
-	#Second DotCom request is for HDS content. 
+
+	#Second DotCom request is for HDS content.
   Examples:
     | platform | location      | response |
 #   | DotCom   | 10.192.42.109 | success  |
@@ -54,8 +53,9 @@ Feature: Mercury Playlist Requests
   Scenario Outline: Geo-blocking for Mercury playlists status blocked
     Given I request the Mercury playlist from <location> with vodcrid and <platform>
     Then I get the expected <response> status for that vodcrid
-	
-	#Second DotCom request is for HDS content. 
+
+	#Second DotCom request is for HDS content.
+    Examples:
     | platform | location      | response |
 #   | DotCom   | 194.4.55.200  | blocked  |
 #	| Android  | 194.4.55.200  | blocked  |
@@ -63,7 +63,7 @@ Feature: Mercury Playlist Requests
     | Samsung  | 194.4.55.200  | blocked  |
     | PS3      | 194.4.55.200  | blocked  |
     | YouView  | 194.4.55.200  | blocked  |
-    | DotCom   | 194.4.55.200  | blocked  |
+#   | DotCom   | 194.4.55.200  | blocked  |
 
 @not_local
   Scenario Outline: Ad-server for Mercury playlists
@@ -71,8 +71,8 @@ Feature: Mercury Playlist Requests
     Then the advert URI should contain the correct size
     And the advert URI should contain the correct area
     And the advert URI should contain the correct site based on the <platform>
-	
-	#Second DotCom request is for HDS content. 
+
+	#Second DotCom request is for HDS content.
   Examples:
     | platform |
 #   | DotCom   |
@@ -86,16 +86,16 @@ Feature: Mercury Playlist Requests
   Scenario Outline: Verify Freesat playlist request
     Given I request a <platform> Mercury playlist with vodcrid
     Then I get the requested vodcrid in the response
-	
+
    Examples:
 	| platform |
 	| Freesat  |
-	
+
 @not_local
   Scenario Outline: Verify correct Adverts for a Freesat playlist request
     Given I request a <platform> Mercury playlist with vodcrid
     Then the advert URI should contain the correct <size> and <site>
-	
+
    Examples:
 	| platform | size         | site        |
 	| Freesat  | videofreesat | itv.freesat |
