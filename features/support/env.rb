@@ -26,6 +26,7 @@ require 'env_config'
 require 'ftp_library'
 require 'xml_library'
 require 'request_helpers'
+require 'vodcrid_helpers'
 
 include RequestUri
 
@@ -38,10 +39,7 @@ Before do
   @xml_library = XmlLibrary.new
   @uuid = SecureRandom.uuid
   @timeout = 300
-  @playlist_vodcrid = "#{EnvConfig['playlist_vodcrid']}"
-  @playlist_hds_vodcrid = "#{EnvConfig['playlist_hds_vodcrid']}"
-  @playlist_prodid = "#{EnvConfig['playlist_prodid']}"
-  @playlist_hds_prodid = "#{EnvConfig['playlist_hds_prodid']}"
+  @vodcrid_helpers = VodcridHelpers.new
   @user_id = "#{EnvConfig['user_id']}"
 
   Savon.configure do |config|

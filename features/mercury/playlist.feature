@@ -15,7 +15,7 @@ Feature: Mercury Playlist Requests
 
   Examples:
     | platform |
-    | DotCom   |
+#   | DotCom   |
 #	| Android  |
     | Mobile   |
     | Samsung  |
@@ -26,7 +26,7 @@ Feature: Mercury Playlist Requests
   Scenario Outline: Verify a HDS playlist request
     Given I request the Mercury playlist for HDS content with <platform>
     #Do we need this step?
-	Then I get the requested HDS vodcrid 
+	Then I get the requested HDS prodid 
     And the expiry date is in the future
 	And I get the correct ManifestFile url based on the <platform>
 	
@@ -42,13 +42,13 @@ Feature: Mercury Playlist Requests
 	#Second DotCom request is for HDS content. 
   Examples:
     | platform | location      | response |
-    | DotCom   | 10.192.42.109 | success  |
+#   | DotCom   | 10.192.42.109 | success  |
 #	| Android  | 10.192.42.109 | success  |
-    | Mobile   | 127.0.0.1     | success  |
+    | Mobile   | 10.192.42.109 | success  |
     | Samsung  | 10.192.42.109 | success  |
     | PS3      | 10.192.42.109 | success  |
     | YouView  | 10.192.42.109 | success  |
-    | DotCom   | 10.192.42.109 | success  |
+#   | DotCom   | 10.192.42.109 | success  |
 
 @not_local
   Scenario Outline: Geo-blocking for Mercury playlists status blocked
@@ -57,10 +57,10 @@ Feature: Mercury Playlist Requests
 	
 	#Second DotCom request is for HDS content. 
     | platform | location      | response |
-    | DotCom   | 194.4.55.200  | blocked  |
+#   | DotCom   | 194.4.55.200  | blocked  |
 #	| Android  | 194.4.55.200  | blocked  |
     | Mobile   | 194.4.55.200  | blocked  |
-    | Samsung  | 62.4.31.255   | blocked  |
+    | Samsung  | 194.4.55.200  | blocked  |
     | PS3      | 194.4.55.200  | blocked  |
     | YouView  | 194.4.55.200  | blocked  |
     | DotCom   | 194.4.55.200  | blocked  |
@@ -75,13 +75,13 @@ Feature: Mercury Playlist Requests
 	#Second DotCom request is for HDS content. 
   Examples:
     | platform |
-    | DotCom   |
+#   | DotCom   |
 #	| Android  |
     | Mobile   |
     | Samsung  |
     | PS3      |
     | YouView  |
-    | DotCom   |
+#   | DotCom   |
 
   Scenario Outline: Verify Freesat playlist request
     Given I request a <platform> Mercury playlist with vodcrid
@@ -99,3 +99,4 @@ Feature: Mercury Playlist Requests
    Examples:
 	| platform | size         | site        |
 	| Freesat  | videofreesat | itv.freesat |
+

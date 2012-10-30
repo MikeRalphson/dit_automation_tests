@@ -103,9 +103,31 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
 	  | platform | 
 	  | DotCom   |
 
-  Scenario Outline: Playlist request for non DotCom contenting a UserToken
+  Scenario Outline: User token not passed for Archive content 
+    Given a request for archive content without a UserToken
+    When the user makes a initial <platform> playlist request for the archive content
+    Then the Content unavaliable for this platform error message is returned
+		
+	  Examples:
+	  | platform | 
+	  | DotCom   |
+
+  Scenario Outline: Playlist request for Archive content contenting a UserToken
     Given a user who is signed in
     When the user makes a <platform> playlist request for the archive content with a UserToken
+    Then the Content unavaliable for this platform error message is returned
+		
+  Examples:
+    | platform |
+   #| Android  |
+    | Mobile   |
+    | Samsung  |
+    | PS3      |
+    | YouView  | 
+
+  Scenario Outline: Playlist request for CatchUp content not contenting a UserToken
+    Given a user who is signed in
+    When the user makes a <platform> playlist request for the archive content without a UserToken
     Then the playlist response is correctly returned with no UserToken present 
 		
   Examples:

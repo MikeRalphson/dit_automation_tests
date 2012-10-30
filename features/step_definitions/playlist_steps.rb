@@ -1,9 +1,10 @@
 Given /^I request the Mercury playlist with vodcrid and (\w+)$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
+  @vodcrid = @vodcrid_helpers.get_vodcrid_from_config(platform)
   begin
     @response = case platform
-                when /mobile/i then @mercury_playlist.mobile_playlist_request(@playlist_client, @playlist_vodcrid, platform)
-                else @mercury_playlist.playlist_request(@playlist_client, @playlist_vodcrid, platform)
+                when /mobile/i then @mercury_playlist.mobile_playlist_request(@playlist_client, @vodcrid, platform)
+                else @mercury_playlist.playlist_request(@playlist_client, @vodcrid, platform)
                 end
   rescue Savon::SOAP::Fault => error
     raise "#{error.message}. \nPerhaps the request has changed or the service is down?"
@@ -12,10 +13,11 @@ end
 
 Given /^I request the Mercury playlist from (.*) with vodcrid and (.*)$/ do |location, platform|
   @playlist_client = @mercury_playlist.create_client_with_location location
+  @vodcrid = @vodcrid_helpers.get_vodcrid_from_config(platform)
   begin
     @response = case platform
-                when /mobile/i then @mercury_playlist.mobile_playlist_request(@playlist_client, @playlist_vodcrid, platform)
-                else @mercury_playlist.playlist_request(@playlist_client, @playlist_vodcrid, platform)
+                when /mobile/i then @mercury_playlist.mobile_playlist_request(@playlist_client, @vodcrid, platform)
+                else @mercury_playlist.playlist_request(@playlist_client, @vodcrid, platform)
                 end
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
@@ -24,13 +26,16 @@ end
 
 Given /^I request a (\w+) Mercury playlist with vodcrid$/ do |platform|
   @mercury_playlist.create_client
-  @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/#{platform}/playlist/#{@playlist_vodcrid}?t=playlistscreentoken"
+  @vodcrid = @vodcrid_helpers.get_vodcrid_from_config(platform)
+  @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/#{platform}/playlist/#{@vodcrid}?t=playlistscreentoken"
   @response = @mercury_api.get_response_from_url @uri
 end
 
 Given /^I request the Mercury playlist for HDS content with (.*)$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
-  @response = @mercury_playlist.playlist_request(@playlist_client, @playlist_hds_vodcrid, platform)
+  @prodid = @vodcrid_helpers.get_prodid_from_config("ManifestUrl")
+  @encrypted = generate_encrypted_usertoken(@prodid, @user_id, DateTime.now)
+  @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @prodid, @encrypted, platform)
 end
 
 Then /^I get the correct bitrate based on the (.*)$/ do |platform|
@@ -57,12 +62,12 @@ end
 
 Then /^I get the requested vodcrid$/ do
   response_vodcrid = @response.xpath("//Vodcrid").text.match(/\d+$/).to_s
-  response_vodcrid.should match @playlist_vodcrid
+  response_vodcrid.should match @vodcrid
 end
 
-Then /^I get the requested HDS vodcrid$/ do
-  response_vodcrid = @response.xpath("//Vodcrid").text.match(/\d+$/).to_s
-  response_vodcrid.should match @playlist_hds_vodcrid
+Then /^I get the requested HDS prodid$/ do
+  response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+/).to_s
+  response_vodcrid.should match @prodid
 end
 
 Then /^the expiry date is in the future$/ do
@@ -88,7 +93,7 @@ Then /^I get the expected (.*) status for that vodcrid$/ do |response|
     raise "#{@playlist_error.message}. \nPerhaps the request has changed or the service is down?" unless @playlist_error.to_s.match /InvalidGeoRegion/
   end
   @playlist_error.to_s.should match /InvalidGeoRegion/ if response == "blocked"
-  @response.xpath("//Vodcrid").text.should match @playlist_vodcrid if response == "success"
+  @response.xpath("//Vodcrid").text.should match @vodcrid if response == "success"
 end
 
 Then /^the advert URI should contain the correct size$/ do
@@ -134,7 +139,7 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
 end
 
 Then /^I get the requested vodcrid in the response$/ do 
-  unless @mercury_api.value_exists_in_mhegdata? @response, /\/api\/mhegdata\/Freesat\/AuthorizeContent\/#{@playlist_vodcrid}\/\d{3}\?t=playlistscreentoken/
+  unless @mercury_api.value_exists_in_mhegdata? @response, /\/api\/mhegdata\/Freesat\/AuthorizeContent\/#{@vodcrid}\/\d{3}\?t=playlistscreentoken/
     raise 'AuthorizeContent url not found from your request' 
   end
 end
