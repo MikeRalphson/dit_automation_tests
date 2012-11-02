@@ -99,16 +99,6 @@ When /^the user makes a (.*) playlist request for the archive content with a Use
   end
 end
 
-When /^the user makes a (.*) playlist request for the archive content without a UserToken$/ do |platform|
-  @prodid = @vodcrid_helpers.get_prodid_from_config(platform)
-  @playlist_client = @mercury_playlist.create_client
-  begin 
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @prodid, @encrypted, platform)
-  rescue Savon::SOAP::Fault => error
-    @playlist_error = error
-  end
-end
-
 Then /^there is a valid playlist response for catchup content$/ do
   raise "unexpected error: #{@playlist_error}" if @playlist_error
   response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+(\/|#)\w+/).to_s
@@ -161,12 +151,6 @@ Then /^the UserToken is in the future error message is returned$/ do
   if @playlist_error
     raise "#{@playlist_error.message}. \nUserToken is in the Future" unless @playlist_error.to_s.include? "UserToken Error 852"
   end
-end
-
-Then /^the playlist response is correctly returned with no UserToken present$/ do
-  raise "unexpected error: #{@playlist_error}" if @playlist_error
-  response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+(\/|#)\w+/).to_s
-  response_vodcrid.should match @prodid
 end
 
 Then /^the Deserialization failure error message is returned$/ do

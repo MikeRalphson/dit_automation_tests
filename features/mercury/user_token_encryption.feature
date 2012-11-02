@@ -125,19 +125,6 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
     | PS3      |
     | YouView  | 
 
-  Scenario Outline: Playlist request for CatchUp content not contenting a UserToken
-    Given a user who is signed in
-    When the user makes a <platform> playlist request for the archive content without a UserToken
-    Then the playlist response is correctly returned with no UserToken present 
-		
-  Examples:
-    | platform |
-   #| Android  |
-    | Mobile   |
-    | Samsung  |
-    | PS3      |
-    | YouView  | 
-
 @manual
   Scenario: Feature flag for mandatory DotCom UserToken decryption is off
     Given the feature flag enforcing UserToken decryption for DotCom requests is off
