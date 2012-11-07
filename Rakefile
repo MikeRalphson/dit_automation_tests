@@ -5,6 +5,10 @@ Cucumber::Rake::Task.new(:cucumber) do |task|
   task.cucumber_opts = "-f junit -o log/ -t ~@wip -t ~@not_implemented -t ~@manual -t ~@android -t ~@flakey"
 end
 
+Cucumber::Rake::Task.new(:rc3) do |task|
+  task.cucumber_opts = "-f junit -o log/ -t ~@not_rc3 -t ~@wip -t ~@not_implemented -t ~@manual -t ~@android -t ~@flakey"
+end
+
 Cucumber::Rake::Task.new(:sso) do |task|
   task.cucumber_opts = "-f junit -o log/ -t @sso -t ~@flakey -t ~@not_implemented -t ~@manual -t ~@android -t ~@wip"
 end

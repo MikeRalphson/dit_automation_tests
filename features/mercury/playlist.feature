@@ -1,4 +1,5 @@
 @playlist
+@not_rc3
 
 Feature: Mercury Playlist Requests
   In order to generate front end features
