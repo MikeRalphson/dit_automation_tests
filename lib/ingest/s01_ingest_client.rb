@@ -69,16 +69,13 @@ s01_old_dotcom_client.asset_receipt_location = '/Receipts/ITV/PS3'
 p result = s01_old_dotcom_client.ingest
 json[host]['ps3'] = { s01_old_dotcom_client.prodid => result }
 
-=begin
 #Android - not yet on S01
-s01_old_dotcom_client.prodid = prodid
 s01_old_dotcom_client.android = true
 s01_old_dotcom_client.platforms = [:android]
 s01_old_dotcom_client.source = "#{File.dirname(__FILE__) }/assets/android"
-results.push s01_old_dotcom_client.ingest
-p results
-s01_old_dotcom_client.android = false #Fix having to do this
-=end
+p result = s01_old_dotcom_client.ingest
+s01_old_dotcom_client.android = false
+json[host]['android'] = { s01_old_dotcom_client.prodid => result }
 
 #YouView
 s01_old_dotcom_client.asset_extensions = ['ts']
