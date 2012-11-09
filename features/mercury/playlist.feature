@@ -1,5 +1,4 @@
 @playlist
-@not_rc3
 
 Feature: Mercury Playlist Requests
   In order to generate front end features
@@ -24,6 +23,7 @@ Feature: Mercury Playlist Requests
     | YouView  |
 
 @not_local
+@not_rc3
   Scenario Outline: Verify a HDS playlist request
     Given I request the Mercury playlist for HDS content with <platform>
     #Do we need this step?
@@ -51,6 +51,7 @@ Feature: Mercury Playlist Requests
 #   | DotCom   | 10.192.42.109 | success  |
 
 @not_local
+@not_rc3
   Scenario Outline: Geo-blocking for Mercury playlists status blocked
     Given I request the Mercury playlist from <location> with vodcrid and <platform>
     Then I get the expected <response> status for that vodcrid
