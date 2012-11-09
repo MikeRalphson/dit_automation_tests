@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tva:TVAMain xmlns:tva="urn:tva:metadata:2004" contentProviderID="ITV" rightsOwner="ITV" publicationTime="2010-03-25T11:39:51+00:00">
+    <tva:CopyrightNotice>Left Bank Pictures 2010</tva:CopyrightNotice>
+    <tva:ProgramDescription>
+        <tva:AvailsListInformationTable Category="TV" availsListExternalID="1234" contractID="124"/>
+        <tva:ProgramInformationTable>
+            <tva:ProgramInformation programId="1/9876/16791234123434763343343434343746467463-a-1">
+                <tva:BasicDescription ingestAction="Create">
+                    <tva:Title>00-b5d647a9-0c12-47cd-aeef-b0ac37d14e55</tva:Title>
+                    <tva:MediaURL/>
+                    <tva:shortSynopsis>Jeremy Kyle presents a confrontational talk show in whic</tva:shortSynopsis>
+                    <tva:longSynopsis>Comedy drama series. Lillie has been suspended from work since Mr Connelly claimed she
+                        attacked him outside the shelter. She thinks her career is over, until Babs finds the evidence she needs to
+                        clear her name. Gina enlists the help of Joe's older brother Harry to stop the bullying at school. Clint has
+                        been going out with Abbey for 29 days but she still will not sleep with him. It is Dickie and Babs' wedding
+                        anniversary, and Dickie is not taking it well.
+                    </tva:longSynopsis>
+                    <tva:Keywords>
+                        <tva:Keyword>CONTEMPORARY BRITISH</tva:Keyword>
+                    </tva:Keywords>
+                    <tva:Genre>
+                        <tva:Name>TV:SOAP:COMEDY</tva:Name>
+                    </tva:Genre>
+                    <tva:ParentalGuidance>
+                        <tva:ParentalRating>
+                            <tva:GuidanceText/>
+                        </tva:ParentalRating>
+                    </tva:ParentalGuidance>
+                    <tva:Language>English</tva:Language>
+                    <tva:SignLanguage/>
+                    <tva:CreditsList>
+                        <tva:CreditsItem participantID="18307" role="Actor"/>
+                        <tva:CreditsItem participantID="42032" role="Actor"/>
+                        <tva:CreditsItem participantID="46452" role="Actor"/>
+                        <tva:CreditsItem participantID="3286" role="Actor"/>
+                        <tva:CreditsItem participantID="15494" role="Actor"/>
+                        <tva:CreditsItem participantID="16791" role="Actor"/>
+                        <tva:CreditsItem participantID="4705" role="Producer"/>
+                        <tva:CreditsItem participantID="46892" role="Production Company"/>
+                        <tva:CreditsItem participantID="3090" role="Director"/>
+                        <tva:CreditsItem participantID="46453" role="Writer"/>
+                    </tva:CreditsList>
+                    <tva:ReleaseInformation>
+                        <tva:ReleaseDate>
+                            <tva:DayAndYear>2009-01-15T18:00:00</tva:DayAndYear>
+                        </tva:ReleaseDate>
+                    </tva:ReleaseInformation>
+                    <tva:ITVAgeRating>0</tva:ITVAgeRating>
+                    <tva:Duration>2954000</tva:Duration>
+                    <tva:TitleExtension/>
+                    <tva:imageAsset/>
+                </tva:BasicDescription>
+                <tva:AVAttributes>
+                    <tva:FileSize>147742571</tva:FileSize>
+                    <tva:AssetId>1/9876/16791234123434763343343434343746467463-a-1#001</tva:AssetId>
+                    <tva:Filename>400_mobile.mp4</tva:Filename>
+                    <tva:MD5Checksum>88269fc076cefdc0f5f3ac87c9761ad4</tva:MD5Checksum>
+                    <tva:VideoAttributes>
+                        <tva:AspectRatio>16x9</tva:AspectRatio>
+                        <tva:Profile>400</tva:Profile>
+                        <tva:Coding>
+                            <tva:Name>H.264</tva:Name>
+                        </tva:Coding>
+                        <tva:FrameRate>25</tva:FrameRate>
+                    </tva:VideoAttributes>
+                </tva:AVAttributes>
+                <tva:EpisodeOf index="3" crid="1/9876-01"/>
+                <tva:AdBreaks>
+                    <tva:StartOfProgramme>0</tva:StartOfProgramme>
+                    <tva:Part>
+                        <cmd:PartNumber xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">1
+                        </cmd:PartNumber>
+                        <cmd:EndTime xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
+                            798000
+                        </cmd:EndTime>
+                    </tva:Part>
+                    <tva:Part>
+                        <cmd:PartNumber xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">2
+                        </cmd:PartNumber>
+                        <cmd:EndTime xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
+                            1490000
+                        </cmd:EndTime>
+                    </tva:Part>
+                    <tva:Part>
+                        <cmd:PartNumber xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">3
+                        </cmd:PartNumber>
+                        <cmd:EndTime xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
+                            2209000
+                        </cmd:EndTime>
+                    </tva:Part>
+                    <tva:RSTRCT>NONE</tva:RSTRCT>
+                </tva:AdBreaks>
+            </tva:ProgramInformation>
+        </tva:ProgramInformationTable>
+        <tva:GroupInformationTable>
+            <tva:GroupInformation groupId="1/9876/16791234123434763343343434343746467463-a-1#001">
+                <tva:GroupType value="Production"/>
+                <tva:BasicDescription ingestAction="Create">
+                    <tva:Title>JW Test Episode 027</tva:Title>
+                    <tva:MediaURL/>
+                    <tva:shortSynopsis>Jeremy Kyle presents a confrontational talk show in whic</tva:shortSynopsis>
+                    <tva:longSynopsis>Comedy drama series. Lillie has been suspended from work since Mr Connelly claimed she
+                        attacked him outside the shelter. She thinks her career is over, until Babs finds the evidence she needs to
+                        clear her name. Gina enlists the help of Joe's older brother Harry to stop the bullying at school. Clint has
+                        been going out with Abbey for 29 days but she still will not sleep with him. It is Dickie and Babs' wedding
+                        anniversary, and Dickie is not taking it well.
+                    </tva:longSynopsis>
+                    <tva:Keywords>
+                        <tva:Keyword>
+                            CONTEMPORARY BRITISH
+
+                        </tva:Keyword>
+                    </tva:Keywords>
+                    <tva:Genre>
+                        <tva:Name>TV:SOAP:COMEDY</tva:Name>
+                    </tva:Genre>
+                    <tva:TitleExtension/>
+                </tva:BasicDescription>
+                <tva:MemberOf crid="1/9876/16791234123434763343343434343746467463-a-1"/>
+            </tva:GroupInformation>
+            <tva:GroupInformation groupId="1/9876-01">
+                <tva:GroupType value="Series"/>
+                <tva:BasicDescription ingestAction="Create">
+                    <tva:Title>JW S01 Samsung Test Series two</tva:Title>
+                    <tva:MediaURL/>
+                    <tva:shortSynopsis>Jeremy Kyle presents a confrontational talk show in whic</tva:shortSynopsis>
+                    <tva:longSynopsis>New romantic comedy drama series about three very different couples. Lillie and Eddie have
+                        been together for 16 years and have two children. Their relationship seems perfect, but Eddie wants to get
+                        married, and Lillie does not. Meanwhile, Lillie's best friend Babs has been married to Dickie for a decade,
+                        but his love of online gambling is driving her to breaking point. And Dickie's little brother Clint is a
+                        serial womaniser who has just met Abbey, who is smart, beautiful and seemingly able to resist Clint's
+                        charms.
+                    </tva:longSynopsis>
+                    <tva:displayProgrammeDate>false</tva:displayProgrammeDate>
+                    <tva:displayProgrammeSequence>true</tva:displayProgrammeSequence>
+                    <tva:longRunningSeries>false</tva:longRunningSeries>
+                    <tva:Keywords>
+                        <tva:Keyword>
+                            CONTEMPORARY BRITISH
+
+                        </tva:Keyword>
+                    </tva:Keywords>
+                    <tva:Genre>
+                        <tva:Name>TV:SOAP:COMEDY</tva:Name>
+                    </tva:Genre>
+                    <tva:PresentationBrands>
+                        <tva:Brand>ITV1</tva:Brand>
+                        <tva:Brand>ITV2</tva:Brand>
+                    </tva:PresentationBrands>
+                    <tva:TitleExtension>JW S01 Samsung Test Series two</tva:TitleExtension>
+                    <tva:SeriesType>SERIES</tva:SeriesType>
+                </tva:BasicDescription>
+                <tva:MemberOf crid="1/9876" index="1"/>
+            </tva:GroupInformation>
+            <tva:GroupInformation groupId="1/9876">
+                <tva:GroupType value="Programme"/>
+                <tva:BasicDescription ingestAction="Create">
+                    <tva:Title>S01 Samsung Test Programme Two</tva:Title>
+                    <tva:MediaURL/>
+                    <tva:shortSynopsis>Jeremy Kyle presents a confrontational talk show in whic</tva:shortSynopsis>
+                    <tva:longSynopsis/>
+                    <tva:displaySeriesSequence>true</tva:displaySeriesSequence>
+                    <tva:displaySeriesYear>false</tva:displaySeriesYear>
+                    <tva:Keywords>
+                        <tva:Keyword>
+                            CONTEMPORARY BRITISH
+
+                        </tva:Keyword>
+                    </tva:Keywords>
+                    <tva:Genre>
+                        <tva:Name>TV:SOAP:COMEDY</tva:Name>
+                    </tva:Genre>
+                    <tva:TitleExtension/>
+                </tva:BasicDescription>
+            </tva:GroupInformation>
+        </tva:GroupInformationTable>
+        <tva:ProgramLocationTable>
+            <tva:OnDemandProgram>
+                <tva:LicenceType>First TX</tva:LicenceType>
+                <tva:adRule>NEVER</tva:adRule>
+                <tva:costCode>Default</tva:costCode>
+                <tva:PublishedDuration>3600000</tva:PublishedDuration>
+                <tva:StartOfAvailability>2012-07-30</tva:StartOfAvailability>
+                <tva:EndOfAvailability>2013-05-31</tva:EndOfAvailability>
+                <tva:SlotChannel>ITV2</tva:SlotChannel>
+                <tva:SlotDateTime>2012-07-30T13:30:00</tva:SlotDateTime>
+                <tva:Platform>MOBILEITVC</tva:Platform>
+            </tva:OnDemandProgram>
+        </tva:ProgramLocationTable>
+        <tva:CreditsInformationTable>
+            <tva:CreditsInformation participantID="18307" firstName="Amanda" lastName="Abbington"/>
+            <tva:CreditsInformation participantID="42032" firstName="Dean" lastName="Kelly"/>
+            <tva:CreditsInformation participantID="46452" firstName="Lucy" lastName="Davis"/>
+            <tva:CreditsInformation participantID="3286" firstName="Shaun" lastName="Dooley"/>
+            <tva:CreditsInformation participantID="15494" firstName="Ralf" lastName="Little"/>
+            <tva:CreditsInformation participantID="16791" firstName="Miranda" lastName="Raison"/>
+            <tva:CreditsInformation participantID="4705" firstName="Radford" lastName="Neville"/>
+            <tva:CreditsInformation participantID="46892" firstName="" lastName="Left Bank Pictures"/>
+            <tva:CreditsInformation participantID="3090" firstName="Declan" lastName="Lowney"/>
+            <tva:CreditsInformation participantID="46453" firstName="Peter" lastName="Souter"/>
+        </tva:CreditsInformationTable>
+    </tva:ProgramDescription>
+</tva:TVAMain>
