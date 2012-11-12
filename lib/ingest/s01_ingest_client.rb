@@ -42,6 +42,9 @@ s01_old_dotcom_client = IngestRb.client do |config|
   config.ftp_host = 'S01-ITVONLINEFTP.ITV.COM'
   config.ftp_user = 'mercuryftp'
   config.ftp_password = '9d$]q1H&g+\>'
+  config.edgeserver_ftp_host = 'itvandroid.upload.akamai.com'
+  config.edgeserver_ftp_user = 'stgsyndicationaccess'
+  config.edgeserver_ftp_password = 'aCeAbTHUpgY5'
 end
 
 #DotCom
@@ -73,6 +76,7 @@ json[host]['ps3'] = { s01_old_dotcom_client.prodid => result }
 s01_old_dotcom_client.android = true
 s01_old_dotcom_client.platforms = [:android]
 s01_old_dotcom_client.source = "#{File.dirname(__FILE__) }/assets/android"
+s01_old_dotcom_client.asset_destination = '/183125/priority/test'
 p result = s01_old_dotcom_client.ingest
 s01_old_dotcom_client.android = false
 json[host]['android'] = { s01_old_dotcom_client.prodid => result }
