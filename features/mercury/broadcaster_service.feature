@@ -240,7 +240,7 @@ Feature: Broadcaster API feeds
     | unknown     | samsung  | By Day       |
     | unknown     | samsung  | Last Watched |
 
-@android
+@not_live 
   Scenario Outline: Verify correct broadcaster service for Android
     Given I request the content for <broadcaster> and <platform>
     Then the response should contain channel <content>
@@ -316,7 +316,7 @@ Feature: Broadcaster API feeds
     | channel     | mobile   | small       | ITV1    |
     | unknown     | mobile   | small       | ITV1    |
 
-@android
+@not_live
   Scenario Outline: Verify ITV1 is not available for STV or UTV for Android
     Given I request the content for <broadcaster> and <platform>
     Then the response should not contain <content>
@@ -328,7 +328,7 @@ Feature: Broadcaster API feeds
     | channel     | android  | ITV1    |
     | unknown     | android  | ITV1    |
 
-@android
+@not_live 
   Scenario Outline: Verify broadcast service for Android ignores screensize if provided
     Given I request the content for <broadcaster> and <platform> with <screen size>
     Then the response should contain channel <content>
@@ -447,3 +447,4 @@ Feature: Broadcaster API feeds
     | unknown     | android  | big         | PROGRAMME INFO    |
     | unknown     | android  | big         | EPISODE INFO      |
     | unknown     | android  | big         | A - Z             |
+

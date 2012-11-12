@@ -191,7 +191,7 @@ Feature: API and MRSS feeds
     | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=small   |
     | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=small   |
 
-@android
+@not_live 
   Scenario Outline: verify API's across Android
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
@@ -261,3 +261,4 @@ Feature: API and MRSS feeds
   Examples:
     | title                 |
     | ITV Daily Change Feed |
+
