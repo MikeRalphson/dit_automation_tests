@@ -16,7 +16,7 @@ Feature: Mercury Playlist Requests
   Examples:
     | platform |
 #   | DotCom   |
-#	| Android  |
+	| Android  |
     | Mobile   |
     | Samsung  |
     | PS3      |
@@ -43,7 +43,7 @@ Feature: Mercury Playlist Requests
   Examples:
     | platform | location      | response |
 #   | DotCom   | 10.192.42.109 | success  |
-#	| Android  | 10.192.42.109 | success  |
+	| Android  | 10.192.42.109 | success  |
     | Mobile   | 10.192.42.109 | success  |
     | Samsung  | 10.192.42.109 | success  |
     | PS3      | 10.192.42.109 | success  |
@@ -60,7 +60,7 @@ Feature: Mercury Playlist Requests
     Examples:
     | platform | location      | response |
 #   | DotCom   | 194.4.55.200  | blocked  |
-#	| Android  | 194.4.55.200  | blocked  |
+	| Android  | 194.4.55.200  | blocked  |
     | Mobile   | 194.4.55.200  | blocked  |
     | Samsung  | 194.4.55.200  | blocked  |
     | PS3      | 194.4.55.200  | blocked  |
@@ -78,7 +78,7 @@ Feature: Mercury Playlist Requests
   Examples:
     | platform |
 #   | DotCom   |
-#	| Android  |
+	| Android  |
     | Mobile   |
     | Samsung  |
     | PS3      |
