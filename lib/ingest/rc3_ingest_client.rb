@@ -24,11 +24,13 @@ rc3 = IngestRb.client do |config|
   config.ftp_host = '89.151.100.137'
   config.ftp_user = 'itvbbrc3/mercuryftp'
   config.ftp_password = 'Password01'
+  config.edgeserver_ftp_host = 'itvandroid.upload.akamai.com'
+  config.edgeserver_ftp_user = 'stgsyndicationaccess'
+  config.edgeserver_ftp_password = 'aCeAbTHUpgY5'
   config.receipt_wait = 20
   config.receipt_retry_attempts = 20
   config.receipt_search_mins = 10
 end
-
 
 #DotCom
 p result = rc3.ingest
@@ -59,6 +61,7 @@ json[host]['ps3'] = { rc3.prodid => result }
 rc3.android = true
 rc3.platforms = [:android]
 rc3.source = "#{File.dirname(__FILE__) }/assets/android"
+rc3.asset_destination = '/185957/priority/test'
 p result = rc3.ingest
 rc3.android = false #Fix having to do this
 json[host]['android'] = { rc3.prodid => result }
