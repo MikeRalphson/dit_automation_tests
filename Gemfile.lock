@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/ITV/ingestrb.git
-  revision: a9649e1f5de395b73178a82495a5aa7c2943aa42
+  remote: git@github.com:ITV/ingestrb.git
+  revision: ec15653a3e345180478597b3c8d3be30e1756aae
   specs:
     ingestrb (0.0.1)
       activesupport
