@@ -44,7 +44,46 @@ class MercuryPlaylist
       end
     end
   end
-  
+
+  def playlist_request_with_android_params (client, vodcrid, platform, deviceinfo)
+    client.request :get_playlist do |soap|
+      namespaces = playlist_namespaces
+
+      soap.xml do |xml|
+        xml.soapenv(:Envelope, namespaces) do |xml|
+          xml.soapenv(:Body) do |xml|
+            xml.tem(:GetPlaylist) do |xml|
+              xml.tem(:request) do |xml|
+                xml.itv(:RequestGuid, "7FA847EC-905C-41EA-BCF7-CC9E44A00CE3")
+                xml.itv(:Vodcrid) do |xml|
+                  xml.com(:Id, vodcrid)
+                  xml.com(:Partition, "itv.com")
+                end
+              end
+              xml.tem(:userInfo) do |xml|
+                xml.itv(:Broadcaster, "Itv")
+              end
+              xml.tem(:siteInfo) do |xml|
+                xml.itv(:AdvertSize, "Itvplayer")
+                xml.itv(:AdvertisingRestriction, "None")
+                xml.itv(:AdvertisingSite, "?")
+                xml.itv(:Area, "ITVPLAYER")
+                xml.itv(:Platform, platform)
+                xml.itv(:Site, "ItvCom")
+              end
+              xml.tem(:deviceInfo) do |xml|
+                deviceinfo.each do |k, v|
+                  xml.itv(k, v || { :'xsi:nil' => 'true' })
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+
   def encrypted_playlist_request (client, prodid, encrypted, platform)
     client.request :get_playlist do |soap|
       namespaces = playlist_namespaces
@@ -123,10 +162,11 @@ class MercuryPlaylist
 
   def playlist_namespaces
     {
-        "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
-        "xmlns:tem" => "http://tempuri.org/",
-        "xmlns:itv" => "http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types",
-        "xmlns:com" => "http://schemas.itv.com/2009/05/Common"
+      "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
+      "xmlns:tem" => "http://tempuri.org/",
+      "xmlns:itv" => "http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types",
+      "xmlns:com" => "http://schemas.itv.com/2009/05/Common",
+      "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance" 
     }
   end
 
