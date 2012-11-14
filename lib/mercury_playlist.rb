@@ -6,6 +6,26 @@ class MercuryPlaylist
     end
   end
 
+  def playlist_request_for_platform (playlist_client, unique, platform, media) 
+    @encrypted = generate_encrypted_usertoken(unique, @user_id, DateTime.now)
+    case platform
+      when /dotcom/i 
+        encrypted_playlist_request(playlist_client, unique, @encrypted, platform)
+      when /mobile/i 
+        mobile_playlist_request(playlist_client, unique, platform)
+      else 
+        playlist_request(playlist_client, unique, platform)
+      end
+  end
+
+  def response_contains_unique (response, unique, type)
+    if type == :vodcrid 
+      response.xpath("//Vodcrid").text.include? unique
+    else 
+      response.xpath("//ProductionId").text.include? unique
+    end
+  end
+
   def create_client
     Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl"
   end
