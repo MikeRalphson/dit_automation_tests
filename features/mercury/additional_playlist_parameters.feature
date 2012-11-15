@@ -1,4 +1,4 @@
-@android_ingest
+@not_live
 Feature: Mercury Additional Parameters
   So that the ad-server knows the Android device to return ads
   As Mercury
