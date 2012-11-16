@@ -30,7 +30,11 @@ Cucumber::Rake::Task.new(:wip) do |task|
 end
 
 Cucumber::Rake::Task.new(:bug) do |task|
-  task.cucumber_opts = %w(-f pretty -t ~@wip -t ~@manual -t @bug)
+  task.cucumber_opts = %w(-f pretty -t @bug)
+end
+
+Cucumber::Rake::Task.new(:freesat_bug) do |task|
+  task.cucumber_opts = %w(-f pretty -t @freesat_bug)
 end
 
 Cucumber::Rake::Task.new(:android) do |task|

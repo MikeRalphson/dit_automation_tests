@@ -214,6 +214,7 @@ Feature: API and MRSS feeds
     | xml  | android  | episode/programme/255247?broadcaster=ITV  |
     | xml  | android  | episode/programme/255247?broadcaster=STV  |
 
+    @bug @freesat_bug
   Scenario Outline: verify API's across Freesat
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
