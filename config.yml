@@ -1,4 +1,4 @@
-dev: 
+local: 
     mercury_url:          'http://localhost:11323'
     lithium_url:          ''
     bloom_url:            'http://localhost:49940' 
@@ -12,11 +12,22 @@ dev:
     playlist_prodid:      '1/800735/2345#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
     user_id:              '1237847'
-rc2:
-    mercury_url:          'http://g22msrc217.itvbbrc2.ads:8095'
-    lithium_url:          'http://g22msrc227.itvbbrc2.ads:50460'
+test:
+    mercury_url:          'http://test-mercury.itv.com'
+    lithium_url:          'http://test-lithium-news.itv.com'
+    bloom_status_url:     'http://bloomcms.itvft02.ads/internal/status/api'
+    ftp_host:             's01-itvonlineftp.itv.com'
+    ftp_login:            'mercuryftp'
+    ftp_password:         '9d$]q1H&g+\>'
+    pay_metadata:         'http://s01-onramp.itv.com/Metadata/CatchupAndArchiveNew.meta'
+    non_pay_metadata:     'http://s01-onramp.itv.com/Metadata/CatchupAndArchive.meta'
+    irdeto_pay_metadata:  'http://s01-onramp.itv.com/Metadata/CatchupAndArchivePay.meta'
     temp_folder:          '/tmp/mdr'
-    bloom_status_url:     'http://g22msrc227.itvbbrc2.ads:8083/internal/status/api'
+    playlist_vodcrid:     '303548'
+    playlist_hds_vodcrid: '303312'
+    playlist_prodid:      '1/8694/6377#001'
+    playlist_hds_prodid:  'Y/1774/0004/Z'
+    hdsmanifest_prodid:   '1/700084/34b5ff8a05eb480a9d04d6bf032e46a'
     user_id:              '1237847'
 rc3:
     mercury_url:          'http://mercury.rc3.itv.com'
@@ -34,15 +45,6 @@ rc3:
     playlist_prodid:      '1/800735/2345#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
     user_id:              '1237847'
-rcx:
-    mercury_url:          'http://d01.mercury.itv.com'
-    lithium_url:          'http://d01.lithium.itv.com'
-    temp_folder:          '/tmp/mdr'
-    playlist_vodcrid:     '301871'
-    playlist_hds_vodcrid: '303312'
-    playlist_prodid:      '1/800735/2345#001'
-    playlist_hds_prodid:  'Y/1774/0004/Z'
-    user_id:              '1237847'
 s01:
     mercury_url:          'http://s01-mercury.itv.com'
     lithium_url:          'http://s01-lithium-news.itv.com'
@@ -56,7 +58,6 @@ s01:
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '303548'
     playlist_hds_vodcrid: '303312'
-    #playlist_prodid:      '1/7842/0257#001'
     playlist_prodid:      '1/8694/6377#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
     hdsmanifest_prodid:   '1/700084/34b5ff8a05eb480a9d04d6bf032e46a'
@@ -64,9 +65,9 @@ s01:
 i01:
     mercury_url:          'http://i01-mercury.itv.com'
     lithium_url:          'http://i01-lithium-news.itv.com'
-    bloom_status_url:     'http://i01-bloomcms.itv.com/internal/status/api'
+    bloom_status_url:     'http://bloomcms.itvint01.ads/internal/status/internal/status/api'
     temp_folder:          '/tmp/mdr'
-    playlist_vodcrid:     '255730'
+    playlist_vodcrid:     '323995'
     playlist_hds_vodcrid: '303312'
     playlist_prodid:      '1/800735/2345#001'
     playlist_hds_prodid:  'Y/1774/0004/Z'
