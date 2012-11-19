@@ -40,7 +40,7 @@ class MercuryApi
   end
 
   def value_exists_in_mhegdata? (mhegdata, value)
-    Regexp.new(value).match mhegdata
+    Regexp.new(value, Regexp::IGNORECASE).match mhegdata #will warn if value is regex not string
   end
 
   def calculate_week
