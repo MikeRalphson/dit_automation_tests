@@ -41,4 +41,9 @@ Cucumber::Rake::Task.new(:android) do |task|
   task.cucumber_opts = %w(-f pretty -t @android_ingest -t ~@bug)
 end
 
+task :local_ingest do
+  $:.unshift(File.dirname(__FILE__) + '/lib')
+  require 'ingest/local_ingest_client'
+end
+
 task :default => :cucumber
