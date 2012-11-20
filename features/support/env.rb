@@ -15,7 +15,7 @@ require 'rest-client'
 require 'timeout'
 require 'active_support/time'
 require 'bundler/setup'
-require 'mcrypt'
+require 'mcrypt' unless RUBY_PLATFORM =~ /.*m(ingw|swin).*/
 require 'base64'
 
 # local libs
