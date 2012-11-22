@@ -5,11 +5,13 @@ require 'ingestrb'
 require 'json'
 require 'ingest_helpers'
 
-json = IngestHelpers.json_from_file("#{File.dirname(__FILE__) }/data.json")
+ihelper = IngestHelper.new
 
-host = IngestHelpers.get_host
+json = ihelper.json_from_file("#{File.dirname(__FILE__) }/data.json")
 
-json[host] = IngestHelpers.template unless json[host]
+host = ihelper.get_host
+
+json[host] = ihelper.template unless json[host]
 
 client = IngestRb.local_client do |client|
   client.extension = '.mp4'
@@ -75,4 +77,4 @@ json[host]['archive_hds'] = prodid
 p "results..."
 p json
 
-IngestHelpers.write_json("#{File.dirname(__FILE__) }/data.json", json)
+ihelper.write_json("#{File.dirname(__FILE__) }/data.json", json)
