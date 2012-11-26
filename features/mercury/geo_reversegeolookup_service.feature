@@ -2,7 +2,7 @@
 @not_local
 
 Feature: Geo reversegeolookup service
-  In order to geo-block content from outside the uk
+  In order to geo-block content from outside the UK
   As a Mobile Application
   I want to be able to query a reverselookup service to restrict ITV1 content to the correct broadcasters
 

@@ -33,7 +33,7 @@ end
 
 def set_client_and_vodcrid(platform)
   @playlist_client = @mercury_playlist.create_client
-  @unique = @vodcrid_helpers.get_unique_from_config(platform, "rtmpe")
+  @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
 end
 
 Given /^I request the Mercury playlist for (.*) with null additional parameters$/ do |platform|
@@ -54,7 +54,7 @@ Given /^I request the Mercury playlist for (.*) with null additional parameters$
       :VelocityLongitude => nil
   }
   set_client_and_vodcrid(platform)
-  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @unique, platform, @params)
+  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @vodcrid_helpers.production, platform, @params)
 end
 
 Given /^I request the Mercury playlist for (.*) with additional parameters in uppercase$/ do |platform|
@@ -75,7 +75,7 @@ Given /^I request the Mercury playlist for (.*) with additional parameters in up
       :VelocityLongitude => 'testvelocitylong'
   }
   set_client_and_vodcrid(platform)
-  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @unique, platform, @params)
+  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @vodcrid_helpers.production, platform, @params)
 end
 
 Given /^I request the Mercury playlist for (.*) with a subset of additional parameters$/ do |platform|
@@ -90,7 +90,7 @@ Given /^I request the Mercury playlist for (.*) with a subset of additional para
       :StreamType => 'RTMPE',
   }
   set_client_and_vodcrid(platform)
-  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @unique, platform, @params)
+  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @vodcrid_helpers.production, platform, @params)
 end
 
 Given /^I request the Mercury playlist for (.*) with additional parameters out of sequence$/ do |platform|
@@ -106,7 +106,7 @@ Given /^I request the Mercury playlist for (.*) with additional parameters out o
   }
   set_client_and_vodcrid(platform)
   begin
-    @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @unique, platform, @params)
+    @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @vodcrid_helpers.production, platform, @params)
   rescue => @e
   end
 end
@@ -129,7 +129,7 @@ Given /^I request the Mercury playlist for (.*) with additional parameters conta
       :VelocityLongitude => 'testvelocitylong'
   }
   set_client_and_vodcrid(platform)
-  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @unique, platform, @params)
+  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @vodcrid_helpers.production, platform, @params)
 end
 
 Given /^I request the Mercury playlist for (.*) with additional parameters over 100 characters long$/ do |platform|
@@ -150,7 +150,7 @@ Given /^I request the Mercury playlist for (.*) with additional parameters over 
       :VelocityLongitude => 'testvelocitylong'
   }
   set_client_and_vodcrid(platform)
-  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @unique, platform, @params)
+  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @vodcrid_helpers.production, platform, @params)
 end
 
 Given /^I request the Mercury playlist for (.*) with additional parameters$/ do |platform|
@@ -171,15 +171,15 @@ Given /^I request the Mercury playlist for (.*) with additional parameters$/ do 
       :VelocityLongitude => 'testvelocitylong'
   }
   set_client_and_vodcrid(platform)
-  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @unique, platform, @params)
+  @response = @mercury_playlist.playlist_request_with_android_params(@playlist_client, @vodcrid_helpers.production, platform, @params)
 end
 
 Given /^I request the Mercury playlist for (.*) without additional parameters$/ do |platform|
   set_client_and_vodcrid(platform)
   if platform == 'Mobile'
-    @response = @mercury_playlist.mobile_playlist_request(@playlist_client, @unique, platform)
+    @response = @mercury_playlist.mobile_playlist_request(@playlist_client, @vodcrid_helpers.production, platform)
   else
-    @response = @mercury_playlist.playlist_request(@playlist_client, @unique, platform)
+    @response = @mercury_playlist.playlist_request(@playlist_client, @vodcrid_helpers.production, platform)
   end
 end
 
@@ -270,7 +270,7 @@ Then /^the response should contain lowercase characters in the ad-server URL's$/
   validate_ad_calls(@response, @params)
 end
 
-Then /^the the response should be a SOAP Fault with an appropriate error message$/ do
+Then /^the the response should be a SOAP fault with an appropriate error message$/ do
   @params[:ScreenSize] = 'small'
   @params.delete :StreamType
   validate_ad_calls(@response, @params)

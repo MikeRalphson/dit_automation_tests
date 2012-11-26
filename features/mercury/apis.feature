@@ -1,11 +1,11 @@
 @sanity
 
 Feature: API and MRSS feeds
-  In order to generate front end features
+  In order to generate front-end features
   As a backend enabler
   I want to be able to provide appropriate API's
 
-  Scenario Outline: Verify API's across Dotcom
+  Scenario Outline: Verify API's across DotCom
 
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
@@ -34,7 +34,7 @@ Feature: API and MRSS feeds
     | json | DotCom   | episode/programme/254270              |
 
 
-  Scenario Outline: verify API's across PS3
+  Scenario Outline: Verify API's across PS3
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
 
@@ -53,7 +53,7 @@ Feature: API and MRSS feeds
     | xml  | PS3      | episode/Bydate/2012/02/01             |
 
 
-  Scenario Outline: verify API's across YouView
+  Scenario Outline: Verify API's across YouView
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
 
@@ -108,7 +108,7 @@ Feature: API and MRSS feeds
     | xml  | youview  | Programme/PerChannel/citv?broadcaster=unknown    |
 
 
-  Scenario Outline: verify API's across Samsung
+  Scenario Outline: Verify API's across Samsung
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
 
@@ -164,7 +164,7 @@ Feature: API and MRSS feeds
     | xml  | samsung  | Programme/PerChannel/citv?broadcaster=unknown             |
 
 
-  Scenario Outline: verify API's across Mobile
+  Scenario Outline: Verify API's across Mobile
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
 
@@ -191,7 +191,7 @@ Feature: API and MRSS feeds
     | xml  | mobile   | episode/mostwatched?broadcaster=channel&screensize=small   |
     | xml  | mobile   | episode/mostwatched?broadcaster=unknown&screensize=small   |
 
-  Scenario Outline: verify API's across Android
+  Scenario Outline: Verify API's across Android
     Given I request the <type> <platform> <uri> api
     Then I get a successful <type> response with the correct <platform>
 
@@ -241,7 +241,7 @@ Feature: API and MRSS feeds
     | xml  | samsung  | LastWeek |
 
 
-  Scenario Outline:  Verify A to Z feed across platforms
+  Scenario Outline: Verify A to Z feed across platforms
     Given I request the <type> <platform> <uri> api
     Then the response should contain a complete A-Z listing
 
@@ -250,15 +250,14 @@ Feature: API and MRSS feeds
     | xml  | samsung  | AToZ/ |
     | xml  | youview  | AToZ/ |
 
-#This test will fail on a monday because the code picks up Yesterdays content and there is no content is S01 for Sunday
+#This test will fail on a monday because the code picks up yesterdays content and there is no content in S01 for Sunday
 
   @flakey
   Scenario Outline: Verify MRSS feed
     Given I request the mrss api
     Then the response should contain the correct <title>
-    And all the links href should point to the drupal site
+    And all the links href should point to the Drupal site
 
   Examples:
     | title                 |
     | ITV Daily Change Feed |
-

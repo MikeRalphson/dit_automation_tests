@@ -2,10 +2,10 @@
 @not_local
 @not_rc3
 
-Feature: PDFT-2791 - Decrypted UserToken on playlist request
-  So that our HDS content is Secure and not open to hackers
+Feature: PDFT-2791 - Decrypted User Token on playlist request
+  So that our HDS content is secure and not open to hackers
   As Mercury
-  I want to Decrypt the Usertoken that is sent from the Drupal site and send the contents to Irdeto.
+  I want to decrypt the user token that is sent from the Drupal site and send the contents to Irdeto.
 
   Scenario Outline: Playlist request for catchup (not signed in)
     Given a user who is not signed in
@@ -77,10 +77,10 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
     | platform |
     | DotCom   |
 
-  Scenario Outline: Deserialization failure
+  Scenario Outline: Deserialisation failure
     Given a request for archive content containing a malformed JOSN UserToken
     When the user makes a initial <platform> playlist request for the archive content
-    Then the Deserialization failure error message is returned
+    Then the deserialisation failure error message is returned
 
   Examples:
     | platform |
@@ -107,7 +107,7 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
   Scenario Outline: User token not passed for Archive content
     Given a request for archive content without a UserToken
     When the user makes a initial <platform> playlist request for the archive content
-    Then the Content unavaliable for this platform error message is returned
+    Then the content unavailable for this platform error message is returned
 
   Examples:
     | platform |
@@ -116,11 +116,11 @@ Feature: PDFT-2791 - Decrypted UserToken on playlist request
   Scenario Outline: Playlist request for Archive content contenting a UserToken
     Given a user who is signed in
     When the user makes a <platform> playlist request for the archive content with a UserToken
-    Then the Content unavaliable for this platform error message is returned
+    Then the content unavailable for this platform error message is returned
 
   Examples:
     | platform |
-    #| Android  |
+    | Android  |
     | Mobile   |
     | Samsung  |
     | PS3      |

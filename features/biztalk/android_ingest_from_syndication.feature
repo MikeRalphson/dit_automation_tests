@@ -1,14 +1,14 @@
 @android_ingest
 
-Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
+Feature: AOIA-2 BizTalk ingest from Syndication & Net Storage
   So that BizTalk can consume metadata from RBM or Syndication for Android
   As ITV
-  I want BizTalk to accept the Android Platfrom
+  I want BizTalk to accept the Android Platform
 
   Scenario Outline: BizTalk processes correct metadata for all platforms
     Given I have metadata from Syndication for <platform>
     When I send metadata to BizTalk via <route>
-    And Biztalk validates the metadata
+    And BizTalk validates the metadata
     Then BizTalk will generate a success receipt
 
   Examples:
@@ -31,7 +31,7 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
     Given I have metadata from Syndication for <platform>
     And the metadata has a null filesize value
     When I send metadata to BizTalk via <route>
-    And Biztalk validates the metadata
+    And BizTalk validates the metadata
     Then BizTalk will generate a success receipt
 
   Examples:
@@ -54,7 +54,7 @@ Feature: AOIA-2 Biztalk ingest from Syndication & Netstorage
     Given I have metadata from Syndication for <platform>
     And the metadata has a null checksum value
     When I send metadata to BizTalk via <route>
-    And Biztalk validates the metadata
+    And BizTalk validates the metadata
     Then BizTalk will generate a success receipt
 
   Examples:

@@ -52,7 +52,7 @@ Then /^the response should contain the correct (.*)$/ do |title|
   end
 end
 
-Then /^all the links href should point to the drupal site$/ do
+Then /^all the links href should point to the Drupal site$/ do
   xml = @mercury_api.get_xml_from_response @response
   href = xml.xpath("//entry/link").each { |e| e["href"].should =~ /(http|https):\/\/\w{3,5}\.itv.com\/itvplayer\// }
 end

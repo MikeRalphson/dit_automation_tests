@@ -87,7 +87,7 @@ Feature: Mercury Additional Parameters
   @bug
   Scenario Outline: Mercury receives invalid request (additional params out of sequence)
     Given I request the Mercury playlist for <platform> with additional parameters out of sequence
-    Then the the response should be a SOAP Fault with an appropriate error message
+    Then the the response should be a SOAP fault with an appropriate error message
 
   Examples:
     | platform |

@@ -37,7 +37,7 @@ When /^I send metadata to BizTalk via (\w+)$/ do |route|
   end
 end
 
-When /^Biztalk validates the metadata$/ do
+When /^BizTalk validates the metadata$/ do
   @ftp ||= @ftp_library.create_ftp_connection("#{EnvConfig['ftp_host']}", "#{EnvConfig['ftp_login']}", "#{EnvConfig['ftp_password']}")
   @ftp.chdir "CatchUpAndArchive/MetadataFromSyndication" unless @ftp.pwd.match /MetadataFromSyndication$/
   Timeout::timeout(@timeout) { sleep 1 until (@ftp.nlst(@ftp.pwd).select { |f| f.match /#@platform.xml/ }).empty? }

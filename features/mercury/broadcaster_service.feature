@@ -326,7 +326,7 @@ Feature: Broadcaster API feeds
     | channel     | android  | ITV1    |
     | unknown     | android  | ITV1    |
 
-  Scenario Outline: Verify broadcast service for Android ignores screensize if provided
+  Scenario Outline: Verify broadcast service for Android ignores screen size if provided
     Given I request the content for <broadcaster> and <platform> with <screen size>
     Then the response should contain channel <content>
 
@@ -444,4 +444,3 @@ Feature: Broadcaster API feeds
     | unknown     | android  | big         | PROGRAMME INFO    |
     | unknown     | android  | big         | EPISODE INFO      |
     | unknown     | android  | big         | A - Z             |
-

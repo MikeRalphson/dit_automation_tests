@@ -80,12 +80,12 @@ Feature: Mercury Playlist Requests
     | YouView  | rtmpe |
 
   Scenario: Verify Freesat playlist request
-    Given I request a freesat Mercury playlist with vodcrid
+    Given I request a Freesat Mercury playlist with vodcrid
     Then I get the requested vodcrid in the response
 
   @not_local
   Scenario Outline: Verify correct Adverts for a Freesat playlist request
-    Given I request a freesat Mercury playlist with vodcrid
+    Given I request a Freesat Mercury playlist with vodcrid
     Then the advert URI should contain the correct <size> and <site>
 
   Examples:
