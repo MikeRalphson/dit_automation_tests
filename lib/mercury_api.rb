@@ -24,7 +24,7 @@ class MercuryApi
     # not sure how to do this more 'intelligently'
     case keys.length
       when 1
-        found_value = json[keys]
+        found_value = json[keys[0]]
       when 2
         found_value = json[keys[0]][keys[1]]
       when 3

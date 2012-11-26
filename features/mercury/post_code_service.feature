@@ -1,5 +1,7 @@
 @sanity
+@not_rc3
 @not_local
+@geo
 
 Feature: PostCode service
   In order to geo-block content from outside the UK
@@ -9,6 +11,7 @@ Feature: PostCode service
   Scenario Outline: Verify that the correct broadcaster value is returned
     Given I request the postcode service with the following <postcode>
     Then I should get the correct <broadcaster> returned
+    And the response should contain the "Access-Control-Allow-Origin" header
 
   Examples:
     | postcode | broadcaster |
@@ -37,3 +40,4 @@ Feature: PostCode service
     | postcode  |
     | cheese    |
     | jam butty |
+
