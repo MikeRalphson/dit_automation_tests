@@ -1,41 +1,28 @@
-Given /^I request the Mercury playlist with vodcrid and (\w+)$/ do |platform|
+Given /^I request the Mercury playlist for (\w+) and (\w+)$/ do |platform, media|
   @playlist_client = @mercury_playlist.create_client
-  @vodcrid = @vodcrid_helpers.get_vodcrid_from_config(platform)
+  @vodcrid_helpers.get_unique_from_config(platform, media)
   begin
-    @response = case platform
-                when /mobile/i then @mercury_playlist.mobile_playlist_request(@playlist_client, @vodcrid, platform)
-                else @mercury_playlist.playlist_request(@playlist_client, @vodcrid, platform)
-                end
+    @response = @mercury_playlist.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.unique, platform, media)
   rescue Savon::SOAP::Fault => error
     raise "#{error.message}. \nPerhaps the request has changed or the service is down?"
   end
 end
 
-Given /^I request the Mercury playlist from (.*) with vodcrid and (.*)$/ do |location, platform|
+Given /^I request the Mercury playlist from (.*) with vodcrid (.*) and (.*)$/ do |location, media, platform|
   @playlist_client = @mercury_playlist.create_client_with_location location
-  @vodcrid = @vodcrid_helpers.get_vodcrid_from_config(platform)
+  @vodcrid_helpers.get_unique_from_config(platform, media)
   begin
-    @response = case platform
-                when /mobile/i then @mercury_playlist.mobile_playlist_request(@playlist_client, @vodcrid, platform)
-                else @mercury_playlist.playlist_request(@playlist_client, @vodcrid, platform)
-                end
+    @response = @mercury_playlist.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.unique, platform, media)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
 end
 
-Given /^I request a (\w+) Mercury playlist with vodcrid$/ do |platform|
+Given /^I request a freesat Mercury playlist with vodcrid$/ do 
   @mercury_playlist.create_client
-  @vodcrid = @vodcrid_helpers.get_vodcrid_from_config(platform)
-  @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/#{platform}/playlist/#{@vodcrid}?t=playlistscreentoken"
+  @vodcrid_helpers.get_unique_from_config("freesat", "rtmpe")
+  @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/freesat/playlist/#{@vodcrid_helpers.unique}?t=playlistscreentoken"
   @response = @mercury_api.get_response_from_url @uri
-end
-
-Given /^I request the Mercury playlist for HDS content with (.*)$/ do |platform|
-  @playlist_client = @mercury_playlist.create_client
-  @prodid = @vodcrid_helpers.get_prodid_from_config("ManifestUrl")
-  @encrypted = generate_encrypted_usertoken(@prodid, @user_id, DateTime.now)
-  @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @prodid, @encrypted, platform)
 end
 
 Then /^I get the correct bitrate based on the (.*)$/ do |platform|
@@ -60,14 +47,18 @@ Then /^I get the correct ManifestFile url based on the (.*)$/ do |platfrom|
   manifest_url.should =~ /manifest.f4m/
 end
 
-Then /^I get the requested vodcrid$/ do
-  response_vodcrid = @response.xpath("//Vodcrid").text.match(/\d+$/).to_s
-  response_vodcrid.should match @vodcrid
+Then /^I get the requested id for (.*) and (.*)$/ do |platform, media|
+  if platform == 'DotCom'  
+    response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+(\/|#)\w+/).to_s
+  else 
+    response_vodcrid = @response.xpath("//Vodcrid").text.match(/\d+$/).to_s
+  end
+  response_vodcrid.should match @vodcrid_helpers.unique
 end
 
 Then /^I get the requested HDS prodid$/ do
   response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+/).to_s
-  response_vodcrid.should match @prodid
+  response_vodcrid.should match @vodcrid_helpers.unique
 end
 
 Then /^the expiry date is in the future$/ do
@@ -92,8 +83,11 @@ Then /^I get the expected (.*) status for that vodcrid$/ do |response|
   if @playlist_error
     raise "#{@playlist_error.message}. \nPerhaps the request has changed or the service is down?" unless @playlist_error.to_s.match /InvalidGeoRegion/
   end
-  @playlist_error.to_s.should match /InvalidGeoRegion/ if response == "blocked"
-  @response.xpath("//Vodcrid").text.should match @vodcrid if response == "success"
+  if response == "blocked"
+    @playlist_error.to_s.should match /InvalidGeoRegion/ 
+  else 
+    @mercury_playlist.response_contains_unique(@response, @vodcrid_helpers.unique, @vodcrid_helpers.type).should == true
+  end
 end
 
 Then /^the advert URI should contain the correct size$/ do
@@ -139,7 +133,7 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
 end
 
 Then /^I get the requested vodcrid in the response$/ do 
-  unless @mercury_api.value_exists_in_mhegdata? @response, /\/api\/mhegdata\/Freesat\/AuthorizeContent\/#{@vodcrid}\/\d{3}\?t=playlistscreentoken/
+  unless @mercury_api.value_exists_in_mhegdata? @response, /\/api\/mhegdata\/freesat\/AuthorizeContent\/#{@vodcrid_helpers.unique}\/\d{3}\?t=playlistscreentoken/
     raise 'AuthorizeContent url not found from your request' 
   end
 end
@@ -149,3 +143,4 @@ Then /^the advert URI should contain the correct (.*) and (.*)$/ do |size, site|
     raise 'Size and Site values are not found in the Advert url from your request' 
   end
 end
+
