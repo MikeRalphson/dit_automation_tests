@@ -44,13 +44,13 @@ Given /^has previously requested (.*) archive content$/ do |platform|
 end
 
 Given /^a request for archive content containing a mismatched production id in the UserToken$/ do
-  @encrypted = generate_encrypted_usertoken("2\/1400\/00?001","abcde", DateTime.now)
+  @encrypted = generate_encrypted_usertoken("2\/1400\/00?001", "abcde", DateTime.now)
 end
 
 When /^the user makes a initial (.*) playlist request for the archive content$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
   @unique = @vodcrid_helpers.get_unique_from_config(platform, "rtmpe")
-  begin 
+  begin
     @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @unique, @encrypted, platform)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
@@ -60,7 +60,7 @@ end
 When /^the user makes a subsequent (.*) playlist request for the archive content$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
   @unique = @vodcrid_helpers.get_unique_from_config(platform, "rtmpe")
-  begin 
+  begin
     @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @unique, @encrypted, platform)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
@@ -79,7 +79,7 @@ end
 
 When /^the user makes a subsequent (.*) playlist request for the catchup content$/ do |platform|
   @unique = @vodcrid_helpers.get_unique_from_config(platform, "rtmpe")
-  @encrypted = generate_encrypted_usertoken(@unique,"1237847", DateTime.now)
+  @encrypted = generate_encrypted_usertoken(@unique, "1237847", DateTime.now)
   @playlist_client = @mercury_playlist.create_client
   begin
     @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @unique, @encrypted, platform)
@@ -92,7 +92,7 @@ When /^the user makes a (.*) playlist request for the archive content with a Use
   @unique = @vodcrid_helpers.get_prodid_for_platform(platform, "f4m")
   @encrypted = generate_encrypted_usertoken(@unique, @user_id, DateTime.now)
   @playlist_client = @mercury_playlist.create_client
-  begin 
+  begin
     @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @unique, @encrypted, platform)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
@@ -102,7 +102,7 @@ end
 When /^the user makes a (.*) playlist request for the archive content without a UserToken$/ do |platform|
   @unique = @vodcrid_helpers.get_unique_from_config(platform, "rtmpe")
   @playlist_client = @mercury_playlist.create_client
-  begin 
+  begin
     @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @unique, @encrypted, platform)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
@@ -169,9 +169,8 @@ Then /^the Deserialization failure error message is returned$/ do
   end
 end
 
-Then /^the Content unavaliable for this platform error message is returned$/ do 
+Then /^the Content unavaliable for this platform error message is returned$/ do
   if @playlist_error
     raise "#{@playlist_error.message}. \nIs the request correct?" unless @playlist_error.to_s.include? "content is not available to this platform"
   end
 end
-

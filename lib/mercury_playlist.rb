@@ -6,22 +6,22 @@ class MercuryPlaylist
     end
   end
 
-  def playlist_request_for_platform (playlist_client, unique, platform, media) 
+  def playlist_request_for_platform (playlist_client, unique, platform, media)
     @encrypted = generate_encrypted_usertoken(unique, @user_id, DateTime.now)
     case platform
-      when /dotcom/i 
+      when /dotcom/i
         encrypted_playlist_request(playlist_client, unique, @encrypted, platform)
-      when /mobile/i 
+      when /mobile/i
         mobile_playlist_request(playlist_client, unique, platform)
-      else 
+      else
         playlist_request(playlist_client, unique, platform)
-      end
+    end
   end
 
   def response_contains_unique (response, unique, type)
-    if type == :vodcrid 
+    if type == :vodcrid
       response.xpath("//Vodcrid").text.include? unique
-    else 
+    else
       response.xpath("//ProductionId").text.include? unique
     end
   end
@@ -93,7 +93,7 @@ class MercuryPlaylist
               end
               xml.tem(:deviceInfo) do |xml|
                 deviceinfo.each do |k, v|
-                  xml.itv(k, v || { :'xsi:nil' => 'true' })
+                  xml.itv(k, v || {:'xsi:nil' => 'true'})
                 end
               end
             end
@@ -182,11 +182,11 @@ class MercuryPlaylist
 
   def playlist_namespaces
     {
-      "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
-      "xmlns:tem" => "http://tempuri.org/",
-      "xmlns:itv" => "http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types",
-      "xmlns:com" => "http://schemas.itv.com/2009/05/Common",
-      "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance" 
+        "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
+        "xmlns:tem" => "http://tempuri.org/",
+        "xmlns:itv" => "http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types",
+        "xmlns:com" => "http://schemas.itv.com/2009/05/Common",
+        "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
     }
   end
 

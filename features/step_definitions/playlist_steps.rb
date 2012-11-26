@@ -18,7 +18,7 @@ Given /^I request the Mercury playlist from (.*) with vodcrid (.*) and (.*)$/ do
   end
 end
 
-Given /^I request a freesat Mercury playlist with vodcrid$/ do 
+Given /^I request a freesat Mercury playlist with vodcrid$/ do
   @mercury_playlist.create_client
   @vodcrid_helpers.get_unique_from_config("freesat", "rtmpe")
   @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/freesat/playlist/#{@vodcrid_helpers.unique}?t=playlistscreentoken"
@@ -30,12 +30,12 @@ Then /^I get the correct bitrate based on the (.*)$/ do |platform|
   found_bitrates = found_bitrates.map { |node| node.attr("bitrate").to_i }
 
   expected_bitrates = case platform
-                      when /android/i then [150000, 300000, 400000, 600000, 800000, 1200000]
-                      when /samsung/i then [1200000]
-                      when /youview/i then [1200000]
-                      when /ps3/i then [800000]
-                      when /mobile/i then [400000]
-                      else [400000, 600000, 800000, 1200000]
+                        when /android/i then [150000, 300000, 400000, 600000, 800000, 1200000]
+                        when /samsung/i then [1200000]
+                        when /youview/i then [1200000]
+                        when /ps3/i then [800000]
+                        when /mobile/i then [400000]
+                        else [400000, 600000, 800000, 1200000]
                       end
 
   comparison = (found_bitrates.to_set ^ expected_bitrates.to_set)
@@ -48,9 +48,9 @@ Then /^I get the correct ManifestFile url based on the (.*)$/ do |platfrom|
 end
 
 Then /^I get the requested id for (.*) and (.*)$/ do |platform, media|
-  if platform == 'DotCom'  
+  if platform == 'DotCom'
     response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+(\/|#)\w+/).to_s
-  else 
+  else
     response_vodcrid = @response.xpath("//Vodcrid").text.match(/\d+$/).to_s
   end
   response_vodcrid.should match @vodcrid_helpers.unique
@@ -84,8 +84,8 @@ Then /^I get the expected (.*) status for that vodcrid$/ do |response|
     raise "#{@playlist_error.message}. \nPerhaps the request has changed or the service is down?" unless @playlist_error.to_s.match /InvalidGeoRegion/
   end
   if response == "blocked"
-    @playlist_error.to_s.should match /InvalidGeoRegion/ 
-  else 
+    @playlist_error.to_s.should match /InvalidGeoRegion/
+  else
     @mercury_playlist.response_contains_unique(@response, @vodcrid_helpers.unique, @vodcrid_helpers.type).should == true
   end
 end
@@ -110,13 +110,13 @@ Then /^the advert URI should contain the correct site based on the (.*)$/ do |pl
   @advert_uris ||= @response.xpath("//Action/URL")
   raise 'AdvertUrl is empty' if @advert_uris.empty?
   @advert_uris.each do |uri|
-  case platform
-    when /dotcom/i
-      (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv"
-    when /android/i
-      (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.mobile"
-    else 
-      (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.#{platform.downcase}"
+    case platform
+      when /dotcom/i
+        (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv"
+      when /android/i
+        (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.mobile"
+      else
+        (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.#{platform.downcase}"
     end
   end
 end
@@ -132,15 +132,15 @@ Then /^I get the correct video type based on the (.*)$/ do |platform|
   end
 end
 
-Then /^I get the requested vodcrid in the response$/ do 
+Then /^I get the requested vodcrid in the response$/ do
   unless @mercury_api.value_exists_in_mhegdata? @response, /\/api\/mhegdata\/freesat\/AuthorizeContent\/#{@vodcrid_helpers.unique}\/\d{3}\?t=playlistscreentoken/
-    raise 'AuthorizeContent url not found from your request' 
+    raise 'AuthorizeContent url not found from your request'
   end
 end
 
 Then /^the advert URI should contain the correct (.*) and (.*)$/ do |size, site|
   unless @mercury_api.value_exists_in_mhegdata? @response, ("size=#{size}\/.*\/site=#{site}\/")
-    raise 'Size and Site values are not found in the Advert url from your request' 
+    raise 'Size and Site values are not found in the Advert url from your request'
   end
 end
 

@@ -8,21 +8,20 @@ class VodcridHelpers
     elsif platform =~ /dotcom/i and media == "f4m"
       @type = :prodid
       @unique = "#{EnvConfig['hdsmanifest_prodid']}"
-    else 
+    else
       @type = :vodcrid
-      @unique = "#{EnvConfig['playlist_vodcrid']}" 
+      @unique = "#{EnvConfig['playlist_vodcrid']}"
     end
   end
-  
+
   def get_prodid_for_platform (platform, media)
-    if media == "f4m" #platform =~ /dotcom/i and media == "rtmpe"
+    if media == "f4m"
       @type = :prodid
       @unique = "#{EnvConfig['hdsmanifest_prodid']}"
-    else 
+    else
       @type = :vodcrid
-      @unique = "#{EnvConfig['playlist_prodid']}" 
+      @unique = "#{EnvConfig['playlist_prodid']}"
     end
 
   end
 end
-

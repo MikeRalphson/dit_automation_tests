@@ -24,7 +24,7 @@ module RequestUri
   def generate_token (json)
     crypto = Mcrypt.new(:tripledes, :ecb, 'VQMOYB5AlJLoB+gIkLuFdqKI', nil, :zeros)
     ciphertext = crypto.encrypt(json)
-    b64data = Base64.encode64(ciphertext).gsub("\n",'')
+    b64data = Base64.encode64(ciphertext).gsub("\n", '')
     #plaintext  = crypto.decrypt(ciphertext)
   end
 end

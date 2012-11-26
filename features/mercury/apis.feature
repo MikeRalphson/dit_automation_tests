@@ -250,12 +250,13 @@ Feature: API and MRSS feeds
     | xml  | samsung  | AToZ/ |
     | xml  | youview  | AToZ/ |
 
-    #This test will fail on a monday because the code picks up Yesterdays content and there is no content is S01 for Sunday
-@flakey
+#This test will fail on a monday because the code picks up Yesterdays content and there is no content is S01 for Sunday
+
+  @flakey
   Scenario Outline: Verify MRSS feed
     Given I request the mrss api
     Then the response should contain the correct <title>
-	And all the links href should point to the drupal site
+    And all the links href should point to the drupal site
 
   Examples:
     | title                 |

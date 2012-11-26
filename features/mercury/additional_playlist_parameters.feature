@@ -9,7 +9,7 @@ Feature: Mercury Additional Parameters
     Then the response should contain ad-server URL's with empty additional parameter values other than mandatory elements
 
   Examples:
-    | platform | 
+    | platform |
     | Android  |
 
   Scenario Outline: Mercury receives no additional parameters for Android
@@ -18,7 +18,7 @@ Feature: Mercury Additional Parameters
 
   Examples:
     | platform |
-    | Android  | 
+    | Android  |
 
   Scenario Outline: Mercury receives no additional parameters for platforms excluding Android
     Given I request the Mercury playlist for <platform> without additional parameters
@@ -26,7 +26,7 @@ Feature: Mercury Additional Parameters
 
   Examples:
     | platform |
-    | Mobile  |
+    | Mobile   |
 
   Scenario Outline: Mercury receives null additional parameters for platforms excluding Android
     Given I request the Mercury playlist for <platform> with null additional parameters
@@ -34,7 +34,7 @@ Feature: Mercury Additional Parameters
 
   Examples:
     | platform |
-    | Mobile  |
+    | Mobile   |
 
   Scenario Outline: Mercury receives additional parameters for platforms excluding Android
     Given I request the Mercury playlist for <platform> with additional parameters
@@ -42,7 +42,7 @@ Feature: Mercury Additional Parameters
 
   Examples:
     | platform |
-    | Mobile  |
+    | Mobile   |
 
   Scenario Outline: Mercury receives additional parameters for Android
     Given I request the Mercury playlist for <platform> with additional parameters
@@ -84,7 +84,7 @@ Feature: Mercury Additional Parameters
     | platform |
     | Android  |
 
-    @bug
+  @bug
   Scenario Outline: Mercury receives invalid request (additional params out of sequence)
     Given I request the Mercury playlist for <platform> with additional parameters out of sequence
     Then the the response should be a SOAP Fault with an appropriate error message
