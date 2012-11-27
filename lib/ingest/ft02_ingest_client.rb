@@ -21,5 +21,5 @@ client = IngestRb.client do |config|
   config.receipt_search_mins = 10
 end
 
-p IngestHelper.new.do_ingest(client, :ft02, '183124', true)
+p IngestHelper.new.do_ingest(client, :ft02, '183124', true, true)
 

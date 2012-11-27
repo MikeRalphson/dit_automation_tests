@@ -9,7 +9,7 @@ class IngestHelper
     @json[@host] = template unless @json[@host]
   end
 
-  def do_ingest(client, environment, android_dir, hds = false)
+  def do_ingest(client, environment, android_dir, irdeto = false, hds = false)
 
     setup_json_data
 
@@ -73,11 +73,11 @@ class IngestHelper
     p result = client.ingest
     @json[@host]['freesat'] = { client.prodid => result }
 
-    #DotCom - HDS
-    if hds
+    #DotCom - Irdeto RTMPE
+    if irdeto
       client.prodid = nil
       client.irdeto = true
-      client.hds = true
+      client.hds = false
       client.source = "#{File.dirname(__FILE__) }/assets/dotcomassets"
       client.platforms = [:dotcom]
       client.asset_extensions = ['mp4']
@@ -86,7 +86,15 @@ class IngestHelper
       client.metadata_receipt_location = "#{base_receipt_dir}/Irdeto/Metadata"
       client.asset_receipt_location = "#{base_receipt_dir}/Irdeto/Assets"
       p result = client.ingest
-      @json[@host]['archive_hds'] = { client.prodid => result }
+      @json[@host]['irdeto_catchup_f4m'] = { client.prodid => result }
+    end
+
+    #DotCom - Irdeto HDS
+    if hds
+      client.prodid = nil
+      client.hds = true
+      p result = client.ingest
+      @json[@host]['irdeto_catchup_rtmpe'] = { client.prodid => result }
     end
 
     write_json("#{File.dirname(__FILE__) }/#{@file}", @json)

@@ -22,4 +22,4 @@ client = IngestRb.client do |config|
   config.edgeserver_ftp_password = 'aCeAbTHUpgY5'
 end
 
-p IngestHelper.new.do_ingest(client, :s01, '183125', true)
+p IngestHelper.new.do_ingest(client, :s01, '183125', true, true)
