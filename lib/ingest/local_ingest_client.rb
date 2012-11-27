@@ -3,7 +3,7 @@ dir = File.dirname(__FILE__)
 $LOAD_PATH.unshift "#{dir}"
 require 'ingestrb'
 require 'json'
-require 'ingest_helpers'
+require 'ingest_helper'
 
 ihelper = IngestHelper.new
 
