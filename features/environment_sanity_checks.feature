@@ -1,6 +1,6 @@
-@sanity
 @not_local
 @not_rc3
+@flakey
 
 Feature: Bloom Servoces are started
   In order to validate a back-end release

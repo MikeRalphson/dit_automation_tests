@@ -49,15 +49,15 @@ end
 
 Then /^I get the requested id for (.*) and (.*)$/ do |platform, media|
   if platform == 'DotCom'
-    response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+(\/|#)\w+/).to_s
+    response_vodcrid = @response.xpath("//ProductionId").text
   else
-    response_vodcrid = @response.xpath("//Vodcrid").text.match(/\d+$/).to_s
+    response_vodcrid = @response.xpath("//Vodcrid").text
   end
   response_vodcrid.should match @vodcrid_helpers.production
 end
 
 Then /^I get the requested HDS prodid$/ do
-  response_vodcrid = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+/).to_s
+  response_vodcrid = @response.xpath("//ProductionId").text
   response_vodcrid.should match @vodcrid_helpers.production
 end
 
