@@ -21,9 +21,16 @@ module RequestUri
   end
 
   def generate_token (json)
-    crypto = Mcrypt.new(:tripledes, :ecb, 'VQMOYB5AlJLoB+gIkLuFdqKI', nil, :zeros)
-    ciphertext = crypto.encrypt(json)
-    b64data = Base64.encode64(ciphertext).gsub("\n", '')
-    #plaintext  = crypto.decrypt(ciphertext)
+    #CIPHER
+    des = OpenSSL::Cipher::Cipher.new('des-ede3')
+    des.key = 'VQMOYB5AlJLoB+gIkLuFdqKI'
+
+    #ENCRYPTION
+    block_length = 8
+    des.padding = 0
+    des.encrypt
+    json += "\0" until json.bytesize % block_length == 0
+    edata = des.update(json) + des.final
+    Base64.encode64(edata).gsub("\n",'')
   end
 end
