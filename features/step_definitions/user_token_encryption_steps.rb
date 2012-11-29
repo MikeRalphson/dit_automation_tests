@@ -111,31 +111,31 @@ end
 
 Then /^there is a valid playlist response for catchup content$/ do
   raise "unexpected error: #@playlist_error" if @playlist_error
-  response_production = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+(\/|#)\w+/).to_s
+  response_production = @response.xpath("//ProductionId").text
   response_production.should == @vodcrid_helpers.production
 end
 
 Then /^there is a valid playlist response for archive content$/ do
   raise "unexpected error: #@playlist_error" if @playlist_error
-  response_production = @response.xpath("//ProductionId").text.match(/\w+\/\w+\/\w+(\/|#)\w+/).to_s
+  response_production = @response.xpath("//ProductionId").text
   response_production.should == @vodcrid_helpers.production
 end
 
 Then /^the response should contain an Irdeto SessionId of 0$/ do
   raise "unexpected error: #@playlist_error" if @playlist_error
-  response_sessionid = @response.xpath("//SessionId").text.match(/\w+/).to_s
+  response_sessionid = @response.xpath("//SessionId").text
   response_sessionid.should =~ /0/
 end
 
 Then /^the response should contain a valid Irdeto SessionId$/ do
   raise "unexpected error: #@playlist_error" if @playlist_error
-  response_sessionid = @response.xpath("//SessionId").text.match(/\w+/).to_s
+  response_sessionid = @response.xpath("//SessionId").text
   response_sessionid.should_not == 0
 end
 
 Then /^the response should retain the Irdeto SessionId$/ do
   raise "unexpected error: #@playlist_error" if @playlist_error
-  response_sessionid = @response.xpath("//SessionId").text.match(/\w+/).to_s
+  response_sessionid = @response.xpath("//SessionId").text
   response_sessionid.should match @original_response_sessionid
 end
 
