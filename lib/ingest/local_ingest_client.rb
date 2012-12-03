@@ -38,7 +38,7 @@ p prodid = client.ingest
 json[host]['mobile'] = prodid
 
 client.prodid = prodid.first[0]
-client.bitrates = [150, 300, 600, 800, 1200]
+client.bitrates = [150, 300, 400, 600, 800, 1200]
 client.platforms = ['Android']
 client.filetype_unique = 'android'
 p prodid = client.ingest
