@@ -1,12 +1,16 @@
 Given /^I request the reversegeolookup service with the following (-*\d+\.\d+) & (-*\d+\.\d+)$/ do |latitude, longitude|
-  @original_uri = "#{EnvConfig['mercury_url']}/api/geo/reversegeolookup/#{latitude}/#{longitude}"
-  @response = open(@original_uri)
+  begin
+    @uri = "#{EnvConfig['mercury_url']}/api/geo/reversegeolookup/#{latitude}/#{longitude}"
+    @response = open(@uri)
+  rescue OpenURI::HTTPError => error
+    @error = error
+  end
 end
 
 Given /^I request the reversegeolookup service from outside the UK with (-*\d+\.\d+) & (-*\d+\.\d+)$/ do |latitude, longitude|
   begin
-    @original_uri = "#{EnvConfig['mercury_url']}/api/geo/reversegeolookup/#{latitude}/#{longitude}"
-    @response = open(@original_uri)
+    @uri = "#{EnvConfig['mercury_url']}/api/geo/reversegeolookup/#{latitude}/#{longitude}"
+    @response = open(@uri)
   rescue OpenURI::HTTPError => error
     @error = error
   end
@@ -14,8 +18,8 @@ end
 
 Given /^I request the geolookup for postcode service with the following (\d+\.\d+) & (-*\d+\.\d+)$/ do |latitude, longitude|
   begin
-    @original_uri = "#{EnvConfig['mercury_url']}/api/geo/reversegeopostcodelookup/#{latitude}/#{longitude}"
-    @response = open(@original_uri)
+    @uri = "#{EnvConfig['mercury_url']}/api/geo/reversegeopostcodelookup/#{latitude}/#{longitude}"
+    @response = open(@uri)
   rescue OpenURI::HTTPError => error
     @error = error
   end
