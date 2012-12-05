@@ -17,3 +17,11 @@ Then /^the response should not contain (.*)$/ do |content|
   xml = @mercury_api.get_xml_from_response @response
   raise 'invalid content found in response' if @mercury_api.value_exists_in_xml_node?(xml, "Title", content)
 end
+
+Then /^the masterfeed should contain the expected (.*)$/ do |links|
+  xml = @mercury_api.get_xml_from_response @response
+  link = xml.search("//Link")
+  result = link.find { |v| v.text.include? links }
+  raise "Cannot find value #{links}" unless result
+end
+
