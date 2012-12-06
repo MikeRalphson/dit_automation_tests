@@ -5,7 +5,7 @@ end
 Then /^I should get the correct (\w+) returned$/ do |broadcaster|
   begin
     json = @mercury_api.parse_json_response @client.response
-    unless @mercury_api.value_exists_in_json_hash? json, broadcaster, "RegionInfo", "Broadcaster"
+    unless @mercury_api.value_exists_in_json_hash? json, broadcaster, "Broadcaster"
       raise "could not find the expected broadcaster value: #{broadcaster} in the response for uri: #@uri"
     end
   rescue
@@ -15,14 +15,14 @@ end
 
 Then /^I should get a not found error$/ do
   json = @mercury_api.parse_json_response @client.response
-  unless @mercury_api.value_exists_in_json_hash? json, "NotFound", "Error", "Type"
+  unless @mercury_api.value_exists_in_json_hash? json, "NotFound", "Type"
     raise "incorrect error message returned: #{json}"
   end
 end
 
 Then /^I should get an invalid format error$/ do
   json = @mercury_api.parse_json_response @client.response
-  unless @mercury_api.value_exists_in_json_hash? json, "InvalidFormat", "Error", "Type"
+  unless @mercury_api.value_exists_in_json_hash? json, "InvalidFormat", "Type"
     raise "incorrect error message returned: #{json}"
   end
 end
