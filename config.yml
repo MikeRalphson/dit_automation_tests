@@ -44,7 +44,7 @@ rc3:
 i01:
     mercury_url:          'http://i01-mercury.itv.com'
     lithium_url:          'http://i01-lithium-news.itv.com'
-    bloom_status_url:     'http://bloomcms.itvint01.ads/internal/status/internal/status/api'
+    bloom_status_url:     'http://bloomcms.itvint01.ads/internal/status/api'
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '324074'
     #irdeto_catchup_rtmpe: '1/2292/0008/V'

@@ -26,6 +26,7 @@ require 'ftp_library'
 require 'xml_library'
 require 'request_helpers'
 require 'vodcrid_helpers'
+require 'http_client'
 
 include RequestUri
 

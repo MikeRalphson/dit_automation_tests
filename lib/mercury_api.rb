@@ -17,7 +17,7 @@ class MercuryApi
   end
 
   def get_response_from_url (url)
-    open(url) { |io| io.read }
+    HttpClient.new.get(url).response
   end
 
   def value_exists_in_json_hash? (json, expected_value, *keys)
