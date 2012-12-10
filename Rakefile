@@ -1,5 +1,6 @@
 require 'cucumber/rake/task'
 require 'cucumber/formatter/unicode'
+require 'rspec/core/rake_task'
 
 Cucumber::Rake::Task.new(:cucumber) do |task|
   task.cucumber_opts = "-f junit -o log/ -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@not_live -t ~@broadcaster"
@@ -41,5 +42,7 @@ task :local_ingest do
   $:.unshift(File.dirname(__FILE__) + '/lib')
   require 'ingest/local_ingest_client'
 end
+
+RSpec::Core::RakeTask.new(:spec)
 
 task :default => :cucumber
