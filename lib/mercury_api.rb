@@ -22,7 +22,7 @@ class MercuryApi
 
   def recursive_find(key, hash)
     hash.each do |k, v|
-      if k == key 
+      if k == key
         @found = v
         break
       elsif v.kind_of?(Hash)
