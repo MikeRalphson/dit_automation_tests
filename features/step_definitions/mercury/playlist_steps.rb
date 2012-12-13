@@ -26,8 +26,7 @@ Given /^I request a Freesat Mercury playlist with vodcrid$/ do
 end
 
 Then /^I get the correct bitrate based on the (.*)$/ do |platform|
-  found_bitrates = @response.xpath("//VideoEntries/Video/MediaFiles/MediaFile")
-  found_bitrates = found_bitrates.map { |node| node.attr("bitrate").to_i }
+  found_bitrates = @response.xpath("//VideoEntries/Video/MediaFiles/MediaFile").map { |node| node.attr("bitrate").to_i }
 
   expected_bitrates = case platform
                         when /android/i then [150000, 300000, 400000, 600000, 800000, 1200000]
@@ -144,3 +143,19 @@ Then /^the advert URI should contain the correct (.*) and (.*)$/ do |size, site|
   end
 end
 
+Then /^I get a single .mp4 sting with a bitrate of 0$/ do
+  @response.xpath("//Sting/Video/MediaFiles/MediaFile/URL").text.should match /\.mp4$/i
+  @response.xpath("//Sting/Video/MediaFiles/MediaFile").attr("bitrate").text.should == "0"
+end
+
+Then /^I get a single .ts sting with a bitrate of 0$/ do
+  @response.xpath("//Sting/Video/MediaFiles/MediaFile/URL").text.should match /\.ts$/i
+  @response.xpath("//Sting/Video/MediaFiles/MediaFile").attr("bitrate").text.should == "0"
+end
+
+Then /^I get two .mp4 stings with bitrates of 300 and 600$/ do
+  stings = @response.xpath("//Sting/Video/MediaFiles/MediaFile/URL").map { |s| s.text }
+  stings.each { |sting| sting.should match /\.mp4$/ }
+  bitrates = [1, 2].map { |i| @response.xpath("//Sting/Video/MediaFiles/MediaFile[#{i}]").attr("bitrate").text }
+  bitrates.to_a.sort.should == %w(300000 600000)
+end

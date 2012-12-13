@@ -91,3 +91,30 @@ Feature: Mercury Playlist Requests
   Examples:
     | size         | site        |
     | videofreesat | itv.freesat |
+
+  Scenario Outline: Sting verification for non-Android and non-YouView platforms
+    Given I request the Mercury playlist for <platform> and <media>
+    Then I get a single .mp4 sting with a bitrate of 0
+
+  Examples:
+    | platform | media |
+    | DotCom   | rtmpe |
+    | Mobile   | rtmpe |
+    | Samsung  | rtmpe |
+    | PS3      | rtmpe |
+
+  Scenario Outline: Sting verification for YouView
+    Given I request the Mercury playlist for <platform> and <media>
+    Then I get a single .ts sting with a bitrate of 0
+
+  Examples:
+    | platform | media |
+    | YouView  | rtmpe |
+
+  Scenario Outline: Sting verification for Android
+    Given I request the Mercury playlist for <platform> and <media>
+    Then I get two .mp4 stings with bitrates of 300 and 600
+
+  Examples:
+    | platform | media |
+    | Android  | rtmpe |
