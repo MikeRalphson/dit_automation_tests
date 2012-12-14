@@ -9,7 +9,7 @@ class IngestHelper
     @json[@host] = template unless @json[@host]
   end
 
-  def do_ingest(client, environment, android_dir, irdeto = false, hds = false)
+  def do_ingest(client, environment, android_dir, irdeto = false)
 
     setup_json_data
 
@@ -77,7 +77,6 @@ class IngestHelper
     if irdeto
       client.prodid = nil
       client.irdeto = true
-      client.hds = false
       client.source = "#{File.dirname(__FILE__) }/assets/dotcomassets"
       client.platforms = [:dotcom]
       client.asset_extensions = ['mp4']
@@ -86,15 +85,14 @@ class IngestHelper
       client.metadata_receipt_location = "#{base_receipt_dir}/Irdeto/Metadata"
       client.asset_receipt_location = "#{base_receipt_dir}/Irdeto/Assets"
       p result = client.ingest
-      @json[@host]['irdeto_catchup_f4m'] = { client.prodid => result }
-    end
-
-    #DotCom - Irdeto HDS
-    if hds
-      client.prodid = nil
-      client.hds = true
-      p result = client.ingest
       @json[@host]['irdeto_catchup_rtmpe'] = { client.prodid => result }
+
+      #TODO: enable once work on DN-245 has been completed
+      #DotCom - Irdeto HDS
+      #client.source = "#{File.dirname(__FILE__) }/assets/hdsassets"
+      #client.prodid = nil
+      #p result = client.ingest
+      #@json[@host]['irdeto_catchup_hds'] = { client.prodid => result }
     end
 
     write_json("#{File.dirname(__FILE__) }/#{@file}", @json)
@@ -111,8 +109,8 @@ class IngestHelper
     { "dotcom"=>"", "mobile"=>"",
       "samsung"=>"", "ps3"=>"",
       "youview"=>"", "freesat"=>"",
-      "android"=>"", "archive_rtmpe"=>"",
-      "archive_hds"=>"" }
+      "android"=>"", "irdeto_catchup_rtmpe"=>"",
+      "irdeto_archive_hds"=>"" }
   end
 
   def get_host
