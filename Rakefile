@@ -38,6 +38,10 @@ Cucumber::Rake::Task.new(:geo) do |task|
   task.cucumber_opts = %w(-f pretty -t @geo -t ~@bug -t ~@not_live)
 end
 
+Cucumber::Rake::Task.new(:stings) do |task|
+  task.cucumber_opts = %w(-f pretty -t @stings)
+end
+
 task :local_ingest do
   $:.unshift(File.dirname(__FILE__) + '/lib')
   require 'ingest/local_ingest_client'
