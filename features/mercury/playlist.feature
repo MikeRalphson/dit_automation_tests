@@ -23,6 +23,7 @@ Feature: Mercury Playlist Requests
     | YouView  | rtmpe |
 
   @not_local
+  @irdeto
   Scenario Outline: Verify a HDS playlist request that contains a manifest url
     Given I request the Mercury playlist for <platform> and <media>
     Then I get the requested HDS prodid
@@ -48,6 +49,7 @@ Feature: Mercury Playlist Requests
     | YouView  | 10.192.42.109 | success  | rtmpe |
 
   @not_local
+  @not_rc3
   Scenario Outline: Geo-blocking for Mercury playlists status blocked
     Given I request the Mercury playlist from <location> with vodcrid <media> and <platform>
     Then I get the expected <response> status for that vodcrid

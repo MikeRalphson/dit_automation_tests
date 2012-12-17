@@ -22,9 +22,9 @@ test:
     non_pay_metadata:     'http://s01-onramp.itv.com/Metadata/CatchupAndArchive.meta'
     irdeto_pay_metadata:  'http://s01-onramp.itv.com/Metadata/CatchupAndArchivePay.meta'
     temp_folder:          '/tmp/mdr'
-    playlist_vodcrid:     '303548'
-    irdeto_catchup_rtmpe: '1/8694/6377#001'
-    irdeto_archive_f4m:   '1/700084/34b5ff8a05eb480a9d04d6bf032e46a'
+    playlist_vodcrid:     '328120'
+    irdeto_catchup_rtmpe: '1/805537/320d95e6185e448abcf7e856efb6236e#001'
+    irdeto_archive_f4m:   '1/172441/be45de243d2347e58a0cee3b01aa58f'
     user_id:              '1237847'
 rc3:
     mercury_url:          'http://mercury.rc3.itv.com'
@@ -37,9 +37,9 @@ rc3:
     non_pay_metadata:     'http://89.151.100.137:8080/Metadata/CatchupAndArchive.meta'
     irdeto_pay_metadata:  ''
     temp_folder:          '/tmp/mdr'
-    playlist_vodcrid:     '255854'
+    playlist_vodcrid:     '255867'
     irdeto_catchup_rtmpe: '1/867790/74cda82cbe8f40da951e9a6229e6bdf9#001'
-    irdeto_archive_f4m:   '1/700434/13666cdfecb940a786045a980b807d00#001'
+    irdeto_archive_f4m:   '1/7045/0059#001'
     user_id:              '1237847'
 i01:
     mercury_url:          'http://i01-mercury.itv.com'
@@ -61,4 +61,3 @@ live:
     irdeto_catchup_rtmpe: '1/8697/0022#001'
     irdeto_archive_f4m:   '1/700434/13666cdfecb940a786045a980b807d00#001'
     user_id:              '1200432'
-
