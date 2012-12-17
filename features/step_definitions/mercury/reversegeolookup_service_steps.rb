@@ -12,9 +12,7 @@ end
 
 Then /^I should get the correct (\w+) returned from the postcode service$/ do |broadcaster|
   json = @mercury_api.parse_json_response @client.response
-  unless @mercury_api.value_exists_in_json_hash? json, broadcaster, "Broadcaster"
-    raise "could not find the expected broadcaster value: #{broadcaster} in the response for uri: #@uri"
-  end
+  @mercury_api.find_value_in_hash("Broadcaster", json).should == broadcaster
 end
 
 Then /^I expect to see a 500 Internal Server Error$/ do
@@ -27,10 +25,9 @@ end
 
 Then /^I should get the correct (.*) returned from the geolookup postcode service$/ do |postcode|
   json = @mercury_api.parse_json_response @client.response
-  @mercury_api.value_exists_in_json_hash? json, postcode, "Postcode"
+  @mercury_api.find_value_in_hash("Postcode", json).should == postcode
 end
 
 Then /^the response should contain the "(.*)" header$/ do |header|
   @client.response_header(header).should == '*'
 end
-

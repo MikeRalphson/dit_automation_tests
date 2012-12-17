@@ -9,21 +9,21 @@ describe "the Mercury API library" do
     @mercury = MercuryApi.new
   end
 
-  describe "the recursive_find method"
+  describe "the find_value_in_hash method"
 
   it "should find a simple hash value" do
     hash = {:first => 'ben', :last => 'snape'}
-    @mercury.recursive_find(:last, hash).should == 'snape'
+    @mercury.find_value_in_hash(:last, hash).should == 'snape'
   end
 
   it "should find a nested hash value" do
     hash = {:person => {:title => 'mr', :name => {:first => 'ben', :last => 'snape'}, :interests => 'football'}}
-    @mercury.recursive_find(:first, hash).should == 'ben'
+    @mercury.find_value_in_hash(:first, hash).should == 'ben'
   end
 
   it "should find a value after a nested hash" do
     hash = {:person => {:title => 'mr', :name => {:first => 'ben', :last => 'snape'}, :interests => 'football'}}
-    @mercury.recursive_find(:interests, hash).should == 'football'
+    @mercury.find_value_in_hash(:interests, hash).should == 'football'
   end
 
   describe "the get_response_from_url method"
