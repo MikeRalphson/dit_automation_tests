@@ -13,16 +13,14 @@ Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, plat
   case type
     when 'xml'
       xml = @mercury_api.get_xml_from_response @response
-      unless @mercury_api.value_exists_in_xml_node? xml, "Value", platform
+      unless @mercury_api.value_exists_in_xml_node?(xml, "Value", platform)
         raise "could not find the correct platform value: #{platform} in the response for uri: #@uri"
       end
     when 'json'
       json = @mercury_api.parse_json_response @response
-      unless @mercury_api.value_exists_in_json_hash? json, platform, "Platform"
-        raise "could not find the correct platform value: #{platform} in the response for uri: #@uri"
-      end
+      @mercury_api.find_value_in_hash("Platform", json).should == platform
     when 'mhegdata'
-      unless @mercury_api.value_exists_in_mhegdata? @response, @uri
+      unless @mercury_api.value_exists_in_mhegdata?(@response, @uri)
         raise "could not find the correct uri value: #@uri in the response for uri: #@uri"
       end
     else
@@ -47,7 +45,7 @@ end
 
 Then /^the response should contain the correct (.*)$/ do |title|
   xml = @mercury_api.get_xml_from_response @response
-  unless @mercury_api.value_exists_in_xml_node? xml, "title", title
+  unless @mercury_api.value_exists_in_xml_node?(xml, "title", title)
     raise 'error with mrss feed'
   end
 end

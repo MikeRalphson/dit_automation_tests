@@ -20,21 +20,16 @@ class MercuryApi
     HttpClient.new.get(url).response
   end
 
-  def recursive_find(key, hash)
+  def find_value_in_hash(key, hash)
     hash.each do |k, v|
       if k == key
         @found = v
         break
       elsif v.kind_of?(Hash)
-        recursive_find(key, v)
+        find_value_in_hash(key, v)
       end
     end
     @found
-  end
-
-  def value_exists_in_json_hash? (json, value, key)
-    found = recursive_find(key, json)
-    found.casecmp(value)
   end
 
   def parse_json_response (response)
