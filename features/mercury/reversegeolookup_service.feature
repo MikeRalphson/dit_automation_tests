@@ -38,6 +38,6 @@ Feature: Geo reversegeolookup service
   Examples:
     | latitude  | longitude | postcode |
     | 51.544211 | -0.227743 | NW102RN  |
-    | 51.507732 | -0.111514 | SE19LT   |
-    | 52.501584 | 1.117733  | NR161AB  |
+    | 51.507732 | -0.111514 | SE19     |
+    | 52.501584 | 1.117733  | NR161    |
     | 53.776817 | -2.255116 | BB114HD  |

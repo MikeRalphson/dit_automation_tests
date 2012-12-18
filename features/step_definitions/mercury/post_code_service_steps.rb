@@ -2,6 +2,10 @@ Given /^I request the postcode service with the following (.+)$/ do |postcode|
   @client = HttpClient.new.get(URI.parse("#{EnvConfig['mercury_url']}/api/json/postcode/#{postcode.gsub(/\s+/, "")}"))
 end
 
+Given /^I request the postcode service with a partial (.+)$/ do |postcode|
+  @client = HttpClient.new.get(URI.parse("#{EnvConfig['mercury_url']}/api/json/postcode/#{postcode.gsub(/\s+/, "")}"))
+end
+
 Then /^I should get the correct (\w+) returned$/ do |broadcaster|
   json = @mercury_api.parse_json_response @client.response
   @mercury_api.find_value_in_hash("Broadcaster", json).should == broadcaster
