@@ -2,7 +2,7 @@ Given /^I request the Mercury playlist for (\w+) and (\w+)$/ do |platform, media
   @playlist_client = @mercury_playlist.create_client
   @vodcrid_helpers.set_production_from_config(platform, media)
   begin
-    @response = @mercury_playlist.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.production, platform, media)
+    @response = @mercury_playlist.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.production, platform)
   rescue Savon::SOAP::Fault => error
     raise "#{error.message}. \nPerhaps the request has changed or the service is down?"
   end
@@ -12,7 +12,7 @@ Given /^I request the Mercury playlist from (.*) with vodcrid (.*) and (.*)$/ do
   @playlist_client = @mercury_playlist.create_client_with_location location
   @vodcrid_helpers.set_production_from_config(platform, media)
   begin
-    @response = @mercury_playlist.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.production, platform, media)
+    @response = @mercury_playlist.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.production, platform)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
