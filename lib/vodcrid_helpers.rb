@@ -8,6 +8,12 @@ class VodcridHelpers
     elsif platform =~ /dotcom/i and media == "f4m"
       @type = :prodid
       @production = "#{EnvConfig['irdeto_archive_f4m']}"
+    elsif platform !~ /dotcom/i and media =~ /itv/i
+      @type = :vodcrid
+      @production = "#{EnvConfig["#{media.downcase}_vodcrid"]}"
+    elsif platform =~ /dotcom/i and media =~ /itv/i
+      @type = :production
+      @production = "#{EnvConfig["#{media.downcase}_production"]}"
     else
       @type = :vodcrid
       @production = "#{EnvConfig['playlist_vodcrid']}"
