@@ -15,6 +15,7 @@ class HttpClient
     begin
       @client = @headers ? open(url, @headers) : open(url)
     rescue OpenURI::HTTPError => @error
+      puts "Error encountered #{@error}"
     end
     self
   end
