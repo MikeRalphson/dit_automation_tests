@@ -1,7 +1,6 @@
 @sanity
 @not_rc3
 @not_local
-@geo
 
 Feature: PostCode service
   In order to geo-block content from outside the UK

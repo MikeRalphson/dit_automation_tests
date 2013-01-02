@@ -1,11 +1,11 @@
 # config/cucumber.yml
 ##YAML Template
 ---
-default: -r features -f pretty -f junit -o log/ -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug
-rc3: -r features -f pretty -f junit -o log/ -t ~@not_rc3 -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto
-test: -r features -f pretty -f junit -o log/ -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto
-local: -r features -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@not_local -t ~@bug -t ~@broadcaster
-sanity: -r features -f pretty -f junit -o log/ -t @sanity -t ~@android_ingest -t ~@flakey -t ~@manual -t ~@bug
+default: -r features -f pretty -f junit -o log/ -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@geo
+rc3: -r features -f pretty -f junit -o log/ -t ~@not_rc3 -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@geo
+test: -r features -f pretty -f junit -o log/ -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@geo
+local: -r features -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@not_local -t ~@bug -t ~@broadcaster -t ~@geo
+sanity: -r features -f pretty -f junit -o log/ -t @sanity -t ~@android_ingest -t ~@flakey -t ~@manual -t ~@bug -t ~@geo
 wip: -r features -f pretty -t @wip -t ~@manual -t ~@bug
 bug: -r features -f pretty -t @bug
 android: -r features -f pretty -t @android_ingest -t ~@bug
