@@ -13,62 +13,66 @@ host = ihelper.get_host
 
 json[host] = ihelper.template unless json[host]
 
-client = IngestRb.local_client do |client|
-  client.extension = '.mp4'
-  client.bitrates = [400, 600, 800, 1200]
-  client.platforms = ['DotCom']
-  client.licence = 'First TX'
-end
+std_opts = {
+  :extension => '.mp4',
+  :bitrates => [400, 600, 800, 1200],
+  :platforms => ['DotCom'],
+  :licence => 'First TX'
+}
 
-hds_client = IngestRb.local_client do |client|
-  client.extension = '.manifest.f4m'
-  client.platforms = ['DotCom']
-  client.licence = 'Fixed Dates'
-  client.pay = :hds
-end
+client = IngestRb::LocalClient(std_opts)
 
-p prodid = client.ingest
+hds_opts = {
+  :extension => '.manifest.f4m',
+  :platforms => ['DotCom'],
+  :licence => 'Fixed Dates',
+  :pay => :hds
+}
+
+hds_client = IngestRb::LocalClient(hds_opts)
+
+p prodid = client.options[:ingest
 json[host]['dotcom'] = prodid
 
-client.prodid = prodid.first[0]
-client.bitrates = [400]
-client.platforms = ['Mobile']
-client.filetype_unique = 'mob'
-p prodid = client.ingest
+client.options[:prodid = prodid.first[0]
+client.options[:bitrates = [400]
+client.options[:platforms = ['Mobile']
+client.options[:filetype_unique = 'mob'
+p prodid = client.options[:ingest
 json[host]['mobile'] = prodid
 
-client.prodid = prodid.first[0]
-client.bitrates = [150, 300, 400, 600, 800, 1200]
-client.platforms = ['Android']
-client.filetype_unique = 'android'
-p prodid = client.ingest
+client.options[:prodid = prodid.first[0]
+client.options[:bitrates = [150, 300, 400, 600, 800, 1200]
+client.options[:platforms = ['Android']
+client.options[:filetype_unique = 'android'
+p prodid = client.options[:ingest
 json[host]['android'] = prodid
 
-client.prodid = prodid.first[0]
-client.bitrates = [1200]
-client.platforms = ['Samsung']
-client.filetype_unique = 'reg'
-p prodid = client.ingest
+client.options[:prodid = prodid.first[0]
+client.options[:bitrates = [1200]
+client.options[:platforms = ['Samsung']
+client.options[:filetype_unique = 'reg'
+p prodid = client.options[:ingest
 json[host]['samsung'] = prodid
 
-client.prodid = prodid.first[0]
-client.bitrates = [800]
-client.platforms = ['PS3']
-p prodid = client.ingest
+client.options[:prodid = prodid.first[0]
+client.options[:bitrates = [800]
+client.options[:platforms = ['PS3']
+p prodid = client.options[:ingest
 json[host]['ps3'] = prodid
 
-client.prodid = prodid.first[0]
-client.bitrates = [800]
-client.platforms = ['Freesat']
-client.extension = '.ts'
-p prodid = client.ingest
+client.options[:prodid = prodid.first[0]
+client.options[:bitrates = [800]
+client.options[:platforms = ['Freesat']
+client.options[:extension = '.ts'
+p prodid = client.options[:ingest
 json[host]['freesat'] = prodid
 
-client.prodid = prodid.first[0]
-client.bitrates = [1200]
-client.extension = '.bbts'
-client.platforms = ['YouView']
-p prodid = client.ingest
+client.options[:prodid = prodid.first[0]
+client.options[:bitrates = [1200]
+client.options[:extension = '.bbts'
+client.options[:platforms = ['YouView']
+p prodid = client.options[:ingest
 json[host]['youview'] = prodid
 
 p prodid = hds_client.ingest

@@ -9,7 +9,15 @@ class IngestHelper
     @json[@host] = template unless @json[@host]
   end
 
-  def do_ingest(client, environment, android_dir, irdeto = false)
+  def fresh_ingest(opts, key = nil)
+    client = IngestRb::FTPClient.new(opts)
+    puts result = client.ingest
+    key ||= opts[:platform].to_s
+    @json[@host][key] = { client.prodid => result }
+    client.prodid
+  end
+
+  def do_ingest(opts, environment, android_dir, irdeto = false)
 
     setup_json_data
 
@@ -22,77 +30,79 @@ class IngestHelper
     end
 
     #DotCom
-    p result = client.ingest
-    @json[@host]['dotcom'] = { client.prodid => result }
+    opts[:platform] = :dotcom
+    opts[:source] = "#{File.dirname(__FILE__) }/assets/dotcomassets"
+    opts[:metadata_destination] = "#{base_asset_dir}/MetadataFromSyndication"
+    opts[:asset_destination] = "#{base_asset_dir}/Assets/Dotcom"
+    opts[:metadata_receipt_location] = "#{base_receipt_dir}/MetadataReceipts"
+    opts[:asset_receipt_location] = "#{base_receipt_dir}/ITV/Dotcom"
+    prodid = fresh_ingest opts
 
     #Mobile
-    client.platforms = [:mobile]
-    p client.source = "#{File.dirname(__FILE__) }/assets/mobileassets"
-    client.asset_receipt_location = "#{base_receipt_dir}/ITV/Mobile"
-    p result = client.ingest
-    @json[@host]['mobile'] = { client.prodid => result }
+    opts[:prodid] = prodid
+    opts[:platform] = :mobile
+    opts[:source] = "#{File.dirname(__FILE__) }/assets/mobileassets"
+    opts[:asset_receipt_location] = "#{base_receipt_dir}/ITV/Mobile"
+    prodid = fresh_ingest opts
 
     #Samsung
-    client.platforms = [:samsung]
-    client.source = "#{File.dirname(__FILE__) }/assets/samsung"
-    client.asset_receipt_location = "#{base_receipt_dir}/ITV/Samsung"
-    p result = client.ingest
-    @json[@host]['samsung'] = { client.prodid => result }
+    opts[:prodid] = prodid
+    opts[:platform] = :samsung
+    opts[:source] = "#{File.dirname(__FILE__) }/assets/samsung"
+    opts[:asset_receipt_location] = "#{base_receipt_dir}/ITV/Samsung"
+    prodid = fresh_ingest opts
 
     #PS3
-    client.platforms = [:ps3]
-    client.source = "#{File.dirname(__FILE__) }/assets/ps3assets"
-    client.asset_receipt_location = "#{base_receipt_dir}/ITV/PS3"
-    p result = client.ingest
-    @json[@host]['ps3'] = { client.prodid => result }
+    opts[:prodid] = prodid
+    opts[:platform] = :ps3
+    opts[:source] = "#{File.dirname(__FILE__) }/assets/ps3assets"
+    opts[:asset_receipt_location] = "#{base_receipt_dir}/ITV/PS3"
+    prodid = fresh_ingest opts
 
     #Android
-    client.android = true
-    client.platforms = [:android]
-    client.source = "#{File.dirname(__FILE__) }/assets/android"
-    client.asset_destination = "/#{android_dir}/priority/test"
-    p result = client.ingest
-    client.android = false #Fix having to do this
-    @json[@host]['android'] = { client.prodid => result }
+    opts[:prodid] = prodid
+    opts[:platform] = :android
+    opts[:source] = "#{File.dirname(__FILE__) }/assets/android"
+    opts[:asset_destination] = "/#{android_dir}/priority/test"
+    prodid = fresh_ingest opts
 
     #YouView 
-    client.asset_extensions = ['ts']
-    client.platforms = [:youview]
-    client.source = "#{File.dirname(__FILE__) }/assets/youview"
-    client.asset_destination = "#{base_asset_dir}/Assets/YouView"
-    client.asset_receipt_location = "#{base_receipt_dir}/ITV/YouView"
-    p result = client.ingest
-    @json[@host]['youview'] = { client.prodid => result }
+    opts[:prodid] = prodid
+    opts[:asset_extension] = 'ts'
+    opts[:platform] = :youview
+    opts[:source] = "#{File.dirname(__FILE__) }/assets/youview"
+    opts[:asset_destination] = "#{base_asset_dir}/Assets/YouView"
+    opts[:asset_receipt_location] = "#{base_receipt_dir}/ITV/YouView"
+    prodid = fresh_ingest opts
 
     #Freesat
-    client.asset_extensions = ['ts']
-    client.platforms = [:freesat]
-    client.source = "#{File.dirname(__FILE__) }/assets/freesat"
-    client.asset_destination = "#{base_asset_dir}/Assets/Freesat"
-    client.asset_receipt_location = "#{base_receipt_dir}/ITV/Freesat"
-    p result = client.ingest
-    @json[@host]['freesat'] = { client.prodid => result }
+    opts[:prodid] = prodid
+    opts[:asset_extension] = 'ts'
+    opts[:platform] = :freesat
+    opts[:source] = "#{File.dirname(__FILE__) }/assets/freesat"
+    opts[:asset_destination] = "#{base_asset_dir}/Assets/Freesat"
+    opts[:asset_receipt_location] = "#{base_receipt_dir}/ITV/Freesat"
+    prodid = fresh_ingest opts
 
     #DotCom - Irdeto RTMPE
     if irdeto
-      client.prodid = nil
-      client.irdeto = true
-      client.source = "#{File.dirname(__FILE__) }/assets/dotcomassets"
-      client.platforms = [:dotcom]
-      client.asset_extensions = ['mp4']
-      client.metadata_destination = "#{base_asset_dir}/MetadataFromSyndicationToBeEnhanced"
-      client.asset_destination = "#{base_asset_dir}/Assets/Dotcom"
-      client.metadata_receipt_location = "#{base_receipt_dir}/Irdeto/Metadata"
-      client.asset_receipt_location = "#{base_receipt_dir}/Irdeto/Assets"
-      p result = client.ingest
-      @json[@host]['irdeto_catchup_rtmpe'] = { client.prodid => result }
+      opts[:prodid] = nil
+      opts[:irdeto] = true
+      opts[:source] = "#{File.dirname(__FILE__) }/assets/dotcomassets"
+      opts[:platform] = :dotcom
+      opts[:asset_extension] = 'mp4'
+      opts[:metadata_destination] = "#{base_asset_dir}/MetadataFromSyndicationToBeEnhanced"
+      opts[:asset_destination] = "#{base_asset_dir}/Assets/Dotcom"
+      opts[:metadata_receipt_location] = "#{base_receipt_dir}/Irdeto/Metadata"
+      opts[:asset_receipt_location] = "#{base_receipt_dir}/Irdeto/Assets"
+      prodid = fresh_ingest(opts, 'irdeto_catchup_rtmpe')
 
       #TODO: enable once work on DN-245 has been completed
       #DotCom - Irdeto HDS
-      #client.source = "#{File.dirname(__FILE__) }/assets/hdsassets"
-      #client.prodid = nil
-      #p result = client.ingest
-      #@json[@host]['irdeto_catchup_hds'] = { client.prodid => result }
+      #opts[:source] = "#{File.dirname(__FILE__) }/assets/hdsassets"
+      #opts[:prodid] = nil
+      #opts[:hds] = true #needs implementing in ingestrb
+      #prodid = fresh_ingest(opts, 'irdeto_catchup_hds')
     end
 
     write_json("#{File.dirname(__FILE__) }/#{@file}", @json)
