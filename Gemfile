@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "savon"
+gem "savon", "<2.0"
 gem "cucumber"
 gem "rspec-expectations"
 gem "rake"

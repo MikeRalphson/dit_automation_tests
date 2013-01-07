@@ -16,6 +16,7 @@ require 'timeout'
 require 'active_support/time'
 require 'bundler/setup'
 require 'base64'
+require 'ingestrb'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
@@ -29,6 +30,7 @@ require 'vodcrid_helpers'
 require 'http_client'
 
 include RequestUri
+include Retryable
 
 SimpleCov.start
 
