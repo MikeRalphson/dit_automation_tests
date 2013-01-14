@@ -13,3 +13,8 @@ log/
 
 # Vim stuff (get a proper IDE!)
 .*.sw*
+
+# Local bundle
+bin
+vendor
+.bundle
