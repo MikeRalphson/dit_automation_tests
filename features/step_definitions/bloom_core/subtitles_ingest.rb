@@ -1,4 +1,5 @@
 class NoSubsError < RuntimeError; end
+class TooManySubsError < RuntimeError; end
 class IncorrectSubsFileError < RuntimeError; end
 class IncorrectProdidError < RuntimeError; end
 
@@ -25,11 +26,12 @@ end
 def make_playlist_request(old_timestamp = nil)
   playlist_client = @mercury_playlist.create_client
   response = nil
-  retryable :on => RuntimeError, :times => 10, :sleep => 1 do
+  retryable :on => RuntimeError, :times => 10, :sleep => 2 do
     response = @mercury_playlist.playlist_request(@playlist_client, @vodcrid, @platform)
     subs = response.xpath('//ClosedCaptioningURIs/URL')
     prodid = response.xpath('//ProductionId')
     raise NoSubsError if subs.size == 0
+    raise TooManySubsError if subs.size > 1
     raise IncorrectSubsFileError if old_timestamp && subs[0].text.include?(old_timestamp)
     raise IncorrectProdidError if prodid && (prodid.text != @prodid) #TODO: investigate this issue (race in Bloom which can return bogus playlist for vodcrid)
   end

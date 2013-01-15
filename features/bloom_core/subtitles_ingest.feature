@@ -1,5 +1,5 @@
 @local_only
-Feature: Ingest subtitles into Bloom using the MetaIngestService
+Feature: Ingest subtitles into Bloom using the MetaIngestService DN-295
   As BizTalk
   I want to be able to ingest subtitles into Bloom
   So that they are available in playlists
