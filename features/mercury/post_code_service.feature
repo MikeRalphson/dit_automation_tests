@@ -35,7 +35,7 @@ Feature: PostCode service
     | KW15     | STV         |
     | BT11     | UTV         |
     | BT15     | UTV         |
-    | JE23     | Channel     |
+    #| JE23     | Channel     | WE NEED TO RE-ENABLE THIS WHEN WE HAVE LOOKED INTO GEO ISSUES - https://app.gotoassist.com/desk/incidents/17913
     | GY11     | Channel     |
 
 
