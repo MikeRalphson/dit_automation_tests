@@ -229,8 +229,8 @@
                 <tva:SlotDateTime>2012-07-30T13:30:00</tva:SlotDateTime>
                 <tva:Platform>DOTCOMITVC</tva:Platform>
                 <tva:DRM>
-                    <tva:Type version="MS3">Marlin</tva:Type>
-                    <tva:DeliveryType>ProgressiveDownload</tva:DeliveryType>
+                    <tva:Type version="MS3">FlashAccess</tva:Type>
+                    <tva:DeliveryType>HDS</tva:DeliveryType>
                 </tva:DRM>
             </tva:OnDemandProgram>
         </tva:ProgramLocationTable>
