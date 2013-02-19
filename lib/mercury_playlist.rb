@@ -18,7 +18,7 @@ class MercuryPlaylist
       :RequestGuid => "7FA847EC-905C-41EA-BCF7-CC9E44A00CE3"
     },
       :siteInfo => {
-      :AdvertSize             => "Itvplayer",
+      :AdvertSize             => '',
       :AdvertisingRestriction => "None",
       :AdvertisingSite        => "",
       :Area                   => "ITVPLAYER",

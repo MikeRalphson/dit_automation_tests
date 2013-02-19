@@ -89,11 +89,11 @@ Then /^I get the expected (.*) status for that vodcrid$/ do |response|
   end
 end
 
-Then /^the advert URI should contain the correct size$/ do
+Then /^the advert URI should contain the default size$/ do
   @advert_uris ||= @response.xpath("//Action/URL")
   raise 'AdvertUrl is empty' if @advert_uris.empty?
   @advert_uris.each do |uri|
-    (uri.to_s.match 'size=\w+').to_s.should == "size=itvplayer"
+    (uri.to_s.match 'size=\w+').to_s.should == "size=video"
   end
 end
 

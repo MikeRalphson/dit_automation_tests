@@ -67,7 +67,7 @@ Feature: Mercury Playlist Requests
   @not_local
   Scenario Outline: Ad-server for Mercury playlists
     Given I request the Mercury playlist for <platform> and <media>
-    Then the advert URI should contain the correct size
+    Then the advert URI should contain the default size
     And the advert URI should contain the correct area
     And the advert URI should contain the correct site based on the <platform>
 
