@@ -86,13 +86,9 @@ Feature: Mercury Playlist Requests
     Then I get the requested vodcrid in the response
 
   @not_local
-  Scenario Outline: Verify correct Adverts for a Freesat playlist request
+  Scenario: Verify correct Adverts for a Freesat playlist request
     Given I request a Freesat Mercury playlist with vodcrid
-    Then the advert URI should contain the correct <size> and <site>
-
-  Examples:
-    | size         | site        |
-    | videofreesat | itv.freesat |
+    Then the Freesat advert URI should contain the correct size and site
 
   @stings
   Scenario Outline: Sting verification for non-Android and non-YouView platforms

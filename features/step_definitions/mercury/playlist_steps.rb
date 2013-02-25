@@ -137,9 +137,9 @@ Then /^I get the requested vodcrid in the response$/ do
   end
 end
 
-Then /^the advert URI should contain the correct (.*) and (.*)$/ do |size, site|
-  unless @mercury_api.value_exists_in_mhegdata? @response, ("size=#{size}\/.*\/site=#{site}\/")
-    raise 'Size and Site values are not found in the Advert url from your request'
+Then /^the Freesat advert URI should contain the correct size and site$/ do
+  unless @mercury_api.value_exists_in_mhegdata? @response, (/size=video\/.*\/site=itv.freesat\//)
+    raise 'Size and site values were not found in the response Advert URL'
   end
 end
 
