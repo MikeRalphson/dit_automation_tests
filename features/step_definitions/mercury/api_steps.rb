@@ -1,5 +1,5 @@
 Given /^I request the mrss api$/ do
-  yesterday = (Date.today - 1).strftime("%Y%m%d")
+  yesterday = (Date.today - 1).strftime('%Y%m%d')
   @uri = "#{EnvConfig['mercury_url']}/linking/#{yesterday}"
   @response = @mercury_api.get_response_from_url @uri
 end
@@ -13,12 +13,12 @@ Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, plat
   case type
     when 'xml'
       xml = @mercury_api.get_xml_from_response @response
-      unless @mercury_api.value_exists_in_xml_node?(xml, "Value", platform)
+      unless @mercury_api.value_exists_in_xml_node?(xml, 'Value', platform)
         raise "could not find the correct platform value: #{platform} in the response for uri: #@uri"
       end
     when 'json'
       json = @mercury_api.parse_json_response @response
-      @mercury_api.find_value_in_hash("Platform", json).should == platform
+      @mercury_api.find_value_in_hash('Platform', json).should == platform
     when 'mhegdata'
       unless @mercury_api.value_exists_in_mhegdata?(@response, @uri)
         raise "could not find the correct uri value: #@uri in the response for uri: #@uri"

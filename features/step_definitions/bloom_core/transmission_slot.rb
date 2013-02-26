@@ -42,7 +42,7 @@ Then /^I should not see the correct transmission slot in the response$/ do
   @response.xml.search('Key').each do |elem|
     if elem.content == 'TransmissionSlot'
       value = elem.next_sibling.content
-      raise "TransmissionSlot Found for metadata with no transmission slot" unless value.empty?
+      raise 'TransmissionSlot Found for metadata with no transmission slot' unless value.empty?
     end
   end
 end

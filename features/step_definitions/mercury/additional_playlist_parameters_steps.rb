@@ -17,7 +17,7 @@ def validate_ad_calls(response, params)
       :VelocityLongitude => 'dirlo'
   }
 
-  advert_uris ||= response.xpath("//Action/URL")
+  advert_uris ||= response.xpath('//Action/URL')
   raise 'AdvertUrl is empty' if advert_uris.empty?
 
   advert_uris.each do |uri|
@@ -33,7 +33,7 @@ end
 
 def set_client_and_vodcrid(platform)
   @playlist_client = @mercury_playlist.create_client
-  @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
+  @vodcrid_helpers.set_production_from_config(platform, 'rtmpe')
 end
 
 Given /^I request the Mercury playlist for (.*) with null additional parameters$/ do |platform|

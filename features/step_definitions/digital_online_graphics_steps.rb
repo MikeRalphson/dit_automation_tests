@@ -10,14 +10,14 @@ Given /^I request the Mercury playlist for (.*) with a specific (.*)$/ do |platf
 end
 
 Then /^I should receive a playlist with an ITV1 DOG$/ do
-  @response.xpath("//Dog").text.should match /ITV1\.png$/
+  @response.xpath('//Dog').text.should match /ITV1\.png$/
 end
 
 Then /^I should receive a playlist with a DOG matching the (.*)$/ do |channel|
   if channel =~ /\Aitv/i
-    @response.xpath("//Dog").text.should match /#{channel.upcase}\.png$/
+    @response.xpath('//Dog').text.should match /#{channel.upcase}\.png$/
   else
-    @response.xpath("//Dog").text.should match /ITVplc\.png$/
+    @response.xpath('//Dog').text.should match /ITVplc\.png$/
   end
 end
 
