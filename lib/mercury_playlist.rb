@@ -46,14 +46,14 @@ class MercuryPlaylist
   end
 
   def playlist_request_for_platform (playlist_client, unique, platform)
-    @encrypted = generate_encrypted_usertoken(unique, @user_id, DateTime.now)
     case platform
-    when /dotcom/i
-      encrypted_playlist_request(playlist_client, unique, @encrypted, platform)
-    when /mobile/i
-      mobile_playlist_request(playlist_client, unique, platform)
-    else
-      playlist_request(playlist_client, unique, platform)
+      when /dotcom/i
+        encrypted = generate_encrypted_usertoken(unique, @user_id, DateTime.now)
+        encrypted_playlist_request(playlist_client, unique, encrypted, platform)
+      when /mobile/i
+        mobile_playlist_request(playlist_client, unique, platform)
+      else
+        playlist_request(playlist_client, unique, platform)
     end
   end
 
