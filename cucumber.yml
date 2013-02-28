@@ -1,15 +1,15 @@
 # config/cucumber.yml
 ##YAML Template
 ---
-default: -r features -f pretty -f junit -o log/ -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@geo -t ~@local_only
-rc3: -r features -f pretty -f junit -o log/ -t ~@not_rc3 -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@geo -t ~@local_only
-test: -r features -f pretty -f junit -o log/ -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@geo -t ~@local_only
-local: -r features -f pretty -f junit -o log/ -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@not_local -t ~@bug -t ~@broadcaster -t ~@geo
-sanity: -r features -f pretty -f junit -o log/ -t @sanity -t ~@android_ingest -t ~@flakey -t ~@manual -t ~@bug -t ~@geo -t ~@local_only
-wip: -r features -f pretty -f junit -o log/ -t @wip -t ~@manual -t ~@bug -t ~@local_only
-bug: -r features -f pretty -f junit -o log/ -t @bug -t ~@local_only
-android: -r features -f pretty -f junit -o log/ -t @android_ingest -t ~@bug -t ~@local_only
-broadcaster: -r features -f pretty -f junit -o log/ -t @broadcaster -t ~@bug -t ~@local_only
-geo: -r features -f pretty -f junit -o log/ -t @geo -t ~@bug -t ~@local_only
-stings: -r features -f pretty -f junit -o log/ -t @stings -t ~@local_only
-bloomcore: -r features -f pretty -f junit -o log/ -t @local_only
+default: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@geo -t ~@local_only
+rc3: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@not_rc3 -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@geo -t ~@local_only
+test: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@geo -t ~@local_only
+local: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@not_local -t ~@bug -t ~@broadcaster -t ~@geo
+sanity: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @sanity -t ~@android_ingest -t ~@flakey -t ~@manual -t ~@bug -t ~@geo -t ~@local_only
+wip: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @wip -t ~@manual -t ~@bug -t ~@local_only
+bug: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @bug -t ~@local_only
+android: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @android_ingest -t ~@bug -t ~@local_only
+broadcaster: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @broadcaster -t ~@bug -t ~@local_only
+geo: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @geo -t ~@bug -t ~@local_only
+stings: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @stings -t ~@local_only
+bloomcore: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @local_only
