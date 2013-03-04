@@ -47,7 +47,7 @@ Given /^a request for archive content containing a mismatched production id in t
   @encrypted = generate_encrypted_usertoken("2\/1400\/00?001", "abcde", DateTime.now)
 end
 
-When /^the user makes a initial (.*) playlist request for the archive content$/ do |platform|
+When /^the user makes an initial (.*) playlist request for the archive content$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
   @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
   begin
@@ -67,7 +67,7 @@ When /^the user makes a subsequent (.*) playlist request for the archive content
   end
 end
 
-When /^the user makes a initial (.*) playlist request for the catchup content$/ do |platform|
+When /^the user makes an initial (.*) playlist request for the catchup content$/ do |platform|
   @playlist_client = @mercury_playlist.create_client
   @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
   begin
@@ -124,13 +124,13 @@ end
 Then /^the response should contain an Irdeto SessionId of 0$/ do
   raise "unexpected error: #@playlist_error" if @playlist_error
   response_sessionid = @response.xpath("//SessionId").text
-  response_sessionid.should =~ /0/
+  response_sessionid.to_i.should == 0
 end
 
 Then /^the response should contain a valid Irdeto SessionId$/ do
   raise "unexpected error: #@playlist_error" if @playlist_error
   response_sessionid = @response.xpath("//SessionId").text
-  response_sessionid.should_not == 0
+  response_sessionid.to_i.should_not == 0
 end
 
 Then /^the response should retain the Irdeto SessionId$/ do
