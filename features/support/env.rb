@@ -20,29 +20,30 @@ require 'ingestrb'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
-require 'mercury_playlist'
 require 'mercury_api'
 require 'env_config'
-require 'ftp_library'
-require 'xml_library'
-require 'request_helpers'
-require 'vodcrid_helpers'
 require 'http_client'
 
-include RequestUri
+require 'mercury/mercury_playlist'
+require 'mercury/irdeto_encryption'
+
+require 'platform/platform'
+require 'platform/dotcom'
+require 'platform/mobile'
+require 'platform/android'
+require 'platform/samsung'
+require 'platform/ps3'
+require 'platform/youview'
+require 'platform/freesat'
+
 include Retryable
 
 SimpleCov.start
 
 Before do
   @mercury_api = MercuryApi.new
-  @mercury_playlist = MercuryPlaylist.new
-  @ftp_library = FtpLibrary.new
-  @xml_library = XmlLibrary.new
   @uuid = SecureRandom.uuid
   @timeout = 300
-  @vodcrid_helpers = VodcridHelpers.new
-  @user_id = "#{EnvConfig['user_id']}"
 
   Savon.configure do |config|
     config.log = false

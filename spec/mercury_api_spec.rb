@@ -1,8 +1,3 @@
-# local libs
-$:.unshift(File.dirname(__FILE__) + '/../lib')
-require 'mercury_api'
-require 'http_client'
-
 describe "the Mercury API library" do
 
   before(:each) do

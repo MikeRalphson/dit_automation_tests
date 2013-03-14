@@ -1,161 +1,123 @@
-Given /^I request the Mercury playlist for (\w+) and (\w+)$/ do |platform, media|
-  @playlist_client = @mercury_playlist.create_client
-  @vodcrid_helpers.set_production_from_config(platform, media)
+Given /^I have a piece of (.*) catchup content$/ do |platform|
+  @platform = Object::const_get(platform.downcase.camelcase).new
+end
+
+Given /^I have a piece of (.*) archive content$/ do |platform|
+  @platform = Object::const_get(platform.downcase.camelcase).new('archive')
+end
+
+When /^I request the Mercury playlist$/ do
   begin
-    @response = @mercury_playlist.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.production, platform)
+    @response = @platform.mercury_request
   rescue Savon::SOAP::Fault => error
-    raise "#{error.message}. \nPerhaps the request has changed or the service is down?"
+    @playlist_error = error
+    # consider building error logging into the Mercury playlist module
   end
 end
 
-Given /^I request the Mercury playlist from (.*) with vodcrid (.*) and (.*)$/ do |location, media, platform|
-  @playlist_client = @mercury_playlist.create_client_with_location location
-  @vodcrid_helpers.set_production_from_config(platform, media)
+When /^I request the Mercury playlist from (\d+\.\d+\.\d+\.\d+)$/ do |location|
   begin
-    @response = @mercury_playlist.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.production, platform)
+    @response = @platform.mercury_request(location)
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
 end
 
-Given /^I request a Freesat Mercury playlist with vodcrid$/ do
-  @mercury_playlist.create_client
-  @vodcrid_helpers.set_production_from_config("freesat", "rtmpe")
-  @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/freesat/playlist/#{@vodcrid_helpers.production}?t=playlistscreentoken"
-  @response = @mercury_api.get_response_from_url @uri
+When /^I get the correct base url$/ do
+  base_urls = @platform.get_base_urls_from_response(@response)
+  base_urls.should_not be_empty
+  base_urls.each { |url| url.attr("base").should =~ @platform.base_url unless @platform.base_url.nil? } # hacky for YV?
+  # try empty string instead of nil
 end
 
-Then /^I get the correct bitrate based on the (.*)$/ do |platform|
-  found_bitrates = @response.xpath("//VideoEntries/Video/MediaFiles/MediaFile").map { |node| node.attr("bitrate").to_i }
-
-  expected_bitrates = case platform
-                        when /android/i then [150000, 300000, 400000, 600000, 800000, 1200000]
-                        when /samsung/i then [1200000]
-                        when /youview/i then [1200000]
-                        when /ps3/i then [800000]
-                        when /mobile/i then [400000]
-                        else [400000, 600000, 800000, 1200000]
-                      end
-
-  comparison = (found_bitrates.to_set ^ expected_bitrates.to_set)
-  raise "found bitrates: #{found_bitrates} did not match: #{expected_bitrates}" unless comparison.size == 0
+When /^I get the correct video type$/ do
+  video_type = @platform.get_video_type_from_response(@response)
+  video_type.should_not be_empty
+  video_type.each { |url| url.text.should match @platform.video_type }
 end
 
-Then /^I get the correct ManifestFile url based on the (.*)$/ do |platfrom|
-  manifest_url = @response.xpath("//VideoEntries/Video/ManifestFile/URL").to_s
-  manifest_url.should =~ /manifest.f4m/
-end
-
-Then /^I get the requested id for (.*) and (.*)$/ do |platform, media|
-  if platform == 'DotCom'
-    response_vodcrid = @response.xpath("//ProductionId").text
-  else
-    response_vodcrid = @response.xpath("//Vodcrid").text
-  end
-  response_vodcrid.should match @vodcrid_helpers.production
-end
-
-Then /^I get the requested HDS prodid$/ do
-  response_vodcrid = @response.xpath("//ProductionId").text
-  response_vodcrid.should match @vodcrid_helpers.production
+Then /^I get the correct production$/ do
+  raise @playlist_error if @playlist_error
+  @platform.get_production_from_response(@response).should match @platform.production
 end
 
 Then /^the expiry date is in the future$/ do
   todays_date = Date.today.strftime("%FT%T")
-  expiry_date = DateTime.parse(@response.xpath("//ExpiryDate").text).strftime("%FT%T")
+  expiry_date = @platform.get_expiry_date_from_response(@response)
   (todays_date > expiry_date).should == false
 end
 
-Then /^I get the correct base url based on the (.+)$/ do |platform|
-  base_urls = @response.xpath("//VideoEntries/Video/MediaFiles")
-  base_urls.should_not be_empty
-
-  case platform
-    when /youview/i
-      base_urls.each { |url| url.attr("base").should == nil }
-    else
-      base_urls.each { |url| url.attr("base").should match(/\Artmpe/) }
-  end
+Then /^I get the correct bitrates$/ do
+  @platform.get_bitrates_from_response(@response).should == @platform.bitrates
 end
 
-Then /^I get the expected (.*) status for that vodcrid$/ do |response|
-  if @playlist_error
-    raise "#{@playlist_error.message}. \nPerhaps the request has changed or the service is down?" unless @playlist_error.to_s.match /InvalidGeoRegion/
-  end
-  if response == "blocked"
+Then /^I get a (.*) response$/ do |status|
+  if status == 'blocked'
     @playlist_error.to_s.should match /InvalidGeoRegion/
   else
-    @mercury_playlist.response_contains_unique(@response, @vodcrid_helpers.production, @vodcrid_helpers.type).should == true
+    @platform.get_production_from_response(@response).should match @platform.production
   end
 end
 
-Then /^the advert URI should contain the default size$/ do
-  @advert_uris ||= @response.xpath("//Action/URL")
-  raise 'AdvertUrl is empty' if @advert_uris.empty?
-  @advert_uris.each do |uri|
-    (uri.to_s.match 'size=\w+').to_s.should == "size=video"
+Then /^the advert URI's should exist$/ do
+  @advert_uris ||= @platform.get_adverts_from_response(@response)
+  @advert_uris.should_not be_nil
+end
+
+Then /^the advert URI's should contain the default size$/ do
+  @advert_uris ||= @platform.get_adverts_from_response(@response)
+  @advert_uris.each { |uri| uri.match(/size=(\w+)/).captures.to_s.should =~ @platform.advert_size }
+end
+
+Then /^the advert URI's should contain the correct area$/ do
+  @advert_uris ||= @platform.get_adverts_from_response(@response)
+  @advert_uris.each { |uri| uri.match(/area=(\w+\.*\w*)/).captures.to_s.should =~ @platform.advert_area }
+end
+
+Then /^the advert URI's should contain the correct site$/ do
+  @advert_uris ||= @platform.get_adverts_from_response(@response)
+  @advert_uris.each { |uri| uri.match(/site=(\w+\.*\w*)/).captures.to_s.should =~ @platform.advert_site }
+end
+
+# N.B. we need the unused parameters to avoid identical step defintions and maintain behaviour clarity
+Then /^I get a single (.*) sting with a bitrate of (\d+)$/ do |video_type, bitrate|
+  stings = @platform.get_stings_from_response(@response)
+  stings.should_not be_empty
+  stings.size.should == 1
+  stings.each do |sting|
+    sting.should_not be_empty
+    sting.should match @platform.sting_video_type
   end
-end
 
-Then /^the advert URI should contain the correct area$/ do
-  @advert_uris ||= @response.xpath("//Action/URL")
-  raise 'AdvertUrl is empty' if @advert_uris.empty?
-  @advert_uris.each do |uri|
-    (uri.to_s.match 'area=\w+').to_s.should == "area=itvplayer"
-  end
-end
-
-Then /^the advert URI should contain the correct site based on the (.*)$/ do |platform|
-  @advert_uris ||= @response.xpath("//Action/URL")
-  raise 'AdvertUrl is empty' if @advert_uris.empty?
-  @advert_uris.each do |uri|
-    case platform
-      when /dotcom/i
-        (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv"
-      when /android/i
-        (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.mobile"
-      else
-        (uri.to_s.match 'site=\w+\.*\w*').to_s.should == "site=itv.#{platform.downcase}"
-    end
-  end
-end
-
-Then /^I get the correct video type based on the (.*)$/ do |platform|
-  video_type = @response.xpath("//VideoEntries/Video/MediaFiles/MediaFile/URL")
-  raise 'no matching values found in the response' unless video_type
-  case platform
-    when /youview/i
-      video_type.each { |url| (url.text.should match(/\.(bbts|ts)$/)) && (url.text.should match(/\Ahttp/)) }
-    else
-      video_type.each { |url| url.text.should match(/\.mp4$/) }
-  end
-end
-
-Then /^I get the requested vodcrid in the response$/ do
-  unless @mercury_api.value_exists_in_mhegdata? @response, /\/api\/mhegdata\/freesat\/AuthorizeContent\/#{@vodcrid_helpers.production}\/\d{3}\?t=playlistscreentoken/
-    raise 'AuthorizeContent url not found from your request'
-  end
-end
-
-Then /^the Freesat advert URI should contain the correct size and site$/ do
-  unless @mercury_api.value_exists_in_mhegdata? @response, (/size=video\/.*\/site=itv.freesat\//)
-    raise 'Size and site values were not found in the response Advert URL'
-  end
-end
-
-Then /^I get a single .mp4 sting with a bitrate of 0$/ do
-  @response.xpath("//Sting/Video/MediaFiles/MediaFile/URL").text.should match /\.mp4$/i
-  @response.xpath("//Sting/Video/MediaFiles/MediaFile").attr("bitrate").text.should == "0"
-end
-
-Then /^I get a single .ts sting with a bitrate of 0$/ do
-  @response.xpath("//Sting/Video/MediaFiles/MediaFile/URL").text.should match /\.ts$/i
-  @response.xpath("//Sting/Video/MediaFiles/MediaFile").attr("bitrate").text.should == "0"
+  @platform.get_sting_bitrates_from_response(@response).should match_array @platform.sting_bitrates
 end
 
 Then /^I get two .mp4 stings with bitrates of 300 and 600$/ do
-  stings = @response.xpath("//Sting/Video/MediaFiles/MediaFile/URL").map { |s| s.text }
-  stings.each { |sting| sting.should match /\.mp4$/ }
-  bitrates = [1, 2].map { |i| @response.xpath("//Sting/Video/MediaFiles/MediaFile[#{i}]").attr("bitrate").text }
-  bitrates.to_a.sort.should == %w(300000 600000)
+  stings = @platform.get_stings_from_response(@response)
+  stings.should_not be_empty
+  stings.size.should == 2
+  stings.each do |sting|
+    sting.should_not be_empty
+    sting.should match @platform.sting_video_type
+  end
+
+  @platform.get_sting_bitrates_from_response(@response).should match_array @platform.sting_bitrates
+end
+
+Then /^there should not be a Session ID in the response$/ do
+  @platform.get_session_id_from_response(@response).should be_empty
+end
+
+Then /^there should be a Session ID in the response$/ do
+  @platform.get_session_id_from_response(@response).should match /\A\w+\Z/
+end
+
+Then /^there should be a Session ID of (\d+) in the response$/ do |session_id|
+  @platform.get_session_id_from_response(@response).should match /\A#{session_id}\Z/
+end
+
+Then /^there should be a valid Session ID in the response$/ do
+  session_id = @platform.get_session_id_from_response(@response)
+  session_id.should_not be_empty
+  session_id.should_not match /\A0\Z/
 end

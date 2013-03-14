@@ -4,8 +4,8 @@ Given /^I request the Mercury playlist for (.*) with a specific (.*)$/ do |platf
     @uri = "#{EnvConfig['mercury_url']}/api/mhegdata/freesat/playlist/#{@vodcrid_helpers.production}?t=playlistscreentoken"
     @response = @mercury_api.get_response_from_url @uri
   else
-    @playlist_client = @mercury_playlist.create_client
-    @response = @mercury_playlist.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.production, platform)
+    @playlist_client = @mercury_playlist_class.create_client
+    @response = @mercury_playlist_class.playlist_request_for_platform(@playlist_client, @vodcrid_helpers.production, platform)
   end
 end
 

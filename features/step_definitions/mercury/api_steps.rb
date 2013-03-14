@@ -28,13 +28,6 @@ Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, plat
   end
 end
 
-Then /^the response should contain production id (\d+\/\d+\/\d+#\d+)$/ do |production_id|
-  xml = @mercury_api.get_xml_from_response @response
-  unless @mercury_api.value_exists_in_xml_node?(xml, "ProductionId", production_id)
-    raise 'invalid content found in response'
-  end
-end
-
 Then /^the response should contain entries for each of the last 7 days$/ do
   xml = @mercury_api.get_xml_from_response @response
   expected_week = @mercury_api.calculate_week

@@ -24,10 +24,10 @@ def local_ingest(platform, prodid = nil)
 end
 
 def make_playlist_request(old_timestamp = nil)
-  playlist_client = @mercury_playlist.create_client
+  playlist_client = @mercury_playlist_class.create_client
   response = nil
   retryable :on => RuntimeError, :times => 10, :sleep => 2 do
-    response = @mercury_playlist.playlist_request(@playlist_client, @vodcrid, @platform)
+    response = @mercury_playlist_class.playlist_request(@playlist_client, @vodcrid, @platform)
     subs = response.xpath('//ClosedCaptioningURIs/URL')
     prodid = response.xpath('//ProductionId')
     raise NoSubsError if subs.size == 0

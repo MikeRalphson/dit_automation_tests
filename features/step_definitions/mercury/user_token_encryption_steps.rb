@@ -1,176 +1,103 @@
-#Decryption 3des CODE --- decrypted = decrypt_usertoken(@encrypted)
-
 Given /^a user who is not signed in$/ do
 end
 
 Given /^a user who is signed in$/ do
+  # need to set user id to 0
 end
 
-Given /^a request for archive content without a UserToken$/ do
-  @vodcrid_helpers.set_production_from_config("DotCom", "rtmpe")
+Given /^I have an expired UserToken$/ do
+  invalid_time = DateTime.iso8601('2011-10-19T12:16:21+00:00')
+  @platform.user_token = @platform.generate_encrypted_usertoken(@platform.production, @platform.userid, invalid_time)
 end
 
-Given /^a request for archive content containing a malformed UserToken$/ do
-  @vodcrid_helpers.set_production_from_config("DotCom", "rtmpe")
-  @encrypted = generate_encrypted_usertoken(@vodcrid_helpers.production, @user_id, DateTime.now)
+Given /^I have a valid but malformed UserToken$/ do
+  @platform.user_token = @platform.generate_undeserialisable_encrypted_usertoken(@platform.production, @platform.userid)
 end
 
-Given /^a request for archive content containing a malformed JOSN UserToken$/ do
-  @vodcrid_helpers.set_production_from_config("DotCom", "rtmpe")
-  @encrypted = generate_invalid_encrypted_usertoken(@vodcrid_helpers.production, @user_id, DateTime.now)
+Given /^I have an undecryptable UserToken$/ do
+  @platform.user_token = @platform.generate_undecryptable_encrypted_usertoken
 end
 
-Given /^a request for archive content containing an expired UserToken$/ do
-  @vodcrid_helpers.set_production_from_config("DotCom", "rtmpe")
-  @encrypted = generate_encrypted_usertoken(@vodcrid_helpers.production, @user_id, DateTime.iso8601('2011-10-19T12:16:21+00:00'))
+Given /^I have a UserToken with a future timestamp$/ do
+  invalid_time = DateTime.iso8601('2100-10-19T12:16:21+00:00')
+  @platform.user_token = @platform.generate_encrypted_usertoken(@platform.production, @platform.userid, invalid_time)
 end
 
-Given /^a request for archive content containing a UserToken in the future$/ do
-  @vodcrid_helpers.set_production_from_config("DotCom", "rtmpe")
-  @encrypted = generate_encrypted_usertoken(@vodcrid_helpers.production, @user_id, DateTime.iso8601('2013-10-19T12:16:21+00:00'))
+Given /^I have no UserToken$/ do
+  @platform.user_token = ''
 end
 
-Given /^a user who is signed in and has a valid UserToken$/ do
-  @vodcrid_helpers.set_production_from_config("DotCom", "rtmpe")
-  @encrypted = generate_encrypted_usertoken(@vodcrid_helpers.production, @user_id, DateTime.now)
-end
-
-Given /^has previously requested (.*) archive content$/ do |platform|
-  @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
-  @encrypted = generate_encrypted_usertoken(@vodcrid_helpers.production, @user_id, DateTime.now)
-  @playlist_client = @mercury_playlist.create_client
-  @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @vodcrid_helpers.production, @encrypted, platform)
-  @original_response_sessionid = @response.xpath("//SessionId").text.match(/\w+/).to_s
-end
-
-Given /^a request for archive content containing a mismatched production id in the UserToken$/ do
-  @encrypted = generate_encrypted_usertoken("2\/1400\/00?001", "abcde", DateTime.now)
-end
-
-When /^the user makes an initial (.*) playlist request for the archive content$/ do |platform|
-  @playlist_client = @mercury_playlist.create_client
-  @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
+Given /^a signed in user who has previously requested the Mercury playlist for (.*) archive content$/ do |platform|
+  @platform = Object::const_get(platform.downcase.camelcase).new('archive')
   begin
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @vodcrid_helpers.production, @encrypted, platform)
+    @response = @platform.mercury_request
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
 end
 
-When /^the user makes a subsequent (.*) playlist request for the archive content$/ do |platform|
-  @playlist_client = @mercury_playlist.create_client
-  @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
+Given /^the requested production ID does not match the one in the UserToken$/ do
+  @platform.production = EnvConfig['dotcom_catchup_rtmpe']
+  @platform.user_token = @platform.generate_encrypted_usertoken(@platform.production, @platform.userid)
+end
+
+Given /^the user has previously requested the Mercury playlist for that content$/ do
+  @response = @platform.mercury_request
+  @original_response_sessionid = @platform.get_session_id_from_response(@response)
+end
+
+When /^the user makes a subsequent Mercury playlist request$/ do
   begin
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @vodcrid_helpers.production, @encrypted, platform)
+    @response = @platform.mercury_request
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
 end
 
-When /^the user makes an initial (.*) playlist request for the catchup content$/ do |platform|
-  @playlist_client = @mercury_playlist.create_client
-  @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
+When /^I request the Mercury playlist from a different (.*)$/ do |platform|
+  @platform.data[:siteInfo][:Platform] = platform
   begin
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @vodcrid_helpers.production, @encrypted, platform)
+    @response = @platform.mercury_request
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
 end
 
-When /^the user makes a subsequent (.*) playlist request for the catchup content$/ do |platform|
-  @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
-  @encrypted = generate_encrypted_usertoken(@vodcrid_helpers.production, "1237847", DateTime.now)
-  @playlist_client = @mercury_playlist.create_client
-  begin
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @vodcrid_helpers.production, @encrypted, platform)
-  rescue Savon::SOAP::Fault => error
-    @playlist_error = error
-  end
+Then /^the response should retain the same Session ID$/ do
+  raise @playlist_error if @playlist_error
+  @platform.get_session_id_from_response(@response).should match /\A#{@original_response_sessionid}\Z/
 end
 
-When /^the user makes a (.*) playlist request for the archive content with a UserToken$/ do |platform|
-  @vodcrid_helpers.set_prodid_for_platform(platform, "f4m")
-  @encrypted = generate_encrypted_usertoken(@vodcrid_helpers.production, @user_id, DateTime.now)
-  @playlist_client = @mercury_playlist.create_client
-  begin
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @vodcrid_helpers.production, @encrypted, platform)
-  rescue Savon::SOAP::Fault => error
-    @playlist_error = error
-  end
+# MismatchedProductionIdErrorCode
+Then /^the mismatched production ID error message is returned$/ do
+  @playlist_error.should_not be_nil
+  raise @playlist_error.message unless @playlist_error.to_s.include? 'UserToken Error 851'
 end
 
-When /^the user makes a (.*) playlist request for the archive content without a UserToken$/ do |platform|
-  @vodcrid_helpers.set_production_from_config(platform, "rtmpe")
-  @playlist_client = @mercury_playlist.create_client
-  begin
-    @response = @mercury_playlist.encrypted_playlist_request(@playlist_client, @vodcrid_helpers.production, @encrypted, platform)
-  rescue Savon::SOAP::Fault => error
-    @playlist_error = error
-  end
-end
-
-Then /^there is a valid playlist response for catchup content$/ do
-  raise "unexpected error: #@playlist_error" if @playlist_error
-  response_production = @response.xpath("//ProductionId").text
-  response_production.should == @vodcrid_helpers.production
-end
-
-Then /^there is a valid playlist response for archive content$/ do
-  raise "unexpected error: #@playlist_error" if @playlist_error
-  response_production = @response.xpath("//ProductionId").text
-  response_production.should == @vodcrid_helpers.production
-end
-
-Then /^the response should contain an Irdeto SessionId of 0$/ do
-  raise "unexpected error: #@playlist_error" if @playlist_error
-  response_sessionid = @response.xpath("//SessionId").text
-  response_sessionid.to_i.should == 0
-end
-
-Then /^the response should contain a valid Irdeto SessionId$/ do
-  raise "unexpected error: #@playlist_error" if @playlist_error
-  response_sessionid = @response.xpath("//SessionId").text
-  response_sessionid.to_i.should_not == 0
-end
-
-Then /^the response should retain the Irdeto SessionId$/ do
-  raise "unexpected error: #@playlist_error" if @playlist_error
-  response_sessionid = @response.xpath("//SessionId").text
-  response_sessionid.should match @original_response_sessionid
-end
-
-Then /^the invalid production id error message is returned$/ do
-  if @playlist_error
-    raise "#{@playlist_error.message}. \nInvalid ProductionId" unless @playlist_error.to_s.include? "UserToken Error 851"
-  end
-end
-
-Then /^the decryption failure error message is returned$/ do
-  if @playlist_error
-    raise "#{@playlist_error.message}. \nDecryption Failure error message. Unable to Decrypt UserToken" unless @playlist_error.to_s.include? "UserToken Error 853"
-  end
-end
-
+# ExpiryErrorCode
 Then /^the timestamp has expired error message is returned$/ do
-  if @playlist_error
-    raise "#{@playlist_error.message}. \nUserToken has timed out -> 15minutes timeout limit" unless @playlist_error.to_s.include? "UserToken Error 852"
-  end
+  @playlist_error.should_not be_nil
+  raise @playlist_error.message unless @playlist_error.to_s.include? "UserToken Error 852"
 end
 
-Then /^the UserToken is in the future error message is returned$/ do
-  if @playlist_error
-    raise "#{@playlist_error.message}. \nUserToken is in the Future" unless @playlist_error.to_s.include? "UserToken Error 852"
-  end
+# DecryptionFailureErrorCode
+Then /^the decryption failure error message is returned$/ do
+  @playlist_error.should_not be_nil
+  raise @playlist_error.message unless @playlist_error.to_s.include? "UserToken Error 853"
 end
 
+# DeserializationFailureErrorCode
 Then /^the deserialisation failure error message is returned$/ do
-  if @playlist_error
-    raise "#{@playlist_error.message}. \nDeserialization Failure, Made JSON was Encrypted!" unless @playlist_error.to_s.include? "UserToken Error 854"
-  end
+  @playlist_error.should_not be_nil
+  raise @playlist_error.message unless @playlist_error.to_s.include? "UserToken Error 854"
 end
 
 Then /^the content unavailable for this platform error message is returned$/ do
-  if @playlist_error
-    raise "#{@playlist_error.message}. \nIs the request correct?" unless @playlist_error.to_s.include? "content is not available to this platform"
-  end
+  @playlist_error.should_not be_nil
+  raise @playlist_error.message unless @playlist_error.to_s.include? "content is not available to this platform"
+end
+
+Then /^the authorisation failure error message is returned$/ do
+  @playlist_error.should_not be_nil
+  raise @playlist_error.message unless @playlist_error.to_s.include? "AuthorizationInfo Is authorized check: False"
 end

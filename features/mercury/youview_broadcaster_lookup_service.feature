@@ -64,4 +64,3 @@ Feature: YouView Broadcaster lookup service
     | e-2           | NotFound |
     | 123456789     | NotFound |
     |               | Invalid  |
-	

@@ -1,0 +1,104 @@
+@playlist
+
+Feature: Mercury Playlist Requests
+  In order to generate front end features
+  As a backend enabler
+  I want to be able to request Mercury playlists
+
+  Scenario Outline: Verify basic playlist request
+    Given I have a piece of <platform> catchup content
+    When I request the Mercury playlist
+    Then I get the correct production
+    And the expiry date is in the future
+    And I get the correct bitrates
+    And I get the correct base url
+    And I get the correct video type
+
+  Examples:
+    | platform |
+    | DotCom   |
+    | Android  |
+    | Mobile   |
+    | Samsung  |
+    | PS3      |
+    | YouView  |
+
+  Scenario: Verify basic Freesat request
+    Given I have a piece of Freesat catchup content
+    When I request the Mercury playlist
+    Then I get the correct production
+
+  Scenario Outline: Geo-blocking Mercury playlists for valid locations
+    Given I have a piece of <platform> catchup content
+    When I request the Mercury playlist from <location>
+    Then I get a <status> response
+
+  Examples:
+    | platform | location      | status     |
+    | DotCom   | 10.192.42.109 | successful |
+    | Android  | 10.192.42.109 | successful |
+    | Mobile   | 10.192.42.109 | successful |
+    | Samsung  | 10.192.42.109 | successful |
+    | PS3      | 10.192.42.109 | successful |
+    | YouView  | 10.192.42.109 | successful |
+
+  @not_local
+  @not_rc3
+  Scenario Outline: Geo-blocking Mercury playlists for invalid locations
+    Given I have a piece of <platform> catchup content
+    When I request the Mercury playlist from <location>
+    Then I get a <status> response
+
+  Examples:
+    | platform | location     | status  |
+    | DotCom   | 194.4.55.200 | blocked |
+    | Android  | 194.4.55.200 | blocked |
+    | Mobile   | 194.4.55.200 | blocked |
+    | Samsung  | 194.4.55.200 | blocked |
+    | PS3      | 194.4.55.200 | blocked |
+    | YouView  | 194.4.55.200 | blocked |
+
+  @stings
+  Scenario Outline: Sting verification for non-Android and non-YouView platforms
+    Given I have a piece of <platform> catchup content
+    When I request the Mercury playlist
+    Then I get a single .mp4 sting with a bitrate of 0
+
+  Examples:
+    | platform |
+    | DotCom   |
+    | Mobile   |
+    | Samsung  |
+    | PS3      |
+
+  @stings
+  Scenario: Sting verification for YouView
+    Given I have a piece of YouView catchup content
+    When I request the Mercury playlist
+    Then I get a single .ts sting with a bitrate of 0
+
+  @stings
+  Scenario: Sting verification for Android
+    Given I have a piece of Android catchup content
+    When I request the Mercury playlist
+    Then I get two .mp4 stings with bitrates of 300 and 600
+
+  # not on i01 yet
+  @wip
+  Scenario Outline: DN-338 Irdeto Session ID for non-DotCom catchup content
+    Given I have a piece of <platform> catchup content
+    When I request the Mercury playlist
+    Then there should not be a Session ID in the response
+
+  Examples:
+    | platform |
+    | Android  |
+    | Mobile   |
+    | Samsung  |
+    | PS3      |
+    | YouView  |
+
+  Scenario: DN-338 Irdeto Session ID for DotCom catchup content
+    Given I have a piece of Dotcom catchup content
+    When I request the Mercury playlist
+    Then there should be a Session ID in the response
