@@ -32,7 +32,7 @@ class IngestHelper
     #DotCom
     opts[:platform] = :dotcom
     opts[:source] = "#{File.dirname(__FILE__) }/assets/dotcomassets"
-    opts[:metadata_destination] = "#{base_asset_dir}/MetadataFromSyndication"
+    opts[:metadata_destination] = "#{base_asset_dir}/Metadata"
     opts[:asset_destination] = "#{base_asset_dir}/Assets/Dotcom"
     opts[:metadata_receipt_location] = "#{base_receipt_dir}/MetadataReceipts"
     opts[:asset_receipt_location] = "#{base_receipt_dir}/ITV/Dotcom"
@@ -91,7 +91,7 @@ class IngestHelper
       opts[:source] = "#{File.dirname(__FILE__) }/assets/dotcomassets"
       opts[:platform] = :dotcom
       opts[:asset_extension] = 'mp4'
-      opts[:metadata_destination] = "#{base_asset_dir}/MetadataFromSyndicationToBeEnhanced"
+      opts[:metadata_destination] = "#{base_asset_dir}/MetadataToBeEnhanced"
       opts[:asset_destination] = "#{base_asset_dir}/Assets/Dotcom"
       opts[:metadata_receipt_location] = "#{base_receipt_dir}/Irdeto/Metadata"
       opts[:asset_receipt_location] = "#{base_receipt_dir}/Irdeto/Assets"
