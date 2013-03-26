@@ -1,6 +1,6 @@
 class Android < Platform
 
-  attr_reader :data, :production, :bitrates
+  attr_reader :production, :bitrates
 
   attr_accessor :params
 
@@ -27,11 +27,11 @@ class Android < Platform
     @sting_bitrates = [300000, 600000]
   end
 
-  def mercury_request(location = nil)
-    @data[:siteInfo][:Platform] = 'Android'
-    @data[:Vodcrid][:Id] = @production
-    @data[:deviceInfo] = @params
-    super(@data, location)
+  def request_playlist
+    @playlist_request.data[:siteInfo][:Platform] = 'Android'
+    @playlist_request.data[:Vodcrid][:Id] = @production
+    @playlist_request.data[:deviceInfo] = @params
+    super
   end
 
 end

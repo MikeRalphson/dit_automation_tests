@@ -30,7 +30,7 @@ end
 Given /^a signed in user who has previously requested the Mercury playlist for (.*) archive content$/ do |platform|
   @platform = Object::const_get(platform.downcase.camelcase).new('archive')
   begin
-    @response = @platform.mercury_request
+    @platform.request_playlist
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
@@ -42,22 +42,22 @@ Given /^the requested production ID does not match the one in the UserToken$/ do
 end
 
 Given /^the user has previously requested the Mercury playlist for that content$/ do
-  @response = @platform.mercury_request
-  @original_response_sessionid = @platform.get_session_id_from_response(@response)
+  @platform.request_playlist
+  @original_response_sessionid = @platform.playlist_response.session_id
 end
 
 When /^the user makes a subsequent Mercury playlist request$/ do
   begin
-    @response = @platform.mercury_request
+    @platform.request_playlist
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
 end
 
 When /^I request the Mercury playlist from a different (.*)$/ do |platform|
-  @platform.data[:siteInfo][:Platform] = platform
+  @platform.playlist_request.data[:siteInfo][:Platform] = platform
   begin
-    @response = @platform.mercury_request
+    @platform.request_playlist
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
   end
@@ -65,7 +65,7 @@ end
 
 Then /^the response should retain the same Session ID$/ do
   raise @playlist_error if @playlist_error
-  @platform.get_session_id_from_response(@response).should match /\A#{@original_response_sessionid}\Z/
+  @platform.playlist_response.session_id.should match /\A#{@original_response_sessionid}\Z/
 end
 
 # MismatchedProductionIdErrorCode

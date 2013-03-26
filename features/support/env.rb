@@ -24,8 +24,12 @@ require 'mercury_api'
 require 'env_config'
 require 'http_client'
 
-require 'mercury/mercury_playlist'
 require 'mercury/irdeto_encryption'
+require 'mercury/request/request'
+require 'mercury/request/freesat_request'
+require 'mercury/response/response'
+require 'mercury/response/dotcom_response'
+require 'mercury/response/freesat_response'
 
 require 'platform/platform'
 require 'platform/dotcom'
