@@ -35,6 +35,7 @@ Feature: YouView Broadcaster lookup service
     | GBR-ENG-thames_estuary          | Itv         |
     | GBR-ENG-west                    | Itv         |
     | GBR-ENG-south_west              | Itv         |
+    | GBR-ENG-south_east              | Itv         |
     | GBR-ENG-kent                    | Itv         |
     | GBR-SCT-north                   | Stv         |
     | GBR-SCT-north                   | Stv         |
