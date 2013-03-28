@@ -43,7 +43,6 @@ Feature: Mercury Playlist Requests
     | YouView  | 10.192.42.109 | successful |
 
   @not_local
-  @not_rc3
   Scenario Outline: Geo-blocking Mercury playlists for invalid locations
     Given I have a piece of <platform> catchup content
     When I request the Mercury playlist from <location>

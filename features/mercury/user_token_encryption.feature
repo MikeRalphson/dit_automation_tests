@@ -1,6 +1,5 @@
 @sso
 @not_local
-@not_rc3
 @irdeto
 
 Feature: PDFT-2791 - Decrypted User Token on playlist request

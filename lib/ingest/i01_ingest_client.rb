@@ -16,4 +16,4 @@ opts = {
   :receipt_search_mins => 10
 }
 
-p IngestHelper.new.do_ingest(opts, :i01, '183122', true)
+p IngestHelper.new.do_ingest(opts, '183122', true)

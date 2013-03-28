@@ -2,7 +2,6 @@
 ##YAML Template
 ---
 default: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@geo -t ~@local_only
-rc3: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@not_rc3 -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@geo -t ~@local_only
 test: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@geo -t ~@local_only
 local: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@not_local -t ~@bug -t ~@broadcaster -t ~@geo
 sanity: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @sanity -t ~@android_ingest -t ~@flakey -t ~@manual -t ~@bug -t ~@geo -t ~@local_only
