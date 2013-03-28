@@ -23,6 +23,7 @@ $:.unshift(File.dirname(__FILE__) + '/../../lib')
 require 'mercury_api'
 require 'env_config'
 require 'http_client'
+require 'helpers/utilities'
 
 require 'mercury/mercury_playlist'
 require 'mercury/irdeto_encryption'
@@ -37,6 +38,7 @@ require 'platform/youview'
 require 'platform/freesat'
 
 include Retryable
+include Utilities
 
 SimpleCov.start
 

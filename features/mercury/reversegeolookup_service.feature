@@ -3,14 +3,14 @@
 @not_rc3
 @geo
 
-Feature: Geo reversegeolookup service
+Feature: Reverse Geo Lookup service
   In order to geo-block content from outside the UK
   As a Mobile Application
   I want to be able to query a reverselookup service to restrict ITV1 content to the correct broadcasters
 
-  Scenario Outline: To verify that the correct broadcaster value is returned
-    Given I request the reversegeolookup service with the following <latitude> & <longitude>
-    Then I should get the correct <broadcaster> returned from the postcode service
+  Scenario Outline: The correct broadcaster value is returned for UK locations
+    Given I request the reversegeolookup service with <latitude> & <longitude>
+    Then I should receive the correct <broadcaster> from the postcode service
     And the response should contain the "Access-Control-Allow-Origin" header
 
   Examples:
@@ -21,9 +21,10 @@ Feature: Geo reversegeolookup service
     | 51.483208 | -3.167304 | ITV         |
     | 49.216856 | -2.117618 | Channel     |
 
-  Scenario Outline: To verify that the unknown broadcaster value is returned when I am outside the UK
-    Given I request the reversegeolookup service from outside the UK with <latitude> & <longitude>
-    Then I expect to see a 500 Internal Server Error
+  Scenario Outline: A 'not found' value is returned for locations outside the UK
+    Given I request the reversegeolookup service with <latitude> & <longitude>
+    Then I should not receive a 302 redirect to the postcode service
+    Then I should receive a not found error
 
   Examples:
     | latitude  | longitude |
@@ -31,8 +32,8 @@ Feature: Geo reversegeolookup service
 
   Scenario Outline: To verify that the correct postcode is returned
     Given I request the geolookup for postcode service with the following <latitude> & <longitude>
-    Then I should not get a 302 redirect to the postcode service
-    And I should get the correct <postcode> returned from the geolookup postcode service
+    Then I should not receive a 302 redirect to the postcode service
+    And I should receive the correct <postcode> from the geolookup postcode service
     And the response should contain the "Access-Control-Allow-Origin" header
 
   Examples:
