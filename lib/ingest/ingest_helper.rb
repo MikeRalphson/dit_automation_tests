@@ -17,17 +17,12 @@ class IngestHelper
     client.prodid
   end
 
-  def do_ingest(opts, environment, android_dir, irdeto = false)
+  def do_ingest(opts, android_dir, irdeto = false)
 
     setup_json_data
 
-    if environment == :rc3
-      base_receipt_dir = 'MercuryFTP/Receipts'
-      base_asset_dir = 'MercuryFTP/CatchUpAndArchive'
-    else
-      base_receipt_dir = 'Receipts'
-      base_asset_dir = 'CatchUpAndArchive'
-    end
+    base_receipt_dir = 'Receipts'
+    base_asset_dir = 'CatchUpAndArchive'
 
     #DotCom
     opts[:platform] = :dotcom
@@ -66,7 +61,7 @@ class IngestHelper
     opts[:asset_destination] = "/#{android_dir}/priority/test"
     prodid = fresh_ingest opts
 
-    #YouView 
+    #YouView
     opts[:prodid] = prodid
     opts[:asset_extension] = 'ts'
     opts[:platform] = :youview

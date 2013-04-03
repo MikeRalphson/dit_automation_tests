@@ -1,6 +1,5 @@
 @sanity
 @not_local
-@not_rc3
 @geo
 
 Feature: Geo reversegeolookup service

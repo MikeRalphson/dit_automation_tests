@@ -8,11 +8,6 @@ Cucumber::Rake::Task.new(:cucumber) do |task|
   task.cucumber_opts = '-p default'
 end
 
-desc 'Run stable RC3 tests'
-Cucumber::Rake::Task.new(:rc3) do |task|
-  task.cucumber_opts = '-p rc3'
-end
-
 desc 'Run stable Test (FT02) tests'
 Cucumber::Rake::Task.new(:test) do |task|
   task.cucumber_opts = '-p test'

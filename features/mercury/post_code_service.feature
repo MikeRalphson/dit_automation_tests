@@ -1,6 +1,5 @@
 @geo
 @sanity
-@not_rc3
 @not_local
 
 Feature: PostCode service

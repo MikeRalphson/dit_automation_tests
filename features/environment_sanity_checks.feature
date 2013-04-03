@@ -1,5 +1,4 @@
 @not_local
-@not_rc3
 @flakey
 
 Feature: Bloom Servoces are started
