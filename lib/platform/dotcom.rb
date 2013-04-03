@@ -4,26 +4,23 @@ class Dotcom < Platform
 
   attr_reader :bitrates, :userid
 
-  attr_accessor :production, :data, :user_token
+  attr_accessor :production, :user_token
 
   def initialize(category = 'catchup')
     super()
     @production = "#{EnvConfig["dotcom_#{category}_rtmpe"]}" # dotcom_catchup|archive_rtmpe
     @bitrates = [400000, 600000, 800000, 1200000]
-    @data[:siteInfo][:Platform] = 'DotCom'
-    @data[:request][:ProductionId] = @production
+    @playlist_request.data[:siteInfo][:Platform] = 'DotCom'
+    @playlist_request.data[:request][:ProductionId] = @production
     @userid = "#{EnvConfig['user_id']}"
     @user_token = nil
+    @playlist_response = Mercury::DotcomResponse.new
   end
 
-  def mercury_request(location = nil)
+  def request_playlist
     @user_token ||= generate_encrypted_usertoken(@production, @userid)
-    @data[:userInfo][:UserToken] = @user_token
-    super(@data, location)
-  end
-
-  def get_production_from_response(response)
-    response.xpath("//ProductionId").text
+    @playlist_request.data[:userInfo][:UserToken] = @user_token
+    super
   end
 
 end
