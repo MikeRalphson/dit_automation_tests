@@ -5,19 +5,9 @@ class MercuryApi
     node_value.nil? ? false : true
   end
 
-  def get_xml_from_url (url)
-    response = get_response_from_url url
-    xml = Nokogiri::XML response
-    xml.remove_namespaces!
-  end
-
   def get_xml_from_response (response)
     xml = Nokogiri::XML response
     xml.remove_namespaces!
-  end
-
-  def get_response_from_url (url)
-    HttpClient.new.get(url).response
   end
 
   def find_value_in_hash(key, hash)

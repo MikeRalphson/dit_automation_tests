@@ -12,6 +12,7 @@ local:
     irdeto_archive_f4m:   '1/700434/13666cdfecb940a786045a980b807d00#001'
     user_id:              '1237847'
 test:
+    alcatraz_url:         'http://test-alcatraz.itv.com'
     mercury_url:          'http://test-mercury.itv.com'
     lithium_url:          'http://test-lithium-news.itv.com'
     bloom_status_url:     'http://bloomcms.itvft02.ads/internal/status/api'
@@ -37,6 +38,7 @@ test:
     itv4_production:      '1/675188/29b2d2f1dc3e4dfaa9c05209c353bf65#001'
     citv_production:      '1/137741/c0960f4948924220a069d84b06029a5b#001'
 i01:
+    alcatraz_url:         'http://i01-alcatraz.itv.com'
     mercury_url:          'http://i01-mercury.itv.com'
     lithium_url:          'http://i01-lithium-news.itv.com'
     bloom_status_url:     'http://bloomcms.itvint01.ads/internal/status/api'
@@ -46,6 +48,7 @@ i01:
     dotcom_archive_rtmpe: '1/9310/0003#003'
     user_id:              '12448' # ben.snape@itv.com / password
 live:
+    alcatraz_url:         'http://alcatraz.itv.com'
     mercury_url:          'http://mercury.itv.com'
     lithium_url:          'http://lithium-news.itv.com'
     bloom_status_url:     'http://bloomcms.itvonline.ads/internal/status/api'
