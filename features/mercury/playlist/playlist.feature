@@ -82,8 +82,6 @@ Feature: Mercury Playlist Requests
     When I request the Mercury playlist
     Then I get two .mp4 stings with bitrates of 300 and 600
 
-  # not on i01 yet
-  @wip
   Scenario Outline: DN-338 Irdeto Session ID for non-DotCom catchup content
     Given I have a piece of <platform> catchup content
     When I request the Mercury playlist
