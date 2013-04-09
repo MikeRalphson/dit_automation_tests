@@ -1,22 +1,21 @@
 @not_local
-@flakey
+@not_ft02
 
-Feature: Bloom Servoces are started
+Feature: Bloom Services are online
   In order to validate a back-end release
   As operations
-  I want to be able to check that all services are up and after a deployment
+  I want to be able to check that all services are up and running after a deployment
 
-  Scenario Outline: Verify basic bloom service are running
-    Given a new backend release
-    When you request the internal status api
-    Then all the <services> should be <status>
+  Scenario: Verify basic Bloom services are alive
+    Given a new back-end release
+    When I request the Bloom internal status page
+    Then every service should be alive
 
-  Examples:
-    | services                                             | status |
-    | Bloom Publication Service                            | 0      |
-    | PublicContentStore                                   | 0      |
-    | Bloom Distributor Service                            | 0      |
-    | Bloom Core (DataStore, Security and Publication Log) | 0      |
-    | Bloom Weather Service                                | 0      |
-    | Bloom Football Service                               | 0      |
-    | Sherpa (Whitelist Service)                           | 0      |
+# Services:
+# Bloom Publication Service
+# PublicContentStore
+# Bloom Distributor Service
+# Bloom Core (DataStore, Security and Publication Log)
+# Bloom Weather Service
+# Bloom Football Service
+# Sherpa (Whitelist Service)
