@@ -97,7 +97,9 @@ Then /^the content unavailable for this platform error message is returned$/ do
   raise @playlist_error.message unless @playlist_error.to_s.include? "content is not available to this platform"
 end
 
-Then /^the authorisation failure error message is returned$/ do
+# Log level depends on the 'IsIrdetoDebugInfoEnabled' key in Mercury's domain.config
+Then /^the authorisation failure or content unavailable error \(depending on the logging level\) is returned$/ do
   @playlist_error.should_not be_nil
-  raise @playlist_error.message unless @playlist_error.to_s.include? "AuthorizationInfo Is authorized check: False"
+  raise @playlist_error.message unless @playlist_error.to_s.include? "AuthorizationInfo Is authorized check: False" or
+      @playlist_error.to_s.include? "content is not available to this platform"
 end

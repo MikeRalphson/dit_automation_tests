@@ -71,7 +71,7 @@ Feature: PDFT-2791 - Decrypted User Token on playlist request
     Given I have a piece of DotCom archive content
     And I have no UserToken
     When I request the Mercury playlist
-    Then the authorisation failure error message is returned
+    Then the authorisation failure or content unavailable error (depending on the logging level) is returned
 
   Scenario Outline: Playlist request for archive content containing a UserToken
     Given I have a piece of DotCom archive content
