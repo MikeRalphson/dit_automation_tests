@@ -13,7 +13,7 @@ class IngestHelper
     client = IngestRb::FTPClient.new(opts)
     puts result = client.ingest
     key ||= opts[:platform].to_s
-    @json[@host][key] = { client.prodid => result }
+    @json[@host][key] = {client.prodid => result}
     client.prodid
   end
 
@@ -111,11 +111,11 @@ class IngestHelper
   end
 
   def template
-    { "dotcom"=>"", "mobile"=>"",
-      "samsung"=>"", "ps3"=>"",
-      "youview"=>"", "freesat"=>"",
-      "android"=>"", "irdeto_catchup_rtmpe"=>"",
-      "irdeto_archive_hds"=>"" }
+    {"dotcom" => "", "mobile" => "",
+     "samsung" => "", "ps3" => "",
+     "youview" => "", "freesat" => "",
+     "android" => "", "irdeto_catchup_rtmpe" => "",
+     "irdeto_archive_hds" => ""}
   end
 
   def get_host
@@ -123,7 +123,7 @@ class IngestHelper
   end
 
   def write_json(path, json)
-    File.open(path, 'w') { |f| f. write(json.to_json) }
+    File.open(path, 'w') { |f| f.write(json.to_json) }
   end
 
 end

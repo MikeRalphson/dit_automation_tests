@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tva:TVAMain xmlns:tva="urn:tva:metadata:2004" contentProviderID="ITV" rightsOwner="ITV" publicationTime="2010-03-25T11:39:51+00:00">
+<tva:TVAMain xmlns:tva="urn:tva:metadata:2004" contentProviderID="ITV" rightsOwner="ITV"
+             publicationTime="2010-03-25T11:39:51+00:00">
   <tva:CopyrightNotice>Left Bank Pictures 2010</tva:CopyrightNotice>
   <tva:ProgramDescription>
     <tva:AvailsListInformationTable Category="TV" availsListExternalID="1234" contractID="124"/>
@@ -68,23 +69,29 @@
         <tva:AdBreaks>
           <tva:StartOfProgramme>0</tva:StartOfProgramme>
           <tva:Part>
-            <cmd:PartNumber xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">1
+            <cmd:PartNumber
+                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">1
             </cmd:PartNumber>
-            <cmd:EndTime xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
+            <cmd:EndTime
+                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
               798000
             </cmd:EndTime>
           </tva:Part>
           <tva:Part>
-            <cmd:PartNumber xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">2
+            <cmd:PartNumber
+                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">2
             </cmd:PartNumber>
-            <cmd:EndTime xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
+            <cmd:EndTime
+                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
               1490000
             </cmd:EndTime>
           </tva:Part>
           <tva:Part>
-            <cmd:PartNumber xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">3
+            <cmd:PartNumber
+                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">3
             </cmd:PartNumber>
-            <cmd:EndTime xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
+            <cmd:EndTime
+                    xmlns:cmd="http://ref.itvplc.ads/Schema/Syndication/BusinessObjects/CatchUp/CatchUpMetadata/1.0">
               2209000
             </cmd:EndTime>
           </tva:Part>

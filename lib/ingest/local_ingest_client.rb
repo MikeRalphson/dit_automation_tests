@@ -14,19 +14,19 @@ host = ihelper.get_host
 json[host] = ihelper.template unless json[host]
 
 std_opts = {
-  :extension => '.mp4',
-  :bitrates => [400, 600, 800, 1200],
-  :platforms => ['DotCom'],
-  :licence => 'First TX'
+    :extension => '.mp4',
+    :bitrates => [400, 600, 800, 1200],
+    :platforms => ['DotCom'],
+    :licence => 'First TX'
 }
 
 client = IngestRb::LocalClient.new(std_opts)
 
 hds_opts = {
-  :extension => '.manifest.f4m',
-  :platforms => ['DotCom'],
-  :licence => 'Fixed Dates',
-  :pay => :hds
+    :extension => '.manifest.f4m',
+    :platforms => ['DotCom'],
+    :licence => 'Fixed Dates',
+    :pay => :hds
 }
 
 hds_client = IngestRb::LocalClient.new(hds_opts)
