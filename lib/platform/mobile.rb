@@ -1,6 +1,6 @@
 class Mobile < Platform
 
-  attr_reader :production, :bitrates
+  attr_reader :bitrates
 
   attr_accessor :params
 
@@ -23,11 +23,11 @@ class Mobile < Platform
         :VelocityLatitude => nil,
         :VelocityLongitude => nil
     }
-    @production = "#{EnvConfig['playlist_vodcrid']}"
+    @playlist_response = Mercury::MobileResponse.new
   end
 
   def request_playlist
-    @playlist_request.data[:Vodcrid][:Id] = @production
+    @playlist_request.data[:request][:ProductionId] = @production
     @playlist_request.data[:deviceInfo] = @params
     @playlist_request.data[:siteInfo][:Platform] = 'Mobile'
     super

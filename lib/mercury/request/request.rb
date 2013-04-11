@@ -3,38 +3,42 @@ module Mercury
   class Request
 
     attr_accessor :data, :location
+    attr_reader :logger
 
     def initialize
       @data = {
           :Vodcrid => {
               :Id => '',
-              :Partition => "itv.com"
+              :Partition => 'itv.com'
           },
           :userInfo => {
-              :Broadcaster => "Itv",
+              :Broadcaster => 'Itv',
+              :RevenueScienceValue => 'ITVPLAYER.13.2.2',
               :SessionId => '',
               :SsoToken => '',
               :UserToken => ''
           },
           :request => {
               :ProductionId => '',
-              :RequestGuid => "7FA847EC-905C-41EA-BCF7-CC9E44A00CE3"
+              :RequestGuid => '7FA847EC-905C-41EA-BCF7-CC9E44A00CE3'
           },
           :siteInfo => {
               :AdvertSize => '',
-              :AdvertisingRestriction => "None",
-              :AdvertisingSite => "",
-              :Area => "ITVPLAYER",
+              :AdvertisingRestriction => 'None',
+              :AdvertisingSite => '',
+              :Area => 'ITVPLAYER',
               :Platform => '',
-              :Site => "ItvCom"
+              :Site => 'ItvCom'
           },
           :deviceInfo => {
           }
       }
       @location = nil
+      @logger = MercuryRequestLogger.new
     end
 
     def do
+      configure_savon
       data = @data
       client = create_savon_client
 
@@ -80,17 +84,27 @@ module Mercury
 
     def get_namespaces
       {
-          "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
-          "xmlns:tem" => "http://tempuri.org/",
-          "xmlns:itv" => "http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types",
-          "xmlns:com" => "http://schemas.itv.com/2009/05/Common",
-          "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+          'xmlns:soapenv' => 'http://schemas.xmlsoap.org/soap/envelope/',
+          'xmlns:tem' => 'http://tempuri.org/',
+          'xmlns:itv' => 'http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types',
+          'xmlns:com' => 'http://schemas.itv.com/2009/05/Common',
+          'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
       }
     end
 
     def create_savon_client
       Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl" do
         http.headers = {'REAL_CLIENT_IP' => self.location} if self.location
+      end
+    end
+
+    def configure_savon
+      Savon.configure do |config|
+        config.log = true
+        config.log_level = :debug
+        HTTPI.log = false
+        config.logger = @logger
+        config.pretty_print_xml = false # much more performant
       end
     end
 

@@ -8,9 +8,9 @@ Cucumber::Rake::Task.new(:cucumber) do |task|
   task.cucumber_opts = '-p default'
 end
 
-desc 'Run stable Test (FT02) tests'
-Cucumber::Rake::Task.new(:test) do |task|
-  task.cucumber_opts = '-p test'
+desc 'Run stable FT02 tests'
+Cucumber::Rake::Task.new(:ft02) do |task|
+  task.cucumber_opts = '-p test CONFIG=test'
 end
 
 Cucumber::Rake::Task.new(:local) do |task|
@@ -19,18 +19,6 @@ end
 
 Cucumber::Rake::Task.new(:sanity) do |task|
   task.cucumber_opts = '-p sanity'
-end
-
-Cucumber::Rake::Task.new(:wip) do |task|
-  task.cucumber_opts = '-p wip'
-end
-
-Cucumber::Rake::Task.new(:bug) do |task|
-  task.cucumber_opts = '-p bug'
-end
-
-Cucumber::Rake::Task.new(:android) do |task|
-  task.cucumber_opts = '-p android'
 end
 
 Cucumber::Rake::Task.new(:broadcaster) do |task|
