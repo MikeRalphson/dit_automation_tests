@@ -9,5 +9,5 @@ gem "simplecov"
 gem 'json', "1.7.4"
 gem 'rest-client'
 gem 'activesupport'
-gem 'ingestrb', :git => 'git@github.com:ITV/ingestrb.git'
+gem 'ingestrb', ">0.0.1", :git => 'git@github.com:ITV/ingestrb.git'
 gem 'rspec'

@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:ITV/ingestrb.git
-  revision: 487ab8184f3354cc95203b33656cff3e4ae71882
+  revision: 2809b7a2a00032e7efe7a3e8a12e1398891419b5
   specs:
-    ingestrb (0.0.1)
+    ingestrb (0.0.2)
       activesupport
       nokogiri
       retryable-rb
@@ -71,7 +71,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   cucumber
-  ingestrb!
+  ingestrb (> 0.0.1)!
   json (= 1.7.4)
   nokogiri
   rake
