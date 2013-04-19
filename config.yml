@@ -45,7 +45,7 @@ i01:
     temp_folder:          '/tmp/mdr'
     playlist_vodcrid:     '324074'
     dotcom_catchup_rtmpe: '1/894120/f766674eafe54fecb6b558713aa517c'
-    dotcom_archive_rtmpe: '1/9310/0003#003'
+    dotcom_archive_rtmpe: '1/8670/0001#001'
     user_id:              '12448' # ben.snape@itv.com / password
 live:
     alcatraz_url:         'http://alcatraz.itv.com'
