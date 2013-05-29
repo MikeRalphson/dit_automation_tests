@@ -1,6 +1,6 @@
 class Freesat < Platform
 
-  attr_reader :production, :bitrates
+  attr_reader :bitrates
 
   def initialize(category = 'catchup')
     super()
@@ -8,7 +8,7 @@ class Freesat < Platform
     @bitrates = nil
     @playlist_request = Mercury::FreesatRequest.new
     @playlist_response = Mercury::FreesatResponse.new
-    @production = "#{EnvConfig['playlist_vodcrid']}"
+    @production = EnvConfig['freesat_production']
   end
 
   def request_playlist

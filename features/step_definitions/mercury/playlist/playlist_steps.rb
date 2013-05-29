@@ -1,8 +1,8 @@
-Given /^I have a piece of (.*) catchup content$/ do |platform|
+Given /^I have a piece of (\w+) catchup content$/ do |platform|
   @platform = Object::const_get(platform.downcase.camelcase).new
 end
 
-Given /^I have a piece of (.*) archive content$/ do |platform|
+Given /^I have a piece of (\w+) archive content$/ do |platform|
   @platform = Object::const_get(platform.downcase.camelcase).new('archive')
 end
 
@@ -28,7 +28,7 @@ When /^I get the correct base url$/ do
   base_urls = @platform.playlist_response.base_urls
   base_urls.should_not be_empty
   base_urls.each { |url| url.attr("base").should =~ @platform.base_url unless @platform.base_url.nil? } # hacky for YV?
-  # try empty string instead of nil
+                                                                                                        # try empty string instead of nil
 end
 
 When /^I get the correct video type$/ do
@@ -60,24 +60,36 @@ Then /^I get a (.*) response$/ do |status|
   end
 end
 
-Then /^the advert URI's should exist$/ do
-  @advert_uris ||= @platform.playlist_response.adverts
-  @advert_uris.should_not be_nil
+Then /^the advert URIs should exist$/ do
+  @adverts ||= @platform.playlist_response.adverts
+  @adverts.should_not be_empty
 end
 
-Then /^the advert URI's should contain the default size$/ do
-  @advert_uris ||= @platform.playlist_response.adverts
-  @advert_uris.each { |uri| uri.match(/size=(\w+)/).captures.to_s.should =~ @platform.advert_size }
+Then /^the advert URIs should contain the 'size' tag with the default size$/ do
+  @adverts ||= @platform.playlist_response.adverts
+  @adverts.each do |content_break|
+    content_break.each do |advert|
+      advert.match(/size=(\w+)/).captures.to_s.should =~ @platform.advert_size
+    end
+  end
 end
 
-Then /^the advert URI's should contain the correct area$/ do
-  @advert_uris ||= @platform.playlist_response.adverts
-  @advert_uris.each { |uri| uri.match(/area=(\w+\.*\w*)/).captures.to_s.should =~ @platform.advert_area }
+Then /^the advert URIs should contain the 'area' tag with the correct area$/ do
+  @adverts ||= @platform.playlist_response.adverts
+  @adverts.each do |content_break|
+    content_break.each do |advert|
+      advert.match(/area=(\w+\.*\w*)/).captures.to_s.should =~ @platform.advert_area
+    end
+  end
 end
 
-Then /^the advert URI's should contain the correct site$/ do
-  @advert_uris ||= @platform.playlist_response.adverts
-  @advert_uris.each { |uri| uri.match(/site=(\w+\.*\w*)/).captures.to_s.should =~ @platform.advert_site }
+Then /^the advert URIs should contain the 'site' tag with the correct site$/ do
+  @adverts ||= @platform.playlist_response.adverts
+  @adverts.each do |content_break|
+    content_break.each do |advert|
+      advert.match(/site=(\w+\.*\w*)/).captures.to_s.should =~ @platform.advert_site
+    end
+  end
 end
 
 # N.B. we need the unused parameters to avoid identical step defintions and maintain behaviour clarity
@@ -121,4 +133,42 @@ Then /^there should be a valid Session ID in the response$/ do
   session_id = @platform.playlist_response.session_id
   session_id.should_not be_empty
   session_id.should_not match /\A0\Z/
+end
+
+Then /^the advert URIs should contain the 'generic' tag with same GUID for each URI$/ do
+  guids = @platform.playlist_response.playlist_guids
+  guids.flatten.uniq.count.should == 1
+end
+
+Then(/^the advert URIs should contain the 'pv' tag with the correct player version$/) do
+  player_version = @platform.playlist_response.player_version.flatten
+  player_version.each_with_index do |value, index|
+    index % 2 == 0 ? value.should =~ /pv/ : value.should =~ /itvplayer.13.2.2/
+  end
+end
+
+Then(/^the advert URIs should contain the 'prodid' tag with the correct production ID$/) do
+  map = {'/' => '_', '#' => '-'}
+  regex = Regexp.union(map.keys)
+
+  production = @platform.production.prepend('itv.')
+  sanitised_production = production.gsub(regex, map)
+
+  advert_production_ids = @platform.playlist_response.production_id.flatten
+  advert_production_ids.each { |id| id.should == sanitised_production }
+end
+
+Then(/^the advert URIs should contain the 'tparts' tag with the correct number of programme parts$/) do
+  programme_parts = @platform.playlist_response.programme_parts.flatten
+  programme_parts.each { |part_count| part_count.should =~ /4/ } # we typically ingest with 4 programme parts
+end
+
+Then(/^the advert URIs should contain the 'owner' tag with a placeholder value$/) do
+  owner = @platform.playlist_response.owner.flatten
+  owner.each { |value| value.should =~ /x/ }
+end
+
+Then(/^the advert URIs should contain the 'series' tag with the correct series$/) do
+  series = @platform.playlist_response.series.flatten
+  series.each { |value| value.should =~ /#{@platform.series}/ }
 end

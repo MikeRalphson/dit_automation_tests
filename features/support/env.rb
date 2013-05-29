@@ -25,12 +25,13 @@ require 'env_config'
 require 'http_client'
 require 'helpers/utilities'
 
+require 'mercury/mercury_request_logger'
 require 'mercury/irdeto_encryption'
 require 'mercury/request/request'
 require 'mercury/request/freesat_request'
 require 'mercury/response/response'
-require 'mercury/response/dotcom_response'
 require 'mercury/response/freesat_response'
+require 'mercury/response/mobile_response'
 
 require 'platform/platform'
 require 'platform/dotcom'
@@ -50,11 +51,4 @@ Before do
   @mercury_api = MercuryApi.new
   @uuid = SecureRandom.uuid
   @timeout = 300
-
-  Savon.configure do |config|
-    config.log = false
-    HTTPI.log = false
-    #config.log_level = :debug
-    config.pretty_print_xml = true
-  end
 end

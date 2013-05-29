@@ -60,8 +60,10 @@ Then /^the response should contain ad-server URL's with no additional parameters
   @platform.params[:ScreenSize] = nil
   @platform.params[:StreamType] = nil
 
-  advert_uris = @platform.playlist_response.adverts
-  advert_uris.should_not be_empty
+  adverts = @platform.playlist_response.adverts
+  adverts.should_not be_empty
+
+  advert_uris = adverts.flatten
 
   @platform.playlist_response.validate_additional_parameters(advert_uris, @platform.params)
 end
@@ -75,8 +77,10 @@ def validate_android_response
   @platform.params[:ScreenSize] = 'small'
   @platform.params.delete :StreamType
 
-  advert_uris = @platform.playlist_response.adverts
-  advert_uris.should_not be_empty
+  adverts = @platform.playlist_response.adverts
+  adverts.should_not be_empty
+
+  advert_uris = adverts.flatten
 
   @platform.playlist_response.validate_additional_parameters(advert_uris, @platform.params)
 end

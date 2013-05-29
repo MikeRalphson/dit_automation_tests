@@ -1,6 +1,6 @@
 class Android < Platform
 
-  attr_reader :production, :bitrates
+  attr_reader :bitrates
 
   attr_accessor :params
 
@@ -23,13 +23,11 @@ class Android < Platform
         :VelocityLatitude => 'testvelocitylat',
         :VelocityLongitude => 'testvelocitylong'
     }
-    @production = "#{EnvConfig['playlist_vodcrid']}"
     @sting_bitrates = [300000, 600000]
   end
 
   def request_playlist
     @playlist_request.data[:siteInfo][:Platform] = 'Android'
-    @playlist_request.data[:Vodcrid][:Id] = @production
     @playlist_request.data[:deviceInfo] = @params
     super
   end
