@@ -4,7 +4,7 @@ describe Ps3 do
     @ps3 = Ps3.new
   end
 
-  it "should have Platform as a superclass" do
+  it 'should have Platform as a superclass' do
     @ps3.should be_a_kind_of(Platform)
   end
 
@@ -13,20 +13,20 @@ describe Ps3 do
   #end
 
   # not sure about these 2 mocking specs
-  it "should be able to make catchup playlist requests" do
+  it 'should be able to make catchup playlist requests' do
     @ps3 = mock(Ps3)
     @ps3.stub!(:mercury_request).and_return('playlist response')
 
-    @ps3.should_receive(:mercury_request).and_return("playlist response")
+    @ps3.should_receive(:mercury_request).and_return('playlist response')
     response = @ps3.mercury_request
     response.should match('playlist response')
   end
 
-  it "should be able to make archive playlist requests" do
+  it 'should be able to make archive playlist requests' do
     @ps3 = mock(Ps3)
     @ps3.stub!(:mercury_request).and_return('playlist response')
 
-    @ps3.should_receive(:mercury_request).and_return("playlist response")
+    @ps3.should_receive(:mercury_request).and_return('playlist response')
     response = @ps3.mercury_request
     response.should match('playlist response')
   end
@@ -51,7 +51,7 @@ describe Ps3 do
     @ps3.base_url.kind_of? Regexp
   end
 
-  it "should have expected bitrates of 800000" do
+  it 'should have expected bitrates of 800000' do
     @ps3.bitrates.should match_array [800000]
   end
 

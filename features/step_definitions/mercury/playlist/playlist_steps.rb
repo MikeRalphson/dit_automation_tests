@@ -27,7 +27,7 @@ end
 When /^I get the correct base url$/ do
   base_urls = @platform.playlist_response.base_urls
   base_urls.should_not be_empty
-  base_urls.each { |url| url.attr("base").should =~ @platform.base_url unless @platform.base_url.nil? } # hacky for YV?
+  base_urls.each { |url| url.attr('base').should =~ @platform.base_url unless @platform.base_url.nil? } # hacky for YV?
                                                                                                         # try empty string instead of nil
 end
 
@@ -43,7 +43,7 @@ Then /^I get the correct production$/ do
 end
 
 Then /^the expiry date is in the future$/ do
-  todays_date = Date.today.strftime("%FT%T")
+  todays_date = Date.today.strftime('%FT%T')
   expiry_date = @platform.playlist_response.expiry_date
   (todays_date > expiry_date).should == false
 end

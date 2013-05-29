@@ -4,7 +4,7 @@ describe Freesat do
     @freesat = Freesat.new
   end
 
-  it "should have Platform as a superclass" do
+  it 'should have Platform as a superclass' do
     @freesat.should be_a_kind_of(Platform)
   end
 
@@ -13,20 +13,20 @@ describe Freesat do
   #end
 
   # not sure about these 2 mocking specs
-  it "should be able to make catchup playlist requests" do
+  it 'should be able to make catchup playlist requests' do
     @freesat = mock(Freesat)
     @freesat.stub!(:mercury_request).and_return('playlist response')
 
-    @freesat.should_receive(:mercury_request).and_return("playlist response")
+    @freesat.should_receive(:mercury_request).and_return('playlist response')
     response = @freesat.mercury_request
     response.should match('playlist response')
   end
 
-  it "should be able to make archive playlist requests" do
+  it 'should be able to make archive playlist requests' do
     @freesat = mock(Freesat)
     @freesat.stub!(:mercury_request).and_return('playlist response')
 
-    @freesat.should_receive(:mercury_request).and_return("playlist response")
+    @freesat.should_receive(:mercury_request).and_return('playlist response')
     response = @freesat.mercury_request
     response.should match('playlist response')
   end
@@ -51,7 +51,7 @@ describe Freesat do
     @freesat.base_url.kind_of? Regexp
   end
 
-  it "should have no expected bitrates" do
+  it 'should have no expected bitrates' do
     @freesat.bitrates.should be_nil
   end
 

@@ -78,7 +78,7 @@ json[host]['youview'] = prodid
 p prodid = hds_client.ingest
 json[host]['archive_hds'] = prodid
 
-p "results..."
+p 'results...'
 p json
 
 ihelper.write_json("#{File.dirname(__FILE__) }/data.json", json)

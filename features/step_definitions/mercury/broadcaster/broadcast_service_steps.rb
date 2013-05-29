@@ -10,10 +10,10 @@ end
 
 Then /^the response should include the feed (.*)$/ do |title|
   xml = @mercury_api.get_xml_from_response @response
-  raise 'invalid content found in response' unless @mercury_api.value_exists_in_xml_node?(xml, "Title", title)
+  raise 'invalid content found in response' unless @mercury_api.value_exists_in_xml_node?(xml, 'Title', title)
 end
 
 Then /^the response should not include the feed (.*)$/ do |title|
   xml = @mercury_api.get_xml_from_response @response
-  raise 'invalid content found in response' if @mercury_api.value_exists_in_xml_node?(xml, "Title", title)
+  raise 'invalid content found in response' if @mercury_api.value_exists_in_xml_node?(xml, 'Title', title)
 end

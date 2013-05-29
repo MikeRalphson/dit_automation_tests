@@ -111,11 +111,11 @@ class IngestHelper
   end
 
   def template
-    {"dotcom" => "", "mobile" => "",
-     "samsung" => "", "ps3" => "",
-     "youview" => "", "freesat" => "",
-     "android" => "", "irdeto_catchup_rtmpe" => "",
-     "irdeto_archive_hds" => ""}
+    {'dotcom' => '', 'mobile' => '',
+     'samsung' => '', 'ps3' => '',
+     'youview' => '', 'freesat' => '',
+     'android' => '', 'irdeto_catchup_rtmpe' => '',
+     'irdeto_archive_hds' => ''}
   end
 
   def get_host

@@ -31,10 +31,10 @@ class MercuryApi
   end
 
   def calculate_week
-    today = Date.today.strftime("%A")
-    yesterday = (Date.today - 1).strftime("%A")
+    today = Date.today.strftime('%A')
+    yesterday = (Date.today - 1).strftime('%A')
     week = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
-    week.collect! { |day| day == today ? "Today" : (day == yesterday) ? "Yesterday" : day }
+    week.collect! { |day| day == today ? 'Today' : (day == yesterday) ? 'Yesterday' : day }
   end
 
   def get_values_from_xml (xml, node)

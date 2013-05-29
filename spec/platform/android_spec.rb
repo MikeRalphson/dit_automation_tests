@@ -33,7 +33,7 @@ describe Android do
     defined?(@android.base_url).should_not be_nil
   end
 
-  it "should have expected bitrates of 150000, 300000, 400000, 600000, 800000 and 1200000" do
+  it 'should have expected bitrates of 150000, 300000, 400000, 600000, 800000 and 1200000' do
     @android.bitrates.should match_array [150000, 300000, 400000, 600000, 800000, 1200000]
   end
 

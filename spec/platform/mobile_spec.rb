@@ -4,7 +4,7 @@ describe Mobile do
     @mobile = Mobile.new
   end
 
-  it "should have Platform as a superclass" do
+  it 'should have Platform as a superclass' do
     @mobile.should be_a_kind_of(Platform)
   end
 
@@ -12,11 +12,11 @@ describe Mobile do
   #  @mobile.data[:siteInfo][:Platform].should =~ /mobile/i
   #end
 
-  it "should be able to make catchup playlist requests" do
+  it 'should be able to make catchup playlist requests' do
     @mobile = mock(Mobile)
     @mobile.stub!(:mercury_request).and_return('playlist response')
 
-    @mobile.should_receive(:mercury_request).and_return("playlist response")
+    @mobile.should_receive(:mercury_request).and_return('playlist response')
     response = @mobile.mercury_request
     response.should match('playlist response')
   end
@@ -33,7 +33,7 @@ describe Mobile do
     defined?(@mobile.base_url).should_not be_nil
   end
 
-  it "should have expected bitrates of 400000" do
+  it 'should have expected bitrates of 400000' do
     @mobile.bitrates.should match_array [400000]
   end
 

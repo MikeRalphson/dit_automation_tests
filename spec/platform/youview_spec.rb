@@ -4,7 +4,7 @@ describe Youview do
     @youview = Youview.new
   end
 
-  it "should have Platform as a superclass" do
+  it 'should have Platform as a superclass' do
     @youview.should be_a_kind_of(Platform)
   end
 
@@ -13,20 +13,20 @@ describe Youview do
   #end
 
   # not sure about these 2 mocking specs
-  it "should be able to make catchup playlist requests" do
+  it 'should be able to make catchup playlist requests' do
     @youview = mock(Youview)
     @youview.stub!(:mercury_request).and_return('playlist response')
 
-    @youview.should_receive(:mercury_request).and_return("playlist response")
+    @youview.should_receive(:mercury_request).and_return('playlist response')
     response = @youview.mercury_request
     response.should match('playlist response')
   end
 
-  it "should be able to make archive playlist requests" do
+  it 'should be able to make archive playlist requests' do
     @youview = mock(Youview)
     @youview.stub!(:mercury_request).and_return('playlist response')
 
-    @youview.should_receive(:mercury_request).and_return("playlist response")
+    @youview.should_receive(:mercury_request).and_return('playlist response')
     response = @youview.mercury_request
     response.should match('playlist response')
   end
@@ -47,7 +47,7 @@ describe Youview do
     @youview.base_url.should == nil
   end
 
-  it "should have expected bitrates of 1200000" do
+  it 'should have expected bitrates of 1200000' do
     @youview.bitrates.should match_array [1200000]
   end
 

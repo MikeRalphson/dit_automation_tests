@@ -4,7 +4,7 @@ describe Samsung do
     @samsung = Samsung.new
   end
 
-  it "should have Platform as a superclass" do
+  it 'should have Platform as a superclass' do
     @samsung.should be_a_kind_of(Platform)
   end
 
@@ -13,20 +13,20 @@ describe Samsung do
   #end
 
   # not sure about these 2 mocking specs
-  it "should be able to make catchup playlist requests" do
+  it 'should be able to make catchup playlist requests' do
     @samsung = mock(Samsung)
     @samsung.stub!(:mercury_request).and_return('playlist response')
 
-    @samsung.should_receive(:mercury_request).and_return("playlist response")
+    @samsung.should_receive(:mercury_request).and_return('playlist response')
     response = @samsung.mercury_request
     response.should match('playlist response')
   end
 
-  it "should be able to make archive playlist requests" do
+  it 'should be able to make archive playlist requests' do
     @samsung = mock(Samsung)
     @samsung.stub!(:mercury_request).and_return('playlist response')
 
-    @samsung.should_receive(:mercury_request).and_return("playlist response")
+    @samsung.should_receive(:mercury_request).and_return('playlist response')
     response = @samsung.mercury_request
     response.should match('playlist response')
   end
@@ -51,7 +51,7 @@ describe Samsung do
     @samsung.base_url.kind_of? Regexp
   end
 
-  it "should have expected bitrates of 1200000" do
+  it 'should have expected bitrates of 1200000' do
     @samsung.bitrates.should match_array [1200000]
   end
 

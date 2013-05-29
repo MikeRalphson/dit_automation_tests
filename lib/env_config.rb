@@ -26,7 +26,7 @@ class EnvConfig
   def current_config
     if ENV['CONFIG'].nil?
       default_config = @config_file_contents['defaults']['default_config']
-      default_config.nil? ? abort("No CONFIG supplied, and no default config found in config.yml") : default_config
+      default_config.nil? ? abort('No CONFIG supplied, and no default config found in config.yml') : default_config
     else
       ENV['CONFIG']
     end
@@ -36,7 +36,7 @@ class EnvConfig
 
   def config_file_contents
     config_yaml = File.join(Dir.pwd, 'config.yml')
-    raise "the config yaml file could not be found" unless File.exists?(config_yaml)
+    raise 'the config yaml file could not be found' unless File.exists?(config_yaml)
     YAML::load(File.open(config_yaml))
   end
 end

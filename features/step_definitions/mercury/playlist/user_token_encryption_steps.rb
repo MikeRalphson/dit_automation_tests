@@ -77,29 +77,29 @@ end
 # ExpiryErrorCode
 Then /^the timestamp has expired error message is returned$/ do
   @playlist_error.should_not be_nil
-  raise @playlist_error.message unless @playlist_error.to_s.include? "UserToken Error 852"
+  raise @playlist_error.message unless @playlist_error.to_s.include? 'UserToken Error 852'
 end
 
 # DecryptionFailureErrorCode
 Then /^the decryption failure error message is returned$/ do
   @playlist_error.should_not be_nil
-  raise @playlist_error.message unless @playlist_error.to_s.include? "UserToken Error 853"
+  raise @playlist_error.message unless @playlist_error.to_s.include? 'UserToken Error 853'
 end
 
 # DeserializationFailureErrorCode
 Then /^the deserialisation failure error message is returned$/ do
   @playlist_error.should_not be_nil
-  raise @playlist_error.message unless @playlist_error.to_s.include? "UserToken Error 854"
+  raise @playlist_error.message unless @playlist_error.to_s.include? 'UserToken Error 854'
 end
 
 Then /^the content unavailable for this platform error message is returned$/ do
   @playlist_error.should_not be_nil
-  raise @playlist_error.message unless @playlist_error.to_s.include? "content is not available to this platform"
+  raise @playlist_error.message unless @playlist_error.to_s.include? 'content is not available to this platform'
 end
 
 # Log level depends on the 'IsIrdetoDebugInfoEnabled' key in Mercury's domain.config
 Then /^the authorisation failure or content unavailable error \(depending on the logging level\) is returned$/ do
   @playlist_error.should_not be_nil
-  raise @playlist_error.message unless @playlist_error.to_s.include? "AuthorizationInfo Is authorized check: False" or
-      @playlist_error.to_s.include? "content is not available to this platform"
+  raise @playlist_error.message unless @playlist_error.to_s.include? 'AuthorizationInfo Is authorized check: False' or
+      @playlist_error.to_s.include? 'content is not available to this platform'
 end
