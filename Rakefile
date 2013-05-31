@@ -41,4 +41,4 @@ end
 
 RSpec::Core::RakeTask.new(:spec)
 
-task :default => :cucumber
+task :default => :live
