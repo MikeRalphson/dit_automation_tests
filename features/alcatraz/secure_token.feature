@@ -1,4 +1,5 @@
 @not_ft02
+@sanity
 Feature: Alcatraz Secure Token
   So that users cannot watch the same content concurrently,
   As Alcatraz,

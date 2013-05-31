@@ -1,4 +1,5 @@
 @not_ft02
+@sanity
 Feature: Alcatraz Cross Domain XML
   So that ITV web applications can communicate,
   As Alcatraz,
