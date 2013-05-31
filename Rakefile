@@ -17,8 +17,9 @@ Cucumber::Rake::Task.new(:local) do |task|
   task.cucumber_opts = '-p local'
 end
 
-Cucumber::Rake::Task.new(:sanity) do |task|
-  task.cucumber_opts = '-p sanity'
+desc 'Live Sanity Tests'
+Cucumber::Rake::Task.new(:live) do |task|
+  task.cucumber_opts = '-p live CONFIG=live'
 end
 
 Cucumber::Rake::Task.new(:broadcaster) do |task|

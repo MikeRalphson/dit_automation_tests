@@ -1,5 +1,4 @@
-@sanity
-
+@live
 Feature: YouView Broadcaster lookup service
   In order to map a YouView region to an ITV Broadcaster
   As a YouView client

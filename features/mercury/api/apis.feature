@@ -1,5 +1,4 @@
-@sanity
-
+@live
 Feature: API and MRSS feeds
   In order to generate front-end features
   As a backend enabler

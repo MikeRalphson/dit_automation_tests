@@ -1,7 +1,6 @@
 @sso
 @not_local
 @irdeto
-
 Feature: PDFT-2791 - Decrypted User Token on playlist request
   So that our HDS content is secure and not open to hackers
   As Mercury

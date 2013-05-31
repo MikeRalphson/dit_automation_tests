@@ -1,7 +1,7 @@
-@sanity
+@live
 @not_local
 @geo
-
+@bug
 Feature: Reverse Geo Lookup service
   In order to geo-block content from outside the UK
   As a Mobile Application
