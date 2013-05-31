@@ -3,9 +3,9 @@ require 'cucumber/rake/task'
 require 'cucumber/formatter/unicode'
 require 'rspec/core/rake_task'
 
-desc 'Run all stable tests (default)'
-Cucumber::Rake::Task.new(:cucumber) do |task|
-  task.cucumber_opts = '-p default'
+desc 'Run stable I01 tests'
+Cucumber::Rake::Task.new(:i01) do |task|
+  task.cucumber_opts = '-p i01 CONFIG=i01'
 end
 
 desc 'Run stable FT02 tests'
