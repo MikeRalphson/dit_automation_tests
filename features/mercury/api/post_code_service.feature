@@ -1,7 +1,6 @@
-@geo
 @live
+@geo
 @not_local
-@bug
 Feature: Postcode service
   In order to geo-block content from outside the UK
   As ITV
@@ -18,7 +17,7 @@ Feature: Postcode service
     | G51 1DA  | STV         |
     | BT15 1ED | UTV         |
     | CF24 0ED | ITV         |
-    | JE2 3GF  | Channel     |
+    | JE2 3GF  | ITV         |
 
   Scenario Outline: Verify that the correct broadcaster value is returned for partial postcodes
     Given I request the postcode service using a partial <postcode>
@@ -35,8 +34,8 @@ Feature: Postcode service
     | KW15     | STV         |
     | BT11     | UTV         |
     | BT15     | UTV         |
-    #| JE23     | Channel     | WE NEED TO RE-ENABLE THIS WHEN WE HAVE LOOKED INTO GEO ISSUES - https://app.gotoassist.com/desk/incidents/17913
-    | GY11     | Channel     |
+    | JE23     | ITV         |
+    | GY11     | ITV         |
 
   Scenario Outline: Verify that an error is thrown when a non-existent but correctly formatted postcode is used
     Given I request the postcode service with <postcode>

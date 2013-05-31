@@ -1,7 +1,6 @@
 @live
-@not_local
 @geo
-@bug
+@not_local
 Feature: Reverse Geo Lookup service
   In order to geo-block content from outside the UK
   As a Mobile Application
@@ -18,7 +17,7 @@ Feature: Reverse Geo Lookup service
     | 55.85803  | -4.29091  | STV         |
     | 54.60398  | -5.92974  | UTV         |
     | 51.483208 | -3.167304 | ITV         |
-    | 49.216856 | -2.117618 | Channel     |
+    | 49.216856 | -2.117618 | ITV         |
 
   Scenario Outline: A 'not found' value is returned for locations outside the UK
     Given I request the reversegeolookup service with <latitude> & <longitude>
