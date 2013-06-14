@@ -5,11 +5,6 @@ class MercuryApi
     node_value.nil? ? false : true
   end
 
-  def get_xml_from_response (response)
-    xml = Nokogiri::XML response
-    xml.remove_namespaces!
-  end
-
   def find_value_in_hash(key, hash)
     hash.each do |k, v|
       if k == key

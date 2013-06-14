@@ -9,11 +9,11 @@ Given /^I request the master feed for (\w+) and (\w+)$/ do |platform, broadcaste
 end
 
 Then /^the response should include the feed (.*)$/ do |title|
-  xml = @mercury_api.get_xml_from_response @response
+  xml = @response.to_xml!
   raise 'invalid content found in response' unless @mercury_api.value_exists_in_xml_node?(xml, 'Title', title)
 end
 
 Then /^the response should not include the feed (.*)$/ do |title|
-  xml = @mercury_api.get_xml_from_response @response
+  xml = @response.to_xml!
   raise 'invalid content found in response' if @mercury_api.value_exists_in_xml_node?(xml, 'Title', title)
 end
