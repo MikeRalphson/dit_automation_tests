@@ -17,10 +17,6 @@ class MercuryApi
     @found
   end
 
-  def value_exists_in_mhegdata? (mhegdata, value)
-    Regexp.new(value, Regexp::IGNORECASE).match mhegdata #will warn if value is regex not string
-  end
-
   def calculate_week
     today = Date.today.strftime('%A')
     yesterday = (Date.today - 1).strftime('%A')

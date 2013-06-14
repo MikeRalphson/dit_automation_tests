@@ -14,14 +14,14 @@ Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, plat
     when 'xml'
       xml = @response.to_xml!
       unless @mercury_api.value_exists_in_xml_node?(xml, 'Value', platform)
-        raise "could not find the correct platform value: #{platform} in the response for uri: #@uri"
+        raise "could not find the correct platform value: #{platform} in the response for uri: #{@uri}"
       end
     when 'json'
       json = @response.to_json
       @mercury_api.find_value_in_hash('Platform', json).should == platform
     when 'mhegdata'
-      unless @mercury_api.value_exists_in_mhegdata?(@response, @uri)
-        raise "could not find the correct uri value: #@uri in the response for uri: #@uri"
+      unless @response.include? @uri
+        raise "could not find the correct uri value in the response for uri: #{@uri}"
       end
     else
       raise ArgumentError.new('invalid API request type')
