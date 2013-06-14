@@ -22,10 +22,6 @@ class MercuryApi
     @found
   end
 
-  def parse_json_response (response)
-    JSON.parse response
-  end
-
   def value_exists_in_mhegdata? (mhegdata, value)
     Regexp.new(value, Regexp::IGNORECASE).match mhegdata #will warn if value is regex not string
   end

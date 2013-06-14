@@ -17,7 +17,7 @@ Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, plat
         raise "could not find the correct platform value: #{platform} in the response for uri: #@uri"
       end
     when 'json'
-      json = @mercury_api.parse_json_response @response
+      json = @response.to_json
       @mercury_api.find_value_in_hash('Platform', json).should == platform
     when 'mhegdata'
       unless @mercury_api.value_exists_in_mhegdata?(@response, @uri)

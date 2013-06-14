@@ -9,13 +9,13 @@ Given /^I request the geolookup for postcode service with the following (\d+\.\d
 end
 
 Then /^I should receive the correct (\w+) from the postcode service$/ do |broadcaster|
-  json = string_to_json(@client.response)
+  json = @client.response.to_json
   puts "Response JSON: #{json}"
   json['RegionInfo']['Broadcaster'].should == broadcaster
 end
 
 Then /^I should receive the correct (.*) from the geolookup postcode service$/ do |postcode|
-  json = string_to_json(@client.response)
+  json = @client.response.to_json
   puts "Response JSON: #{json}"
   json['Postcode'].should == postcode
 end

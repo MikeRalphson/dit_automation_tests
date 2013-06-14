@@ -24,6 +24,7 @@ require 'mercury_api'
 require 'env_config'
 require 'http_client'
 require 'helpers/utilities'
+require 'patches/string'
 
 require 'mercury/mercury_request_logger'
 require 'mercury/irdeto_encryption'

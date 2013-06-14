@@ -4,7 +4,7 @@ end
 When /^I request the Bloom internal status page$/ do
   uri = URI.parse("#{EnvConfig['bloom_status_url']}")
   client = HttpClient.new.get(uri)
-  @response = string_to_json(client.response)
+  @response = client.response.to_json
 end
 
 Then /^every service should be alive$/ do
