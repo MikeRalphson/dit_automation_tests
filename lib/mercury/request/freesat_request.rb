@@ -10,8 +10,7 @@ module Mercury
     end
 
     def do
-      uri = "#{EnvConfig['mercury_url']}/api/mhegdata/freesat/playlist/#{@production}?t=playlistscreentoken"
-      @mercury_api.get_response_from_url uri
+      open("#{EnvConfig['mercury_url']}/api/mhegdata/freesat/playlist/#{@production}?t=playlistscreentoken").read
     end
 
   end

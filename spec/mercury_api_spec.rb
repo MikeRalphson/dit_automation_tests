@@ -21,12 +21,6 @@ describe 'the Mercury API library' do
     @mercury.find_value_in_hash(:interests, hash).should == 'football'
   end
 
-  describe 'the get_response_from_url method'
-
-  it 'should return a response from www.google.com' do
-    @mercury.get_response_from_url('http://www.google.com').should_not == nil?
-  end
-
   describe 'the calculate_week method'
 
   it 'should return seven different values' do

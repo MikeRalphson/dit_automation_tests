@@ -1,6 +1,6 @@
 When /^I make a YouView Broadcaster Lookup request for (.*)$/ do |region|
   @uri = "#{EnvConfig['mercury_url']}/api/xml/youview/broadcaster/#{region}"
-  @response = @mercury_api.get_response_from_url @uri
+  @response = open(@uri).read
 end
 
 Then /^the response should contain (.*) broadcaster$/ do |broadcaster|

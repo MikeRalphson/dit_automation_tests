@@ -1,11 +1,9 @@
 Given /^I request the secure token from Alcatraz$/ do
-  uri = "#{EnvConfig['alcatraz_url']}/api/xml/ConcurrentPlayback/GenerateToken"
-  @response = get_response_from_url(uri).to_xml!
+  @response = open("#{EnvConfig['alcatraz_url']}/api/xml/ConcurrentPlayback/GenerateToken").to_xml!
 end
 
 Given /^I request the cross domain XML from Alcatraz$/ do
-  uri = "#{EnvConfig['alcatraz_url']}/crossdomain.xml"
-  @response = get_response_from_url(uri).to_xml!
+  @response = open("#{EnvConfig['alcatraz_url']}/crossdomain.xml").to_xml!
 end
 
 Then /^the secure token should be correct$/ do
