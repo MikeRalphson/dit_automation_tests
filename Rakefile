@@ -3,6 +3,8 @@ require 'cucumber/rake/task'
 require 'cucumber/formatter/unicode'
 require 'rspec/core/rake_task'
 
+Rake::TaskManager.record_task_metadata = true
+
 desc 'Run stable I01 tests'
 Cucumber::Rake::Task.new(:i01) do |task|
   task.cucumber_opts = '-p i01 CONFIG=i01'
@@ -47,4 +49,9 @@ end
 desc 'Run unit tests'
 RSpec::Core::RakeTask.new(:spec)
 
-task :default => :live
+task :default do
+  puts 'No default task - run one of these instead:'
+  Rake::application.options.show_tasks = :tasks
+  Rake::application.options.show_task_pattern = //
+  Rake::application.display_tasks_and_comments
+end
