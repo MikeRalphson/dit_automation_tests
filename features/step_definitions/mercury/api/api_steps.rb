@@ -29,8 +29,7 @@ end
 Then /^the response should contain entries for each of the last 7 days$/ do
   expected_week = @mercury_api.calculate_week
   actual_week = @mercury_api.get_values_from_xml(@response.to_xml!, 'Title')
-  difference = (expected_week.to_set ^ actual_week.to_set)
-  difference.size.should == 0
+  actual_week.should match_array(expected_week)
 end
 
 Then /^the response should contain the correct (.*)$/ do |title|
@@ -46,11 +45,9 @@ Then /^all the links href should point to the Drupal site$/ do
 end
 
 Then /^the response should contain a complete A-Z listing$/ do
-  a_to_z = ['A - B', 'C - D', 'E - F', 'G - H', 'I - J', 'K - L', 'M - N',
-            'O - P', 'Q - R', 'S - T', 'U - V', 'W - X', 'Y - Z', '0 - 9']
+  expected_values = ['A - B', 'C - D', 'E - F', 'G - H', 'I - J', 'K - L', 'M - N',
+                     'O - P', 'Q - R', 'S - T', 'U - V', 'W - X', 'Y - Z', '0 - 9']
   xml = @response.to_xml
-  found_values = a_to_z.map { |index| index if @mercury_api.value_exists_in_xml_node?(xml, 'Title', index) }
-  comparison = (found_values.to_set ^ a_to_z.to_set)
-
-  comparison.size.should == 0
+  actual_values = expected_values.map { |index| index if @mercury_api.value_exists_in_xml_node?(xml, 'Title', index) }
+  actual_values.should match_array(expected_values)
 end
