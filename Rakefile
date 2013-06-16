@@ -10,7 +10,7 @@ end
 
 desc 'Run stable FT02 tests'
 Cucumber::Rake::Task.new(:ft02) do |task|
-  task.cucumber_opts = '-p test CONFIG=test'
+  task.cucumber_opts = '-p ft02 CONFIG=ft02'
 end
 
 Cucumber::Rake::Task.new(:local) do |task|

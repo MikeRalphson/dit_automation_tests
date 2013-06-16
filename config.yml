@@ -11,7 +11,7 @@ local:
     irdeto_catchup_rtmpe:     '1/800735/2345#001'
     irdeto_archive_f4m:       '1/700434/13666cdfecb940a786045a980b807d00#001'
     user_id:                  '1237847'
-test:
+ft02:
     alcatraz_url:             'http://test-alcatraz.itv.com'
     mercury_url:              'http://test-mercury.itv.com'
     lithium_url:              'http://test-lithium-news.itv.com'
