@@ -27,7 +27,7 @@ end
 
 Then /^the response should contain entries for each of the last 7 days$/ do
   expected_week = @mercury_api.calculate_week
-  actual_week = @mercury_api.get_values_from_xml(@response.to_xml!, 'Title')
+  actual_week = @response.to_xml!.xpath('//Title').map { |match| match.text }
   actual_week.should match_array(expected_week)
 end
 

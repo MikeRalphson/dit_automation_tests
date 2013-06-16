@@ -1,6 +1,6 @@
 class MercuryApi
 
-  def value_exists_in_xml_node? (xml, node, value)
+  def value_exists_in_xml_node?(xml, node, value)
     node_value = xml.css("#{node}").find { |name| name.text.casecmp(value) == 0 }
     node_value.nil? ? false : true
   end
@@ -22,10 +22,6 @@ class MercuryApi
     yesterday = (Date.today - 1).strftime('%A')
     week = %w(Monday Tuesday Wednesday Thursday Friday Saturday Sunday)
     week.collect! { |day| day == today ? 'Today' : (day == yesterday) ? 'Yesterday' : day }
-  end
-
-  def get_values_from_xml (xml, node)
-    xml.css("#{node}").collect { |name| name.text }
   end
 
 end
