@@ -46,9 +46,6 @@ task :local_ingest do
   require 'ingest/local_ingest_client'
 end
 
-desc 'Run unit tests'
-RSpec::Core::RakeTask.new(:spec)
-
 task :default do
   puts 'No default task - run one of these instead:'
   Rake::application.options.show_tasks = :tasks
