@@ -5,13 +5,9 @@ require 'pp'
 require 'open-uri'
 require 'json'
 require 'nokogiri'
-require 'nokogiri/css'
 require 'savon'
 require 'net/http'
 require 'net/ftp'
-require 'set'
-require 'securerandom'
-require 'rest-client'
 require 'timeout'
 require 'active_support/time'
 require 'bundler/setup'
@@ -48,6 +44,4 @@ SimpleCov.start
 
 Before do
   @mercury_api = MercuryApi.new
-  @uuid = SecureRandom.uuid
-  @timeout = 300
 end
