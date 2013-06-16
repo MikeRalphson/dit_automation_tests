@@ -20,9 +20,7 @@ Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, plat
       json = @response.to_json
       @mercury_api.find_value_in_hash('Platform', json).should == platform
     when 'mhegdata'
-      unless @response.include? @uri
-        raise "could not find the correct uri value in the response for uri: #{@uri}"
-      end
+      @response.should include(@uri)
     else
       raise ArgumentError.new('invalid API request type')
   end
@@ -54,7 +52,5 @@ Then /^the response should contain a complete A-Z listing$/ do
   found_values = a_to_z.map { |index| index if @mercury_api.value_exists_in_xml_node?(xml, 'Title', index) }
   comparison = (found_values.to_set ^ a_to_z.to_set)
 
-  unless comparison.size == 0
-    raise "complete A-Z listing was not found. The exact failures were: #{comparison.inspect}}"
-  end
+  comparison.size.should == 0
 end
