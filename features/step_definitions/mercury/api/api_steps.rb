@@ -47,7 +47,7 @@ end
 Then /^the response should contain a complete A-Z listing$/ do
   expected_values = ['A - B', 'C - D', 'E - F', 'G - H', 'I - J', 'K - L', 'M - N',
                      'O - P', 'Q - R', 'S - T', 'U - V', 'W - X', 'Y - Z', '0 - 9']
-  xml = @response.to_xml
-  actual_values = expected_values.map { |index| index if @mercury_api.value_exists_in_xml_node?(xml, 'Title', index) }
+  xml = @response.to_xml!
+  actual_values = xml.xpath('//Title').map { |match| match.text }
   actual_values.should match_array(expected_values)
 end
