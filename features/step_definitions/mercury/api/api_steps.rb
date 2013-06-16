@@ -1,7 +1,6 @@
-Given /^I request the mrss api$/ do
+Given /^I request the MRSS API$/ do
   yesterday = (Date.today - 1).strftime('%Y%m%d')
-  @uri = "#{EnvConfig['mercury_url']}/linking/#{yesterday}"
-  @response = open(@uri).read
+  @response = open("#{EnvConfig['mercury_url']}/linking/#{yesterday}").read
 end
 
 Given /^I request the (\w+) (\w+) (.*) api$/ do |type, platform, uri|
@@ -32,16 +31,11 @@ Then /^the response should contain entries for each of the last 7 days$/ do
   actual_week.should match_array(expected_week)
 end
 
-Then /^the response should contain the correct (.*)$/ do |title|
+Then /^all the links should point to the ITV Player site$/ do
   xml = @response.to_xml!
-  unless @mercury_api.value_exists_in_xml_node?(xml, 'title', title)
-    raise 'error with mrss feed'
-  end
-end
-
-Then /^all the links href should point to the Drupal site$/ do
-  xml = @response.to_xml!
-  xml.xpath('//entry/link').each { |e| e['href'].should =~ /(http|https):\/\/\w{3,5}\.itv.com\/itvplayer\// }
+  links = xml.xpath('//entry/link').map { |link| link.attr('href') }
+  links.should_not be_nil
+  links.each { |link| link.should match(/^http:\/\/(\w*-?)www.itv.com\/itvplayer/) }
 end
 
 Then /^the response should contain a complete A-Z listing$/ do
