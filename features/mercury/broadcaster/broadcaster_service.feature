@@ -158,7 +158,7 @@ Feature: Broadcaster API feeds
     | itv         |
     | channel     |
 
-  Scenario Outline: STV, UTV and unknown broadcaster service for Android
+  Scenario Outline: Verify ITV1 is not available for STV or UTV for Android
     Given I request the master feed for Android and <broadcaster>
     Then the response should include the mobile app feeds excluding ITV1
 
@@ -182,13 +182,3 @@ Feature: Broadcaster API feeds
     | stv         | big         |
     | channel     | big         |
     | unknown     | big         |
-
-  Scenario Outline: Verify ITV1 is not available for STV or UTV for Android
-    Given I request the master feed for Android and <broadcaster>
-    Then the response should not include the ITV1 feed
-
-  Examples:
-    | broadcaster |
-    | utv         |
-    | stv         |
-    | unknown     |
