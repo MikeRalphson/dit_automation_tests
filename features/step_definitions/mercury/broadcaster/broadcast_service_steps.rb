@@ -8,12 +8,25 @@ Given /^I request the master feed for (\w+) and (\w+)$/ do |platform, broadcaste
   @response = open(@uri).read
 end
 
-Then /^the response should include the feed (.*)$/ do |title|
-  xml = @response.to_xml!
-  raise 'invalid content found in response' unless @mercury_api.value_exists_in_xml_node?(xml, 'Title', title)
+Then(/^the response should include all the standard feeds$/) do
+  feeds = ['ITV1', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'A - Z', 'Most Popular', "Don't Miss", 'By Day', 'Last Watched']
+  response_feeds = @response.to_xml!.xpath('//Title').map { |match| match.text }
+  response_feeds.should_not be_nil
+  response_feeds.should match_array feeds
 end
 
-Then /^the response should not include the feed (.*)$/ do |title|
-  xml = @response.to_xml!
-  raise 'invalid content found in response' if @mercury_api.value_exists_in_xml_node?(xml, 'Title', title)
+Then(/^the response should include the mobile app feeds$/) do
+  feeds = ["A - Z", "CITV", "CRUCIAL CATCHUP", "EPISODE INFO", "ITV1", "ITV2", "ITV3",
+           "ITV4", "MOST WATCHED", "PROGRAMME INFO", "PROGRAMMES BY DAY", "SEARCH"]
+  response_feeds = @response.to_xml!.xpath('//Title').map { |match| match.text }
+  response_feeds.should_not be_nil
+  response_feeds.should match_array feeds
+end
+
+Then(/^the response should include the mobile app feeds excluding ITV1$/) do
+  feeds = ["A - Z", "CITV", "CRUCIAL CATCHUP", "EPISODE INFO", "ITV2", "ITV3",
+           "ITV4", "MOST WATCHED", "PROGRAMME INFO", "PROGRAMMES BY DAY", "SEARCH"]
+  response_feeds = @response.to_xml!.xpath('//Title').map { |match| match.text }
+  response_feeds.should_not be_nil
+  response_feeds.should match_array feeds
 end
