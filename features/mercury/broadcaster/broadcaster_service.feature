@@ -149,69 +149,24 @@ Feature: Broadcaster API feeds
     | channel     |
     | unknown     |
 
-  Scenario Outline: Verify correct broadcaster service for Android
-    Given I request the master feed for <platform> and <broadcaster>
-    Then the response should include the feed <title>
+  Scenario Outline: ITV and Channel Broadcaster service for Android
+    Given I request the master feed for Android and <broadcaster>
+    Then the response should include the mobile app feeds
 
   Examples:
-    | broadcaster | platform | title             |
-    | itv         | android  | CRUCIAL CATCHUP   |
-    | itv         | android  | ITV1              |
-    | itv         | android  | ITV2              |
-    | itv         | android  | ITV3              |
-    | itv         | android  | ITV4              |
-    | itv         | android  | CITV              |
-    | itv         | android  | PROGRAMMES BY DAY |
-    | itv         | android  | MOST WATCHED      |
-    | itv         | android  | SEARCH            |
-    | itv         | android  | PROGRAMME INFO    |
-    | itv         | android  | EPISODE INFO      |
-    | itv         | android  | A - Z             |
-    | utv         | android  | CRUCIAL CATCHUP   |
-    | utv         | android  | ITV2              |
-    | utv         | android  | ITV3              |
-    | utv         | android  | ITV4              |
-    | utv         | android  | CITV              |
-    | utv         | android  | PROGRAMMES BY DAY |
-    | utv         | android  | MOST WATCHED      |
-    | utv         | android  | SEARCH            |
-    | utv         | android  | PROGRAMME INFO    |
-    | utv         | android  | EPISODE INFO      |
-    | utv         | android  | A - Z             |
-    | stv         | android  | CRUCIAL CATCHUP   |
-    | stv         | android  | ITV2              |
-    | stv         | android  | ITV3              |
-    | stv         | android  | ITV4              |
-    | stv         | android  | CITV              |
-    | stv         | android  | PROGRAMMES BY DAY |
-    | stv         | android  | MOST WATCHED      |
-    | stv         | android  | SEARCH            |
-    | stv         | android  | PROGRAMME INFO    |
-    | stv         | android  | EPISODE INFO      |
-    | stv         | android  | A - Z             |
-    | channel     | android  | CRUCIAL CATCHUP   |
-    | channel     | android  | ITV1              |
-    | channel     | android  | ITV2              |
-    | channel     | android  | ITV3              |
-    | channel     | android  | ITV4              |
-    | channel     | android  | CITV              |
-    | channel     | android  | PROGRAMMES BY DAY |
-    | channel     | android  | MOST WATCHED      |
-    | channel     | android  | SEARCH            |
-    | channel     | android  | PROGRAMME INFO    |
-    | channel     | android  | EPISODE INFO      |
-    | channel     | android  | A - Z             |
-    | unknown     | android  | CRUCIAL CATCHUP   |
-    | unknown     | android  | ITV2              |
-    | unknown     | android  | ITV3              |
-    | unknown     | android  | ITV4              |
-    | unknown     | android  | CITV              |
-    | unknown     | android  | PROGRAMMES BY DAY |
-    | unknown     | android  | MOST WATCHED      |
-    | unknown     | android  | SEARCH            |
-    | unknown     | android  | PROGRAMME INFO    |
-    | unknown     | android  | EPISODE INFO      |
-    | unknown     | android  | A - Z             |
+    | broadcaster |
+    | itv         |
+    | channel     |
+
+  Scenario Outline: STV, UTV and unknown broadcaster service for Android
+    Given I request the master feed for Android and <broadcaster>
+    Then the response should include the mobile app feeds excluding ITV1
+
+  Examples:
+    | broadcaster |
+    | utv         |
+    | stv         |
+    | unknown     |
 
   Scenario Outline: Verify ITV1 is not available for STV or UTV for Mobile
     Given I request the master feed for <broadcaster> and Mobile with <screen size>
@@ -239,7 +194,7 @@ Feature: Broadcaster API feeds
     | unknown     |
 
   Scenario Outline: Verify broadcast service for Android ignores screen size if provided
-    Given I request the master feed for <broadcaster> and <platform> with <screen size>
+    Given I request the master feed for <broadcaster> and Android with <screen size>
     Then the response should include the feed <title>
 
   Examples:

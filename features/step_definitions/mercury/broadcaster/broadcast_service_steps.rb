@@ -25,3 +25,19 @@ Then(/^the response should include all the feeds$/) do
   response_feeds.should_not be_nil
   response_feeds.should match_array feeds
 end
+
+Then(/^the response should include the mobile app feeds$/) do
+  feeds = ["A - Z", "CITV", "CRUCIAL CATCHUP", "EPISODE INFO", "ITV1", "ITV2", "ITV3",
+           "ITV4", "MOST WATCHED", "PROGRAMME INFO", "PROGRAMMES BY DAY", "SEARCH"]
+  response_feeds = @response.to_xml!.xpath('//Title').map { |match| match.text }
+  response_feeds.should_not be_nil
+  response_feeds.should match_array feeds
+end
+
+Then(/^the response should include the mobile app feeds excluding ITV1$/) do
+  feeds = ["A - Z", "CITV", "CRUCIAL CATCHUP", "EPISODE INFO", "ITV2", "ITV3",
+           "ITV4", "MOST WATCHED", "PROGRAMME INFO", "PROGRAMMES BY DAY", "SEARCH"]
+  response_feeds = @response.to_xml!.xpath('//Title').map { |match| match.text }
+  response_feeds.should_not be_nil
+  response_feeds.should match_array feeds
+end
