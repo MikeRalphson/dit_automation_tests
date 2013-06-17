@@ -305,29 +305,29 @@ Feature: Broadcaster API feeds
     | unknown     | android  | A - Z             |
 
   Scenario Outline: Verify ITV1 is not available for STV or UTV for Mobile
-    Given I request the master feed for <broadcaster> and <platform> with <screen size>
-    Then the response should not include the feed <title>
+    Given I request the master feed for <broadcaster> and Mobile with <screen size>
+    Then the response should not include the ITV1 feed
 
   Examples:
-    | broadcaster | platform | screen size | title |
-    | utv         | mobile   | small       | ITV1  |
-    | stv         | mobile   | small       | ITV1  |
-    | channel     | mobile   | small       | ITV1  |
-    | unknown     | mobile   | small       | ITV1  |
-    | utv         | mobile   | big         | ITV1  |
-    | stv         | mobile   | big         | ITV1  |
-    | channel     | mobile   | big         | ITV1  |
-    | unknown     | mobile   | big         | ITV1  |
+    | broadcaster | screen size |
+    | utv         | small       |
+    | stv         | small       |
+    | channel     | small       |
+    | unknown     | small       |
+    | utv         | big         |
+    | stv         | big         |
+    | channel     | big         |
+    | unknown     | big         |
 
   Scenario Outline: Verify ITV1 is not available for STV or UTV for Android
-    Given I request the master feed for <platform> and <broadcaster>
-    Then the response should not include the feed <title>
+    Given I request the master feed for Android and <broadcaster>
+    Then the response should not include the ITV1 feed
 
   Examples:
-    | broadcaster | platform | title |
-    | utv         | android  | ITV1  |
-    | stv         | android  | ITV1  |
-    | unknown     | android  | ITV1  |
+    | broadcaster |
+    | utv         |
+    | stv         |
+    | unknown     |
 
   Scenario Outline: Verify broadcast service for Android ignores screen size if provided
     Given I request the master feed for <broadcaster> and <platform> with <screen size>

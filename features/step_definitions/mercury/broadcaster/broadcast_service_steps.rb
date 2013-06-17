@@ -13,7 +13,8 @@ Then /^the response should include the feed (.*)$/ do |title|
   raise 'invalid content found in response' unless @mercury_api.value_exists_in_xml_node?(xml, 'Title', title)
 end
 
-Then /^the response should not include the feed (.*)$/ do |title|
-  xml = @response.to_xml!
-  raise 'invalid content found in response' if @mercury_api.value_exists_in_xml_node?(xml, 'Title', title)
+Then /^the response should not include the ITV1 feed$/ do
+  feeds = @response.to_xml!.xpath('//Title').map { |match| match.text }
+  feeds.should_not be_nil
+  feeds.should_not include('ITV1')
 end
