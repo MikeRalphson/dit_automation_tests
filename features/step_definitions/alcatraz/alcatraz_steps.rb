@@ -1,9 +1,9 @@
 Given /^I request the secure token from Alcatraz$/ do
-  @response = open("#{EnvConfig['alcatraz_url']}/api/xml/ConcurrentPlayback/GenerateToken").to_xml!
+  @response = open("#{EnvConfig['alcatraz_url']}/api/xml/ConcurrentPlayback/GenerateToken").read.to_xml!
 end
 
 Given /^I request the cross domain XML from Alcatraz$/ do
-  @response = open("#{EnvConfig['alcatraz_url']}/crossdomain.xml").to_xml!
+  @response = open("#{EnvConfig['alcatraz_url']}/crossdomain.xml").read.to_xml!
 end
 
 Then /^the secure token should be correct$/ do
