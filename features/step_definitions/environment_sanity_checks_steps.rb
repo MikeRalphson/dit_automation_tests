@@ -2,9 +2,7 @@ Given /^a new back-end release$/ do
 end
 
 When /^I request the Bloom internal status page$/ do
-  uri = URI.parse("#{EnvConfig['bloom_status_url']}")
-  client = HttpClient.new.get(uri)
-  @response = string_to_json(client.response)
+  @response = open("#{EnvConfig['bloom_status_url']}").read.to_json
 end
 
 Then /^every service should be alive$/ do

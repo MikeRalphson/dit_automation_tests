@@ -5,13 +5,9 @@ require 'pp'
 require 'open-uri'
 require 'json'
 require 'nokogiri'
-require 'nokogiri/css'
 require 'savon'
 require 'net/http'
 require 'net/ftp'
-require 'set'
-require 'securerandom'
-require 'rest-client'
 require 'timeout'
 require 'active_support/time'
 require 'bundler/setup'
@@ -23,7 +19,7 @@ $:.unshift(File.dirname(__FILE__) + '/../../lib')
 require 'mercury_api'
 require 'env_config'
 require 'http_client'
-require 'helpers/utilities'
+require 'patches/string'
 
 require 'mercury/mercury_request_logger'
 require 'mercury/irdeto_encryption'
@@ -43,12 +39,9 @@ require 'platform/youview'
 require 'platform/freesat'
 
 include Retryable
-include Utilities
 
 SimpleCov.start
 
 Before do
   @mercury_api = MercuryApi.new
-  @uuid = SecureRandom.uuid
-  @timeout = 300
 end

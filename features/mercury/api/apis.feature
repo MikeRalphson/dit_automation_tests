@@ -239,7 +239,6 @@ Feature: API and MRSS feeds
     | xml  | youview  | LastWeek |
     | xml  | samsung  | LastWeek |
 
-
   Scenario Outline: Verify A to Z feed across platforms
     Given I request the <type> <platform> <uri> api
     Then the response should contain a complete A-Z listing
@@ -249,14 +248,6 @@ Feature: API and MRSS feeds
     | xml  | samsung  | AToZ/ |
     | xml  | youview  | AToZ/ |
 
-#This test will fail on a monday because the code picks up yesterdays content and there is no content in S01 for Sunday
-
-  @flakey
-  Scenario Outline: Verify MRSS feed
-    Given I request the mrss api
-    Then the response should contain the correct <title>
-    And all the links href should point to the Drupal site
-
-  Examples:
-    | title                 |
-    | ITV Daily Change Feed |
+  Scenario: Verify MRSS feed
+    Given I request the MRSS API
+    Then all the links should point to the ITV Player site

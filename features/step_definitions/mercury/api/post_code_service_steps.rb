@@ -7,15 +7,15 @@ Given /^I request the postcode service using a partial (.*)$/ do |postcode|
 end
 
 Then /^I should receive the correct (\w+)$/ do |broadcaster|
-  string_to_json(@client.response)['RegionInfo']['Broadcaster'].should == broadcaster
+  @client.response.to_json['RegionInfo']['Broadcaster'].should == broadcaster
 end
 
 Then /^I should receive a not found error$/ do
-  string_to_json(@client.response)['Error']['Type'].should == 'NotFound'
+  @client.response.to_json['Error']['Type'].should == 'NotFound'
 end
 
 Then /^I should get an invalid format error$/ do
-  string_to_json(@client.response)['Error']['Type'].should == 'InvalidFormat'
+  @client.response.to_json['Error']['Type'].should == 'InvalidFormat'
 end
 
 # This method Then /^the response should contain the "(.*)" header$/ is found under
