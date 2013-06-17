@@ -18,11 +18,6 @@ Given /^I have an undecryptable UserToken$/ do
   @platform.user_token = @platform.generate_undecryptable_encrypted_usertoken
 end
 
-Given /^I have a UserToken with a future timestamp$/ do
-  invalid_time = DateTime.iso8601('2100-10-19T12:16:21+00:00')
-  @platform.user_token = @platform.generate_encrypted_usertoken(@platform.production, @platform.userid, invalid_time)
-end
-
 Given /^I have no UserToken$/ do
   @platform.user_token = ''
 end
