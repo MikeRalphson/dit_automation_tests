@@ -5,7 +5,6 @@ i01:         -r features -f html -o features_report.html -f junit -o log/ -f pre
 ft02:        -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@local_only -t ~@not_ft02
 local:       -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@not_local -t ~@bug -t ~@broadcaster -t ~@geo
 live:        -r features -f html -o features_report.html -f junit -o log/ -f progress -t @live -t ~@bug -t ~@wip
-broadcaster: -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @broadcaster -t ~@bug -t ~@local_only
 geo:         -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @geo -t ~@bug -t ~@local_only
 stings:      -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @stings -t ~@local_only
 bloomcore:   -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @local_only

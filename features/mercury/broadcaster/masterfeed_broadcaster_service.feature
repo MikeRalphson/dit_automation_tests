@@ -1,5 +1,4 @@
 @live
-@broadcaster
 Feature: Broadcaster API feeds
   In order to validate the correct broadcasts
   As a backend enabler

@@ -25,11 +25,6 @@ Cucumber::Rake::Task.new(:live) do |task|
   task.cucumber_opts = '-p live CONFIG=live'
 end
 
-desc 'Run broadcaster tests'
-Cucumber::Rake::Task.new(:broadcaster) do |task|
-  task.cucumber_opts = '-p broadcaster'
-end
-
 desc 'Run geolocation tests'
 Cucumber::Rake::Task.new(:geo) do |task|
   task.cucumber_opts = '-p geo'
