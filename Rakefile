@@ -27,11 +27,6 @@ Cucumber::Rake::Task.new(:geo) do |task|
   task.cucumber_opts = '-p geo'
 end
 
-desc 'Run sting tests'
-Cucumber::Rake::Task.new(:stings) do |task|
-  task.cucumber_opts = '-p stings'
-end
-
 desc 'Do a local ingest'
 task :local_ingest do
   $:.unshift(File.dirname(__FILE__) + '/lib')
