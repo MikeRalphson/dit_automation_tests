@@ -1,47 +1,36 @@
 # DIT Automation Tests
 
-Automated tests written by the test team. These tests can be configured to run against any environment. 
+Automated tests written by the test team. These tests run against the ITV back-end .NET stack and associated services.
 
 For Ruby installation instructions for both Mac and Windows please read the following wiki page:
 
     https://itvplc.jira.com/wiki/display/QA/Ruby+Installation+instructions
 
-##Installation and Set-up: 
-To install the project open up a terminal window and clone the Repo to your desired directory. 
+## Installation and Set-up:
+Get the code:
 
-    git clone https://github.com/ITV/dit_automation_tests.git
+    $ git clone https://github.com/ITV/dit_automation_tests.git
 
-Once this has been completed navigate to dit_automation_tests directory and run the following command:
+Then navigate to dit_automation_tests directory and run the following command:
 
-    bundle install
-
-Now you should be ready to run the tests...
+    $ bundle install
 
 ## Usage
-To run all the cucumber tests using rake:
+Type `rake -T` to see all the available Rake tasks:
 
-    rake CONFIG=environment
+    $ rake -T
+    rake ft02          # Run Cucumber features
+    rake geo           # Run Cucumber features
+    rake i01           # Run Cucumber features
+    rake live          # Run Cucumber features
+    rake local         # Run Cucumber features
+    rake local_ingest  # Do a local ingest
+    rake stings        # Run Cucumber features
 
-For example:
+The important ones are:
 
-    rake CONFIG=s01
+    rake ft02          # Run Cucumber features
+    rake i01           # Run Cucumber features
+    rake live          # Run Cucumber features
 
-To run all the cucumber tests using rake with html reporting:
-
-    rake report CONFIG=environment
-
-To run a set of Environment Sanity tests for deployment to all Test environments and Live for Ops validation
-
-    rake sanity CONFIG=live
-
-To run all the Android tests using rake:
-
-    rake android CONFIG=environment
-
-
-###ToDo: 
-* To complete the Windows installation steps for Code compilers and Ruby
-* Demo to Ops about Environment Sanity checks
-* Add a task to TeamCity for deployment Sanity checks
-* Include the ability to configure the Host settings before Sanity tests are run -- This is so that we can target certain box's
-* Look at a way to have a monitoring systems for the Environment status
+Which run environment-specific tests.
