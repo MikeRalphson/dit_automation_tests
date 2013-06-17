@@ -14,7 +14,7 @@ end
 
 desc 'Run tests against a local Bloom environment'
 Cucumber::Rake::Task.new(:local) do |task|
-  task.cucumber_opts = '-p local'
+  task.cucumber_opts = '-p local CONFIG=local'
 end
 
 desc 'Live Sanity Tests'
