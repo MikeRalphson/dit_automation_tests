@@ -1,7 +1,4 @@
-require 'bundler/setup'
 require 'cucumber/rake/task'
-require 'cucumber/formatter/unicode'
-require 'rspec/core/rake_task'
 
 Rake::TaskManager.record_task_metadata = true
 

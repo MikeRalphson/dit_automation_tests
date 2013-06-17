@@ -10,7 +10,6 @@ require 'net/http'
 require 'net/ftp'
 require 'timeout'
 require 'active_support/time'
-require 'bundler/setup'
 require 'base64'
 require 'ingestrb'
 
