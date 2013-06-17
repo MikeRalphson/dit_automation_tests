@@ -138,61 +138,16 @@ Feature: Broadcaster API feeds
     | unknown     |
 
   Scenario Outline: Verify correct broadcaster service for Samsung
-    Given I request the master feed for <platform> and <broadcaster>
-    Then the response should include the feed <title>
+    Given I request the master feed for Samsung and <broadcaster>
+    Then the response should include all the feeds
 
   Examples:
-    | broadcaster | platform | title        |
-    | itv         | samsung  | ITV1         |
-    | itv         | samsung  | ITV2         |
-    | itv         | samsung  | ITV3         |
-    | itv         | samsung  | ITV4         |
-    | itv         | samsung  | CITV         |
-    | itv         | samsung  | A - Z        |
-    | itv         | samsung  | Most Popular |
-    | itv         | samsung  | Don't Miss   |
-    | itv         | samsung  | By Day       |
-    | itv         | samsung  | Last Watched |
-    | utv         | samsung  | ITV1         |
-    | utv         | samsung  | ITV2         |
-    | utv         | samsung  | ITV3         |
-    | utv         | samsung  | ITV4         |
-    | utv         | samsung  | CITV         |
-    | utv         | samsung  | A - Z        |
-    | utv         | samsung  | Most Popular |
-    | utv         | samsung  | Don't Miss   |
-    | utv         | samsung  | By Day       |
-    | utv         | samsung  | Last Watched |
-    | stv         | samsung  | ITV1         |
-    | stv         | samsung  | ITV2         |
-    | stv         | samsung  | ITV3         |
-    | stv         | samsung  | ITV4         |
-    | stv         | samsung  | CITV         |
-    | stv         | samsung  | A - Z        |
-    | stv         | samsung  | Most Popular |
-    | stv         | samsung  | Don't Miss   |
-    | stv         | samsung  | By Day       |
-    | stv         | samsung  | Last Watched |
-    | channel     | samsung  | ITV1         |
-    | channel     | samsung  | ITV2         |
-    | channel     | samsung  | ITV3         |
-    | channel     | samsung  | ITV4         |
-    | channel     | samsung  | CITV         |
-    | channel     | samsung  | A - Z        |
-    | channel     | samsung  | Most Popular |
-    | channel     | samsung  | Don't Miss   |
-    | channel     | samsung  | By Day       |
-    | channel     | samsung  | Last Watched |
-    | unknown     | samsung  | ITV1         |
-    | unknown     | samsung  | ITV2         |
-    | unknown     | samsung  | ITV3         |
-    | unknown     | samsung  | ITV4         |
-    | unknown     | samsung  | CITV         |
-    | unknown     | samsung  | A - Z        |
-    | unknown     | samsung  | Most Popular |
-    | unknown     | samsung  | Don't Miss   |
-    | unknown     | samsung  | By Day       |
-    | unknown     | samsung  | Last Watched |
+    | broadcaster |
+    | itv         |
+    | utv         |
+    | stv         |
+    | channel     |
+    | unknown     |
 
   Scenario Outline: Verify correct broadcaster service for Android
     Given I request the master feed for <platform> and <broadcaster>
