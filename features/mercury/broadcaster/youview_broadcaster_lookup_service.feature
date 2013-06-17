@@ -4,9 +4,9 @@ Feature: YouView Broadcaster lookup service
   As a YouView client
   I want to be able to use a lookup service to do the mapping
 
-  Scenario Outline: Lookup Broadcaster for a YouView region
+  Scenario Outline: Lookup Broadcaster for valid YouView regions
     When I make a YouView Broadcaster Lookup request for <region>
-    Then the response should contain <broadcaster> broadcaster
+    Then the response should contain the correct <broadcaster>
 
   Examples:
     | region                          | broadcaster |
@@ -36,22 +36,22 @@ Feature: YouView Broadcaster lookup service
     | GBR-ENG-south_west              | Itv         |
     | GBR-ENG-south_east              | Itv         |
     | GBR-ENG-kent                    | Itv         |
-    | GBR-SCT-north                   | Stv         |
-    | GBR-SCT-north                   | Stv         |
-    | GBR-SCT-north                   | Stv         |
     | GBR-SCT-west_borders            | Itv         |
     | GBR-SCT-east_borders            | Itv         |
-    | GBR-SCT-north                   | Stv         |
-    | GBR-SCT-central                 | Stv         |
     | GBR-WLS                         | Itv         |
-    | GBR-NIR                         | Utv         |
     | GBR-CHA                         | Itv         |
     | GBR-IOM                         | Itv         |
+    | GBR-SCT-north                   | Stv         |
+    | GBR-SCT-north                   | Stv         |
+    | GBR-SCT-north                   | Stv         |
+    | GBR-SCT-north                   | Stv         |
+    | GBR-SCT-central                 | Stv         |
+    | GBR-NIR                         | Utv         |
     | IRL                             | Utv         |
 
-  Scenario Outline: Lookup Broadcaster for a YouView region
+  Scenario Outline: Lookup Broadcaster for invalid YouView regions
     When I make a YouView Broadcaster Lookup request for <region>
-    Then the response should contain <error> error
+    Then the correct <error> is returned
 
   Examples:
     | region        | error    |
