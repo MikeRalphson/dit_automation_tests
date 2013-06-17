@@ -18,3 +18,10 @@ Then /^the response should not include the ITV1 feed$/ do
   feeds.should_not be_nil
   feeds.should_not include('ITV1')
 end
+
+Then(/^the response should include all the feeds$/) do
+  feeds = ['ITV1', 'ITV2', 'ITV3', 'ITV4', 'CITV', 'A - Z', 'Most Popular', "Don't Miss", 'By Day', 'Last Watched']
+  response_feeds = @response.to_xml!.xpath('//Title').map { |match| match.text }
+  response_feeds.should_not be_nil
+  response_feeds.should match_array feeds
+end

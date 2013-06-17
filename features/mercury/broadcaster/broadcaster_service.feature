@@ -126,62 +126,16 @@ Feature: Broadcaster API feeds
 
 
   Scenario Outline: Verify correct broadcaster service for YouView
-    Given I request the master feed for <platform> and <broadcaster>
-    Then the response should include the feed <title>
+    Given I request the master feed for YouView and <broadcaster>
+    Then the response should include all the feeds
 
   Examples:
-    | broadcaster | platform | title        |
-    | itv         | youview  | ITV1         |
-    | itv         | youview  | ITV2         |
-    | itv         | youview  | ITV3         |
-    | itv         | youview  | ITV4         |
-    | itv         | youview  | CITV         |
-    | itv         | youview  | A - Z        |
-    | itv         | youview  | Most Popular |
-    | itv         | youview  | Don't Miss   |
-    | itv         | youview  | By Day       |
-    | itv         | youview  | Last Watched |
-    | utv         | youview  | ITV1         |
-    | utv         | youview  | ITV2         |
-    | utv         | youview  | ITV3         |
-    | utv         | youview  | ITV4         |
-    | utv         | youview  | CITV         |
-    | utv         | youview  | A - Z        |
-    | utv         | youview  | Most Popular |
-    | utv         | youview  | Don't Miss   |
-    | utv         | youview  | By Day       |
-    | utv         | youview  | Last Watched |
-    | stv         | youview  | ITV1         |
-    | stv         | youview  | ITV2         |
-    | stv         | youview  | ITV3         |
-    | stv         | youview  | ITV4         |
-    | stv         | youview  | CITV         |
-    | stv         | youview  | A - Z        |
-    | stv         | youview  | Most Popular |
-    | stv         | youview  | Don't Miss   |
-    | stv         | youview  | By Day       |
-    | stv         | youview  | Last Watched |
-    | channel     | youview  | ITV1         |
-    | channel     | youview  | ITV2         |
-    | channel     | youview  | ITV3         |
-    | channel     | youview  | ITV4         |
-    | channel     | youview  | CITV         |
-    | channel     | youview  | A - Z        |
-    | channel     | youview  | Most Popular |
-    | channel     | youview  | Don't Miss   |
-    | channel     | youview  | By Day       |
-    | channel     | youview  | Last Watched |
-    | unknown     | youview  | ITV1         |
-    | unknown     | youview  | ITV2         |
-    | unknown     | youview  | ITV3         |
-    | unknown     | youview  | ITV4         |
-    | unknown     | youview  | CITV         |
-    | unknown     | youview  | A - Z        |
-    | unknown     | youview  | Most Popular |
-    | unknown     | youview  | Don't Miss   |
-    | unknown     | youview  | By Day       |
-    | unknown     | youview  | Last Watched |
-
+    | broadcaster |
+    | itv         |
+    | utv         |
+    | stv         |
+    | channel     |
+    | unknown     |
 
   Scenario Outline: Verify correct broadcaster service for Samsung
     Given I request the master feed for <platform> and <broadcaster>
