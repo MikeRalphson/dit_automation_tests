@@ -56,7 +56,6 @@ Feature: Mercury Playlist Requests
     | PS3      | 194.4.55.200 | blocked |
     | YouView  | 194.4.55.200 | blocked |
 
-  @stings
   Scenario Outline: Sting verification for non-Android and non-YouView platforms
     Given I have a piece of <platform> catchup content
     When I request the Mercury playlist
@@ -69,13 +68,11 @@ Feature: Mercury Playlist Requests
     | Samsung  |
     | PS3      |
 
-  @stings
   Scenario: Sting verification for YouView
     Given I have a piece of YouView catchup content
     When I request the Mercury playlist
     Then I get a single .ts sting with a bitrate of 0
 
-  @stings
   Scenario: Sting verification for Android
     Given I have a piece of Android catchup content
     When I request the Mercury playlist

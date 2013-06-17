@@ -20,10 +20,6 @@ Then /^I should receive the correct (.*) from the geolookup postcode service$/ d
   json['Postcode'].should == postcode
 end
 
-Then /^I expect to see a 500 Internal Server Error$/ do
-  @client.status.should == '500'
-end
-
 Then /^the response should contain the "(.*)" header$/ do |header|
   @client.response_header(header).should == '*'
 end

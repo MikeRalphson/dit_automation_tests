@@ -6,5 +6,4 @@ ft02:        -r features -f html -o features_report.html -f junit -o log/ -f pre
 local:       -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@not_local -t ~@bug -t ~@broadcaster -t ~@geo
 live:        -r features -f html -o features_report.html -f junit -o log/ -f progress -t @live -t ~@bug -t ~@wip
 geo:         -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @geo -t ~@bug -t ~@local_only
-stings:      -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @stings -t ~@local_only
 bloomcore:   -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @local_only

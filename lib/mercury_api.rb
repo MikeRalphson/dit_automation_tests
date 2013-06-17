@@ -1,3 +1,4 @@
+# TODO: trying to deprecate this class (slowly but surely)
 class MercuryApi
 
   def value_exists_in_xml_node?(xml, node, value)

@@ -1,7 +1,4 @@
-require 'bundler/setup'
 require 'cucumber/rake/task'
-require 'cucumber/formatter/unicode'
-require 'rspec/core/rake_task'
 
 Rake::TaskManager.record_task_metadata = true
 
@@ -17,7 +14,7 @@ end
 
 desc 'Run tests against a local Bloom environment'
 Cucumber::Rake::Task.new(:local) do |task|
-  task.cucumber_opts = '-p local'
+  task.cucumber_opts = '-p local CONFIG=local'
 end
 
 desc 'Live Sanity Tests'
@@ -28,11 +25,6 @@ end
 desc 'Run geolocation tests'
 Cucumber::Rake::Task.new(:geo) do |task|
   task.cucumber_opts = '-p geo'
-end
-
-desc 'Run sting tests'
-Cucumber::Rake::Task.new(:stings) do |task|
-  task.cucumber_opts = '-p stings'
 end
 
 desc 'Do a local ingest'
