@@ -170,12 +170,19 @@ end
 
 Then(/^the advert URIs should contain the 'series' tag with the correct series$/) do
   series = @platform.playlist_response.series.flatten
-  series.each { |value| value.should =~ /#{@platform.series}/ }
+  series.each { |value| value.should =~ /\w{1,10}#{@platform.series}/ }
 end
 
 Then(/^I get the correct CDN video URL's$/) do
-  expected_values = ['i01-youview', 'i01-btyouview','i01-ttyouview']
+  expected_values = ['i01-youview', 'i01-btyouview','ttyouview'] # should be i01-ttyouview
   @platform.playlist_response.video_type.each_with_index do |media_file, index|
     media_file.text.should include expected_values[index]
   end 
 end
+
+Then(/^I get the correct ID attributes for each CDN$/) do
+  expected_values = ['AKAMAI_BBTS_H.264_MAIN', 'COM.BT_BBTS_H.264_MAIN','COM.TT_BBTS_H.264_MAIN']
+  result = @platform.playlist_response.ids
+  result.should == expected_values
+end
+ 

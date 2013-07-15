@@ -4,6 +4,9 @@ class Youview < Platform
 
   def initialize(category = 'catchup')
     super()
+    @production = "#{EnvConfig["youview_production"]}"
+    @playlist_request.data[:request][:ProductionId] = @production
+    @playlist_response = Mercury::YouViewResponse.new
     @base_url = nil
     @bitrates = [1200000]
     @sting_video_type = /\.ts$/i

@@ -24,6 +24,7 @@ require 'mercury/request/freesat_request'
 require 'mercury/response/response'
 require 'mercury/response/freesat_response'
 require 'mercury/response/mobile_response'
+require 'mercury/response/youview_response'
 
 require 'platform/platform'
 require 'platform/dotcom'

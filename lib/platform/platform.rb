@@ -14,7 +14,7 @@ class Platform
     @sting_bitrates = [0]
     @sting_video_type = /\.mp4$/i
     @video_type = /\.mp4$/i
-    @series = 'jw.s01.samsung.test.series.two' # typical ingestion data
+    @series = '.series' # typical ingestion data
     @playlist_request = Mercury::Request.new
     @playlist_response = Mercury::Response.new
     @playlist_request.data[:request][:ProductionId] = @production

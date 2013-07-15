@@ -15,6 +15,10 @@ module Mercury
     def bitrates
       @response.xpath('//VideoEntries/Video/MediaFiles/MediaFile').map { |node| node.attr('bitrate').to_i }
     end
+    
+    def ids
+      @response.xpath('//VideoEntries/Video/MediaFiles/MediaFile').map { |node| node.attr('id') }
+    end
 
     def base_urls
       @response.xpath('//VideoEntries/Video/MediaFiles')
