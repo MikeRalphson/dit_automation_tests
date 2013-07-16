@@ -11,6 +11,7 @@ class Dotcom < Platform
     @production = "#{EnvConfig["dotcom_#{category}_rtmpe"]}" # dotcom_catchup|archive_rtmpe
     @playlist_request.data[:siteInfo][:Platform] = 'DotCom'
     @playlist_request.data[:request][:ProductionId] = @production
+    @playlist_request.data[:demographic] = nil
     @bitrates = [400000, 600000, 800000, 1200000]
     @userid = "#{EnvConfig['user_id']}"
     @user_token = nil
