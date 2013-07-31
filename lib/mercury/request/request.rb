@@ -13,6 +13,7 @@ module Mercury
           },
           :userInfo => {
               :Broadcaster => 'Itv',
+              :DM => '',
               :RevenueScienceValue => 'ITVPLAYER.13.2.2',
               :SessionId => '',
               :SsoToken => '',
