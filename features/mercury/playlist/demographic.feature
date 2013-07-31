@@ -10,7 +10,7 @@ Scenario Outline: demographic value passed through to ad server for supported pl
   Examples:
     | platform |
     | DotCom   |
-	| Mobile   |
+    | Mobile   |
 
 Scenario Outline: no demographic value passed through to ad server for supported platforms
 	Given I have a piece of <platform> catchup content
@@ -21,7 +21,7 @@ Scenario Outline: no demographic value passed through to ad server for supported
   Examples:
     | platform |
     | DotCom   |
-	| Mobile   |
+    | Mobile   |
 
 Scenario Outline: no demographic value passed through to ad server for non-supported platforms
 Given I have a piece of <platform> catchup content
@@ -30,8 +30,8 @@ Then the default non-supported platform demographic value should be passed to th
 
   Examples:
     | platform |
-	| Android  |
+    | Android  |
     | Samsung  |
     | PS3      |
     | YouView  |
-#	| Freesat  |
+#   | Freesat  |
