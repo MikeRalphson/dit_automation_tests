@@ -121,7 +121,7 @@ module Mercury
       end
       view_id
     end
-    
+
     def demographics
       demographic_ids = []
       adverts.each do |content_break|
