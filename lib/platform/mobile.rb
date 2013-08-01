@@ -23,6 +23,7 @@ class Mobile < Platform
         :VelocityLatitude => nil,
         :VelocityLongitude => nil
     }
+    @playlist_request.data[:demographic] = nil
     @playlist_response = Mercury::MobileResponse.new
   end
 

@@ -117,6 +117,16 @@ module Mercury
       end
       view_id
     end
+    
+    def demographics
+      demographic_ids = []
+      adverts.each do |content_break|
+        demographic_ids << content_break.map do |advert|
+          advert.match(/dm=(.*?)\//)[1]
+        end
+      end
+      demographic_ids
+    end
 
     alias_method :break_ids, :view_ids
 
