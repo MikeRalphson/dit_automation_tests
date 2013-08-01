@@ -16,6 +16,10 @@ module Mercury
       @response.xpath('//VideoEntries/Video/MediaFiles/MediaFile').map { |node| node.attr('bitrate').to_i }
     end
 
+    def ids
+      @response.xpath('//VideoEntries/Video/MediaFiles/MediaFile').map { |node| node.attr('id') }
+    end
+
     def base_urls
       @response.xpath('//VideoEntries/Video/MediaFiles')
     end
@@ -117,7 +121,7 @@ module Mercury
       end
       view_id
     end
-    
+
     def demographics
       demographic_ids = []
       adverts.each do |content_break|
