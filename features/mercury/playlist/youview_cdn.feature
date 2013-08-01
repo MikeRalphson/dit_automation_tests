@@ -12,5 +12,4 @@ Feature: YouView playlists contain CDN information
   Scenario: Verify CDN ID attributes
     Given I have a piece of YouView catchup content
     When I request the Mercury playlist
-	Then I get the correct ID attributes for each CDN
-	
+    Then I get the correct ID attributes for each CDN
