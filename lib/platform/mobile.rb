@@ -6,7 +6,9 @@ class Mobile < Platform
 
   def initialize(category = 'catchup')
     super()
-    @bitrates = [400000]
+    @bitrates = [450000]
+    @base_url = /\Ahttp/
+    @video_type = /.*\.m3u8.*/i
     @params = {
         :DeviceId => nil,
         :FirmwareVersion => nil,
@@ -19,11 +21,12 @@ class Mobile < Platform
         :Postcode => nil,
         :ScreenSize => 'Small', # must be specified
         :ServiceProvider => nil,
-        :StreamType => 'RTMPE', # must be specified
+        :StreamType => 'HLS', # must be specified
         :VelocityLatitude => nil,
         :VelocityLongitude => nil
     }
     @playlist_request.data[:demographic] = nil
+    @playlist_request.data[:request][:HLSRequestForMaster] = true
     @playlist_response = Mercury::MobileResponse.new
   end
 

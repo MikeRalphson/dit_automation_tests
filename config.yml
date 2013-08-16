@@ -14,6 +14,7 @@ local:
 ft02:
     alcatraz_url:             'http://test-alcatraz.itv.com'
     mercury_url:              'http://test-mercury.itv.com'
+    secure_mercury_url:       'http://test-secure.mercury.itv.com'
     lithium_url:              'http://test-lithium-news.itv.com'
     bloom_status_url:         'http://bloomcms.itvft02.ads/internal/status/api'
     ftp_host:                 's01-itvonlineftp.itv.com'
@@ -46,6 +47,7 @@ ft02:
 i01:
     alcatraz_url:             'http://i01-alcatraz.itv.com'
     mercury_url:              'http://i01-mercury.itv.com'
+    secure_mercury_url:       'http://i01-secure.mercury.itv.com'
     lithium_url:              'http://i01-lithium-news.itv.com'
     bloom_status_url:         'http://bloomcms.itvint01.ads/internal/status/api'
     temp_folder:              '/tmp/mdr'
@@ -65,7 +67,8 @@ live:
     lithium_url:              'http://lithium-news.itv.com'
     bloom_status_url:         'http://bloomcms.itvonline.ads/internal/status/api'
     temp_folder:              '/tmp/mdr'
-    generic_production:       'REPLACE_ME'
-    dotcom_catchup_rtmpe:     '1/7470/0072#001'
+    generic_production:       '2/1780/0001#001'
+    youview_production:       '2/1780/0001#001'
+    dotcom_catchup_rtmpe:     '2/1780/0001#001'
     dotcom_archive_rtmpe:     ''
     user_id:                  '1200432'

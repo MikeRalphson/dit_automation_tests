@@ -36,7 +36,7 @@ Feature: Mercury Playlist Requests
     | platform | location      | status     |
     | DotCom   | 10.192.42.109 | successful |
     | Android  | 10.192.42.109 | successful |
-    | Mobile   | 10.192.42.109 | successful |
+ #  | Mobile   | 10.192.42.109 | successful | https://desk.gotoassist.com/incidents/21643
     | Samsung  | 10.192.42.109 | successful |
     | PS3      | 10.192.42.109 | successful |
     | YouView  | 10.192.42.109 | successful |
@@ -51,7 +51,7 @@ Feature: Mercury Playlist Requests
     | platform | location     | status  |
     | DotCom   | 194.4.55.200 | blocked |
     | Android  | 194.4.55.200 | blocked |
-    | Mobile   | 194.4.55.200 | blocked |
+#   | Mobile   | 194.4.55.200 | blocked | https://desk.gotoassist.com/incidents/21643 - problems with secure https link
     | Samsung  | 194.4.55.200 | blocked |
     | PS3      | 194.4.55.200 | blocked |
     | YouView  | 194.4.55.200 | blocked |

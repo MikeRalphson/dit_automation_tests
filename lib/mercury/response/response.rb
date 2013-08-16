@@ -82,6 +82,10 @@ module Mercury
       @response.xpath('//ContentBreak')
     end
 
+    def add_urls
+      @response.xpath('//ContentBreak/Action/URL').map &:text
+    end
+
     def playlist_guids
       guids = []
       adverts.each do |content_break|

@@ -17,6 +17,7 @@ end
 
 When /^I request the Mercury playlist from (\d+\.\d+\.\d+\.\d+)$/ do |location|
   begin
+    @platform.playlist_request.use_insecure_mercury_url = true
     @platform.playlist_request.location = location
     @platform.request_playlist
   rescue Savon::SOAP::Fault => error
@@ -174,14 +175,14 @@ Then(/^the advert URIs should contain the 'series' tag with the correct series$/
 end
 
 Then(/^I get the correct CDN video URL's$/) do
-  expected_values = ['i01-youview.content.itv.com', 'csp150-002.cdd.bt.net', 'ttyouview.content.itv.com']
+  expected_values = ['i01-youview.content.itv.com', 'http://csp150-002.cdd.bt.net', 'ttyouview.content.itv.com']
   @platform.playlist_response.video_type.each_with_index do |media_file, index|
     media_file.text.should include expected_values[index]
   end
 end
 
 Then(/^I get the correct ID attributes for each CDN$/) do
-  expected_values = ['AKAMAI_BBTS_H.264_MAIN', 'COM.BT_BBTS_H.264_MAIN', 'COM.TT_BBTS_H.264_MAIN']
+  expected_values = ['AKAMAI_BBTS_H.264_MAIN', 'COM.BT.ITVTRIAL_BBTS_H.264_MAIN', 'COM.TALKTALKGROUP_BBTS_H.264_MAIN']
   result = @platform.playlist_response.ids
   result.should == expected_values
 end

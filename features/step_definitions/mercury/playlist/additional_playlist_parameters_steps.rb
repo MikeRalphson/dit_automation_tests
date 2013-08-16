@@ -68,6 +68,10 @@ Then /^the response should contain ad-server URL's with no additional parameters
   @platform.playlist_response.validate_additional_parameters(advert_uris, @platform.params)
 end
 
+Then(/^the response should contain in the Akamai URL query stream the preferred bit rate set to 400$/) do
+  @platform.playlist_response.video_type.text.should include '__b__=400'
+end
+
 private
 
 def validate_android_response

@@ -248,6 +248,7 @@ Feature: API and MRSS feeds
     | xml  | samsung  | AToZ/ |
     | xml  | youview  | AToZ/ |
 
+  @flakey
   Scenario: Verify MRSS feed
     Given I request the MRSS API
     Then all the links should point to the ITV Player site

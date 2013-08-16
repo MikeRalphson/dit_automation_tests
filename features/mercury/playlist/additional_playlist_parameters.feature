@@ -51,3 +51,10 @@ Feature: Mercury Additional Parameters
     And I have additional parameters out of sequence
     When I request the Mercury playlist
     Then the the response should be a SOAP fault with an appropriate error message
+
+  @mobile-bitrate
+  Scenario: Mercury receives additional query string parameter
+    Given I have a piece of Mobile catchup content
+    When I request the Mercury playlist
+    Then the response should contain in the Akamai URL query stream the preferred bit rate set to 400
+

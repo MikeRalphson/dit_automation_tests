@@ -2,37 +2,38 @@ module Mercury
 
   class Request
 
-    attr_accessor :data, :location
+    attr_accessor :data, :location, :use_insecure_mercury_url
     attr_reader :logger
 
     def initialize
       @data = {
-          :Vodcrid => {
-              :Id => '',
-              :Partition => 'itv.com'
-          },
-          :userInfo => {
-              :Broadcaster => 'Itv',
-              :DM => '',
-              :RevenueScienceValue => 'ITVPLAYER.13.2.2',
-              :SessionId => '',
-              :SsoToken => '',
-              :UserToken => ''
-          },
-          :request => {
-              :ProductionId => '',
-              :RequestGuid => '7FA847EC-905C-41EA-BCF7-CC9E44A00CE3'
-          },
-          :siteInfo => {
-              :AdvertSize => '',
-              :AdvertisingRestriction => 'None',
-              :AdvertisingSite => '',
-              :Area => 'ITVPLAYER',
-              :Platform => '',
-              :Site => 'ItvCom'
-          },
-          :deviceInfo => {
-          }
+        :Vodcrid => {
+          :Id => '',
+          :Partition => 'itv.com'
+        },
+        :userInfo => {
+          :AdCallFreeText => '',
+          :Broadcaster => 'Itv',
+          :DM => '',
+          :RevenueScienceValue => 'ITVPLAYER.13.2.2',
+          :SessionId => '',
+          :SsoToken => '',
+          :UserToken => ''
+        },
+        :request => {
+          :ProductionId => '',
+          :RequestGuid => '7FA847EC-905C-41EA-BCF7-CC9E44A00CE3'
+        },
+        :siteInfo => {
+          :AdvertSize => '',
+          :AdvertisingRestriction => 'None',
+          :AdvertisingSite => '',
+          :Area => 'ITVPLAYER',
+          :Platform => '',
+          :Site => 'ItvCom'
+        },
+        :deviceInfo => {
+        }
       }
       @location = nil
       @logger = MercuryRequestLogger.new
@@ -51,6 +52,7 @@ module Mercury
             xml.soapenv(:Body) do |xml|
               xml.tem(:GetPlaylist) do |xml|
                 xml.tem(:request) do |xml|
+                  xml.itv(:HLSRequestForMaster, data[:request][:HLSRequestForMaster]) if data[:request][:HLSRequestForMaster]
                   xml.itv(:ProductionId, data[:request][:ProductionId]) if data[:request][:ProductionId]
                   xml.itv(:RequestGuid, data[:request][:RequestGuid]) if data[:request][:RequestGuid]
                   xml.itv(:Vodcrid) do |xml|
@@ -85,16 +87,19 @@ module Mercury
 
     def get_namespaces
       {
-          'xmlns:soapenv' => 'http://schemas.xmlsoap.org/soap/envelope/',
-          'xmlns:tem' => 'http://tempuri.org/',
-          'xmlns:itv' => 'http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types',
-          'xmlns:com' => 'http://schemas.itv.com/2009/05/Common',
-          'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
+        'xmlns:soapenv' => 'http://schemas.xmlsoap.org/soap/envelope/',
+        'xmlns:tem' => 'http://tempuri.org/',
+        'xmlns:itv' => 'http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types',
+        'xmlns:com' => 'http://schemas.itv.com/2009/05/Common',
+        'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
       }
     end
 
     def create_savon_client
-      Savon.client "#{EnvConfig['mercury_url']}/PlaylistService.svc?wsdl" do
+      url = "#{EnvConfig['secure_mercury_url']}"
+      url = "#{EnvConfig['mercury_url']}" if use_insecure_mercury_url
+      Savon.client "#{url}/PlaylistService.svc?wsdl" do
+        wsdl.endpoint = URI.parse "#{url}/PlaylistService.svc" # required as secure wsdl references non-secure location :-(
         http.headers = {'REAL_CLIENT_IP' => self.location} if self.location
       end
     end
@@ -109,5 +114,5 @@ module Mercury
       end
     end
 
+    end
   end
-end
