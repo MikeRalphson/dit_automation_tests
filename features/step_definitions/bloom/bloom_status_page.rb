@@ -8,7 +8,7 @@ end
 Then /^every service should be alive$/ do
   expected_services = ['Bloom Publication Service', 'PublicContentStore', 'Bloom Distributor Service',
                        'Bloom Core (DataStore, Security and Publication Log)', 'Bloom Weather Service',
-                       'Bloom Football Service', 'Sherpa (Whitelist Service)']
+                       'Sherpa (Whitelist Service)']
   running_services = @response['services']
 
   running_services_names = running_services.map { |service| service['ServiceDescription'] }
