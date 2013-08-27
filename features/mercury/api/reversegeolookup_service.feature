@@ -1,5 +1,5 @@
 @live
-@geo
+@flakey
 @not_local
 Feature: Reverse Geo Lookup service
   In order to geo-block content from outside the UK
