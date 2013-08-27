@@ -28,7 +28,7 @@ Cucumber::Rake::Task.new(:geo) do |task|
 end
 
 desc 'Run flakey tests'
-Cucumber::Rake::Task.new(:geo) do |task|
+Cucumber::Rake::Task.new(:flakey) do |task|
   task.cucumber_opts = '-p flakey'
 end
 
