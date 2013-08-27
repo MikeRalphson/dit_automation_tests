@@ -27,6 +27,11 @@ Cucumber::Rake::Task.new(:geo) do |task|
   task.cucumber_opts = '-p geo'
 end
 
+desc 'Run flakey tests'
+Cucumber::Rake::Task.new(:flakey) do |task|
+  task.cucumber_opts = '-p flakey'
+end
+
 desc 'Do a local ingest'
 task :local_ingest do
   $:.unshift(File.dirname(__FILE__) + '/lib')
