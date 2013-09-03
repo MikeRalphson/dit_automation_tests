@@ -175,7 +175,7 @@ Then(/^the advert URIs should contain the 'series' tag with the correct series$/
 end
 
 Then(/^I get the correct CDN video URL's$/) do
-  expected_values = ['i01-youview.content.itv.com', 'i01-btyouview.content.itv.com', 'ttyouview.content.itv.com']
+  expected_values = ['i01-youview.content.itv.com', 'csp150-002.cdd.bt.net', 'ttyouview.content.itv.com']
   @platform.playlist_response.video_type.each_with_index do |media_file, index|
     media_file.text.should include expected_values[index]
   end
