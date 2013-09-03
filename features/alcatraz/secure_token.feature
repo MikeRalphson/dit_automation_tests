@@ -1,4 +1,3 @@
-@not_ft02
 @live
 Feature: Alcatraz Secure Token
   So that users cannot watch the same content concurrently,
