@@ -17,5 +17,4 @@ Feature: Bloom Services are online
 # Bloom Distributor Service
 # Bloom Core (DataStore, Security and Publication Log)
 # Bloom Weather Service
-# Bloom Football Service
 # Sherpa (Whitelist Service)
