@@ -9,6 +9,7 @@ require 'savon'
 require 'timeout'
 require 'base64'
 require 'ingestrb'
+require 'httparty'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
@@ -25,6 +26,7 @@ require 'mercury/response/response'
 require 'mercury/response/freesat_response'
 require 'mercury/response/mobile_response'
 require 'mercury/response/youview_response'
+require 'mercury/response/splunk_response'
 
 require 'platform/platform'
 require 'platform/dotcom'
