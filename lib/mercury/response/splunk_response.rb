@@ -12,6 +12,9 @@ module Mercury
       document.at_xpath("/response/sessionKey").text
     end
 
+    def self.elmah_ok_status_code
+      response = HTTParty.get("#{EnvConfig['error_log']}")
+    end
   end
 
 end

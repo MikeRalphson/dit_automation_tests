@@ -44,6 +44,7 @@ ft02:
     generic_break_pattern_2:  '1/137741/c0960f4948924220a069d84b06029a5b#001'
     duration_break_pattern:   '1/524316/f12094304899ada2247b7c633#001'
     freesat_production:       '328120'
+    error_log:                'http://test-mercury.itv.com/errorlog.aspx'
 i01:
     alcatraz_url:             'http://i01-alcatraz.itv.com'
     mercury_url:              'http://i01-mercury.itv.com'
@@ -61,6 +62,7 @@ i01:
     generic_break_pattern_2:  '1/797959/067694164994a59e5e3364b35#001'
     duration_break_pattern:   '1/274865/e8cb948ce9dcf285dfa935109#001'
     freesat_production:       '324074'
+    error_log:                'http://i01-mercury.itv.com/errorlog.aspx'
 live:
     alcatraz_url:             'http://alcatraz.itv.com'
     mercury_url:              'http://mercury.itv.com'
