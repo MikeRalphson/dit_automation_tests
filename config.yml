@@ -74,3 +74,4 @@ live:
     dotcom_catchup_rtmpe:     '2/1780/0001#001'
     dotcom_archive_rtmpe:     ''
     user_id:                  '1200432'
+    error_log:                'http://mercury.itv.com/errorlog.aspx'
