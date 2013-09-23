@@ -96,5 +96,5 @@ end
 Then /^the authorisation failure or content unavailable error \(depending on the logging level\) is returned$/ do
   @playlist_error.should_not be_nil
   raise @playlist_error.message unless @playlist_error.to_s.include? 'AuthorizationInfo Is authorized check: False' or
-      @playlist_error.to_s.include? 'content is not available to this platform'
+      @playlist_error.to_s.include? '1st/E - 170: Entitlement/DRM provider returned error code'
 end
