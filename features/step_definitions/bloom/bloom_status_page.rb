@@ -7,8 +7,8 @@ end
 
 Then /^every service should be alive$/ do
   expected_services = ['Bloom Publication Service', 'PublicContentStore', 'Bloom Distributor Service',
-                       'Bloom Football Service', 'Bloom Core (DataStore, Security and Publication Log)',
-                       'Bloom Weather Service', 'Sherpa (Whitelist Service)']
+                       'Bloom Core (DataStore, Security and Publication Log)', 'Bloom Weather Service',
+                       'Sherpa (Whitelist Service)']
 
   running_services = @response['services']
 
