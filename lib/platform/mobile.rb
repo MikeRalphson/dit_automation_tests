@@ -31,7 +31,6 @@ class Mobile < Platform
   end
 
   def request_playlist
-    @playlist_request.data[:request][:ProductionId] = @production
     @playlist_request.data[:deviceInfo] = @params
     @playlist_request.data[:siteInfo][:Platform] = 'Mobile'
     super

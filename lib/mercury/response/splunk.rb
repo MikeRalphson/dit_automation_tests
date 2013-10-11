@@ -1,50 +1,70 @@
 module Mercury
 
-  class SplunkResponse < Response
+  class Splunk
 
-    include HTTParty
+    attr_reader :token
 
-    def splunk_session_token
-      ssl_version :SSLv3
-      @auth = {:username => "admin", :password => "admin"}
-      result = post "https://gir-czc0452nzd:8089/servicesNS/admin/search/auth/login/",
-                    :body => @auth
+    def initialize
+      @token = generate_session_token
+    end
+
+    def generate_session_token
+      auth = {:username => "admin", :password => "admin"}
+      result = HTTParty.post "#{EnvConfig['splunk_host']}/servicesNS/admin/search/auth/login/",
+                             :body => auth
       @session_key = Nokogiri::XML result.body
       @session_key.at_xpath("/response/sessionKey").text
     end
 
     def elmah_ok_status_code
-      response = HTTParty.get("#{EnvConfig['error_log']}")
+      HTTParty.get("#{EnvConfig['error_log']}")
     end
 
-    def self.monitor_splunk
-      ssl_version :SSLv3
-      key = @session_key.at_xpath("/response/sessionKey").text
-      result = get "https://gir-czc0452nzd:8089/services/search/jobs/1379349051.40/results?output_mode=json",
-                   :headers => {"Authorization" => "Splunk #{key}"}
-      @splunk_response = result.body
-      @splunk_response = JSON.parse @splunk_response
-      @hash_response = @splunk_response["results"].first
-      @search = ["Data.ProductionId", "Data.Platform", "Name", "Timestamp"]
-      p @hash_response.values_at(*@search).compact
+    def get_job_id
+      if "#{EnvConfig['splunk_host']}" == "https://10.210.124.93:8089" # live Splunk requires authentication
+        generate_session_token
+        result = HTTParty.post "#{EnvConfig['splunk_host']}/servicesNS/admin/search/saved/searches/Test/dispatch",
+                               :body => {:Authorisation => "Splunk #@session_key", :trigger_actions => 1}
+      else
+        result = HTTParty.post "#{EnvConfig['splunk_host']}/servicesNS/admin/search/saved/searches/Test/dispatch",
+                             :body => {:trigger_actions => 1}
+      end
+      s_id = Nokogiri::XML result.body
+      @job_id = s_id.at_xpath("/response/sid").text
     end
 
-    def self.verify_splunk_data
-      # verify Timestamp format
-      p timestamp = @splunk_response["results"].first['Timestamp']
-      p DateTime.parse("#{timestamp}")
+    def get_mercury_data
+      HTTParty.get "#{EnvConfig['splunk_host']}/services/search/jobs/#{@job_id}/results?output_mode=json"
+    end
 
-      # verify platform
-      #p platform = @splunk_response["results"].first['Data.Platform']
-      #p platform.should == "#{EnvConfig['......']}"
+    def get_splunk_data
+      get_job_id
+      @data = nil
+      Utils.wait_for(6) do # Splunk takes time to do the search
+        @data = get_mercury_data.body
+      end
+    end
 
-      # verify request name
-      p request_name = @splunk_response["results"].first['Name']
-      p request_name.should == "#{EnvConfig['mercury_url']}"
+    def splunk_platforms_for(prod_id)
+      get_splunk_data
+      results = []
+      JSON.parse(@data)['results'].each do |result|
+        raw = JSON.parse(result['_raw'])
+        results.push raw['data']['platform'] if raw['data']['productionid'] == prod_id
+      end
+      results
+    end
 
-      # verify prodid
-      p prod_id = @splunk_response["results"].first['Data.ProductionId']
-      p prod_id.should == "#{EnvConfig['generic_production']}"
+    def splunk_check_time
+      get_splunk_data
+      splunk_response = JSON.parse(@data)['results'].first
+      splunk_response['_time']
+    end
+
+    def check_request_name
+      get_splunk_data
+      splunk_response = JSON.parse(@data)['results'].first
+      splunk_response['name']
     end
 
   end
