@@ -12,11 +12,6 @@ When /^I request the Mercury playlist for Splunk$/ do
   end
 end
 
-When(/^I login in to (\w+) Splunk$/) do |platform|
-  @platform = Object::const_get(platform.downcase.camelcase).new
-  @splunk = @platform.splunk_response
-end
-
 When(/^I request the error log page for (\w+)$/) do |platform|
   @platform = Object::const_get(platform.downcase.camelcase).new
   @status_code = @platform.splunk_response.elmah_ok_status_code
@@ -24,10 +19,6 @@ end
 
 When(/^I send a query request to Splunk$/) do
   @splunk_data = @platform.splunk_response.get_mercury_data
-end
-
-Then(/^the return value should match the secure session token$/) do
-  @splunk.token.size.should == 32
 end
 
 Then(/^the HTTP status code should return OK$/) do

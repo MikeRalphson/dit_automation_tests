@@ -1,22 +1,9 @@
-Feature: Secure Session Token
+@splunk
+Feature: Query Splunk API
 
   As a tester
-  I want to be able to use a service that requires Secure Session Token
-  Because that is not an uncommon requirement
-
-  Scenario Outline: Connecting to the Splunk host to retrieve a session key
-    Given I have a piece of <platform> catchup content
-    When I login in to <platform> Splunk
-    Then the return value should match the secure session token
-
-  Examples:
-  | platform |
-  | DotCom   |
-  | Android  |
-  | Mobile   |
-  | Samsung  |
-  | PS3      |
-  | YouView  |
+  I want to be able to query the Splunk API
+  Because I want to verify playlist are being requested
 
   Scenario: Error log page returning the correct status code
     When I request the error log page for DotCom
@@ -31,7 +18,7 @@ Feature: Secure Session Token
   | 401     |
   | 403     |
   | 404     |
-@splunk
+
   Scenario Outline: Querying jobs from Splunk and verifying them
     Given I have a piece of <platform> catchup content
     And I have a valid search results set

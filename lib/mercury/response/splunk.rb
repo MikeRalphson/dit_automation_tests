@@ -2,29 +2,15 @@ module Mercury
 
   class Splunk
 
-    attr_reader :token
-
-    def initialize
-      @token = generate_session_token
-    end
-
-    def generate_session_token
-      auth = {:username => "admin", :password => "admin"}
-      result = HTTParty.post "#{EnvConfig['splunk_host']}/servicesNS/admin/search/auth/login/",
-                             :body => auth
-      @session_key = Nokogiri::XML result.body
-      @session_key.at_xpath("/response/sessionKey").text
-    end
-
     def elmah_ok_status_code
       HTTParty.get("#{EnvConfig['error_log']}")
     end
 
     def get_job_id
       if "#{EnvConfig['splunk_host']}" == "https://10.210.124.93:8089" # live Splunk requires authentication
-        generate_session_token
-        result = HTTParty.post "#{EnvConfig['splunk_host']}/servicesNS/admin/search/saved/searches/Test/dispatch",
-                               :body => {:Authorisation => "Splunk #@session_key", :trigger_actions => 1}
+        result = HTTParty.post "#{EnvConfig['splunk_host']}/servicesNS/integration-test/search/saved/searches/Test/dispatch",
+                               :headers => {'Authorization' => "Basic aW50ZWdyYXRpb24tdGVzdDptYWdoM2plaQ=="},
+                               :body => {:trigger_actions => 1}
       else
         result = HTTParty.post "#{EnvConfig['splunk_host']}/servicesNS/admin/search/saved/searches/Test/dispatch",
                              :body => {:trigger_actions => 1}
@@ -34,13 +20,18 @@ module Mercury
     end
 
     def get_mercury_data
-      HTTParty.get "#{EnvConfig['splunk_host']}/services/search/jobs/#{@job_id}/results?output_mode=json"
+      if "#{EnvConfig['splunk_host']}" == "https://10.210.124.93:8089" # live Splunk requires authentication header
+        HTTParty.get "#{EnvConfig['splunk_host']}/services/search/jobs/#{@job_id}/results?output_mode=json",
+                              :headers => {'Authorization' => "Basic aW50ZWdyYXRpb24tdGVzdDptYWdoM2plaQ=="}
+      else
+        HTTParty.get "#{EnvConfig['splunk_host']}/services/search/jobs/#{@job_id}/results?output_mode=json"
+      end
     end
 
     def get_splunk_data
       get_job_id
       @data = nil
-      Utils.wait_for(6) do # Splunk takes time to do the search
+      Utils.wait_for(3) do # Splunk takes time to do the search
         @data = get_mercury_data.body
       end
     end

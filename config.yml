@@ -68,6 +68,7 @@ i01:
 live:
     alcatraz_url:             'http://alcatraz.itv.com'
     mercury_url:              'http://mercury.itv.com'
+    secure_mercury_url:              'http://mercury.itv.com'
     lithium_url:              'http://lithium-news.itv.com'
     bloom_status_url:         'http://bloomcms.itvonline.ads/internal/status/api'
     temp_folder:              '/tmp/mdr'
