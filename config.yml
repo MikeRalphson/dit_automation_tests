@@ -44,6 +44,8 @@ ft02:
     generic_break_pattern_2:  '1/137741/c0960f4948924220a069d84b06029a5b#001'
     duration_break_pattern:   '1/524316/f12094304899ada2247b7c633#001'
     freesat_production:       '328120'
+    error_log:                'http://test-mercury.itv.com/errorlog.aspx'
+    splunk_host:              'https://10.210.177.32:8089'
 i01:
     alcatraz_url:             'http://i01-alcatraz.itv.com'
     mercury_url:              'http://i01-mercury.itv.com'
@@ -61,9 +63,12 @@ i01:
     generic_break_pattern_2:  '1/797959/067694164994a59e5e3364b35#001'
     duration_break_pattern:   '1/274865/e8cb948ce9dcf285dfa935109#001'
     freesat_production:       '324074'
+    error_log:                'http://i01-mercury.itv.com/errorlog.aspx'
+    splunk_host:              'https://10.210.164.63:8089'
 live:
     alcatraz_url:             'http://alcatraz.itv.com'
     mercury_url:              'http://mercury.itv.com'
+    secure_mercury_url:              'http://mercury.itv.com'
     lithium_url:              'http://lithium-news.itv.com'
     bloom_status_url:         'http://bloomcms.itvonline.ads/internal/status/api'
     temp_folder:              '/tmp/mdr'
@@ -72,3 +77,5 @@ live:
     dotcom_catchup_rtmpe:     '2/1780/0001#001'
     dotcom_archive_rtmpe:     ''
     user_id:                  '1200432'
+    error_log:                'http://mercury.itv.com/errorlog.aspx'
+    splunk_host:              'https://10.210.124.93:8089'

@@ -9,6 +9,7 @@ require 'savon'
 require 'timeout'
 require 'base64'
 require 'ingestrb'
+require 'httparty'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
@@ -16,6 +17,7 @@ require 'mercury_api'
 require 'env_config'
 require 'http_client'
 require 'patches/string'
+require 'utils'
 
 require 'mercury/mercury_request_logger'
 require 'mercury/irdeto_encryption'
@@ -25,6 +27,7 @@ require 'mercury/response/response'
 require 'mercury/response/freesat_response'
 require 'mercury/response/mobile_response'
 require 'mercury/response/youview_response'
+require 'mercury/response/splunk'
 
 require 'platform/platform'
 require 'platform/dotcom'

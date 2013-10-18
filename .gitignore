@@ -10,6 +10,7 @@ coverage/
 features_report.html
 tmp/
 log/
+stepdown/
 
 # Vim stuff (get a proper IDE!)
 .*.sw*
@@ -21,3 +22,4 @@ vendor
 
 # IntelliJ files
 *.iml
+
