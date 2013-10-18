@@ -5,7 +5,6 @@ end
 When /^I request the Mercury playlist for Splunk$/ do
   begin
     @platform.playlist_request.data[:request][:ProductionId] = Utils.static_prod_id
-    @platform.playlist_request.data
     @platform.request_playlist
   rescue Savon::SOAP::Fault => error
     @playlist_error = error
@@ -21,12 +20,8 @@ When(/^I send a query request to Splunk$/) do
   @splunk_data = @platform.splunk_response.get_mercury_data
 end
 
-Then(/^the HTTP status code should return OK$/) do
+Then(/^the HTTP status code should return 200$/) do
   @status_code.code.should == 200
-end
-
-Then(/^the response should not return these status (\d+)$/) do |codes|
-  @status_code.code.should_not == codes
 end
 
 Then(/^I should get the correct playlist data from Splunk$/) do

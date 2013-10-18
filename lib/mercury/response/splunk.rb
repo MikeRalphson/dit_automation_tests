@@ -7,22 +7,21 @@ module Mercury
     end
 
     def get_job_id
-      if "#{EnvConfig['splunk_host']}" == "https://10.210.124.93:8089" # live Splunk requires authentication
+      if ENV['CONFIG'] == 'live'
         result = HTTParty.post "#{EnvConfig['splunk_host']}/servicesNS/integration-test/search/saved/searches/Test/dispatch",
                                :headers => {'Authorization' => "Basic aW50ZWdyYXRpb24tdGVzdDptYWdoM2plaQ=="},
                                :body => {:trigger_actions => 1}
       else
         result = HTTParty.post "#{EnvConfig['splunk_host']}/servicesNS/admin/search/saved/searches/Test/dispatch",
-                             :body => {:trigger_actions => 1}
+                               :body => {:trigger_actions => 1}
       end
-      s_id = Nokogiri::XML result.body
-      @job_id = s_id.at_xpath("/response/sid").text
+      @job_id = Nokogiri::XML(result.body).at_xpath("/response/sid").text
     end
 
     def get_mercury_data
-      if "#{EnvConfig['splunk_host']}" == "https://10.210.124.93:8089" # live Splunk requires authentication header
+      if ENV['CONFIG'] == 'live'
         HTTParty.get "#{EnvConfig['splunk_host']}/services/search/jobs/#{@job_id}/results?output_mode=json",
-                              :headers => {'Authorization' => "Basic aW50ZWdyYXRpb24tdGVzdDptYWdoM2plaQ=="}
+                     :headers => {'Authorization' => "Basic aW50ZWdyYXRpb24tdGVzdDptYWdoM2plaQ=="}
       else
         HTTParty.get "#{EnvConfig['splunk_host']}/services/search/jobs/#{@job_id}/results?output_mode=json"
       end
