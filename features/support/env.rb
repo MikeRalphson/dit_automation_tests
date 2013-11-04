@@ -28,6 +28,7 @@ require 'mercury/response/freesat_response'
 require 'mercury/response/mobile_response'
 require 'mercury/response/youview_response'
 require 'mercury/response/splunk'
+require 'playlist_service/request/rest_request'
 
 require 'platform/platform'
 require 'platform/dotcom'
