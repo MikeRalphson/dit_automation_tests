@@ -1,7 +1,8 @@
 class Platform
 
   attr_reader :base_url, :video_type, :advert_area, :advert_site, :advert_size, :sting_video_type,
-              :sting_bitrates, :playlist_request, :playlist_response, :series, :splunk_response
+              :sting_bitrates, :playlist_request, :playlist_response, :series, :splunk_response, :playlist_rest_request,
+              :playlist_rest_response
 
   attr_accessor :production
 
@@ -19,10 +20,16 @@ class Platform
     @playlist_response = Mercury::Response.new
     @playlist_request.data[:request][:ProductionId] = @production
     @splunk_response = Mercury::Splunk.new
+    @playlist_rest_request = PlaylistService::RestRequest.new
+    @playlist_rest_response = PlaylistService::RestResponse.new
   end
 
   def request_playlist
     @playlist_response.response = @playlist_request.do
+  end
+
+  def request_rest_playlist(platform)
+    @playlist_rest_response.response = @playlist_rest_request.do(platform)
   end
 
 end

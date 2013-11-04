@@ -46,6 +46,8 @@ ft02:
     freesat_production:       '328120'
     error_log:                'http://test-mercury.itv.com/errorlog.aspx'
     splunk_host:              'https://10.210.177.32:8089'
+    playlist_service:         'http://test-api.itv.com'
+    playlist_production:      '1-5163-1734_001'
 i01:
     alcatraz_url:             'http://i01-alcatraz.itv.com'
     mercury_url:              'http://i01-mercury.itv.com'
@@ -65,6 +67,8 @@ i01:
     freesat_production:       '324074'
     error_log:                'http://i01-mercury.itv.com/errorlog.aspx'
     splunk_host:              'https://10.210.164.63:8089'
+    playlist_service:         'http://i01-api.itv.com' # does not exist at the moment
+    playlist_production:      '1-5163-1734_001'
 live:
     alcatraz_url:             'http://alcatraz.itv.com'
     mercury_url:              'http://mercury.itv.com'
