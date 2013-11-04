@@ -8,9 +8,8 @@ Feature: New Playlist Requests
 Scenario Outline: Verify new playlist for the new TV platform
   Given I have a piece of <platform> catchup content
   When I request the new playlist service for <platform>
-  Then I should get a status code 200
-  And I get the correct production ID
-  And I should get a valid response for <platform>
+  Then I should get a valid status code for <platform>
+  And I get the correct production ID for <platform>
 
 Examples:
   | platform    |
