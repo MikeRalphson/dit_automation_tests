@@ -1,6 +1,5 @@
 @new-service
-
-Feature: New Playlist Requests
+Feature: New Playlist Rest Requests
   In order to generate front end features
   As a backend enabler
   I want to be able to request new playlists
