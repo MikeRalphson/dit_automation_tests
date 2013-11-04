@@ -7,7 +7,7 @@ module PlaylistService
         @productionid = "#{EnvConfig['playlist_production']}"
       end
 
-      def get_rest_playlist(platform)
+      def do(platform)
         HTTParty.get "#{EnvConfig['playlist_service']}/playlist/#@broadcaster/#{platform}/#@productionid",
                        :headers => {'Content-Type' => 'application/json'}
       end

@@ -29,6 +29,7 @@ require 'mercury/response/mobile_response'
 require 'mercury/response/youview_response'
 require 'mercury/response/splunk'
 require 'playlist_service/request/rest_request'
+require 'playlist_service/response/rest_response'
 
 require 'platform/platform'
 require 'platform/dotcom'
