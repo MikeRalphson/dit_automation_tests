@@ -26,8 +26,7 @@ class Platform
     @playlist_response.response = @playlist_request.do
   end
 
-  def request_rest_playlist(platform)
-    #@playlist_rest_response.response = @playlist_rest_request.get_rest_playlist(platform)
+  def request_rest_playlist
     @playlist_rest_request.get_rest_playlist(platform)
   end
 

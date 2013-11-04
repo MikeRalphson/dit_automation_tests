@@ -6,9 +6,9 @@ Feature: New Playlist Rest Requests
 
 Scenario Outline: Verify new playlist for the new TV platform
   Given I have a piece of <platform> catchup content
-  When I request the new playlist service for <platform>
-  Then I should get a valid status code for <platform>
-  And I get the correct production ID for <platform>
+  When I request the new playlist service
+  Then I should get a valid status code
+  And I get the correct production ID
 
 Examples:
   | platform    |

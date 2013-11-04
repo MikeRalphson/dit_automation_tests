@@ -5,7 +5,6 @@ module PlaylistService
       def initialize
         @broadcaster = "itv"
         @productionid = "#{EnvConfig['playlist_production']}"
-        @platform = ''
       end
 
       def get_rest_playlist(platform)
