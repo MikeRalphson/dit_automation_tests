@@ -85,34 +85,34 @@ module Mercury
 
     private
 
-    def get_namespaces
-      {
-        'xmlns:soapenv' => 'http://schemas.xmlsoap.org/soap/envelope/',
-        'xmlns:tem' => 'http://tempuri.org/',
-        'xmlns:itv' => 'http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types',
-        'xmlns:com' => 'http://schemas.itv.com/2009/05/Common',
-        'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
-      }
-    end
-
-    def create_savon_client
-      url = "#{EnvConfig['secure_mercury_url']}"
-      url = "#{EnvConfig['mercury_url']}" if use_insecure_mercury_url
-      Savon.client "#{url}/PlaylistService.svc?wsdl" do
-        wsdl.endpoint = URI.parse "#{url}/PlaylistService.svc" # required as secure wsdl references non-secure location :-(
-        http.headers = {'REAL_CLIENT_IP' => self.location} if self.location
+      def get_namespaces
+        {
+          'xmlns:soapenv' => 'http://schemas.xmlsoap.org/soap/envelope/',
+          'xmlns:tem' => 'http://tempuri.org/',
+          'xmlns:itv' => 'http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types',
+          'xmlns:com' => 'http://schemas.itv.com/2009/05/Common',
+          'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
+        }
       end
-    end
 
-    def configure_savon
-      Savon.configure do |config|
-        config.log = true
-        config.log_level = :debug
-        HTTPI.log = false
-        config.logger = @logger
-        config.pretty_print_xml = false # much more performant
+      def create_savon_client
+        url = "#{EnvConfig['secure_mercury_url']}"
+        url = "#{EnvConfig['mercury_url']}" if use_insecure_mercury_url
+        Savon.client "#{url}/PlaylistService.svc?wsdl" do
+          wsdl.endpoint = URI.parse "#{url}/PlaylistService.svc" # required as secure wsdl references non-secure location :-(
+          http.headers = {'REAL_CLIENT_IP' => self.location} if self.location
+        end
       end
-    end
+
+      def configure_savon
+        Savon.configure do |config|
+          config.log = true
+          config.log_level = :debug
+          HTTPI.log = false
+          config.logger = @logger
+          config.pretty_print_xml = false # much more performant
+        end
+      end
 
     end
   end

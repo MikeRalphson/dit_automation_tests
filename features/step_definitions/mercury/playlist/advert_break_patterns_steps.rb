@@ -12,44 +12,25 @@ end
 Given /^I have an absolute break pattern for that content configured on the adserver$/ do
   # absolute break pattern configured for vodcrid 'absolute_break_pattern' in config.yml for the test adserver (jerry):
   # http://jerry.itv.com/itvdev/tserver/site=itv.mobile/area=itvplayer.video/size=pattern/progid=itv.com.[VODCRID]
-  p  "#{EnvConfig['absolute_break_pattern']}"
-  @platform.production = "#{EnvConfig['absolute_break_pattern']}"
+  @platform.playlist_request.data[:request][:ProductionId] = "#{EnvConfig['absolute_break_pattern']}"
 end
 
 Given /^I have a generic break pattern with durations for that content configured on the adserver$/ do
   # generic break pattern with durations configured for vodcrid 'duration_break_pattern' in config.yml:
   # http://jerry.itv.com/itvdev/tserver/site=itv.mobile/area=itvplayer.video/size=pattern/progid=itv.com.[VODCRID]
-  @platform.production = "#{EnvConfig['duration_break_pattern']}"
+  @platform.playlist_request.data[:request][:ProductionId] = "#{EnvConfig['duration_break_pattern']}"
 end
 
 Given /^I have a generic break pattern for that content configured on the adserver$/ do
   # generic break pattern configured for vodcrid 'generic_break_pattern' in config.yml:
   # http://jerry.itv.com/itvdev/tserver/site=itv.mobile/area=itvplayer.video/size=pattern/progid=itv.com.[VODCRID]
-  @platform.production = "#{EnvConfig['generic_break_pattern_1']}"
+  @platform.playlist_request.data[:request][:ProductionId] = "#{EnvConfig['generic_break_pattern_1']}"
 end
 
 Given /^I have a generic break pattern without sponsors or post-rolls for that content configured on the adserver$/ do
   # generic break pattern without sponsors or post-rolls configured for vodcrid 'generic_break_pattern2' in config.yml:
   # http://jerry.itv.com/itvdev/tserver/site=itv.mobile/area=itvplayer.video/size=pattern/progid=itv.com.[VODCRID]
-  @platform.production = "#{EnvConfig['generic_break_pattern_2']}"
-end
-
-When /^I request the Mercury playlist for absolute break pattern$/ do
-  begin
-    @platform.playlist_request.data[:request][:ProductionId] = "#{EnvConfig['absolute_break_pattern']}"
-    @platform.request_playlist
-  rescue Savon::SOAP::Fault => error
-    @playlist_error = error
-  end
-end
-
-When /^I request the Mercury playlist for generic break pattern$/ do
-  begin
-    @platform.playlist_request.data[:request][:ProductionId] = "#{EnvConfig['generic_break_pattern_1']}"
-    @platform.request_playlist
-  rescue Savon::SOAP::Fault => error
-    @playlist_error = error
-  end
+  @platform.playlist_request.data[:request][:ProductionId] = "#{EnvConfig['generic_break_pattern_2']}"
 end
 
 Then /^the response returns the correct pattern defined by the absolute break pattern$/ do
