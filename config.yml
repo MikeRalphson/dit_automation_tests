@@ -80,6 +80,8 @@ live:
     youview_production:       '2/1780/0001#001'
     dotcom_catchup_rtmpe:     '2/1780/0001#001'
     dotcom_archive_rtmpe:     ''
+    absolute_break_pattern:   ''
+    generic_break_pattern_1:  ''
     user_id:                  '1200432'
     error_log:                'http://mercury.itv.com/errorlog.aspx'
     splunk_host:              'https://10.210.124.93:8089'
