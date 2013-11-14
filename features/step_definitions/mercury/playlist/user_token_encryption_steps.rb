@@ -32,8 +32,7 @@ Given /^a signed in user who has previously requested the Mercury playlist for (
 end
 
 Given /^the requested production ID does not match the one in the UserToken$/ do
-  @platform.production = EnvConfig['dotcom_catchup_rtmpe']
-  @platform.user_token = @platform.generate_encrypted_usertoken(@platform.production, @platform.userid)
+  @platform.user_token = @platform.generate_encrypted_usertoken(EnvConfig['dotcom_catchup_rtmpe'], @platform.userid)
 end
 
 Given /^the user has previously requested the Mercury playlist for that content$/ do

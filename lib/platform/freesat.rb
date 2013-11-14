@@ -1,6 +1,7 @@
 class Freesat < Platform
 
   attr_reader :bitrates
+  attr_accessor :production
 
   def initialize(category = 'catchup')
     super()
