@@ -12,6 +12,7 @@ end
 Given /^I have an absolute break pattern for that content configured on the adserver$/ do
   # absolute break pattern configured for vodcrid 'absolute_break_pattern' in config.yml for the test adserver (jerry):
   # http://jerry.itv.com/itvdev/tserver/site=itv.mobile/area=itvplayer.video/size=pattern/progid=itv.com.[VODCRID]
+  p  "#{EnvConfig['absolute_break_pattern']}"
   @platform.production = "#{EnvConfig['absolute_break_pattern']}"
 end
 
@@ -33,6 +34,14 @@ Given /^I have a generic break pattern without sponsors or post-rolls for that c
   @platform.production = "#{EnvConfig['generic_break_pattern_2']}"
 end
 
+When /^I request the Mercury playlist for absolute break pattern$/ do
+  begin
+    @platform.playlist_request.data[:request][:ProductionId] = "#{EnvConfig['absolute_break_pattern']}"
+    @platform.request_playlist
+  rescue Savon::SOAP::Fault => error
+    @playlist_error = error
+  end
+end
 
 Then /^the response returns the correct pattern defined by the absolute break pattern$/ do
   expected_break_pattern = [['I', 'A', 'S', 'S'], ['A', 'A', 'A'], ['S', 'A', 'A', 'A', 'S'],
