@@ -43,6 +43,15 @@ When /^I request the Mercury playlist for absolute break pattern$/ do
   end
 end
 
+When /^I request the Mercury playlist for generic break pattern$/ do
+  begin
+    @platform.playlist_request.data[:request][:ProductionId] = "#{EnvConfig['generic_break_pattern_1']}"
+    @platform.request_playlist
+  rescue Savon::SOAP::Fault => error
+    @playlist_error = error
+  end
+end
+
 Then /^the response returns the correct pattern defined by the absolute break pattern$/ do
   expected_break_pattern = [['I', 'A', 'S', 'S'], ['A', 'A', 'A'], ['S', 'A', 'A', 'A', 'S'],
                             ['A', 'A', 'S'], ['S', 'S']]

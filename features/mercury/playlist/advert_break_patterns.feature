@@ -26,7 +26,7 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
     And the response returns the correct break number for each advert
     And the response returns the standard ad-server type for all adverts
     And the response returns the correct break ID's
-
+  @absolute
   Scenario: Generic break pattern
   #  <pattern>
   #    <distribution>P</distribution>
@@ -42,7 +42,7 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
   #  </pattern>
     Given I have ingested a piece of Mobile catchup content with 3 content breaks (i.e. 4 parts)
     And I have a generic break pattern for that content configured on the adserver
-    When I request the Mercury playlist
+    When I request the Mercury playlist for generic break pattern
     Then the response returns the correct pattern defined by the generic break pattern
     And the response returns the correct advert positions for the generic break pattern
     And the response returns the correct break number for each advert
