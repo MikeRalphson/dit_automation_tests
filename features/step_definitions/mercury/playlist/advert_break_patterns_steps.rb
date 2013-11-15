@@ -33,7 +33,6 @@ Given /^I have a generic break pattern without sponsors or post-rolls for that c
   @platform.production = "#{EnvConfig['generic_break_pattern_2']}"
 end
 
-
 Then /^the response returns the correct pattern defined by the absolute break pattern$/ do
   expected_break_pattern = [['I', 'A', 'S', 'S'], ['A', 'A', 'A'], ['S', 'A', 'A', 'A', 'S'],
                             ['A', 'A', 'S'], ['S', 'S']]

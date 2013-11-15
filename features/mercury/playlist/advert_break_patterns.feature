@@ -1,4 +1,4 @@
-@wip
+@break-pattern
 Feature: Advert Break Pattern Management in Mercury Playlist Requests
   In order to display adverts in videos
   As a client
@@ -70,7 +70,6 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
     And the response returns the correct break number for each advert
     And the response returns the duration ad-server for duration adverts but the standard ad-server for the rest
     And the response returns the correct break ID's
-
 
   Scenario: Generic break pattern without sponsors or post-rolls
   #    <pattern>
