@@ -78,7 +78,6 @@ module Mercury
       params.each { |k, v| @adurl_keyvals[@request_response_mapper[k]].should == v }
     end
 
-
     # returns a multi-dimensional array of content breaks each containing advert URI's
     def adverts
       pattern = []
