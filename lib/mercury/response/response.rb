@@ -53,21 +53,30 @@ module Mercury
       @response.xpath('//SessionId').text
     end
 
-    def validate_additional_parameters(advert_uris, params)
-      request_response_mapper = get_request_response_mapper
+    def validate_additional_parameters(advert_uris)
+      @request_response_mapper = get_request_response_mapper
       #params = self.params
 
       advert_uris.each do |uri|
         path = URI.parse(uri).path
-        adurl_keyvals = {}
+        @adurl_keyvals = {}
         path.split('/').select { |e| e.include? '=' }.each do |e|
           parts = e.split('=')
-          adurl_keyvals[parts[0]] = parts[1]
+          @adurl_keyvals[parts[0]] = parts[1]
         end
-        params.each { |k, v| adurl_keyvals[request_response_mapper[k]].should == v }
       end
     end
 
+    def validate_parameters_android(params)
+      params.each do |k, v|
+        ad_response_value = @adurl_keyvals[@request_response_mapper[k]]
+        v ? ad_response_value.should == v : ad_response_value.should == 'x'
+      end
+    end
+
+    def validate_parameters_mobile(params)
+      params.each { |k, v| @adurl_keyvals[@request_response_mapper[k]].should == v }
+    end
 
     # returns a multi-dimensional array of content breaks each containing advert URI's
     def adverts

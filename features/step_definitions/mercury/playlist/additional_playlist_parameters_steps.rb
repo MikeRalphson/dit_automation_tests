@@ -52,6 +52,7 @@ end
 
 Then /^the response contains ad-server URL's with empty additional parameter values other than mandatory elements$/ do
   validate_android_response
+  @platform.playlist_response.validate_parameters_android(@platform.params)
 end
 
 Then /^the response should contain ad-server URL's with no additional parameters$/ do
@@ -65,7 +66,9 @@ Then /^the response should contain ad-server URL's with no additional parameters
 
   advert_uris = adverts.flatten
 
-  @platform.playlist_response.validate_additional_parameters(advert_uris, @platform.params)
+  @platform.playlist_response.validate_additional_parameters(advert_uris)
+  @platform.playlist_response.validate_parameters_mobile(@platform.params)
+
 end
 
 Then(/^the response should contain in the Akamai URL query stream the preferred bit rate set to 400$/) do
@@ -86,5 +89,5 @@ def validate_android_response
 
   advert_uris = adverts.flatten
 
-  @platform.playlist_response.validate_additional_parameters(advert_uris, @platform.params)
+  @platform.playlist_response.validate_additional_parameters(advert_uris)
 end
