@@ -45,7 +45,7 @@ ft02:
     duration_break_pattern:   '1/524316/f12094304899ada2247b7c633#001'
     freesat_production:       '328120'
     error_log:                'http://test-mercury.itv.com/errorlog.aspx'
-    splunk_host:              'https://10.210.177.32:8089'
+    splunk_host:              'https://ape.itvft02.ads:8089'
     playlist_service:         'http://test-api.itv.com'
     playlist_production:      '1-5163-1734_001'
 i01:
@@ -66,7 +66,7 @@ i01:
     duration_break_pattern:   '1/274865/e8cb948ce9dcf285dfa935109#001'
     freesat_production:       '326543'
     error_log:                'http://i01-mercury.itv.com/errorlog.aspx'
-    splunk_host:              'https://10.210.164.63:8089'
+    splunk_host:              'https://ape.itvint01.ads:8089'
     playlist_service:         'http://i01-api.itv.com' # does not exist at the moment
     playlist_production:      '1-5163-1734_001'
 live:
@@ -82,4 +82,5 @@ live:
     dotcom_archive_rtmpe:     ''
     user_id:                  '1200432'
     error_log:                'http://mercury.itv.com/errorlog.aspx'
-    splunk_host:              'https://10.210.124.93:8089'
+    splunk_host:              'https://ape.itvonline.ads:8089'
+    playlist_production:      ''
