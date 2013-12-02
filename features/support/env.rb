@@ -39,6 +39,7 @@ require 'platform/samsung'
 require 'platform/ps3'
 require 'platform/youview'
 require 'platform/freesat'
+require 'platform/samsunghls'
 
 include Retryable
 
