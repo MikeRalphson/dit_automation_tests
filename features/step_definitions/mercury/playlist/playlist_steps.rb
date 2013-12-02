@@ -186,3 +186,8 @@ Then(/^I get the correct ID attributes for each CDN$/) do
   result = @platform.playlist_response.ids
   result.should == expected_values
 end
+
+Then(/^there should be an unauthorised message$/) do
+  access = @platform.playlist_response.check_unauthorised_access
+  access.should include 'Unauthorized access'
+end
