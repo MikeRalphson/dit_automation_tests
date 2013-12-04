@@ -91,6 +91,10 @@ module Mercury
       @response.xpath('//ContentBreak')
     end
 
+    def check_unauthorised_access
+      @response.xpath('//Error').text
+    end
+
     def add_urls
       @response.xpath('//ContentBreak/Action/URL').map &:text
     end

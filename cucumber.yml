@@ -2,7 +2,7 @@
 ##YAML Template
 ---
 i01:         -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@local_only -t ~@rest-service
-ft02:        -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@local_only -t ~@not_ft02 -t ~@youview_cdn
+ft02:        -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@bug -t ~@irdeto -t ~@local_only -t ~@not_ft02 -t ~@youview_cdn -t ~@samsung-hls
 local:       -r features -f html -o features_report.html -f junit -o log/ -f pretty -t ~@wip -t ~@manual -t ~@android_ingest -t ~@flakey -t ~@not_local -t ~@bug -t ~@broadcaster -t ~@geo
 live:        -r features -f html -o features_report.html -f junit -o log/ -f progress -t @live -t ~@bug -t ~@wip
 geo:         -r features -f html -o features_report.html -f junit -o log/ -f pretty -t @geo -t ~@bug -t ~@local_only
