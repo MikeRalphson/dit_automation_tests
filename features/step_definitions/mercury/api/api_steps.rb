@@ -12,7 +12,6 @@ Given /^I request the (\w+) (\w+) (\w+) for a smil$/ do |type, platform, uri|
   pp "#{EnvConfig['mercury_url']}/api/#{type}/#{platform}/#{uri}/#{EnvConfig['smil_vodcrid']}.smil"
   @uri = "#{EnvConfig['mercury_url']}/api/#{type}/#{platform}/#{uri}/#{EnvConfig['smil_vodcrid']}.smil"
   @response = open(@uri).read
-
 end
 
 Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, platform|
@@ -54,6 +53,12 @@ Then /^the response should contain a complete A-Z listing$/ do
 end
 
 Then(/^the response should contain no empty video urls$/) do
-  video_links = @response.to_xml!.xpath('//switch')
+  video_links = @response.to_xml!.xpath('//switch/video')
   video_links.should_not be_empty
+end
+
+Then(/^the bitrate should be included in the video url$/) do
+  video_links = @response.to_xml!.xpath('//switch/video').map { |links| links.attr('src') }
+  @bitrates = @response.to_xml!.xpath('//switch/video').map { |bitrate| bitrate.attr('bitrate').gsub(/00000/, '00') }
+  video_links[0].should include(@bitrates)
 end

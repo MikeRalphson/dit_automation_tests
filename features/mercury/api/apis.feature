@@ -257,6 +257,7 @@ Feature: API and MRSS feeds
   Scenario Outline:
       Given I request the <type> <platform> <uri> for a smil
       Then the response should contain no empty video urls
+      Then the bitrate should be included in the video url
 
   Examples:
     | type  | platform  | uri      |
