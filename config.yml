@@ -48,6 +48,7 @@ ft02:
     splunk_host:              'https://ape.itvft02.ads:8089'
     playlist_service:         'http://test-api.itv.com'
     playlist_production:      '1-5163-1734_001'
+    smil_vodcrid:             '328968'
 i01:
     alcatraz_url:             'http://i01-alcatraz.itv.com'
     mercury_url:              'http://i01-mercury.itv.com'
@@ -69,6 +70,7 @@ i01:
     splunk_host:              'https://ape.itvint01.ads:8089'
     playlist_service:         'http://i01-api.itv.com' # does not exist at the moment
     playlist_production:      '1-5163-1734_001'
+    smil_vodcrid:             '325808'
 live:
     alcatraz_url:             'http://alcatraz.itv.com'
     mercury_url:              'http://mercury.itv.com'
