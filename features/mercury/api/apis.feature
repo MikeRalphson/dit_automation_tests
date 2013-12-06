@@ -252,3 +252,13 @@ Feature: API and MRSS feeds
   Scenario: Verify MRSS feed
     Given I request the MRSS API
     Then all the links should point to the ITV Player site
+
+  @smil
+  Scenario Outline:
+      Given I request the <type> <platform> <uri> for a smil
+      Then the response should contain no empty video urls
+
+  Examples:
+    | type  | platform  | uri      |
+    | smil  | mobile    | playlist |
+    | smil  | samsung   | playlist |
