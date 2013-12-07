@@ -1,5 +1,5 @@
 When(/^I request the new playlist service$/) do
-  platform = @platform.class.to_s
+  platform = @platform.class.to_s.downcase
   @platform.request_rest_playlist(platform)
   @response = @platform.playlist_rest_response
 end
