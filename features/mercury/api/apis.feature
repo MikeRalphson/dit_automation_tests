@@ -252,3 +252,14 @@ Feature: API and MRSS feeds
   Scenario: Verify MRSS feed
     Given I request the MRSS API
     Then all the links should point to the ITV Player site
+
+  @smil @not_live
+  Scenario Outline:
+      Given I request the <type> <platform> <uri> for a smil
+      Then the response should contain no empty video urls
+      Then the bitrate should be included in the video url
+
+  Examples:
+    | type  | platform  | uri      |
+    | smil  | mobile    | playlist |
+#   | smil  | samsung   | playlist | # Samsung url is still being activated
