@@ -58,6 +58,6 @@ end
 
 Then(/^the bitrate should be included in the video url$/) do
   video_links = @response.to_xml!.xpath('//switch/video').map { |links| links.attr('src') }
-  @bitrates = @response.to_xml!.xpath('//switch/video').map { |bitrate| bitrate.attr('bitrate').gsub(/00000/, '00') }
-  video_links[0].should include(@bitrates[0])
+  bitrates = @response.to_xml!.xpath('//switch/video').map { |bitrate| bitrate.attr('bitrate').gsub(/00000/, '00') }
+  video_links[0].should include(bitrates[0])
 end
