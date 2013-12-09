@@ -253,7 +253,7 @@ Feature: API and MRSS feeds
     Given I request the MRSS API
     Then all the links should point to the ITV Player site
 
-  @smil
+  @smil @not_live
   Scenario Outline:
       Given I request the <type> <platform> <uri> for a smil
       Then the response should contain no empty video urls
@@ -262,4 +262,4 @@ Feature: API and MRSS feeds
   Examples:
     | type  | platform  | uri      |
     | smil  | mobile    | playlist |
-    | smil  | samsung   | playlist |
+#   | smil  | samsung   | playlist | # Samsung url is still being activated

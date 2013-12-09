@@ -9,7 +9,6 @@ Given /^I request the (\w+) (\w+) (.*) api$/ do |type, platform, uri|
 end
 
 Given /^I request the (\w+) (\w+) (\w+) for a smil$/ do |type, platform, uri|
-  pp "#{EnvConfig['mercury_url']}/api/#{type}/#{platform}/#{uri}/#{EnvConfig['smil_vodcrid']}.smil"
   @uri = "#{EnvConfig['mercury_url']}/api/#{type}/#{platform}/#{uri}/#{EnvConfig['smil_vodcrid']}.smil"
   @response = open(@uri).read
 end
