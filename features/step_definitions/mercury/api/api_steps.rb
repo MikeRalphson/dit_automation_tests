@@ -9,7 +9,9 @@ Given /^I request the (\w+) (\w+) (.*) api$/ do |type, platform, uri|
 end
 
 Given /^I request the (\w+) (\w+) (\w+) for a smil$/ do |type, platform, uri|
-  @uri = "#{EnvConfig['mercury_url']}/api/#{type}/#{platform}/#{uri}/#{EnvConfig['smil_vodcrid']}.smil"
+  smil_prod_id = "#{EnvConfig['generic_production']}".gsub("/","-").gsub("#","_") # samsung uses prod id not vodcrid
+  platform == 'samsung' ? id = smil_prod_id : id = "#{EnvConfig['smil_vodcrid']}"
+  @uri = "#{EnvConfig['mercury_url']}/api/#{type}/#{platform}/#{uri}/#{id}.smil"
   @response = open(@uri).read
 end
 

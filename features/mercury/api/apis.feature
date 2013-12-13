@@ -262,4 +262,4 @@ Feature: API and MRSS feeds
   Examples:
     | type  | platform  | uri      |
     | smil  | mobile    | playlist |
-#   | smil  | samsung   | playlist | # Samsung url is still being activated
+    | smil  | samsung   | playlist |
