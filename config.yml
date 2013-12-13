@@ -69,7 +69,7 @@ i01:
     error_log:                'http://i01-mercury.itv.com/errorlog.aspx'
     splunk_host:              'https://ape.itvint01.ads:8089'
     playlist_service:         'http://i01-api.itv.com' # does not exist at the moment
-    playlist_production:      '1-5163-1734_001'
+    playlist_production:      '1-7842-0395_001'
     smil_vodcrid:             '325808'
 live:
     alcatraz_url:             'http://alcatraz.itv.com'
