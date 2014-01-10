@@ -95,8 +95,24 @@ Feature: Mercury Playlist Requests
     Given I have a piece of Dotcom catchup content
     When I request the Mercury playlist
     Then there should be a Session ID in the response
+
 @samsung-hls
   Scenario: Unauthorised access for Samsung HLS platform
     Given I have a piece of SamsungHls catchup content
     When I request the Mercury playlist
     Then there should be an unauthorised message
+
+@simulcast
+  Scenario Outline: Verify simulcast playlist
+  Given I have a piece of <platform> catchup content
+  When I request a simulcast playlist using <vodcrids>
+  Then I should get a video type of simulcast in the response
+  Then i should get the correct streams for the correct <channel>
+  Then I should get the same vodcrid as <vodcrids>
+
+Examples:
+  | platform | vodcrids | channel |
+  | DotCom   | sim2     | itv2    |
+  | DotCom   | sim3     | itv3    |
+# | Android  | sim2     | itv2    |
+# | Android  | sim3     | itv3    |
