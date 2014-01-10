@@ -43,6 +43,7 @@ module Mercury
       configure_savon
       data = @data
       client = create_savon_client
+      simulcast = ["sim2", "sim3"]
 
       client.request :get_playlist do |soap|
         namespaces = get_namespaces
@@ -53,7 +54,11 @@ module Mercury
               xml.tem(:GetPlaylist) do |xml|
                 xml.tem(:request) do |xml|
                   xml.itv(:HLSRequestForMaster, data[:request][:HLSRequestForMaster]) if data[:request][:HLSRequestForMaster]
-                  xml.itv(:ProductionId, data[:request][:ProductionId]) if data[:request][:ProductionId]
+                  if  simulcast.include?  data[:Vodcrid][:Id]
+                    data[:request][:ProductionId] == ''
+                  else
+                    xml.itv(:ProductionId, data[:request][:ProductionId]) if data[:request][:ProductionId]
+                  end
                   xml.itv(:RequestGuid, data[:request][:RequestGuid]) if data[:request][:RequestGuid]
                   xml.itv(:Vodcrid) do |xml|
                     data[:Vodcrid].each do |k, v|
