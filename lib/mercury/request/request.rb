@@ -54,7 +54,7 @@ module Mercury
               xml.tem(:GetPlaylist) do |xml|
                 xml.tem(:request) do |xml|
                   xml.itv(:HLSRequestForMaster, data[:request][:HLSRequestForMaster]) if data[:request][:HLSRequestForMaster]
-                  if  simulcast.include?  data[:Vodcrid][:Id]
+                  if simulcast.include? data[:Vodcrid][:Id]
                     data[:request][:ProductionId] == ''
                   else
                     xml.itv(:ProductionId, data[:request][:ProductionId]) if data[:request][:ProductionId]
