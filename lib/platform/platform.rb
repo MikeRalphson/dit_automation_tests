@@ -2,7 +2,7 @@ class Platform
 
   attr_reader :base_url, :video_type, :advert_area, :advert_site, :advert_size, :sting_video_type,
               :sting_bitrates, :playlist_request, :playlist_response, :series, :splunk_response, :playlist_rest_request,
-              :playlist_rest_response
+              :playlist_rest_response, :request_simulcast_playlist
 
   def initialize
     @advert_area = /itvplayer/
@@ -15,6 +15,7 @@ class Platform
     @series = '.series' # typical ingestion data
     @playlist_request = Mercury::Request.new
     @playlist_response = Mercury::Response.new
+    @request_simulcast_playlist = Mercury::Request.new
     self.production = "#{EnvConfig['generic_production']}"
     @splunk_response = Mercury::Splunk.new
     @playlist_rest_request = PlaylistService::RestRequest.new
@@ -22,6 +23,10 @@ class Platform
   end
 
   def request_playlist
+    @playlist_response.response = @playlist_request.do
+  end
+
+  def request_simulcast_playlist
     @playlist_response.response = @playlist_request.do
   end
 
