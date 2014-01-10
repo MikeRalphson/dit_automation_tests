@@ -21,4 +21,9 @@ class Dotcom < Platform
     super
   end
 
+  def request_simulcast_playlist
+    @user_token = ''
+    super
+  end
+
 end
