@@ -25,6 +25,15 @@ When /^I request the Mercury playlist from (\d+\.\d+\.\d+\.\d+)$/ do |location|
   end
 end
 
+When(/^I request a simulcast playlist using (\w+\d+)$/) do |vodcrid|
+  begin
+    @platform.playlist_request.data[:Vodcrid][:Id] = vodcrid
+    @platform.request_simulcast_playlist
+  rescue Savon::SOAP::Fault => error
+    @playlist_error = error
+  end
+end
+
 When /^I get the correct base url$/ do
   base_urls = @platform.playlist_response.base_urls
   base_urls.should_not be_empty
@@ -190,4 +199,17 @@ end
 Then(/^there should be an unauthorised message$/) do
   access = @platform.playlist_response.check_unauthorised_access
   access.should include 'Unauthorized access'
+end
+
+Then(/^I should get a video type of simulcast in the response$/) do
+  @platform.playlist_response.simulcast_video_type.should == 'simulcast'
+end
+
+Then(/^i should get the correct streams for the correct (\w+\d+)$/) do |channel|
+  stream = @platform.playlist_response.simulcast_stream_channels
+  stream.each { |url| url.text.should include channel }
+end
+
+Then(/^I should get the same vodcrid as (\w+\d+)$/) do |vodcrid|
+  @platform.playlist_response.simulcast_vodcrid.should include vodcrid
 end

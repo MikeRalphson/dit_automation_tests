@@ -28,6 +28,18 @@ module Mercury
       @response.xpath('//VideoEntries/Video/MediaFiles/MediaFile/URL')
     end
 
+    def simulcast_video_type
+      @response.xpath('//VideoType').text.downcase
+    end
+
+    def simulcast_stream_channels
+      @response.xpath('//VideoEntries/Video/MediaFiles/MediaFile/URL')
+    end
+
+    def simulcast_vodcrid
+      @response.xpath('//Vodcrid').text
+    end
+
     def expiry_date
       DateTime.parse(@response.xpath('//ExpiryDate').text).strftime('%FT%T')
     end
