@@ -1,4 +1,4 @@
-class Samsunghls < Samsung
+class Samsungtv < Samsung
 
   attr_accessor :params
 

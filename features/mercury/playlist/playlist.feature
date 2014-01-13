@@ -96,8 +96,8 @@ Feature: Mercury Playlist Requests
     When I request the Mercury playlist
     Then there should be a Session ID in the response
 
-@samsung-hls
-  Scenario: Unauthorised access for Samsung HLS platform
-    Given I have a piece of SamsungHls catchup content
+@samsung-tv
+  Scenario: Unauthorised access for Samsung TV platform
+    Given I have a piece of Samsungtv catchup content
     When I request the Mercury playlist
     Then there should be an unauthorised message
