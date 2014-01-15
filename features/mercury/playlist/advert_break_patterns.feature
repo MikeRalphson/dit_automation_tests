@@ -4,7 +4,7 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
   As a client
   I want to be able to get ad server urls in playlist response
 
-  Scenario: Absolute break pattern
+  Scenario Outline: Absolute break pattern
   #  <pattern>
   #    <distribution>P</distribution>
   #    <load>
@@ -18,7 +18,7 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
   #      <absolute>IASS:AAA:SAAAS:AAS:SS</absolute>
   #    </load>
   #  </pattern>
-    Given I have ingested a piece of Mobile catchup content with 3 content breaks (i.e. 4 parts)
+    Given I have ingested a piece of <platform> catchup content with 3 content breaks (i.e. 4 parts)
     And I have an absolute break pattern for that content configured on the adserver
     When I request the Mercury playlist
     Then the response returns the correct pattern defined by the absolute break pattern
@@ -27,7 +27,12 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
     And the response returns the standard ad-server type for all adverts
     And the response returns the correct break ID's
 
-  Scenario: Generic break pattern
+  Examples:
+    | platform    |
+    | Mobile      |
+    | DotCom      |
+
+  Scenario Outline: Generic break pattern
   #  <pattern>
   #    <distribution>P</distribution>
   #    <load>
@@ -40,7 +45,7 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
   #      </generic>
   #    </load>
   #  </pattern>
-    Given I have ingested a piece of Mobile catchup content with 3 content breaks (i.e. 4 parts)
+    Given I have ingested a piece of <platform> catchup content with 3 content breaks (i.e. 4 parts)
     And I have a generic break pattern for that content configured on the adserver
     When I request the Mercury playlist
     Then the response returns the correct pattern defined by the generic break pattern
@@ -49,7 +54,12 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
     And the response returns the standard ad-server type for all adverts
     And the response returns the correct break ID's
 
-  Scenario: Generic break pattern with durations
+  Examples:
+    | platform    |
+    | Mobile      |
+    | DotCom      |
+
+  Scenario Outline: Generic break pattern with durations
   #  <pattern>
   #    <distribution>P</distribution>
   #    <load>
@@ -62,7 +72,7 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
   #      </generic>
   #    </load>
   #  </pattern>
-    Given I have ingested a piece of Mobile catchup content with 3 content breaks (i.e. 4 parts)
+    Given I have ingested a piece of <platform> catchup content with 3 content breaks (i.e. 4 parts)
     And I have a generic break pattern with durations for that content configured on the adserver
     When I request the Mercury playlist
     Then the response returns the correct pattern defined by the generic break pattern with durations
@@ -71,7 +81,12 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
     And the response returns the duration ad-server for duration adverts but the standard ad-server for the rest
     And the response returns the correct break ID's
 
-  Scenario: Generic break pattern without sponsors or post-rolls
+  Examples:
+  | platform    |
+  | Mobile      |
+  | DotCom      |
+
+  Scenario Outline: Generic break pattern without sponsors or post-rolls
   #    <pattern>
   #      <distribution>P</distribution>
   #      <load>
@@ -84,7 +99,7 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
   #        </generic>
   #      </load>
   #    </pattern>
-    Given I have ingested a piece of Mobile catchup content with 3 content breaks (i.e. 4 parts)
+    Given I have ingested a piece of <platform> catchup content with 3 content breaks (i.e. 4 parts)
     And I have a generic break pattern without sponsors or post-rolls for that content configured on the adserver
     When I request the Mercury playlist
     Then the response returns the correct pattern defined by the generic break pattern without sponsors or post-rolls
@@ -93,6 +108,10 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
     And the response returns the standard ad-server type for all adverts
     And the response returns the correct break ID's
 
+  Examples:
+    | platform    |
+    | Mobile      |
+    | DotCom      |
 
   Scenario: Presence of hard-coded stings
 # covered in playlist.feature
