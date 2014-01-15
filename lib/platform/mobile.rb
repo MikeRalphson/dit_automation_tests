@@ -27,7 +27,7 @@ class Mobile < Platform
     }
     @playlist_request.data[:demographic] = nil
     @playlist_request.data[:request][:HLSRequestForMaster] = true
-    @playlist_response = Mercury::MobileResponse.new
+    @playlist_response = Mercury::Response.new
   end
 
   def request_playlist
