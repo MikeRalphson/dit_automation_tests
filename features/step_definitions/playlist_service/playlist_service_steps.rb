@@ -20,5 +20,5 @@ Then(/^I get the correct production ID$/) do
 end
 
 Then(/^I should get a status code of 501$/) do
-  @response.code.should == 501
+  @platform.class.to_s == 'Samsung' ? @response.code.should == 200 : @response.code.should == 501
 end
