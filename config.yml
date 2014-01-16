@@ -46,7 +46,7 @@ ft02:
     freesat_production:       '328120'
     error_log:                'http://test-mercury.itv.com/errorlog.aspx'
     splunk_host:              'https://ape.itvft02.ads:8089'
-    playlist_service:         'http://test-origin-api.itv.com'
+    playlist_service:         'https://test-origin-api.itv.com'
     playlist_production:      '1-5163-1734_001'
     smil_vodcrid:             '328968'
 i01:
@@ -68,7 +68,7 @@ i01:
     freesat_production:       '326543'
     error_log:                'http://i01-mercury.itv.com/errorlog.aspx'
     splunk_host:              'https://ape.itvint01.ads:8089'
-    playlist_service:         'http://i01-origin-api.itv.com'
+    playlist_service:         'https://i01-origin-api.itv.com'
     playlist_production:      '1-7842-0395_001'
     smil_vodcrid:             '325808'
 live:
