@@ -20,8 +20,5 @@ Then(/^I get the correct production ID$/) do
 end
 
 Then(/^I should get a status code of 501$/) do
-  #p @response
-  #response = @response.xpath('//title')
-  #response.text.should include '501 Not Implemented'
-  pending
+  @response.code.should == 501
 end
