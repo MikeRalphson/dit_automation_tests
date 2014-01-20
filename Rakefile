@@ -1,4 +1,5 @@
 require 'cucumber/rake/task'
+require 'rspec/core/rake_task'
 
 Rake::TaskManager.record_task_metadata = true
 
@@ -36,6 +37,12 @@ desc 'Do a local ingest'
 task :local_ingest do
   $:.unshift(File.dirname(__FILE__) + '/lib')
   require 'ingest/local_ingest_client'
+end
+
+desc 'Run unit tests'
+RSpec::Core::RakeTask.new(:unit) do |task|
+  task.pattern = 'spec/**/*_spec.rb'
+  task.rspec_opts = '--profile  --color --tag ~wip --require helpers/spec_helper --format documentation'
 end
 
 task :default do
