@@ -4,7 +4,7 @@ Feature: New Playlist Rest Requests
   As a backend enabler
   I want to be able to request new playlists
 
-  Scenario Outline: Verify new playlist for the new TV platform
+  Scenario Outline: Verify new playlist for the supported platforms
     Given I have a piece of <platform> catchup content
     When I request the new playlist service
     Then I should get a valid status code
@@ -34,3 +34,15 @@ Feature: New Playlist Rest Requests
     | PS3         |
     | YouView     |
     | Freesat     |
+
+  @csmil
+  Scenario Outline: Verify csmil in the new playlist
+    Given I have a piece of <platform> catchup content
+    When I request the new playlist service
+    Then I should get csmil in the media files url
+    Then the media file url should include all licensed renditions
+
+  Examples:
+    | platform    |
+    | Samsung     |
+    | Android     |
