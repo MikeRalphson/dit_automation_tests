@@ -1,0 +1,1 @@
+--profile  --color --tag ~wip --require helpers/spec_helper --format documentation

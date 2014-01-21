@@ -1,0 +1,105 @@
+{
+            "StatusCode" => 200,
+            "AdditionalInfo" => nil,
+            "Playlist" => {
+                "Video" => {
+                    "Duration" => "01=>05=>00=>000",
+                    "Base" => "https=>//ps3hlspoc-vh.akamaihd.net/i/",
+                    "MediaFiles" => [
+                        {
+                            "Href" => "priority/CATCHUP/5c8f1cfa/4490/49d5/8fc2/89820b2b483b/SF_20140114_1-5163-1769-001_the-jeremy-kyle-show-(series-11)_tx130114_itv,1200,_16x9.mp4.csmil/master.m3u8?hdnea=st=1390230747~exp=1390317147~acl=/*~hmac=a53165a5b0b73b28c5a1d94a2577acae8adaf41dd0ea15cf806d7ca18acd54fd"
+                        }
+                    ]
+                },
+                "ProductionId" => "1/5163/1734#001",
+                "VideoType" => "CATCHUP",
+                "ContentBreaks" => [
+                    {
+                        "TimeCode" => "00=>00=>00=>000",
+                        "Actions" => [
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=0.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=0/adpos=1/random=7447482390/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=0.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=0/adpos=last/random=5784982110/"
+                            }
+                        ]
+                    },
+                    {
+                        "TimeCode" => "00=>12=>09=>561",
+                        "Actions" => [
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=1.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=1/adpos=1/random=1151818597/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=1.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=1/adpos=2/random=4372663810/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=1.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=1/adpos=3/random=1312211935/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=1.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=1/adpos=last/random=5861273840/"
+                            }
+                        ]
+                    },
+                    {
+                        "TimeCode" => "00=>24=>45=>201",
+                        "Actions" => [
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=2.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=2/adpos=1/random=1996888619/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=2.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=2/adpos=2/random=1466941443/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=2.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=2/adpos=3/random=1893019650/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=2.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=2/adpos=last/random=2535911280/"
+                            }
+                        ]
+                    },
+                    {
+                        "TimeCode" => "00=>43=>21=>321",
+                        "Actions" => [
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=3.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=3/adpos=1/random=1531340260/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=3.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=3/adpos=2/random=1267992856/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=3.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=3/adpos=3/random=1005919970/"
+                            },
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=3.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=3/adpos=last/random=1773304170/"
+                            }
+                        ]
+                    },
+                    {
+                        "TimeCode" => "00=>48=>49=>066",
+                        "Actions" => [
+                            {
+                                "Type" => "advert",
+                                "Href" => "http=>//jerry.itv.com/itvdev/tserver/size=video/area=itvplayer.video/generic=5105ba55-f9f4-43d6-b51f-f2771cddee7b/site=itv.samsung/progid=x/prodid=itv.1_5163_1769-001/proggenre=factual/genre=x/progname=the.jeremy.kyle.show/series=the.jeremy.kyle.show/seriesid=e3fcdfe8.78a5.4f62.afca.9ea067ee7ea3/eptitle=the.jeremy.kyle.show/brandid=dd0c60cf.6717.4f6d.a0ac.04dea01c8555/source=catchup/tdur=2929/tparts=4/rstrct=x/owner=x/chanbrand=itv1/pm=free/pv=x/us=ano/dm=nli/viewid=end.5105ba55-f9f4-43d6-b51f-f2771cddee7b/breaknum=end/adpos=last/random=1148870180/"
+                            }
+                        ]
+                    }
+                ],
+                "Dog" => nil
+            }
+        }

@@ -6,16 +6,17 @@ module PlaylistService
 
     def initialize
       @response = nil
+      @json = nil
     end
 
-    def response=(httparty)
-      @response = httparty
+    def response=(response)
+      @response = response
       begin
         @json = JSON.parse(@response.body)
-      rescue => e
-        raise unless e.to_s.include? 'Error 501 Not Implemented'
-        # defending against text being returned by Mercury for unsupported platforms
+      rescue
+        raise "There was an error parsing the JSON response. The response was: #{@response}" unless @response.to_s.include? 'Error 501 Not Implemented'
       end
+      self
     end
 
     def response_code
