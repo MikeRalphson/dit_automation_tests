@@ -1,12 +1,11 @@
 When(/^I request the new playlist service$/) do
-  platform = @platform.class.to_s.downcase
-  @platform.request_rest_playlist(platform)
+  @platform_to_s = @platform.class.to_s.downcase
+  @platform.request_rest_playlist(@platform_to_s)
   @response = @platform.playlist_rest_response
 end
 
 When(/^I request the new playlist service via http$/) do
-  platform = @platform.class.to_s.downcase
-  @response = @platform.playlist_rest_request.http_request(platform)
+  @response = @platform.playlist_rest_request.http_request(@platform_to_s)
 end
 
 Then(/^I should get a valid status code$/) do
@@ -14,13 +13,13 @@ Then(/^I should get a valid status code$/) do
 end
 
 Then(/^I get the correct production ID$/) do
-  if @platform.class.to_s == 'Samsung'
+  if @platform_to_s == 'Samsung' || @platform_to_s == 'Android'
     @response.production_id.should match "#{EnvConfig['playlist_production']}"
   end
 end
 
 Then(/^I should get a status code of 501$/) do
-  if @platform.class.to_s == 'Samsung' || 'Android'
+  if @platform_to_s == 'Samsung' || 'Android'
     @platform.playlist_rest_response.stub_status_code.should == 501 # stubbed response
   else
     @response.code.should == 501
@@ -33,5 +32,6 @@ end
 
 
 Then(/^the media file url should include all licensed renditions$/) do
-  pending # express the regexp above with the code you wish you had
+  expected_values = "1200" # need to verify exact bit rates in new playlist somehow? 
+  @platform.playlist_rest_response.media_file.should include expected_values
 end
