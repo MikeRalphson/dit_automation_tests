@@ -26,3 +26,12 @@ Then(/^I should get a status code of 501$/) do
     @response.code.should == 501
   end
 end
+
+Then(/^I should get csmil in the media files url$/) do
+  @platform.playlist_rest_response.media_file.should include 'csmil'
+end
+
+
+Then(/^the media file url should include all licensed renditions$/) do
+  pending # express the regexp above with the code you wish you had
+end
