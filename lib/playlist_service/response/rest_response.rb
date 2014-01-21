@@ -31,6 +31,10 @@ module PlaylistService
       501 # need this stub to replace the status code 200 as the https code is not deployed yet
     end
 
+    def media_file
+      @json['Playlist']['Video']['MediaFiles'][0]['Href']
+    end
+
   end
 
 end
