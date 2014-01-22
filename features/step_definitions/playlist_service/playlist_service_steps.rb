@@ -29,9 +29,3 @@ end
 Then(/^I should get csmil in the media files url$/) do
   @platform.playlist_rest_response.media_file.should include 'csmil'
 end
-
-
-Then(/^the media file url should include all licensed renditions$/) do
-  expected_values = "1200" # need to verify exact bit rates in new playlist somehow? 
-  @platform.playlist_rest_response.media_file.should include expected_values
-end
