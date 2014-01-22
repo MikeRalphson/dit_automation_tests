@@ -40,7 +40,6 @@ Feature: New Playlist Rest Requests
     Given I have a piece of <platform> catchup content
     When I request the new playlist service
     Then I should get csmil in the media files url
-    Then the media file url should include all licensed renditions
 
   Examples:
     | platform    |
