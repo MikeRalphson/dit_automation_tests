@@ -33,11 +33,16 @@ module Mercury
     end
 
     def simulcast_stream_channels
-      @response.xpath('//VideoEntries/Video/MediaFiles/MediaFile/URL')
+      streams = @response.xpath('//VideoEntries/Video/MediaFiles/MediaFile/URL')
+      streams.map { |stream| stream.text }
     end
 
     def simulcast_vodcrid
       @response.xpath('//Vodcrid').text
+    end
+
+    def simulcast_base_url
+      @response.xpath('//VideoEntries/Video/MediaFiles').map { |node| node.attr('base')}
     end
 
     def expiry_date
