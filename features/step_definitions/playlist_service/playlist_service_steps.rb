@@ -5,6 +5,7 @@ When(/^I request the new playlist service$/) do
 end
 
 When(/^I request the new playlist service via http$/) do
+  @platform_to_s = @platform.class.to_s
   @response = @platform.playlist_rest_request.http_request(@platform_to_s)
 end
 
