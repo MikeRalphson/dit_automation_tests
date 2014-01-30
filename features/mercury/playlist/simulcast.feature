@@ -1,3 +1,4 @@
+@not_i01
 @simulcast
 Feature: Mercury Simulcast Playlist Requests
   In order to generate front end features
