@@ -11,11 +11,17 @@ Then(/^I should get a video type of simulcast in the response$/) do
   @platform.playlist_response.simulcast_video_type.should == 'simulcast'
 end
 
-Then(/^i should get the correct streams for the correct (\w+\d+)$/) do |channel|
-  stream = @platform.playlist_response.simulcast_stream_channels
-  stream.each { |url| url.text.should include channel }
-end
 
 Then(/^I should get the same vodcrid as (\w+\d+)$/) do |vodcrid|
   @platform.playlist_response.simulcast_vodcrid.should include vodcrid
+end
+
+Then(/^I should receive a valid playlist containing 3 (.*) and the (.*)$/) do |streams, base_url|
+  @platform.playlist_response.simulcast_stream_channels.size.should == 3
+  @platform.playlist_response.simulcast_base_url.should include base_url
+  @platform.playlist_response.simulcast_stream_channels.map do |renditions|
+    i = 0
+    renditions.should include streams[i]
+    i += 1
+  end
 end
