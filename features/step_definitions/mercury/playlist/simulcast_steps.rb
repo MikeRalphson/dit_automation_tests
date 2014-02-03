@@ -25,6 +25,6 @@ Then(/^I should receive a valid playlist containing 3 (.*) with (.*)$/) do |stre
   end
 end
 
-Then(/^I should get the (.*)$/) do |base_url|
+Then(/^I should get the (.*) in the response$/) do |base_url|
   @platform.playlist_response.simulcast_base_url.should include base_url
 end

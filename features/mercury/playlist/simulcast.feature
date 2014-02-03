@@ -11,7 +11,7 @@ Feature: Mercury Simulcast Playlist Requests
     Then I should get a video type of simulcast
     Then I should get <vodcrid> in the response
     Then I should receive a valid playlist containing 3 <stream_id> with <channel>
-    Then I should get the <base_url>
+    Then I should get the <base_url> in the response
 
     Examples:
        | platform | vodcrid | channel | stream_id | base_url                               |
