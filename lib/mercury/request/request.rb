@@ -43,7 +43,7 @@ module Mercury
       configure_savon
       data = @data
       client = create_savon_client
-      simulcast = ["sim2", "sim3"]
+      simulcast = ["sim1", "sim2", "sim3", "sim4", "sim7"]
 
       client.request :get_playlist do |soap|
         namespaces = get_namespaces
