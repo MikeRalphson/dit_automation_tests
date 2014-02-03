@@ -7,21 +7,24 @@ When(/^I request a simulcast playlist using (\w+\d+)$/) do |vodcrid|
   end
 end
 
-Then(/^I should get a video type of simulcast in the response$/) do
+Then(/^I should get a video type of simulcast$/) do
   @platform.playlist_response.simulcast_video_type.should == 'simulcast'
 end
 
 
-Then(/^I should get the same vodcrid as (\w+\d+)$/) do |vodcrid|
+Then(/^I should get (\w+\d+) in the response$/) do |vodcrid|
   @platform.playlist_response.simulcast_vodcrid.should include vodcrid
 end
 
-Then(/^I should receive a valid playlist containing 3 (.*) and the (.*)$/) do |streams, base_url|
+Then(/^I should receive a valid playlist containing 3 (.*) with (.*)$/) do |stream_id, channel|
+  bit_rate = [1200, 600, 800]
   @platform.playlist_response.simulcast_stream_channels.size.should == 3
-  @platform.playlist_response.simulcast_base_url.should include base_url
-  @platform.playlist_response.simulcast_stream_channels.map do |renditions|
-    i = 0
-    renditions.should include streams[i]
-    i += 1
+  streams = @platform.playlist_response.simulcast_stream_channels.sort
+  streams.each_with_index do |stream, index|
+    stream.should include "#{channel}livefms_#{bit_rate[index]}@#{stream_id}"
   end
+end
+
+Then(/^I should get the (.*)$/) do |base_url|
+  @platform.playlist_response.simulcast_base_url.should include base_url
 end
