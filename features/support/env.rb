@@ -17,6 +17,7 @@ require 'mercury_api'
 require 'env_config'
 require 'http_client'
 require 'patches/string'
+require 'helpers/simulcast'
 require 'utils'
 
 require 'mercury/mercury_request_logger'
@@ -41,6 +42,7 @@ require 'platform/freesat'
 require 'platform/samsungtv'
 
 include Retryable
+include Helpers::Simulcast
 
 SimpleCov.start
 
