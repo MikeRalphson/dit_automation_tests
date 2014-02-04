@@ -1,4 +1,4 @@
-@wip @rest-service
+@rest-service
 Feature: New Playlist Rest Requests
   In order to generate front end features
   As a backend enabler
