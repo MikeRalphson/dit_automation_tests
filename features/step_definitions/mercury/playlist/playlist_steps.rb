@@ -182,7 +182,7 @@ Then(/^I get the correct CDN video URL's$/) do
 end
 
 Then(/^I get the correct ID attributes for each CDN$/) do
-  expected_values = ['AKAMAI_BBTS-H.264-MAIN', 'COM.BT.ITVTRIAL_BBTS-H.264-MAIN', 'COM.TALKTALKGROUP_TTCDNTRIAL1_BBTS-H.264-MAIN']
+  expected_values = ['AKAMAI_BBTS-H.264-MAIN', 'COM.BT.ITVTRIAL_BBTS-H.264-MAIN', 'COM.TALKTALKGROUP_BBTS-H.264-MAIN']
   result = @platform.playlist_response.ids
   result.should == expected_values
 end
