@@ -31,6 +31,8 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
     | platform    |
     | Mobile      |
     | DotCom      |
+    | YouView     |
+#   | Android     |
 
   Scenario Outline: Generic break pattern
   #  <pattern>
@@ -58,6 +60,8 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
     | platform    |
     | Mobile      |
     | DotCom      |
+    | YouView     |
+#   | Android     |
 
   Scenario Outline: Generic break pattern with durations
   #  <pattern>
@@ -85,6 +89,8 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
   | platform    |
   | Mobile      |
   | DotCom      |
+  | YouView     |
+# | Android     |
 
   Scenario Outline: Generic break pattern without sponsors or post-rolls
   #    <pattern>
@@ -112,6 +118,8 @@ Feature: Advert Break Pattern Management in Mercury Playlist Requests
     | platform    |
     | Mobile      |
     | DotCom      |
+    | YouView     |
+#   | Android     |
 
   Scenario: Presence of hard-coded stings
 # covered in playlist.feature
