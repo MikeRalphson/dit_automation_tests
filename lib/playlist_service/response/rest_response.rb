@@ -35,6 +35,10 @@ module PlaylistService
       @json['Playlist']['Video']['MediaFiles'][0]['Href']
     end
 
+    def error_message
+      @json['Message']
+    end
+
   end
 
 end
