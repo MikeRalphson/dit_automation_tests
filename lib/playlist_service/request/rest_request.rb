@@ -2,14 +2,16 @@ module PlaylistService
 
     class RestRequest
 
-      attr_reader :uri, :productionid
+      attr_reader :uri
+      attr_accessor :productionid
 
       def initialize
         @uri = EnvConfig['playlist_service']
-        @productionid = "#{EnvConfig['playlist_production']}"
+        @productionid = ''
       end
 
       def do(platform)
+        p @productionid
         HTTParty.get "#{@uri}/playlist/itv/#{platform}/#{@productionid}",
                        :headers => {'Content-Type' => 'application/json'}
       end
