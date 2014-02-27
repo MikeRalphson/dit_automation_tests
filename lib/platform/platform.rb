@@ -17,6 +17,7 @@ class Platform
     @playlist_response = Mercury::Response.new
     @request_simulcast_playlist = Mercury::Request.new
     self.production = "#{EnvConfig['generic_production']}"
+    #self.productionid = "#{EnvConfig['playlist_production']}"
     @splunk_response = Mercury::Splunk.new
     @playlist_rest_request = PlaylistService::RestRequest.new
     @playlist_rest_response = PlaylistService::RestResponse.new
@@ -40,6 +41,14 @@ class Platform
 
   def production=(production)
     @playlist_request.data[:request][:ProductionId] = production
+  end
+
+  def productionid
+    @playlist_rest_request.productionid
+  end
+
+  def productionid=(productionid)
+    @playlist_rest_request.productionid = productionid
   end
 
 end
