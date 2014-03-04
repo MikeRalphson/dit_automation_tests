@@ -10,12 +10,12 @@ module PlaylistService
       end
 
       def do(platform)
-        HTTParty.get "#{@uri}/playlist/itv/#{platform}/#{@productionid}",
+        HTTParty.get "#{@uri}/playlist/itvonline/#{platform}/#{@productionid}",
                        :headers => {'Content-Type' => 'application/json'}
       end
 
       def http_request(platform)
-        http_url = "#{@uri}/playlist/itv/#{platform}/#{@productionid}".gsub('https', 'http')
+        http_url = "#{@uri}/playlist/itvonline/#{platform}/#{@productionid}".gsub('https', 'http')
         HTTParty.get http_url,
                      :headers => {'Content-Type' => 'application/json'}
       end
