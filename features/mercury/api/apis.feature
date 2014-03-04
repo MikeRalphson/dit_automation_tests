@@ -219,12 +219,12 @@ Feature: API and MRSS feeds
 
   Examples:
     | type     | platform | uri                                             |
-    | mhegdata | freesat  | Episode/Crucial                                 |
+    | mhegdata | freesat  | episode/crucial                                 |
     | mhegdata | freesat  | episode/mostwatched                             |
-    | mhegdata | freesat  | programme/perchannel/ITV1                       |
-    | mhegdata | freesat  | programme/perchannel/ITV2                       |
-    | mhegdata | freesat  | programme/perchannel/ITV3                       |
-    | mhegdata | freesat  | programme/perchannel/ITV4                       |
+    | mhegdata | freesat  | programme/perchannel/itv1                       |
+    | mhegdata | freesat  | programme/perchannel/itv2                       |
+    | mhegdata | freesat  | programme/perchannel/itv3                       |
+    | mhegdata | freesat  | programme/perchannel/itv4                       |
     | mhegdata | freesat  | programme/searchatoz/abc                        |
     | mhegdata | freesat  | programme/searchatoz/abcdefghijklmnopqrstuvwxyz |
     | mhegdata | freesat  | episode/programme/255488                        |

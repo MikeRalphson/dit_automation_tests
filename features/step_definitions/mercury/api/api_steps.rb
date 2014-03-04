@@ -26,7 +26,7 @@ Then /^I get a successful (\w+) response with the correct (\w+)$/ do |type, plat
       json = @response.to_json
       @mercury_api.find_value_in_hash('Platform', json).should == platform
     when 'mhegdata'
-      @response.should include(@uri)
+      @response.downcase.should include(@uri)
     else
       raise ArgumentError.new('invalid API request type')
   end
