@@ -10,6 +10,7 @@ require 'timeout'
 require 'base64'
 require 'ingestrb'
 require 'httparty'
+require 'digest'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
