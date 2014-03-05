@@ -4,10 +4,23 @@ module PlaylistService
 
     def initialize
 
-      @samsung = {
-          '1/5163/1734#001' => '3E3855D63A0C5B08B6588C7941C3C3952B664578'
+      @salt = {
+          :samsung_shared_key => 'aeaKuegnnadnau',
+          :android_shared_key => 'eKoShKddidoeAn'
       }
 
+    end
+
+    def generate_hmac_token(productionid, platform)
+
+      #@salt[:"#{platform}"_shared_key]
+      saltedhash = 'aeaKuegnnadnau' + productionid
+      saltedHashBytes = Base64.encode64(saltedhash)
+
+
+      hmac = Digest::SHA1.hexdigest(saltedHashBytes)
+
+      p hmac
     end
 
   end
