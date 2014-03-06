@@ -31,7 +31,8 @@ end
 When(/^I request the new playlist service via http$/) do
   @platform.productionid = "#{EnvConfig['playlist_production']}"
   @platform_to_s = @platform.class.to_s
-  @response = @platform.playlist_rest_request.http_request(@platform_to_s)
+  token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
+  @response = @platform.playlist_rest_request.http_request(@platform_to_s, token)
 end
 
 Then(/^I should get a valid status code$/) do
