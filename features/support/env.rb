@@ -10,6 +10,7 @@ require 'timeout'
 require 'base64'
 require 'ingestrb'
 require 'httparty'
+require 'digest/sha1'
 
 # local libs
 $:.unshift(File.dirname(__FILE__) + '/../../lib')
@@ -30,6 +31,7 @@ require 'mercury/response/youview_response'
 require 'mercury/response/splunk'
 require 'playlist_service/request/rest_request'
 require 'playlist_service/response/rest_response'
+require 'playlist_service/hmac_tokens'
 
 require 'platform/platform'
 require 'platform/dotcom'

@@ -30,8 +30,8 @@ class Platform
     @playlist_response.response = @playlist_request.do
   end
 
-  def request_rest_playlist(platform)
-    @playlist_rest_response.response = @playlist_rest_request.do(platform)
+  def request_rest_playlist(platform, token)
+    @playlist_rest_response.response = @playlist_rest_request.do(platform, token)
   end
 
   def production
@@ -40,6 +40,14 @@ class Platform
 
   def production=(production)
     @playlist_request.data[:request][:ProductionId] = production
+  end
+
+  def productionid
+    @playlist_rest_request.productionid
+  end
+
+  def productionid=(productionid)
+    @playlist_rest_request.productionid = productionid
   end
 
 end
