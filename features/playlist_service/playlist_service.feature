@@ -1,4 +1,4 @@
-@rest-service
+@rest-service @not_i01
 Feature: New Playlist Rest Requests
   In order to generate front end features
   As a backend enabler
@@ -20,6 +20,7 @@ Feature: New Playlist Rest Requests
     | YouView     |
     | Freesat     |
 
+  @not_ft02
   Scenario Outline: Verify new playlist cannot be accessed via http
     Given I have a piece of <platform> catchup content
     When I request the new playlist service via http
