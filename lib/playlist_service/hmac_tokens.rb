@@ -4,20 +4,22 @@ module PlaylistService
 
     def initialize
 
-      @salt = {
-          :samsung_shared_key => 'aeaKuegnnadnau',
-          :android_shared_key => 'eKoShKddidoeAn'
+      @shared_key = {
+          :samsung => 'aeaKuegnnadnau',
+          :android => 'eKoShKddidoeAn',
+          :dotcom => '',
+          :mobile => '',
+          :youview => '',
+          :freesat => '',
+          :ps3 => ''
       }
 
     end
 
     def generate_hmac_token(productionid, platform)
-
-      #@salt[:"#{platform}"_shared_key]
       prodid = productionid.gsub("-","/").gsub("_", "#")
-      saltedhash = 'aeaKuegnnadnau' + prodid
-      hmac = Digest::SHA1.hexdigest saltedhash
-      p hmac
+      saltedhash = @shared_key[:"#{platform}"] + prodid
+      Digest::SHA1.hexdigest saltedhash
     end
 
   end
