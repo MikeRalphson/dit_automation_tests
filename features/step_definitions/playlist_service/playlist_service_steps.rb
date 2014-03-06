@@ -23,11 +23,7 @@ end
 
 When(/^I request the new playlist service$/) do
   @platform_to_s = @platform.class.to_s.downcase
-
-  hmac_token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
-
-  token = '3E3855D63A0C5B08B6588C7941C3C3952B664578'
-
+  token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
   @platform.request_rest_playlist(@platform_to_s, token)
   @response = @platform.playlist_rest_response
 end
