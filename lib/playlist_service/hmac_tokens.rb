@@ -19,8 +19,7 @@ module PlaylistService
     def generate_hmac_token(productionid, platform)
       prodid = productionid.gsub("-","/").gsub("_", "#")
       saltedhash = @shared_key[:"#{platform}"] + prodid
-      hmac = Digest::SHA1.hexdigest saltedhash
-      hmac.upcase
+      (Digest::SHA1.hexdigest saltedhash).upcase
     end
 
   end
