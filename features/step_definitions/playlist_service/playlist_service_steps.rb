@@ -29,10 +29,14 @@ When(/^I request the new playlist service$/) do
 end
 
 When(/^I request the new playlist service via http$/) do
-  @platform.productionid = "#{EnvConfig['playlist_production']}"
-  @platform_to_s = @platform.class.to_s
+  @platform_to_s = @platform.class.to_s.downcase
   token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
   @response = @platform.playlist_rest_request.http_request(@platform_to_s, token)
+end
+
+When(/^I request the playlist service with a blank hmac token for supported platforms$/) do
+  @platform_to_s = @platform.class.to_s.downcase
+  @response = @platform.playlist_rest_request.blank_hmac_token(@platform_to_s)
 end
 
 Then(/^I should get a valid status code$/) do
@@ -46,7 +50,7 @@ Then(/^I get the correct production ID$/) do
 end
 
 Then(/^I should get a status code of 501$/) do
-  if @platform_to_s == 'Samsung' || @platform_to_s == 'Android'
+  if @platform_to_s == 'samsung' || @platform_to_s == 'android'
     @platform.playlist_rest_response.stub_status_code.should == 501 # stubbed response
   else
     @response.code.should == 501
@@ -87,9 +91,13 @@ Then(/^I should get a 404 no content status code$/) do
   @platform.playlist_rest_response.response_code.should == 404
 end
 
+Then(/^I should get a 403 http status error$/) do
+  @response.code.should == 403
+end
+
 Then(/^I should get a valid response indicating no licensed contact for platform$/) do
   #@platform.playlist_rest_response.rest_error_message.should include "No Licensed Content For Platform Android"
-  p @response
+  @response
 end
 
 Then(/^I should get a 403 no licensed renditions status code$/) do

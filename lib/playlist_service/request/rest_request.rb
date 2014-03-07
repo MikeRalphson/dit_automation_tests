@@ -28,6 +28,11 @@ module PlaylistService
                      :headers => {'Content-Type' => 'application/json', 'hmac' => token}
       end
 
+      def blank_hmac_token(platform)
+        HTTParty.get "#{@uri}/playlist/#{@broadcast}/#{platform}/#{@productionid}",
+                     :headers => {'Content-Type' => 'application/json', 'hmac' => ''}
+      end
+
     end
 
 end
