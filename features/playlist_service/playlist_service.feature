@@ -35,20 +35,15 @@ Feature: New Playlist Rest Requests
     | YouView     |
     | Freesat     |
 
-#  Scenario Outline:
-#    Given I have a piece of <platform> catchup content
-#    When I request the new playlist service with no token header
-#    Then I should get a 403 http status error
-#
-#  Examples:
-#    | platform    |
-#    | DotCom      |
-#    | Android     |
-#    | Mobile      |
-#    | Samsung     |
-#    | PS3         |
-#    | YouView     |
-#    | Freesat     |
+  Scenario Outline:
+    Given I have a piece of <platform> catchup content
+    When I request the playlist service with a blank hmac token for supported platforms
+    Then I should get a 403 http status error
+
+  Examples:
+    | platform    |
+    | Android     |
+    | Samsung     |
 
   @csmil
   Scenario Outline: Verify csmil in the new playlist
