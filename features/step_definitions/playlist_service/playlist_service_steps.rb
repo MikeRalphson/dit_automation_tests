@@ -34,6 +34,11 @@ When(/^I request the new playlist service via http$/) do
   @response = @platform.playlist_rest_request.http_request(@platform_to_s, token)
 end
 
+When(/^I request the playlist service with a blank hmac token for supported platforms$/) do
+  @platform_to_s = @platform.class.to_s.downcase
+  @response = @platform.playlist_rest_request.blank_hmac_token(@platform_to_s)
+end
+
 Then(/^I should get a valid status code$/) do
   @platform.class.to_s == 'Samsung' || @platform.class.to_s == 'Android' ? @response.response_code.should == 200 : @response.response_code.should == 501
 end
@@ -86,9 +91,13 @@ Then(/^I should get a 404 no content status code$/) do
   @platform.playlist_rest_response.response_code.should == 404
 end
 
+Then(/^I should get a 403 http status error$/) do
+  @response.code.should == 403
+end
+
 Then(/^I should get a valid response indicating no licensed contact for platform$/) do
   #@platform.playlist_rest_response.rest_error_message.should include "No Licensed Content For Platform Android"
-  p @response
+  @response
 end
 
 Then(/^I should get a 403 no licensed renditions status code$/) do
