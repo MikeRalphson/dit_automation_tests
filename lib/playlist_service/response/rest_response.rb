@@ -14,7 +14,9 @@ module PlaylistService
       begin
         @json = JSON.parse(@response.body)
       rescue
-        raise "There was an error parsing the JSON response. The response was: #{@response}" unless @response.to_s.include? 'Error 501 Not Implemented'
+        unless @response.to_s.include?('Error 501 Not Implemented') || (@response.code == 204)
+          raise "There was an error parsing the JSON response. The response was: #{@response}"
+        end
       end
       self
     end

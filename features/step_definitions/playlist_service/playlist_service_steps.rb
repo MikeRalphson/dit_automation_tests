@@ -17,10 +17,6 @@ Given(/^I have no rendtions for a production id$/) do
   @platform.playlist_rest_request.productionid = '2-1507-0011_003'
 end
 
-Given(/^none of the renditions match the uri structure$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
 When(/^I request the new playlist service$/) do
   @platform_to_s = @platform.class.to_s.downcase
   token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
@@ -71,12 +67,12 @@ end
 
 Then(/^I should get a valid platform not supported message$/) do
   #@platform.playlist_rest_response.error_message.should include "The Playlist Functionality For The Platform #{@platform_to_s} Is Not Available"
-  @platform.playlist_rest_response.response_code.should == 501 # this should return message above!!
+  @platform.playlist_rest_response.response_code.should == 501
 end
 
 Then(/^I should get a valid response for broadcast type not implemented$/) do
   #@platform.playlist_rest_response.rest_error_message.should include "The Playlist Functionality For The Broadcaster #{@broadcast} Is Not Available"
-  puts "Need to update code on PS from Not Implemented to The Playlist Functionality For The Broadcaster Utv Is Not Available"
+  puts "501 messages are blocked, so the error message cannot be validated yet"
 end
 
 Then(/^I should get a valid response indicating no assets found$/) do
@@ -95,19 +91,10 @@ Then(/^I should get a 403 http status error$/) do
   @response.code.should == 403
 end
 
-Then(/^I should get a valid response indicating no licensed contact for platform$/) do
-  #@platform.playlist_rest_response.rest_error_message.should include "No Licensed Content For Platform Android"
-  @response
+Then(/^I should get a 204 no content status code$/) do
+  @platform.playlist_rest_response.response_code.should == 204
 end
 
-Then(/^I should get a 403 no licensed renditions status code$/) do
-  #@platform.playlist_rest_response.response_code.should == 403
-end
-
-Then(/^I should get a valid error response stating uri mismatch$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^the status code should be 500$/) do
-  @platform.playlist_rest_response.response_code.should == 404
+Then(/^I should get a valid response indicating no licensed content for platform$/) do
+  @platform.playlist_rest_response.rest_error_message.should include "No Licensed Content For Platform #{@platform_to_s}"
 end
