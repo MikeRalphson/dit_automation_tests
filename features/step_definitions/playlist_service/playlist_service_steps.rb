@@ -67,12 +67,12 @@ end
 
 Then(/^I should get a valid platform not supported message$/) do
   #@platform.playlist_rest_response.error_message.should include "The Playlist Functionality For The Platform #{@platform_to_s} Is Not Available"
-  @platform.playlist_rest_response.response_code.should == 501 # this should return message above!!
+  @platform.playlist_rest_response.response_code.should == 501
 end
 
 Then(/^I should get a valid response for broadcast type not implemented$/) do
   #@platform.playlist_rest_response.rest_error_message.should include "The Playlist Functionality For The Broadcaster #{@broadcast} Is Not Available"
-  puts "Need to update code on PS from Not Implemented to The Playlist Functionality For The Broadcaster Utv Is Not Available"
+  puts "501 messages are blocked, so the error message cannot be validated yet"
 end
 
 Then(/^I should get a valid response indicating no assets found$/) do
