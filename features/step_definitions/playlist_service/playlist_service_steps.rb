@@ -17,10 +17,6 @@ Given(/^I have no rendtions for a production id$/) do
   @platform.playlist_rest_request.productionid = '2-1507-0011_003'
 end
 
-Given(/^none of the renditions match the uri structure$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
 When(/^I request the new playlist service$/) do
   @platform_to_s = @platform.class.to_s.downcase
   token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
@@ -104,10 +100,3 @@ Then(/^I should get a 403 no licensed renditions status code$/) do
   #@platform.playlist_rest_response.response_code.should == 403
 end
 
-Then(/^I should get a valid error response stating uri mismatch$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^the status code should be 500$/) do
-  @platform.playlist_rest_response.response_code.should == 404
-end
