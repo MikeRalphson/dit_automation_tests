@@ -91,12 +91,10 @@ Then(/^I should get a 403 http status error$/) do
   @response.code.should == 403
 end
 
-Then(/^I should get a valid response indicating no licensed contact for platform$/) do
-  #@platform.playlist_rest_response.rest_error_message.should include "No Licensed Content For Platform Android"
-  @response
+Then(/^I should get a 204 no content status code$/) do
+  @platform.playlist_rest_response.response_code.should == 204
 end
 
-Then(/^I should get a 403 no licensed renditions status code$/) do
-  #@platform.playlist_rest_response.response_code.should == 403
+Then(/^I should get a valid response indicating no licensed content for platform$/) do
+  @platform.playlist_rest_response.rest_error_message.should include "No Licensed Content For Platform #{@platform_to_s}"
 end
-
