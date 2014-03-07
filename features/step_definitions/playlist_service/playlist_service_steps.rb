@@ -29,8 +29,7 @@ When(/^I request the new playlist service$/) do
 end
 
 When(/^I request the new playlist service via http$/) do
-  @platform.productionid = "#{EnvConfig['playlist_production']}"
-  @platform_to_s = @platform.class.to_s
+  @platform_to_s = @platform.class.to_s.downcase
   token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
   @response = @platform.playlist_rest_request.http_request(@platform_to_s, token)
 end
@@ -46,7 +45,7 @@ Then(/^I get the correct production ID$/) do
 end
 
 Then(/^I should get a status code of 501$/) do
-  if @platform_to_s == 'Samsung' || @platform_to_s == 'Android'
+  if @platform_to_s == 'samsung' || @platform_to_s == 'android'
     @platform.playlist_rest_response.stub_status_code.should == 501 # stubbed response
   else
     @response.code.should == 501
