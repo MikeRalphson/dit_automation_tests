@@ -1,6 +1,6 @@
-class Samsungtv < Samsung
+class Samsungtv < Platform
 
-  attr_accessor :params
+  attr_accessor :params, :bitrates
 
   def initialize(category = 'catchup')
     super()
@@ -8,9 +8,11 @@ class Samsungtv < Samsung
         :StreamType => 'HLS', # must be specified
     }
     @playlist_request.data[:request][:HLSRequestForMaster] = true
+    @bitrates = [1200000]
   end
 
   def request_playlist
+    @playlist_request.data[:siteInfo][:Platform] = 'SamsungTV'
     @playlist_request.data[:deviceInfo] = @params
     super
   end
