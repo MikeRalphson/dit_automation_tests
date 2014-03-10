@@ -14,13 +14,14 @@ Feature: Mercury Playlist Requests
     And I get the correct video type
 
   Examples:
-    | platform |
-    | DotCom   |
-    | Android  |
-    | Mobile   |
-    | Samsung  |
-    | PS3      |
-    | YouView  |
+    | platform  |
+    | DotCom    |
+    | Android   |
+    | Mobile    |
+    | Samsung   |
+    | PS3       |
+    | YouView   |
+    | SamsungTV |
 
   Scenario: Verify basic Freesat request
     Given I have a piece of Freesat catchup content
