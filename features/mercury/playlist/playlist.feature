@@ -21,7 +21,7 @@ Feature: Mercury Playlist Requests
     | Samsung   |
     | PS3       |
     | YouView   |
-#   | NowTV     |
+    | NowTV     |
 
   Scenario: Verify basic Freesat request
     Given I have a piece of Freesat catchup content
@@ -102,3 +102,10 @@ Feature: Mercury Playlist Requests
     Given I have a piece of Samsungtv catchup content
     When I request the Mercury playlist
     Then there should be an unauthorised message
+
+#  @now-tv
+#  Scenario: NowTV should only be requestsd with HLS
+#    Given I have a piece of Nowtv catchup content
+#    And stream type HLS is not requested
+#    When I request the Mercury playlist
+#    Then I should get no catchup content back
