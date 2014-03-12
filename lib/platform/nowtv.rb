@@ -1,4 +1,4 @@
-class Samsungtv < Platform
+class Nowtv < Platform
 
   attr_accessor :params, :bitrates
 
@@ -12,7 +12,7 @@ class Samsungtv < Platform
   end
 
   def request_playlist
-    @playlist_request.data[:siteInfo][:Platform] = 'Samsung'
+    @playlist_request.data[:siteInfo][:Platform] = 'SamsungTV'
     @playlist_request.data[:deviceInfo] = @params
     super
   end
