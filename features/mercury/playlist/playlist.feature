@@ -21,7 +21,7 @@ Feature: Mercury Playlist Requests
     | Samsung   |
     | PS3       |
     | YouView   |
-#    | NowTV     |
+#   | NowTV     |
 
   Scenario: Verify basic Freesat request
     Given I have a piece of Freesat catchup content
@@ -97,7 +97,7 @@ Feature: Mercury Playlist Requests
     When I request the Mercury playlist
     Then there should be a Session ID in the response
 
-  @wip
+  @not_ft02
   Scenario: Unauthorised access for Samsung TV platform
     Given I have a piece of Samsungtv catchup content
     When I request the Mercury playlist
