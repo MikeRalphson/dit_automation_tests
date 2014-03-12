@@ -42,6 +42,7 @@ require 'platform/ps3'
 require 'platform/youview'
 require 'platform/freesat'
 require 'platform/samsungtv'
+require 'platform/nowtv'
 
 include Retryable
 include Helpers::Simulcast
