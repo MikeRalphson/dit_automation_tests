@@ -11,7 +11,7 @@ class Nowtv < Platform
   end
 
   def request_playlist
-    @playlist_request.data[:siteInfo][:Platform] = 'Nowtv'
+    @playlist_request.data[:siteInfo][:Platform] = 'SamsungTV'
     @playlist_request.data[:deviceInfo] = @params
     super
   end
