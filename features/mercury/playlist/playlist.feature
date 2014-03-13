@@ -103,9 +103,9 @@ Feature: Mercury Playlist Requests
     When I request the Mercury playlist
     Then there should be an unauthorised message
 
-#  @now-tv
-#  Scenario: NowTV should only be requestsd with HLS
-#    Given I have a piece of Nowtv catchup content
-#    And stream type HLS is not requested
-#    When I request the Mercury playlist
-#    Then I should get no catchup content back
+  @not_ft02
+  Scenario: NowTV should only be requestsd with HLS
+    Given I have a piece of Nowtv catchup content
+    And stream type HLS is not requested
+    When I request the Mercury playlist
+    Then there should be an unauthorised message
