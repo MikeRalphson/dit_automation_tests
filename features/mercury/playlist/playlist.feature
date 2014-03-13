@@ -3,7 +3,7 @@ Feature: Mercury Playlist Requests
   In order to generate front end features
   As a backend enabler
   I want to be able to request Mercury playlists
-
+  @now
   Scenario Outline: Verify basic playlist request
     Given I have a piece of <platform> catchup content
     When I request the Mercury playlist
