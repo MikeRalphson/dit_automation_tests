@@ -3,7 +3,7 @@ Feature: Mercury Playlist Requests
   In order to generate front end features
   As a backend enabler
   I want to be able to request Mercury playlists
-  @now
+
   Scenario Outline: Verify basic playlist request
     Given I have a piece of <platform> catchup content
     When I request the Mercury playlist
@@ -103,7 +103,7 @@ Feature: Mercury Playlist Requests
     When I request the Mercury playlist
     Then there should be an unauthorised message
 
-  @now-tv @not_ft02
+  @not_ft02
   Scenario: NowTV should only be requestsd with HLS
     Given I have a piece of Nowtv catchup content
     And stream type HLS is not requested
