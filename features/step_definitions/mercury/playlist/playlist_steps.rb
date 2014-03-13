@@ -6,6 +6,10 @@ Given /^I have a piece of (\w+) archive content$/ do |platform|
   @platform = Object::const_get(platform.downcase.camelcase).new('archive')
 end
 
+Given(/^stream type HLS is not requested$/) do
+  @platform.params[:StreamType] = 'RTMPE'
+end
+
 When /^I request the Mercury playlist$/ do
   begin
     @platform.request_playlist

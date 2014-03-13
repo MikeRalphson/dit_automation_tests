@@ -108,4 +108,4 @@ Feature: Mercury Playlist Requests
     Given I have a piece of Nowtv catchup content
     And stream type HLS is not requested
     When I request the Mercury playlist
-    Then I should get no catchup content back
+    Then there should be an unauthorised message
