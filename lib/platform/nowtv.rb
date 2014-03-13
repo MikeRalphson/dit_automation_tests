@@ -7,7 +7,6 @@ class Nowtv < Platform
     @params = {
         :StreamType => 'HLS', # must be specified
     }
-    @playlist_request.data[:request][:HLSRequestForMaster] = true
     @bitrates = [1200000]
   end
 
