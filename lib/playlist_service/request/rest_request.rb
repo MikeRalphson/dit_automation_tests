@@ -22,10 +22,10 @@ module PlaylistService
                        :headers => {'Content-Type' => 'application/json', 'hmac' => token}
       end
 
-      def http_request(platform, token)
+      def http_request(platform)
         http_url = "#{@uri}/playlist/#{broadcast}/#{platform}/#{@productionid}".gsub('https', 'http')
         HTTParty.get http_url,
-                     :headers => {'Content-Type' => 'application/json', 'hmac' => token}
+                     :headers => {'Content-Type' => 'application/json'}
       end
 
       def blank_hmac_token(platform)
