@@ -24,3 +24,4 @@ Feature: Query Splunk API
     | Samsung  |
     | PS3      |
     | YouView  |
+    | NowTV    |
