@@ -14,7 +14,7 @@ Given(/^I have no asset information$/) do
 end
 
 Given(/^I have no rendtions for a production id$/) do
-  @platform.playlist_rest_request.productionid = '2-1507-0011_003'
+  @platform.playlist_rest_request.productionid = "#{EnvConfig['no_renditions']}"
 end
 
 When(/^I request the new playlist service$/) do
@@ -25,14 +25,17 @@ When(/^I request the new playlist service$/) do
 end
 
 When(/^I request the new playlist service via http$/) do
-  @platform_to_s = @platform.class.to_s.downcase
-  token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
-  @response = @platform.playlist_rest_request.http_request(@platform_to_s, token)
+  begin
+    @platform_to_s = @platform.class.to_s.downcase
+    @response = @platform.playlist_rest_request.http_request(@platform_to_s)
+  rescue Errno::ECONNREFUSED => error
+      @refused_connection = error.to_s
+  end
 end
 
 When(/^I request the playlist service with a blank hmac token for supported platforms$/) do
-  @platform_to_s = @platform.class.to_s.downcase
-  @response = @platform.playlist_rest_request.blank_hmac_token(@platform_to_s)
+    @platform_to_s = @platform.class.to_s.downcase
+    @response = @platform.playlist_rest_request.blank_hmac_token(@platform_to_s)
 end
 
 Then(/^I should get a valid status code$/) do
@@ -45,12 +48,8 @@ Then(/^I get the correct production ID$/) do
   end
 end
 
-Then(/^I should get a status code of 501$/) do
-  if @platform_to_s == 'samsung' || @platform_to_s == 'android'
-    @platform.playlist_rest_response.stub_status_code.should == 501 # stubbed response
-  else
-    @response.code.should == 501
-  end
+Then(/^I should get a connection refused message$/) do
+  @refused_connection.should include "Connection refused - connect(2)"
 end
 
 Then(/^I should get csmil in the media files url$/) do
@@ -66,13 +65,11 @@ Then(/^the status code should be 400$/) do
 end
 
 Then(/^I should get a valid platform not supported message$/) do
-  #@platform.playlist_rest_response.error_message.should include "The Playlist Functionality For The Platform #{@platform_to_s} Is Not Available"
-  @platform.playlist_rest_response.response_code.should == 501
+  @platform.playlist_rest_response.rest_error_message.should include "The Playlist Functionality For The Platform #{@platform_to_s} Is Not Available"
 end
 
 Then(/^I should get a valid response for broadcast type not implemented$/) do
-  #@platform.playlist_rest_response.rest_error_message.should include "The Playlist Functionality For The Broadcaster #{@broadcast} Is Not Available"
-  puts "501 messages are blocked, so the error message cannot be validated yet"
+  @platform.playlist_rest_response.rest_error_message.should include "The Playlist Functionality For The Broadcaster #{@broadcast} Is Not Available"
 end
 
 Then(/^I should get a valid response indicating no assets found$/) do

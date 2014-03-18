@@ -1,4 +1,4 @@
-@rest-service @not_i01
+@rest-service
 Feature: New Playlist Rest Requests
   In order to generate front end features
   As a backend enabler
@@ -20,10 +20,11 @@ Feature: New Playlist Rest Requests
     | YouView     |
     | Freesat     |
 
+  @not_ft02
   Scenario Outline: Verify new playlist cannot be accessed via http
     Given I have a piece of <platform> catchup content
     When I request the new playlist service via http
-    Then I should get a status code of 501
+    Then I should get a connection refused message
 
   Examples:
     | platform    |
@@ -35,6 +36,7 @@ Feature: New Playlist Rest Requests
     | YouView     |
     | Freesat     |
 
+  @not_i01
   Scenario Outline:
     Given I have a piece of <platform> catchup content
     When I request the playlist service with a blank hmac token for supported platforms
