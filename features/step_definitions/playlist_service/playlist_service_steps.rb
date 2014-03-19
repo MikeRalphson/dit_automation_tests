@@ -95,3 +95,7 @@ end
 Then(/^I should get a valid response indicating no licensed content for platform$/) do
   @platform.playlist_rest_response.rest_error_message.should include "No Licensed Content For Platform #{@platform_to_s}"
 end
+
+Then(/^the response should contain a base uri populated with the Akamai config$/) do
+  @platform.playlist_rest_response.base_uri.should include "itvandroidhls-vh.akamaihd.net/i/"
+end
