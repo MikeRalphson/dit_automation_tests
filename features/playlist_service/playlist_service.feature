@@ -90,3 +90,8 @@ Feature: New Playlist Rest Requests
     And I have no rendtions for a production id
     When I request the new playlist service
     Then I should get a 204 no content status code
+  @a-csmil
+  Scenario:
+    Given I have a piece of Android catchup content
+    When I request the new playlist service
+    Then the response should contain a base uri populated with the Akamai config
