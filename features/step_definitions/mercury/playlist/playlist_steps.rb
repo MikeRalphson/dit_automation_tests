@@ -195,3 +195,7 @@ Then(/^there should be an unauthorised message$/) do
   access = @platform.playlist_response.check_unauthorised_access
   access.should include 'Unauthorized access'
 end
+
+Then(/^I should get a valid csmil returned in the response$/) do
+  #@platform.playlist_response.get_csmil.should.include ""
+end
