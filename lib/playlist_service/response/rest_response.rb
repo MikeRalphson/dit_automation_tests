@@ -38,7 +38,7 @@ module PlaylistService
     end
 
     def base_uri
-      @json['Base']
+      @json['Playlist']['Video']['Base']
     end
 
   end
