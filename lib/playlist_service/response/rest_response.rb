@@ -37,6 +37,10 @@ module PlaylistService
       @json['Message']
     end
 
+    def base_uri
+      @json['Base']
+    end
+
   end
 
 end
