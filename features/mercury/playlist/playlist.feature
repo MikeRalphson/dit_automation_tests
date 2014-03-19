@@ -109,3 +109,9 @@ Feature: Mercury Playlist Requests
     And stream type HLS is not requested
     When I request the Mercury playlist
     Then there should be an unauthorised message
+
+  @mercury-csmil
+  Scenario: NowTV should return a cmsil in the Mercury playlist response
+    Given I have a piece of NowTV catchup content
+    When I request the Mercury playlist
+    Then I should get a valid csmil returned in the response
