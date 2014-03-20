@@ -90,3 +90,10 @@ Feature: New Playlist Rest Requests
     And I have no rendtions for a production id
     When I request the new playlist service
     Then I should get a 204 no content status code
+
+  @bit
+  Scenario: NowTV using Mercury request should validate the video rendition names
+    Given I have a piece of NowTV catchup content
+    And I have a production id which has invalid rendition names
+    When I request the Mercury playlist
+    Then I should get a match uri And bitrate pattern error
