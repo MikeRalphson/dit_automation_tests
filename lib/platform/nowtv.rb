@@ -4,6 +4,7 @@ class Nowtv < Platform
 
   def initialize(category = 'catchup')
     super()
+    self.production = "#{EnvConfig['now_tv_hls_production']}"
     @params = {
         :StreamType => 'HLS', # must be specified
     }
