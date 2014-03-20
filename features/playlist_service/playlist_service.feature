@@ -91,7 +91,11 @@ Feature: New Playlist Rest Requests
     When I request the new playlist service
     Then I should get a 204 no content status code
 
-  @bit
+  Scenario:
+    Given I have a piece of Android catchup content
+    When I request the new playlist service
+    Then the response should contain a base uri populated with the Akamai config
+
   Scenario: NowTV using Mercury request should validate the video rendition names
     Given I have a piece of NowTV catchup content
     And I have a production id which has invalid rendition names

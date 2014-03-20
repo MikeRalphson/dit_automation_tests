@@ -100,6 +100,10 @@ Then(/^I should get a valid response indicating no licensed content for platform
   @platform.playlist_rest_response.rest_error_message.should include "No Licensed Content For Platform #{@platform_to_s}"
 end
 
+Then(/^the response should contain a base uri populated with the Akamai config$/) do
+  @platform.playlist_rest_response.base_uri.should include "itvandroidhls-vh.akamaihd.net/i/"
+end
+
 Then(/^I should get a match uri And bitrate pattern error$/) do
   #new playlist requires the format in the rendition names to be: itv_{bitrate}
   #Example: @"(?<StartUri>[\W\w]+)(?<Partner>(?i)_itv)(?<Bitrate>[0-9]+)(?<EndUri>[\W\w]+)"
