@@ -28,6 +28,7 @@ ft02:
     youview_production:       '1/805537/320d95e6185e448abcf7e856efb6236e#001'
     dotcom_catchup_rtmpe:     '1/805537/320d95e6185e448abcf7e856efb6236e#001'
     dotcom_archive_rtmpe:     ''
+    now_tv_hls_production:    '1/5163/1734#001'
     user_id:                  '1237847'
     itv1_vodcrid:             '328123'
     itv2_vodcrid:             '328126'
@@ -61,6 +62,7 @@ i01:
     youview_production:       '2/268328/159c8#001'
     dotcom_catchup_rtmpe:     '1/419662/aac254712a8b8eb4934b22840#001'
     dotcom_archive_rtmpe:     '1/9310/0007#001'
+    now_tv_hls_production:    '1/7842/0395#001'
     user_id:                  '62517' # kiran.hare@itv.com / password
     absolute_break_pattern:   '1/528854/443a345c1a845199fdcf93dc0#001'
     generic_break_pattern_1:  '1/209177/e711041f6bd71858ac49f4325#001'
