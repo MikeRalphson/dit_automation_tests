@@ -8,7 +8,7 @@ class Nowtv < Platform
     @params = {
         :StreamType => 'HLS', # must be specified
     }
-    @bitrates = [1250000]
+    @bitrates = [1200000]
   end
 
   def request_playlist
