@@ -21,6 +21,7 @@ Feature: Mercury Playlist Requests
     | Samsung   |
     | PS3       |
     | YouView   |
+    | NowTV     |
 
   Scenario: Verify basic Freesat request
     Given I have a piece of Freesat catchup content
