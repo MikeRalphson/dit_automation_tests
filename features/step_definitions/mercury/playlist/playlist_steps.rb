@@ -30,16 +30,15 @@ When /^I request the Mercury playlist from (\d+\.\d+\.\d+\.\d+)$/ do |location|
 end
 
 When /^I get the correct base url$/ do
-  base_urls = @platform.playlist_response.base_urls
-  base_urls.should_not be_empty
-  base_urls.each { |url| url.attr('base').should =~ @platform.base_url unless @platform.base_url.nil? } # hacky for YV?
-                                                                                                        # try empty string instead of nil
+    base_urls = @platform.playlist_response.base_urls
+    base_urls.should_not be_empty
+    base_urls.each { |url| url.attr('base').should =~ @platform.base_url unless @platform.base_url.nil?} # hacky for YV?
 end
 
 When /^I get the correct video type$/ do
-  video_type = @platform.playlist_response.video_type
-  video_type.should_not be_empty
-  video_type.each { |url| url.text.should match @platform.video_type }
+    video_type = @platform.playlist_response.video_type
+    video_type.should_not be_empty
+    video_type.each { |url| url.text.should match @platform.video_type unless @platform.video_type.nil? } # Hack for NowTV until Mercury is removed
 end
 
 Then /^I get the correct production$/ do
