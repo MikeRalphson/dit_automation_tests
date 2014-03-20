@@ -197,5 +197,5 @@ Then(/^there should be an unauthorised message$/) do
 end
 
 Then(/^I should get a valid csmil returned in the response$/) do
-  @platform.playlist_response.simulcast_stream_channels.to_s.should include ".csmil"
+  @platform.playlist_response.stream_channels.to_s.should include ".csmil"
 end
