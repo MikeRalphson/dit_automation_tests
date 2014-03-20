@@ -17,6 +17,10 @@ Given(/^I have no rendtions for a production id$/) do
   @platform.playlist_rest_request.productionid = "#{EnvConfig['no_renditions']}"
 end
 
+Given(/^I have a production id which has invalid rendition names$/) do
+  @platform.production = "#{EnvConfig['generic_production']}"
+end
+
 When(/^I request the new playlist service$/) do
   @platform_to_s = @platform.class.to_s.downcase
   token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
@@ -98,4 +102,11 @@ end
 
 Then(/^the response should contain a base uri populated with the Akamai config$/) do
   @platform.playlist_rest_response.base_uri.should include "itvandroidhls-vh.akamaihd.net/i/"
+end
+
+Then(/^I should get a match uri And bitrate pattern error$/) do
+  #new playlist requires the format in the rendition names to be: itv_{bitrate}
+  #Example: @"(?<StartUri>[\W\w]+)(?<Partner>(?i)_itv)(?<Bitrate>[0-9]+)(?<EndUri>[\W\w]+)"
+  #Example Android: @"(?<StartUri>[\W\w]+)(?<Partner>(?i)_bl)(?<Bitrate>[0-9]+)(?<EndUri>[\W\w]+)"
+  @playlist_error.to_s.should include "Unable To Match Uri And Bitrate Pattern"
 end
