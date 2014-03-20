@@ -5,10 +5,12 @@ class Nowtv < Platform
   def initialize(category = 'catchup')
     super()
     self.production = "#{EnvConfig['now_tv_hls_production']}"
+    @base_url = nil
+    @video_type = nil
     @params = {
         :StreamType => 'HLS', # must be specified
     }
-    @bitrates = [1200000]
+    @bitrates = [1250000]
   end
 
   def request_playlist
