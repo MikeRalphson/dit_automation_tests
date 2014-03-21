@@ -12,13 +12,14 @@ module PlaylistService
         @platform = ''
       end
 
-      def get_hmac_token(platform)
+      def get_hmac_token
         hmac = PlaylistService::HmacTokens.new
-        hmac.generate_hmac_token(@productionid, platform)
+        hmac.generate_hmac_token(@productionid, @platform)
       end
 
 
-      def do(token)
+      def do
+        token = get_hmac_token
         HTTParty.get "#{@uri}/playlist/#{@broadcast}/#@platform/#{@productionid}",
                        :headers => {'Content-Type' => 'application/json', 'hmac' => token}
       end
