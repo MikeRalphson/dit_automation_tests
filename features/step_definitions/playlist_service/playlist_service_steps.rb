@@ -22,9 +22,7 @@ Given(/^I have a production id which has invalid rendition names$/) do
 end
 
 When(/^I request the new playlist service$/) do
-  @platform_to_s = @platform.class.to_s.downcase
-  token = @platform.playlist_rest_request.get_hmac_token(@platform_to_s)
-  @platform.request_rest_playlist(token)
+  @platform.request_rest_playlist
   @response = @platform.playlist_rest_response
 end
 
