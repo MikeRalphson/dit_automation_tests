@@ -1,6 +1,5 @@
 Given(/^I have a broadcast type of (\w+)$/) do |broadcast|
-  @broadcast = broadcast
-  @platform.playlist_rest_request.broadcast = @broadcast
+  @platform.playlist_rest_request.broadcast = broadcast
 end
 
 Given(/^I have an invalid production id$/) do
@@ -67,7 +66,8 @@ Then(/^the status code should be 400$/) do
 end
 
 Then(/^I should get a valid platform not supported message$/) do
-  @platform.playlist_rest_response.rest_error_message.should include "The Playlist Functionality For The Platform #{@platform_to_s} Is Not Available"
+  platform = @platform.playlist_rest_request.platform
+  @platform.playlist_rest_response.rest_error_message.should include "The Playlist Functionality For The Platform #{platform} Is Not Available"
 end
 
 Then(/^I should get a valid response for broadcast type not implemented$/) do
