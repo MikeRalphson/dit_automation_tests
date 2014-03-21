@@ -12,7 +12,7 @@ class Ps3 < Platform
     super
   end
 
-  def request_rest_playlist(token)
+  def request_rest_playlist
     @playlist_rest_request.platform = 'PS3'
     super
   end

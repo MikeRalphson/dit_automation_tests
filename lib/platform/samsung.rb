@@ -12,7 +12,7 @@ class Samsung < Platform
     super
   end
 
-  def request_rest_playlist(token)
+  def request_rest_playlist
     @playlist_rest_request.platform = 'Samsung'
     super
   end

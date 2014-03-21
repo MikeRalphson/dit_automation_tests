@@ -26,7 +26,7 @@ class Dotcom < Platform
     super
   end
 
-  def request_rest_playlist(token)
+  def request_rest_playlist
     @playlist_rest_request.platform = 'DotCom'
     super
   end

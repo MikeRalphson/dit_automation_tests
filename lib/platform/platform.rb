@@ -30,8 +30,8 @@ class Platform
     @playlist_response.response = @playlist_request.do
   end
 
-  def request_rest_playlist(token)
-    @playlist_rest_response.response = @playlist_rest_request.do(token)
+  def request_rest_playlist
+    @playlist_rest_response.response = @playlist_rest_request.do
   end
 
   def production
