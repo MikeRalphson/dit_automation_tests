@@ -51,6 +51,7 @@ ft02:
     playlist_production:      '1-5163-1734_001'
     smil_vodcrid:             '328968'
     no_renditions:            '1-3615-8762_001'
+    no_assets_prodid:         '0-0000-0000_000'
 i01:
     alcatraz_url:             'http://i01-alcatraz.itv.com'
     mercury_url:              'http://i01-mercury.itv.com'
@@ -75,6 +76,7 @@ i01:
     playlist_production:      '1-7842-0395_001'
     smil_vodcrid:             '325808'
     no_renditions:            '1-0694-8337_001'
+    no_assets_prodid:         '0-0000-0000_000'
 live:
     alcatraz_url:             'http://alcatraz.itv.com'
     mercury_url:              'http://mercury.itv.com'
