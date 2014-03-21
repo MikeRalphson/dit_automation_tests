@@ -19,10 +19,10 @@ Then(/^I should get the correct vodcrid back$/) do
 end
 
 Then(/^I should receive a valid playlist containing 3 streams$/) do
-  @platform.playlist_response.simulcast_stream_channels.size.should == 3
+  @platform.playlist_response.stream_channels.size.should == 3
 
   bit_rate = [1200, 600, 800]
-  streams = @platform.playlist_response.simulcast_stream_channels.sort
+  streams = @platform.playlist_response.stream_channels.sort
   stream_id = channel_to_stream_id(@channel)
 
   streams.each_with_index do |stream, index|

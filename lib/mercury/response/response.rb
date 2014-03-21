@@ -32,7 +32,7 @@ module Mercury
       @response.xpath('//VideoType').text.downcase
     end
 
-    def simulcast_stream_channels
+    def stream_channels
       streams = @response.xpath('//VideoEntries/Video/MediaFiles/MediaFile/URL')
       streams.map { |stream| stream.text }
     end
