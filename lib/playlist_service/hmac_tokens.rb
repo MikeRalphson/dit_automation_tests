@@ -5,13 +5,13 @@ module PlaylistService
     def initialize
 
       @shared_key = {
-          :samsung => 'aeaKuegnnadnau',
-          :android => 'eKoShKddidoeAn',
-          :dotcom => '',
-          :mobile => '',
-          :youview => '',
-          :freesat => '',
-          :ps3 => ''
+          :Samsung => 'aeaKuegnnadnau',
+          :Android => 'eKoShKddidoeAn',
+          :DotCom => '',
+          :Mobile => '',
+          :YouView => '',
+          :Freesat => '',
+          :PS3 => ''
       }
 
     end
