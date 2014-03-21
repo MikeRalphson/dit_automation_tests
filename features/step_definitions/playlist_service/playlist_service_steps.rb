@@ -1,5 +1,6 @@
 Given(/^I have a broadcast type of (\w+)$/) do |broadcast|
-  @platform.playlist_rest_request.broadcast = broadcast
+  @broadcast = broadcast
+  @platform.playlist_rest_request.broadcast = @broadcast
 end
 
 Given(/^I have an invalid production id$/) do
@@ -8,8 +9,7 @@ Given(/^I have an invalid production id$/) do
 end
 
 Given(/^I have no asset information$/) do
-  @no_assets_prod_id = '0/0000/0000#000'
-  @platform.playlist_rest_request.productionid = '0-0000-0000_000'
+  @platform.playlist_rest_request.productionid = "#{EnvConfig['no_assets_prodid']}"
 end
 
 Given(/^I have no rendtions for a production id$/) do
@@ -27,8 +27,7 @@ end
 
 When(/^I request the new playlist service via http$/) do
   begin
-    @platform_to_s = @platform.class.to_s.downcase
-    @response = @platform.playlist_rest_request.http_request(@platform_to_s)
+    @response = @platform.playlist_rest_request.http_request
   rescue Errno::ECONNREFUSED => error
       @refused_connection = error.to_s
   end
@@ -75,6 +74,7 @@ Then(/^I should get a valid response for broadcast type not implemented$/) do
 end
 
 Then(/^I should get a valid response indicating no assets found$/) do
+  @no_assets_prod_id = "#{EnvConfig['no_assets_prodid']}".gsub('-','/').gsub('_','#')
   @platform.playlist_rest_response.rest_error_message.should include "Asset Information For Production Id #{@no_assets_prod_id} Is Not Found"
 end
 
