@@ -3,7 +3,7 @@ Feature: New Playlist Rest Requests
   In order to generate front end features
   As a backend enabler
   I want to be able to request new playlists
-
+  @rest
   Scenario Outline: Verify new playlist for the supported platforms
     Given I have a piece of <platform> catchup content
     When I request the new playlist service
@@ -36,11 +36,11 @@ Feature: New Playlist Rest Requests
     | YouView     |
     | Freesat     |
 
-  @not_i01
-  Scenario Outline:
+  @not_i01 @403
+  Scenario Outline: Passing empty hmac token in playlist request should give a 403 http error
     Given I have a piece of <platform> catchup content
     When I request the playlist service with a blank hmac token for supported platforms
-    Then I should get a 403 http status error
+    Then I should get a 403 forbidden response code
 
   Examples:
     | platform    |
