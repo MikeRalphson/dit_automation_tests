@@ -32,4 +32,9 @@ class Android < Platform
     super
   end
 
+  def request_rest_playlist(token)
+    @playlist_rest_request.platform = 'Android'
+    super
+  end
+
 end

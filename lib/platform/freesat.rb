@@ -17,4 +17,9 @@ class Freesat < Platform
     super
   end
 
+  def request_rest_playlist(token)
+    @playlist_rest_request.platform = 'Freesat'
+    super
+  end
+
 end
