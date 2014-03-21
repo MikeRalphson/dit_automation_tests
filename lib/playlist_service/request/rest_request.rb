@@ -3,12 +3,13 @@ module PlaylistService
     class RestRequest
 
       attr_reader :uri
-      attr_accessor :productionid, :broadcast
+      attr_accessor :productionid, :broadcast, :platform
 
       def initialize
         @uri = EnvConfig['playlist_service']
         @broadcast = 'itvonline'
         @productionid = "#{EnvConfig['playlist_production']}"
+        @platform = ''
       end
 
       def get_hmac_token(platform)
@@ -17,8 +18,8 @@ module PlaylistService
       end
 
 
-      def do(platform, token)
-        HTTParty.get "#{@uri}/playlist/#{@broadcast}/#{platform}/#{@productionid}",
+      def do(token)
+        HTTParty.get "#{@uri}/playlist/#{@broadcast}/#@platform/#{@productionid}",
                        :headers => {'Content-Type' => 'application/json', 'hmac' => token}
       end
 
